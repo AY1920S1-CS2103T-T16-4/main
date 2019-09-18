@@ -60,14 +60,14 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case RemarkCommand.COMMAND_WORD:
+            return new RemarkCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
-
-        case RemarkCommand.COMMAND_WORD:
-            return new RemarkCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
