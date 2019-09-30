@@ -329,7 +329,7 @@ e.g. `undo 3`
 * *Redo* : `redo TIMES` +
 e.g. `redo 3`
 * *Exit* : `exit`
-* *Add Meme* : ``meme add p/PATH [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]...` +
+* *Add Meme* : `meme add p/PATH [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]...` +
 e.g. `meme add p/~/Downloads/dgirl_oof.jpg n/Disaster Girl t/Funny`
 * *List Meme* : `meme list`
 * *Edit Meme* : `meme edit INDEX [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]...`
