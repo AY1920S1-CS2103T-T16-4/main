@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>AddressBook Level 3 - User Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>ɯeme - User Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>AddressBook Level 3 - User Guide</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>ɯeme - User Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>CS2103-T16-3</code>      Since: <code>Sep 2019</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -13,16 +13,13 @@
 <li><a href="#quick-start">2. Quick Start</a></li>
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
-<li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
-<li><a href="#adding-a-person-code-add-code">3.2. Adding a person: <code>add</code></a></li>
-<li><a href="#listing-all-persons-code-list-code">3.3. Listing all persons : <code>list</code></a></li>
-<li><a href="#editing-a-person-code-edit-code">3.4. Editing a person : <code>edit</code></a></li>
-<li><a href="#locating-persons-by-name-code-find-code">3.5. Locating persons by name: <code>find</code></a></li>
-<li><a href="#deleting-a-person-code-delete-code">3.6. Deleting a person : <code>delete</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.7. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.8. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.9. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.10. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#general">3.1. General</a></li>
+<li><a href="#meme">3.2. Meme</a></li>
+<li><a href="#templates">3.3. Templates</a></li>
+<li><a href="#import-export">3.4. Import/Export</a></li>
+<li><a href="#tags">3.5. Tags</a></li>
+<li><a href="#statistics">3.6. Statistics</a></li>
+<li><a href="#auto-suggestions">3.7. Auto-suggestions</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -34,7 +31,7 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>AddressBook Level 3 (AB3) is for those who <strong>prefer to use a desktop app for managing contacts</strong>. More importantly, AB3 is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>ɯeme is a meme manager app for those who <strong>prefer to use a desktop app for managing memes</strong>. More importantly, ɯeme is <strong>optimized for those who prefer to work with a Command Line Interface (CLI)</strong> while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ɯeme can let you manage memes faster than traditional GUI apps. Interested? Jump to the Section 2, <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
 </div>
 </div>
 </div>
@@ -47,18 +44,13 @@
 <p>Ensure you have Java <code>11</code> or above installed in your Computer.</p>
 </li>
 <li>
-<p>Download the latest <code>addressbook.jar</code> <a href="https://github.com/se-edu/addressbook-level3/releases">here</a>.</p>
+<p>Download the latest <code>weme.jar</code> <a href="https://github.com/se-edu/addressbook-level3/releases">here</a>.</p>
 </li>
 <li>
-<p>Copy the file to the folder you want to use as the home folder for your Address Book.</p>
+<p>Copy the file to the folder you want to use as the home folder for your ɯeme.</p>
 </li>
 <li>
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
-<div class="imageblock">
-<div class="content">
-<img src="images/Ui.png" alt="Ui" width="790">
-</div>
-</div>
 </li>
 <li>
 <p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
@@ -69,13 +61,13 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>list</code></strong> : lists all contacts</p>
+<p><strong><code>meme list</code></strong> : lists all memes</p>
 </li>
 <li>
-<p><strong><code>add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> : adds a contact named <code>John Doe</code> to the Address Book.</p>
+<p><strong><code>meme add</code></strong><code>p/~/Downloads/meme.jpg d/Top meme</code> : adds a meme located at "~/Downloads/meme.jpg" with the description "Top meme"</p>
 </li>
 <li>
-<p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd contact shown in the current list</p>
+<p><strong><code>meme delete</code></strong><code>3</code> : deletes the 3rd meme shown in the window</p>
 </li>
 <li>
 <p><strong><code>exit</code></strong> : exits the app</p>
@@ -101,171 +93,105 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/John Doe</code>.</p>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>meme add p/PATH</code>, <code>PATH</code> is a parameter which can be used as <code>meme add p/~/Downloads/meme.jpg</code>.</p>
 </li>
 <li>
-<p>Items in square brackets are optional e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/John Doe t/friend</code> or as <code>n/John Doe</code>.</p>
+<p>Items in square brackets are optional e.g <code>p/PATH [t/TAG]</code> can be used as <code>p/~/Downloads/meme.jpg t/cs2103</code> or as <code>p/~/Downloads/meme.jpg</code>.</p>
 </li>
 <li>
-<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/friend</code>, <code>t/friend t/family</code> etc.</p>
+<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/cs2103</code>, <code>t/soc t/funny</code> etc.</p>
 </li>
 <li>
-<p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
+<p>Parameters can be in any order e.g. if the command specifies <code>p/PATH d/DESCRIPTION</code>, <code>d/DESCRIPTION p/PATH</code> is also acceptable.</p>
+</li>
+<li>
+<p>Whenever INDEX is encountered, it refers to the index in the currently displayed list.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></h3>
+<h3 id="general"><a class="link" href="#general">3.1. General</a></h3>
+<div class="sect3">
+<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.1.1. Viewing help : <code>help</code></a></h4>
 <div class="paragraph">
 <p>Format: <code>help</code></p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="undo-code-undo-code"><a class="link" href="#undo-code-undo-code">3.1.2. Undo : <code>undo</code></a></h4>
+<div class="paragraph">
+<p>Undoes commands TIMES number of times.<br>
+Format: <code>undo TIMES</code><br>
+Example: <code>undo 3</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="redo-code-redo-code"><a class="link" href="#redo-code-redo-code">3.1.3. Redo : <code>redo</code></a></h4>
+<div class="paragraph">
+<p>Redoes commands TIMES number of times.<br>
+Format: <code>redo TIMES</code><br>
+Example: redo 3</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exit-code-exit-code"><a class="link" href="#exit-code-exit-code">3.1.4. Exit : <code>exit</code></a></h4>
+<div class="paragraph">
+<p>Exits Weme.
+Format: <code>exit</code></p>
+</div>
+</div>
+</div>
 <div class="sect2">
-<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">3.2. Adding a person: <code>add</code></a></h3>
+<h3 id="meme"><a class="link" href="#meme">3.2. Meme</a></h3>
+<div class="sect3">
+<h4 id="add-meme-code-add-code"><a class="link" href="#add-meme-code-add-code">3.2.1. Add - meme : <code>add</code></a></h4>
 <div class="paragraph">
-<p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-A person can have any number of tags (including 0)
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
+<p>Add a new meme to weme. Weme will copy the given image into the it’s data storage folder.<br>
+Format: <code>meme add p/PATH [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]&#8230;&#8203;</code><br>
+Examples:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
-</li>
-<li>
-<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code></p>
+<p>Add a meme that uses the “Disaster Girl” template from ~/Downloads/dgirl_oof.jpg <code>meme add p/~/Downloads/dgirl_oof.jpg n/Disaster Girl t/Funny</code></p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">3.3. Listing all persons : <code>list</code></a></h3>
+<div class="sect3">
+<h4 id="list-meme-code-list-code"><a class="link" href="#list-meme-code-list-code">3.2.2. List - meme : <code>list</code></a></h4>
 <div class="paragraph">
-<p>Shows a list of all persons in the address book.<br>
-Format: <code>list</code></p>
+<p>List all memes.<br>
+Format: <code>meme list</code></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">3.4. Editing a person : <code>edit</code></a></h3>
+<div class="sect3">
+<h4 id="edit-meme-code-edit-code"><a class="link" href="#edit-meme-code-edit-code">3.2.3. Edit - meme : <code>edit</code></a></h4>
 <div class="paragraph">
-<p>Edits an existing person in the address book.<br>
-Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
+<p>Edit the details of a meme at the specified index. Only optional fields are editable.<br>
+Format: <code>meme edit INDEX [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-meme-code-delete-code"><a class="link" href="#delete-meme-code-delete-code">3.2.4. Delete - meme : <code>delete</code></a></h4>
+<div class="paragraph">
+<p>Delete the specified meme from ɯeme.
+Format: <code>meme delete INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the person at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed person list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>Deletes the meme at the specified <code>INDEX</code>.</p>
 </li>
 <li>
-<p>At least one of the optional fields must be provided.</p>
-</li>
-<li>
-<p>Existing values will be updated to the input values.</p>
-</li>
-<li>
-<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
-</li>
-<li>
-<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>edit 1 p/91234567 e/johndoe@example.com</code><br>
-Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
-</li>
-<li>
-<p><code>edit 2 n/Betsy Crower t/</code><br>
-Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">3.5. Locating persons by name: <code>find</code></a></h3>
-<div class="paragraph">
-<p>Finds persons whose names contain any of the given keywords.<br>
-Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
-</li>
-<li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
-</li>
-<li>
-<p>Only the name is searched.</p>
-</li>
-<li>
-<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
-</li>
-<li>
-<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>find John</code><br>
-Returns <code>john</code> and <code>John Doe</code></p>
-</li>
-<li>
-<p><code>find Betsy Tim John</code><br>
-Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">3.6. Deleting a person : <code>delete</code></a></h3>
-<div class="paragraph">
-<p>Deletes the specified person from the address book.<br>
-Format: <code>delete INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the person at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the displayed person list.</p>
+<p>The index refers to the index number shown in the displayed meme list.</p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
@@ -282,41 +208,367 @@ Format: <code>delete INDEX</code></p>
 <li>
 <p><code>list</code><br>
 <code>delete 2</code><br>
-Deletes the 2nd person in the address book.</p>
+Deletes the 2nd meme in the window.</p>
 </li>
 <li>
-<p><code>find Betsy</code><br>
+<p><code>meme find pikachu</code><br>
 <code>delete 1</code><br>
-Deletes the 1st person in the results of the <code>find</code> command.</p>
+Deletes the 1st meme in the results of the <code>find</code> command.</p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.7. Clearing all entries : <code>clear</code></a></h3>
+<div class="sect3">
+<h4 id="find-meme-code-find-code"><a class="link" href="#find-meme-code-find-code">3.2.5. Find - meme : <code>find</code></a></h4>
 <div class="paragraph">
-<p>Clears all entries from the address book.<br>
-Format: <code>clear</code></p>
+<p>Finds memes that fulfill the given search criteria. At least one field must be given.<br>
+Format: <code>meme find [d/DESCRIPTION]&#8230;&#8203; [n/TEMPLATE_NAME]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>Pikachu</code> will match <code>pikachu</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>run naruto</code> will match <code>naruto run</code></p>
+</li>
+<li>
+<p>Only the name is searched.</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>naru</code> will not match <code>naruto</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>meme find pikachu</code><br>
+Returns memes related to <code>pikachu</code> and <code>pikachu faceless</code></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.8. Exiting the program : <code>exit</code></a></h3>
+<h3 id="templates"><a class="link" href="#templates">3.3. Templates</a></h3>
 <div class="paragraph">
-<p>Exits the program.<br>
-Format: <code>exit</code></p>
+<p>Templates are meme prototypes. You can use any image as template base and add labels to it. Labels serve as placeholders that will be replaced with text supplied by the user when creating a meme from the template.</p>
+</div>
+<div class="sect3">
+<h4 id="adding-a-template-template-add"><a class="link" href="#adding-a-template-template-add">3.3.1. Adding a template - template add</a></h4>
+<div class="paragraph">
+<p>Add a new template to weme. The newly created template will not have any labels.<br>
+Format: <code>template add n/NAME p/PATH</code><br>
+Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add a template named “Drake” from ~/Downloads/Drake_hotline_bling.jpg<br>
+<code>template add n/Drake p/~/Downloads/Drake_hotline_bling.jpg</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="listing-all-templates-template-list"><a class="link" href="#listing-all-templates-template-list">3.3.2. Listing all  templates - template list</a></h4>
+<div class="paragraph">
+<p>List all templates.<br>
+Format: <code>template list</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="viewing-a-template-template-view"><a class="link" href="#viewing-a-template-template-view">3.3.3. Viewing a template - template view</a></h4>
+<div class="paragraph">
+<p>View a template. The list panel will be filled by the template. The labels will be displayed at their respective positions.<br>
+Format: <code>template view INDEX</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="editing-a-template-template-edit"><a class="link" href="#editing-a-template-template-edit">3.3.4. Editing a template - template edit</a></h4>
+<div class="paragraph">
+<p>Edit a template at the specified index. The list panel will become the editing area and display the selected template. You can add, remove, or move labels. A set of keyboard actions are available:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a: add a label</p>
+</li>
+<li>
+<p>NUMBER: focus a label labelled NUMBER</p>
+</li>
+<li>
+<p>↓/j: move the currently focused label downwards</p>
+</li>
+<li>
+<p>↑/k: move the currently focused label upwards</p>
+</li>
+<li>
+<p>←/h: move the currently focused label to the left</p>
+</li>
+<li>
+<p>→/l: move the currently focused label to the right</p>
+</li>
+<li>
+<p>Delete/d: delete the currently focused label</p>
+</li>
+<li>
+<p>Enter: finish editing</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Format: <code>template edit INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Note: The current edit session will be aborted if another command is entered before the session is finished.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-a-meme-template-delete"><a class="link" href="#deleting-a-meme-template-delete">3.3.5. Deleting a meme - template delete</a></h4>
+<div class="paragraph">
+<p>Delete the specified template from weme.<br>
+Format: <code>template delete INDEX</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="locating-templates-by-name-template-find"><a class="link" href="#locating-templates-by-name-template-find">3.3.6. Locating templates by name - template find</a></h4>
+<div class="paragraph">
+<p>Finds templates whose names contain any of the given keywords.<br>
+Format: <code>template find KEYWORD [MORE_KEYWORDS]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g drake will match dRaKE</p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. Pikachu Surprised will match Surprised Pikachu</p>
+</li>
+<li>
+<p>Only the name is searched.</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. sponge will not match spongebob</p>
+</li>
+<li>
+<p>Templates matching at least one keyword will be returned (i.e. OR search). e.g. SpongeBob Patrick will return both Tired SpongeBob and Savage Patrick</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find Thanos</code><br>
+Returns all template containing Thanos in their names</p>
+</li>
+<li>
+<p><code>find Stonks Doge Pikachu</code><br>
+Returns any templates having names stonks, doge, or pikachu</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="creating-memes-from-templates-template-use"><a class="link" href="#creating-memes-from-templates-template-use">3.3.7. Creating memes from templates - template use</a></h4>
+<div class="paragraph">
+<p>Create a meme from one of the templates stored in weme. Multiple pieces of text can be supplied, each of which will be used to fill in the labels 1, 2, 3, …, etc, in the order they are supplied. The resultant meme will be saved in weme with the tags you specified.<br>
+Format: <code>template use INDEX l/TEXT [l/TEXT]&#8230;&#8203; t/TAG [t/TAG]..</code><br>
+Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>template use 1 t/wow t/so amaze t/random</code><br>
+Using the template at index 1, create a new meme tagged <code>random</code> by replacing label 1 with <code>wow</code> and label 2 with <code>so amaze</code>.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.9. Saving the data</a></h3>
+<h3 id="import-export"><a class="link" href="#import-export">3.4. Import/Export</a></h3>
+<div class="sect3">
+<h4 id="export-export"><a class="link" href="#export-export">3.4.1. Export - export</a></h4>
 <div class="paragraph">
-<p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
-There is no need to save manually.</p>
+<p>Exports existing memes into a zip file.</p>
+</div>
+<div class="sect4">
+<h5 id="toggles-the-export-window-export-toggle"><a class="link" href="#toggles-the-export-window-export-toggle">Toggles the export window - export toggle</a></h5>
+<div class="paragraph">
+<p>Toggles the export window for exporting memes into a zip package.<br>
+Format: <code>export toggle</code></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="add-export-export-add"><a class="link" href="#add-export-export-add">Add export - export add</a></h5>
+<div class="paragraph">
+<p>Adds memes by tag or by position into the staging area for export.<br>
+Format: <code>export add t/TAG</code><br>
+Format: <code>export add i/POSITION</code></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="remove-export-export-remove"><a class="link" href="#remove-export-export-remove">Remove export - export remove</a></h5>
+<div class="paragraph">
+<p>Removes memes from the export staging area by position.<br>
+Format: <code>export remove i/POSITION</code></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="sets-path-for-export-export-path"><a class="link" href="#sets-path-for-export-export-path">Sets path for export - export path</a></h5>
+<div class="paragraph">
+<p>Sets the export path of the meme.<br>
+Format: <code>export path p/PATHNAME</code></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="execute-the-export-export-execute"><a class="link" href="#execute-the-export-export-execute">Execute the export - export execute</a></h5>
+<div class="paragraph">
+<p>Format: <code>export execute</code></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="import-import"><a class="link" href="#import-import">3.4.2. Import - import</a></h4>
+<div class="paragraph">
+<p>Imports a set of memes from a directory as templates.</p>
+</div>
+<div class="sect4">
+<h5 id="toggles-the-import-window-import-toggle"><a class="link" href="#toggles-the-import-window-import-toggle">Toggles the import window - import toggle</a></h5>
+<div class="paragraph">
+<p>Toggles the import window to import memes from a directory.<br>
+Format: <code>import toggle</code></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="add-import-import-add"><a class="link" href="#add-import-import-add">Add import - import add</a></h5>
+<div class="paragraph">
+<p>Adds memes to the import staging area based on its path.<br>
+Format: <code>import add p/PATHNAME</code></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="remove-import-import-remove"><a class="link" href="#remove-import-import-remove">Remove import - import remove</a></h5>
+<div class="paragraph">
+<p>Removes memes from the import staging area by position<br>
+Format: <code>import remove i/POSITION</code></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="execute-the-import-import-execute"><a class="link" href="#execute-the-import-import-execute">Execute the import - import execute</a></h5>
+<div class="paragraph">
+<p>Successfully converts all meme files in the staging area into meme templates.<br>
+Format: <code>import execute</code></p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.10. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="tags"><a class="link" href="#tags">3.5. Tags</a></h3>
+<div class="sect3">
+<h4 id="add-tag-add"><a class="link" href="#add-tag-add">3.5.1. Add - tag add</a></h4>
 <div class="paragraph">
-<p><em>{explain how the user can enable/disable data encryption}</em></p>
+<p>Creates a tag with a name, and optionally attach it to a meme at the specified index.<br>
+Format: `tag add n/NAME [INDEX]  <br>
+Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add a tag called “CS2103” without a meme<br>
+<code>tag add n/CS2103</code></p>
+</li>
+<li>
+<p>Add a tag called “SoC” and tag meme #3 in the search list with it<br>
+<code>tag add n/SoC 3</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-tag-edit"><a class="link" href="#edit-tag-edit">3.5.2. Edit - tag edit</a></h4>
+<div class="paragraph">
+<p>Edits the name of a tag, replacing the old name with the new name.<br>
+Format: <code>tag edit o/OLDNAME n/NEWNAME</code><br>
+Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Change the name of tag “CS2010” to “CS2040”<br>
+<code>tag edit o/CS2010 n/CS2040</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="list-tag-list"><a class="link" href="#list-tag-list">3.5.3. List - tag list</a></h4>
+<div class="paragraph">
+<p>Lists all the tags created so far.<br>
+Format: <code>tag list</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-tag-delete"><a class="link" href="#delete-tag-delete">3.5.4. Delete - tag delete</a></h4>
+<div class="paragraph">
+<p>Delete a tag specified by either its name or its index in the search result.<br>
+Format: <code>tag delete [n/NAME] [INDEX]</code><br>
+Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Delete tag “CS1101S”<br>
+<code>tag delete n/CS1101S</code></p>
+</li>
+<li>
+<p>Delete tag at index 4 in the search result<br>
+<code>tag delete 4</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="statistics"><a class="link" href="#statistics">3.6. Statistics</a></h3>
+<div class="paragraph">
+<p>View stats - <code>stats</code><br>
+View various statistics about the memes such as views by tags and meme, search frequency and most used templates.<br>
+Format: <code>stats</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="auto-suggestions"><a class="link" href="#auto-suggestions">3.7. Auto-suggestions</a></h3>
+<div class="paragraph">
+<p>The command format will be suggested in the console after user type in the command word, followed by one example. Possible command arguments (ordered by relevance) will appear in the console after user type in each prefix. The auto-suggestion is dynamic and updates while the user type in command.<br>
+Format:<br>
+when user type in meme add, the command format will appear below:<br>
+<code>p/PATH [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]&#8230;&#8203;</code><br>
+e.g. <code>p/home/pictures/p1.jpeg d/My favorite meme n/sad sponge bob t/spongebob t/favorites</code></p>
 </div>
 </div>
 </div>
@@ -326,7 +578,7 @@ There is no need to save manually.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
+<strong>A</strong>: Install the app in the other computer and import the data using the <a href="#import-export">Section 3.4, &#8220;Import/Export&#8221;</a> feature</p>
 </div>
 </div>
 </div>
@@ -336,31 +588,102 @@ There is no need to save manually.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Add</strong> <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code></p>
-</li>
-<li>
-<p><strong>Clear</strong> : <code>clear</code></p>
-</li>
-<li>
-<p><strong>Delete</strong> : <code>delete INDEX</code><br>
-e.g. <code>delete 3</code></p>
-</li>
-<li>
-<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
-</li>
-<li>
-<p><strong>Find</strong> : <code>find KEYWORD [MORE_KEYWORDS]</code><br>
-e.g. <code>find James Jake</code></p>
-</li>
-<li>
-<p><strong>List</strong> : <code>list</code></p>
-</li>
-<li>
 <p><strong>Help</strong> : <code>help</code></p>
+</li>
+<li>
+<p><strong>Undo</strong> : <code>undo TIMES</code><br>
+e.g. <code>undo 3</code></p>
+</li>
+<li>
+<p><strong>Redo</strong> : <code>redo TIMES</code><br>
+e.g. <code>redo 3</code></p>
+</li>
+<li>
+<p><strong>Exit</strong> : <code>exit</code></p>
+</li>
+<li>
+<p><strong>Add Meme</strong> : <code>meme add p/PATH [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]&#8230;&#8203;</code><br>
+e.g. <code>meme add p/~/Downloads/dgirl_oof.jpg n/Disaster Girl t/Funny</code></p>
+</li>
+<li>
+<p><strong>List Meme</strong> : <code>meme list</code></p>
+</li>
+<li>
+<p><strong>Edit Meme</strong> : <code>meme edit INDEX [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]&#8230;&#8203;</code></p>
+</li>
+<li>
+<p><strong>Delete Meme</strong> : <code>meme delete INDEX</code></p>
+</li>
+<li>
+<p><strong>Find Meme</strong> : <code>meme find [d/DESCRIPTION]&#8230;&#8203; [n/TEMPLATE_NAME]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code></p>
+</li>
+<li>
+<p><strong>Add Template</strong> : <code>template add n/NAME p/PATH</code></p>
+</li>
+<li>
+<p><strong>List Template</strong> : <code>template list</code></p>
+</li>
+<li>
+<p><strong>View template</strong> : <code>template view INDEX</code></p>
+</li>
+<li>
+<p><strong>Edit Template</strong> : <code>template edit INDEX</code></p>
+</li>
+<li>
+<p><strong>Delete Template</strong> : <code>template delete INDEX</code></p>
+</li>
+<li>
+<p><strong>Find Template</strong> : <code>template find KEYWORD [MORE_KEYWORDS]</code></p>
+</li>
+<li>
+<p><strong>Use Template</strong> : <code>template use INDEX l/TEXT [l/TEXT]&#8230;&#8203; t/TAG [t/TAG]..</code></p>
+</li>
+<li>
+<p><strong>Export Toggle</strong> : <code>export toggle</code></p>
+</li>
+<li>
+<p><strong>Add Export</strong> : <code>export add [t/tag] [i/position]</code></p>
+</li>
+<li>
+<p><strong>Remove Export</strong> : <code>export remove i/position</code></p>
+</li>
+<li>
+<p><strong>Set Export Path</strong> : <code>export path p/path_name</code></p>
+</li>
+<li>
+<p><strong>Execute Export</strong> : <code>export execute</code></p>
+</li>
+<li>
+<p><strong>Import Toggle</strong> : <code>import toggle</code></p>
+</li>
+<li>
+<p><strong>Add Import</strong> : <code>import add p/PATHNAME</code></p>
+</li>
+<li>
+<p><strong>Remove Import</strong> : <code>import remove i/POSITION</code></p>
+</li>
+<li>
+<p><strong>Set Import Path</strong> : <code>import path p/PATHNAME</code></p>
+</li>
+<li>
+<p><strong>Execute Import</strong> : <code>import execute</code></p>
+</li>
+<li>
+<p><strong>Add Tag</strong> : <code>tag add n/NAME [INDEX]</code></p>
+</li>
+<li>
+<p><strong>Edit Tag</strong> : <code>tag edit o/OLDNAME n/NEWNAME</code></p>
+</li>
+<li>
+<p><strong>List Tag</strong> : <code>tag list</code></p>
+</li>
+<li>
+<p><strong>Delete Tag</strong> : <code>tag delete [n/NAME] [INDEX]</code></p>
+</li>
+<li>
+<p><strong>Statistics</strong> : <code>stats</code></p>
 </li>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-09-30 07:22:44 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-01 08:59:33 UTC</div></div></div></body></html>
