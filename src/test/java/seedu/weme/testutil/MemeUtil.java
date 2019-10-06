@@ -2,8 +2,8 @@ package seedu.weme.testutil;
 
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.weme.logic.parser.CliSyntax.PREFIX_URL;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_URL;
 
 import java.util.Set;
 

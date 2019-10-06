@@ -2,7 +2,10 @@ package seedu.weme.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.weme.logic.parser.CliSyntax.*;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_URL;
 import static seedu.weme.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -55,7 +58,8 @@ public class CommandTestUtil {
         DESC_AMY = new EditMemeDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withAddress(VALID_ADDRESS_AMY).withUrl(VALID_URL_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditMemeDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withUrl(VALID_URL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withAddress(VALID_ADDRESS_BOB).withUrl(VALID_URL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .build();
     }
 
     /**

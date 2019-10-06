@@ -17,6 +17,7 @@ public class MemeBuilder {
 
     public static final String DEFAULT_NAME = "Alice Kingsleigh";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_URL = "https://tinyurl.com/testWeme";
 
     private Name name;
     private Address address;
@@ -26,6 +27,7 @@ public class MemeBuilder {
     public MemeBuilder() {
         name = new Name(DEFAULT_NAME);
         address = new Address(DEFAULT_ADDRESS);
+        url = new ImageUrl(DEFAULT_URL);
         tags = new HashSet<>();
     }
 
@@ -63,6 +65,9 @@ public class MemeBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code ImageUrl} of the {@code Meme} that we are building.
+     */
     public MemeBuilder withUrl(String url) {
         this.url = new ImageUrl(url);
         return this;

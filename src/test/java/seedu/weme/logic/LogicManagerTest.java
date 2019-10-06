@@ -5,6 +5,7 @@ import static seedu.weme.commons.core.Messages.MESSAGE_INVALID_MEME_DISPLAYED_IN
 import static seedu.weme.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.weme.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.weme.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.weme.logic.commands.CommandTestUtil.URL_DESC_AMY;
 import static seedu.weme.testutil.Assert.assertThrows;
 import static seedu.weme.testutil.TypicalMemes.AMY;
 
@@ -78,7 +79,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY
-                + ADDRESS_DESC_AMY;
+                + ADDRESS_DESC_AMY + URL_DESC_AMY;
         Meme expectedMeme = new MemeBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addMeme(expectedMeme);

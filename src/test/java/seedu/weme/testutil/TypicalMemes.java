@@ -4,10 +4,10 @@ import static seedu.weme.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_URL_AMY;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_URL_BOB;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.weme.logic.commands.CommandTestUtil.VALID_URL_AMY;
+import static seedu.weme.logic.commands.CommandTestUtil.VALID_URL_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -2,7 +2,6 @@ package seedu.weme.model.meme;
 
 import static seedu.weme.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.awt.*;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;

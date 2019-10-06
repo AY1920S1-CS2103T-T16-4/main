@@ -2,7 +2,14 @@ package seedu.weme.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.weme.logic.commands.CommandTestUtil.*;
+import static seedu.weme.logic.commands.CommandTestUtil.DESC_AMY;
+import static seedu.weme.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.weme.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.weme.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.weme.logic.commands.CommandTestUtil.VALID_URL_BOB;
+import static seedu.weme.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.weme.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.weme.logic.commands.CommandTestUtil.showMemeAtIndex;
 import static seedu.weme.testutil.TypicalIndexes.INDEX_FIRST_MEME;
 import static seedu.weme.testutil.TypicalIndexes.INDEX_SECOND_MEME;
 import static seedu.weme.testutil.TypicalMemes.getTypicalMemeBook;

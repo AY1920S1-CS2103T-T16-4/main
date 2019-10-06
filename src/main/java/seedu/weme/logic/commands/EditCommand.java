@@ -3,8 +3,8 @@ package seedu.weme.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.weme.logic.parser.CliSyntax.PREFIX_URL;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_URL;
 import static seedu.weme.model.Model.PREDICATE_SHOW_ALL_MEMES;
 
 import java.util.Collections;

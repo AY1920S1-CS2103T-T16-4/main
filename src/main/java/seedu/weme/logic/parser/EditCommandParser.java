@@ -2,7 +2,10 @@ package seedu.weme.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.weme.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.weme.logic.parser.CliSyntax.*;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_URL;
 
 import java.util.Collection;
 import java.util.Collections;

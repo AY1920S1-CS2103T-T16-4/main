@@ -1,13 +1,14 @@
 package seedu.weme.model.meme;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.weme.commons.util.AppUtil.checkArgument;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 /**
  * Wrapper class for URL in {@code Meme}.
+ * Acts as the identity reference to a {@code Meme}.
  */
 public class ImageUrl {
 
@@ -18,8 +19,8 @@ public class ImageUrl {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    private final URL url;
     public final String value;
+    public final URL url;
 
     /**
      * Constructs an {@code Url}.

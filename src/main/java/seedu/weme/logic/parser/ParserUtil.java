@@ -2,8 +2,6 @@ package seedu.weme.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;

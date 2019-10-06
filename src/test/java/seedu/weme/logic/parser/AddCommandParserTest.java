@@ -12,6 +12,8 @@ import static seedu.weme.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.weme.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.weme.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.weme.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.weme.logic.commands.CommandTestUtil.URL_DESC_AMY;
+import static seedu.weme.logic.commands.CommandTestUtil.URL_DESC_BOB;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -39,28 +41,28 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedMeme));
+                + ADDRESS_DESC_BOB + URL_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedMeme));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedMeme));
+                + ADDRESS_DESC_BOB + URL_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedMeme));
 
         // multiple addresses - last weme accepted
         assertParseSuccess(parser, NAME_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedMeme));
+                + ADDRESS_DESC_BOB + URL_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedMeme));
 
         // multiple tags - all accepted
         Meme expectedMemeMultipleTags = new MemeBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedMemeMultipleTags));
+                + TAG_DESC_HUSBAND + URL_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedMemeMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Meme expectedMeme = new MemeBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + ADDRESS_DESC_AMY,
+        assertParseSuccess(parser, NAME_DESC_AMY + ADDRESS_DESC_AMY + URL_DESC_AMY,
                 new AddCommand(expectedMeme));
     }
 
@@ -84,24 +86,24 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + ADDRESS_DESC_BOB
+        assertParseFailure(parser, INVALID_NAME_DESC + ADDRESS_DESC_BOB + URL_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid weme
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_ADDRESS_DESC
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_ADDRESS_DESC + URL_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB + URL_DESC_BOB
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_ADDRESS_DESC,
+        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_ADDRESS_DESC + URL_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + URL_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

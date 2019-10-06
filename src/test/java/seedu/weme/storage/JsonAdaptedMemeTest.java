@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.weme.commons.exceptions.IllegalValueException;
 import seedu.weme.model.meme.Address;
-import seedu.weme.model.meme.ImageUrl;
 import seedu.weme.model.meme.Name;
 
 public class JsonAdaptedMemeTest {
@@ -61,21 +60,6 @@ public class JsonAdaptedMemeTest {
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedMeme meme = new JsonAdaptedMeme(VALID_NAME, null, VALID_URL, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, meme::toModelType);
-    }
-    @Test
-
-    public void toModelType_invalidUrl_throwsIllegalValueException() {
-        JsonAdaptedMeme meme =
-                new JsonAdaptedMeme(VALID_NAME, VALID_ADDRESS, INVALID_URL, VALID_TAGS);
-        String expectedMessage = ImageUrl.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, meme::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullUrl_throwsIllegalValueException() {
-        JsonAdaptedMeme meme = new JsonAdaptedMeme(VALID_NAME, VALID_ADDRESS, null,VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, meme::toModelType);
     }

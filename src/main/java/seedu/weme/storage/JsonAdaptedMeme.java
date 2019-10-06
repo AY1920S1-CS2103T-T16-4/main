@@ -1,7 +1,5 @@
 package seedu.weme.storage;
 
-import java.awt.*;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -85,7 +83,8 @@ class JsonAdaptedMeme {
         final Address modelAddress = new Address(address);
 
         if (url == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ImageUrl.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ImageUrl.class.getSimpleName()));
         }
         if (!ImageUrl.isValidUrl(url)) {
             throw new IllegalValueException(ImageUrl.MESSAGE_CONSTRAINTS);
