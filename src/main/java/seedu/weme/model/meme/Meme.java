@@ -2,6 +2,7 @@ package seedu.weme.model.meme;
 
 import static seedu.weme.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.awt.*;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -20,15 +21,17 @@ public class Meme {
 
     // Data fields
     private final Address address;
+    private final ImageUrl url;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Meme(Name name, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, address, tags);
+    public Meme(Name name, Address address, ImageUrl url, Set<Tag> tags) {
+        requireAllNonNull(name, address, url, tags);
         this.name = name;
         this.address = address;
+        this.url = url;
         this.tags.addAll(tags);
     }
 
@@ -38,6 +41,10 @@ public class Meme {
 
     public Address getAddress() {
         return address;
+    }
+
+    public ImageUrl getUrl() {
+        return url;
     }
 
     /**
@@ -84,7 +91,7 @@ public class Meme {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, tags);
+        return Objects.hash(name, address, url, tags);
     }
 
     @Override
@@ -93,6 +100,8 @@ public class Meme {
         builder.append(getName())
                 .append(" Address: ")
                 .append(getAddress())
+                .append(" URL: ")
+                .append(getUrl())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

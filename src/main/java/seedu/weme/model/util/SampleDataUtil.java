@@ -1,5 +1,6 @@
 package seedu.weme.model.util;
 
+import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -7,6 +8,7 @@ import java.util.stream.Collectors;
 import seedu.weme.model.MemeBook;
 import seedu.weme.model.ReadOnlyMemeBook;
 import seedu.weme.model.meme.Address;
+import seedu.weme.model.meme.ImageUrl;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.meme.Name;
 import seedu.weme.model.tag.Tag;
@@ -16,25 +18,31 @@ import seedu.weme.model.tag.Tag;
  */
 public class SampleDataUtil {
     public static Meme[] getSampleMemes() {
-        return new Meme[] {
-            new Meme(new Name("Alex Yeoh"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Meme(new Name("Bernice Yu"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Meme(new Name("Charlotte Oliveiro"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Meme(new Name("David Li"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Meme(new Name("Irfan Ibrahim"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Meme(new Name("Roy Balakrishnan"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+        return new Meme[]{
+                new Meme(new Name("Alex Yeoh"),
+                        new Address("Blk 30 Geylang Street 29, #06-40"),
+                        new ImageUrl("https://tinyurl.com/testWeme"),
+                        getTagSet("friends")),
+                new Meme(new Name("Bernice Yu"),
+                        new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                        new ImageUrl("https://tinyurl.com/testWeme"),
+                        getTagSet("colleagues", "friends")),
+                new Meme(new Name("Charlotte Oliveiro"),
+                        new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                        new ImageUrl("https://tinyurl.com/testWeme"),
+                        getTagSet("neighbours")),
+                new Meme(new Name("David Li"),
+                        new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                        new ImageUrl("https://tinyurl.com/testWeme"),
+                        getTagSet("family")),
+                new Meme(new Name("Irfan Ibrahim"),
+                        new Address("Blk 47 Tampines Street 20, #17-35"),
+                        new ImageUrl("https://tinyurl.com/testWeme"),
+                        getTagSet("classmates")),
+                new Meme(new Name("Roy Balakrishnan"),
+                        new Address("Blk 45 Aljunied Street 85, #11-31"),
+                        new ImageUrl("https://tinyurl.com/testWeme"),
+                        getTagSet("colleagues"))
         };
     }
 

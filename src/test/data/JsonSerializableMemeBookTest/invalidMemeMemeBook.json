@@ -1,6 +1,7 @@
 {
   "memes": [ {
     "name": "Hans Muster",
-    "address": ""
+    "address": "",
+    "url": "https://tinyurl.com/testWeme"
   } ]
 }

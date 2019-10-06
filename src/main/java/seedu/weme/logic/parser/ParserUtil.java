@@ -2,6 +2,8 @@ package seedu.weme.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +12,7 @@ import seedu.weme.commons.core.index.Index;
 import seedu.weme.commons.util.StringUtil;
 import seedu.weme.logic.parser.exceptions.ParseException;
 import seedu.weme.model.meme.Address;
+import seedu.weme.model.meme.ImageUrl;
 import seedu.weme.model.meme.Name;
 import seedu.weme.model.tag.Tag;
 
@@ -61,6 +64,16 @@ public class ParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code String weme} into an {@code Address}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static ImageUrl parseUrl(String input) {
+        requireNonNull(input);
+        String trimmedUrl = input.trim();
+        return new ImageUrl(trimmedUrl);
     }
 
     /**

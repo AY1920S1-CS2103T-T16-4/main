@@ -2,6 +2,7 @@ package seedu.weme.testutil;
 
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_URL;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -30,6 +31,7 @@ public class MemeUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + meme.getName().fullName + " ");
         sb.append(PREFIX_ADDRESS + meme.getAddress().value + " ");
+        sb.append(PREFIX_URL + meme.getUrl().value + " ");
         meme.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -43,6 +45,7 @@ public class MemeUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getUrl().ifPresent(url -> sb.append(PREFIX_URL).append(url.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

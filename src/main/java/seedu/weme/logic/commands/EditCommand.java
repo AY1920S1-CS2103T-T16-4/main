@@ -3,6 +3,7 @@ package seedu.weme.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_URL;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.weme.model.Model.PREDICATE_SHOW_ALL_MEMES;
 
@@ -18,6 +19,7 @@ import seedu.weme.commons.util.CollectionUtil;
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.model.Model;
 import seedu.weme.model.meme.Address;
+import seedu.weme.model.meme.ImageUrl;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.meme.Name;
 import seedu.weme.model.tag.Tag;
@@ -35,6 +37,7 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_URL + "URL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
@@ -87,9 +90,10 @@ public class EditCommand extends Command {
 
         Name updatedName = editMemeDescriptor.getName().orElse(memeToEdit.getName());
         Address updatedAddress = editMemeDescriptor.getAddress().orElse(memeToEdit.getAddress());
+        ImageUrl updatedUrl = editMemeDescriptor.getUrl().orElse(memeToEdit.getUrl());
         Set<Tag> updatedTags = editMemeDescriptor.getTags().orElse(memeToEdit.getTags());
 
-        return new Meme(updatedName, updatedAddress, updatedTags);
+        return new Meme(updatedName, updatedAddress, updatedUrl, updatedTags);
     }
 
     @Override
@@ -117,6 +121,7 @@ public class EditCommand extends Command {
     public static class EditMemeDescriptor {
         private Name name;
         private Address address;
+        private ImageUrl url;
         private Set<Tag> tags;
 
         public EditMemeDescriptor() {}
@@ -128,6 +133,7 @@ public class EditCommand extends Command {
         public EditMemeDescriptor(EditMemeDescriptor toCopy) {
             setName(toCopy.name);
             setAddress(toCopy.address);
+            setUrl(toCopy.url);
             setTags(toCopy.tags);
         }
 
@@ -135,7 +141,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, address, tags);
+            return CollectionUtil.isAnyNonNull(name, address, url, tags);
         }
 
         public void setName(Name name) {
@@ -152,6 +158,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setUrl(ImageUrl url) {
+            this.url = url;
+        }
+
+        public Optional<ImageUrl> getUrl() {
+            return Optional.ofNullable(url);
         }
 
         /**
@@ -190,5 +204,6 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
+
     }
 }

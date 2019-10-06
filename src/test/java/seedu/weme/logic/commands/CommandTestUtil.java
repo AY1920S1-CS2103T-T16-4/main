@@ -2,9 +2,7 @@ package seedu.weme.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.weme.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.weme.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.weme.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.weme.logic.parser.CliSyntax.*;
 import static seedu.weme.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -28,6 +26,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_URL_AMY = "https://tinyurl.com/testWeme";
+    public static final String VALID_URL_BOB = "https://tinyurl.com/testWeme";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -35,11 +35,14 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String URL_DESC_AMY = " " + PREFIX_URL + VALID_URL_AMY;
+    public static final String URL_DESC_BOB = " " + PREFIX_URL + VALID_URL_AMY;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_URL_DESC = " " + PREFIX_URL; // empty string not allowed for URLs
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -50,9 +53,9 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditMemeDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withAddress(VALID_ADDRESS_AMY).withUrl(VALID_URL_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditMemeDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withAddress(VALID_ADDRESS_BOB).withUrl(VALID_URL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**

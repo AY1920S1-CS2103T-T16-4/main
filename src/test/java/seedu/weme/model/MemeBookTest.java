@@ -3,8 +3,7 @@ package seedu.weme.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.weme.logic.commands.CommandTestUtil.*;
 import static seedu.weme.testutil.Assert.assertThrows;
 import static seedu.weme.testutil.TypicalMemes.ALICE;
 import static seedu.weme.testutil.TypicalMemes.getTypicalMemeBook;
@@ -46,7 +45,7 @@ public class MemeBookTest {
     @Test
     public void resetData_withDuplicateMemes_throwsDuplicateMemeException() {
         // Two memes with the same identity fields
-        Meme editedAlice = new MemeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Meme editedAlice = new MemeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withUrl(VALID_URL_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Meme> newMemes = Arrays.asList(ALICE, editedAlice);
         MemeBookStub newData = new MemeBookStub(newMemes);
@@ -73,7 +72,7 @@ public class MemeBookTest {
     @Test
     public void hasMeme_memeWithSameIdentityFieldsInMemeBook_returnsTrue() {
         memeBook.addMeme(ALICE);
-        Meme editedAlice = new MemeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Meme editedAlice = new MemeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withUrl(VALID_URL_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(memeBook.hasMeme(editedAlice));
     }

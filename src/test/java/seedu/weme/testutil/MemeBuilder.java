@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.weme.model.meme.Address;
+import seedu.weme.model.meme.ImageUrl;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.meme.Name;
 import seedu.weme.model.tag.Tag;
@@ -19,6 +20,7 @@ public class MemeBuilder {
 
     private Name name;
     private Address address;
+    private ImageUrl url;
     private Set<Tag> tags;
 
     public MemeBuilder() {
@@ -33,6 +35,7 @@ public class MemeBuilder {
     public MemeBuilder(Meme memeToCopy) {
         name = memeToCopy.getName();
         address = memeToCopy.getAddress();
+        url = memeToCopy.getUrl();
         tags = new HashSet<>(memeToCopy.getTags());
     }
 
@@ -60,8 +63,13 @@ public class MemeBuilder {
         return this;
     }
 
+    public MemeBuilder withUrl(String url) {
+        this.url = new ImageUrl(url);
+        return this;
+    }
+
     public Meme build() {
-        return new Meme(name, address, tags);
+        return new Meme(name, address, url, tags);
     }
 
 }

@@ -1,9 +1,11 @@
 {
   "memes": [ {
     "name": "Valid Person",
-    "address": "4th street"
+    "address": "4th street",
+    "url": "https://tinyurl.com/testWeme"
   }, {
     "name": "Person With Invalid Address",
-    "address": ""
+    "address": "",
+    "url": "https://tinyurl.com/testWeme"
   } ]
 }

@@ -2,13 +2,7 @@ package seedu.weme.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.weme.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.weme.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.weme.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.weme.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.weme.logic.commands.CommandTestUtil.showMemeAtIndex;
+import static seedu.weme.logic.commands.CommandTestUtil.*;
 import static seedu.weme.testutil.TypicalIndexes.INDEX_FIRST_MEME;
 import static seedu.weme.testutil.TypicalIndexes.INDEX_SECOND_MEME;
 import static seedu.weme.testutil.TypicalMemes.getTypicalMemeBook;
@@ -54,10 +48,10 @@ public class EditCommandTest {
 
         MemeBuilder memeInList = new MemeBuilder(lastMeme);
         Meme editedMeme = memeInList.withName(VALID_NAME_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withUrl(VALID_URL_BOB).withTags(VALID_TAG_HUSBAND).build();
 
         EditMemeDescriptor descriptor = new EditMemeDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withUrl(VALID_URL_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_MEME_SUCCESS, editedMeme);

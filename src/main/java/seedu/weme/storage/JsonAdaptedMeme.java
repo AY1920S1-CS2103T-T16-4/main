@@ -1,5 +1,7 @@
 package seedu.weme.storage;
 
+import java.awt.*;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.weme.commons.exceptions.IllegalValueException;
 import seedu.weme.model.meme.Address;
+import seedu.weme.model.meme.ImageUrl;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.meme.Name;
 import seedu.weme.model.tag.Tag;
@@ -24,6 +27,7 @@ class JsonAdaptedMeme {
 
     private final String name;
     private final String address;
+    private final String url;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -31,9 +35,11 @@ class JsonAdaptedMeme {
      */
     @JsonCreator
     public JsonAdaptedMeme(@JsonProperty("name") String name, @JsonProperty("weme") String address,
+                           @JsonProperty("Url") String url,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.address = address;
+        this.url = url;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -45,6 +51,7 @@ class JsonAdaptedMeme {
     public JsonAdaptedMeme(Meme source) {
         name = source.getName().fullName;
         address = source.getAddress().value;
+        url = source.getUrl().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -77,8 +84,16 @@ class JsonAdaptedMeme {
         }
         final Address modelAddress = new Address(address);
 
+        if (url == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ImageUrl.class.getSimpleName()));
+        }
+        if (!ImageUrl.isValidUrl(url)) {
+            throw new IllegalValueException(ImageUrl.MESSAGE_CONSTRAINTS);
+        }
+        final ImageUrl modelUrl = new ImageUrl(url);
+
         final Set<Tag> modelTags = new HashSet<>(memeTags);
-        return new Meme(modelName, modelAddress, modelTags);
+        return new Meme(modelName, modelAddress, modelUrl, modelTags);
     }
 
 }

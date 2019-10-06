@@ -1,5 +1,6 @@
 package seedu.weme.storage;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,7 +46,7 @@ class JsonSerializableMemeBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public MemeBook toModelType() throws IllegalValueException {
+    public MemeBook toModelType() throws IllegalValueException, MalformedURLException {
         MemeBook memeBook = new MemeBook();
         for (JsonAdaptedMeme jsonAdaptedMeme : memes) {
             Meme meme = jsonAdaptedMeme.toModelType();

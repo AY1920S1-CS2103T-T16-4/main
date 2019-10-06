@@ -2,9 +2,7 @@ package seedu.weme.model.meme;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.weme.logic.commands.CommandTestUtil.*;
 import static seedu.weme.testutil.Assert.assertThrows;
 import static seedu.weme.testutil.TypicalMemes.ALICE;
 import static seedu.weme.testutil.TypicalMemes.BOB;
@@ -35,7 +33,7 @@ public class MemeTest {
 
         // same name, different attributes -> returns true
         editedAlice = new MemeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withUrl(VALID_URL_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameMeme(editedAlice));
     }
 
@@ -63,6 +61,10 @@ public class MemeTest {
 
         // different weme -> returns false
         editedAlice = new MemeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different url -> returns false
+        editedAlice = new MemeBuilder(ALICE).withAddress(VALID_URL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

@@ -1,5 +1,6 @@
 package seedu.weme.testutil;
 
+import java.awt.*;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -7,6 +8,7 @@ import java.util.stream.Stream;
 import seedu.weme.logic.commands.EditCommand;
 import seedu.weme.logic.commands.EditCommand.EditMemeDescriptor;
 import seedu.weme.model.meme.Address;
+import seedu.weme.model.meme.ImageUrl;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.meme.Name;
 import seedu.weme.model.tag.Tag;
@@ -49,6 +51,14 @@ public class EditMemeDescriptorBuilder {
      */
     public EditMemeDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code ImageUrl} of the {@code EditMemeDescriptor} that we are building.
+     */
+    public EditMemeDescriptorBuilder withUrl(String url) {
+        descriptor.setUrl(new ImageUrl(url));
         return this;
     }
 

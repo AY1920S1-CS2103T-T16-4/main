@@ -3,6 +3,7 @@ package seedu.weme.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_URL;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.weme.logic.commands.exceptions.CommandException;
@@ -20,6 +21,7 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_URL + "URL "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
