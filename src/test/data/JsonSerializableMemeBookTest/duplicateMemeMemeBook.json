@@ -2,9 +2,11 @@
   "memes": [ {
     "name": "Alice Pauline",
     "description": "123, Jurong West Ave 6, #08-111",
+    "url": "https://tinyurl.com/testWeme",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
-    "description": "4th street"
+    "description": "4th street",
+    "url": "https://tinyurl.com/testWeme"
   } ]
 }

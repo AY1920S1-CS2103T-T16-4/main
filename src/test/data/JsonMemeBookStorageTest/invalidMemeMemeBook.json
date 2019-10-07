@@ -2,5 +2,6 @@
   "memes": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "description": "4th street"
+    "url": "https://tinyurl.com/testWeme"
   } ]
 }

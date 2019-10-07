@@ -2,8 +2,8 @@ package seedu.weme.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.weme.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_URL;
 import static seedu.weme.model.Model.PREDICATE_SHOW_ALL_MEMES;
 
 import java.util.Collections;
@@ -18,8 +18,8 @@ import seedu.weme.commons.util.CollectionUtil;
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.model.Model;
 import seedu.weme.model.meme.Description;
+import seedu.weme.model.meme.ImageUrl;
 import seedu.weme.model.meme.Meme;
-import seedu.weme.model.meme.Name;
 import seedu.weme.model.tag.Tag;
 
 /**
@@ -33,7 +33,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed meme list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_URL + "URL] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 ";
@@ -85,11 +85,11 @@ public class EditCommand extends Command {
     private static Meme createEditedMeme(Meme memeToEdit, EditMemeDescriptor editMemeDescriptor) {
         assert memeToEdit != null;
 
-        Name updatedName = editMemeDescriptor.getName().orElse(memeToEdit.getName());
+        ImageUrl updatedUrl = editMemeDescriptor.getUrl().orElse(memeToEdit.getUrl());
         Description updatedDescription = editMemeDescriptor.getDescription().orElse(memeToEdit.getDescription());
         Set<Tag> updatedTags = editMemeDescriptor.getTags().orElse(memeToEdit.getTags());
 
-        return new Meme(updatedName, updatedDescription, updatedTags);
+        return new Meme(updatedUrl, updatedDescription, updatedTags);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class EditCommand extends Command {
      * corresponding field value of the meme.
      */
     public static class EditMemeDescriptor {
-        private Name name;
+        private ImageUrl url;
         private Description description;
         private Set<Tag> tags;
 
@@ -126,7 +126,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditMemeDescriptor(EditMemeDescriptor toCopy) {
-            setName(toCopy.name);
+            setUrl(toCopy.url);
             setDescription(toCopy.description);
             setTags(toCopy.tags);
         }
@@ -135,15 +135,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, description, tags);
+            return CollectionUtil.isAnyNonNull(url, description, tags);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setUrl(ImageUrl url) {
+            this.url = url;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<ImageUrl> getUrl() {
+            return Optional.ofNullable(url);
         }
 
         public void setDescription(Description description) {
@@ -186,7 +186,7 @@ public class EditCommand extends Command {
             // state check
             EditMemeDescriptor e = (EditMemeDescriptor) other;
 
-            return getName().equals(e.getName())
+            return getUrl().equals(e.getUrl())
                     && getDescription().equals(e.getDescription())
                     && getTags().equals(e.getTags());
         }

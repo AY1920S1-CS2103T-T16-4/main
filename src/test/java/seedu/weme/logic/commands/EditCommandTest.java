@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weme.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.weme.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.weme.logic.commands.CommandTestUtil.VALID_URL_BOB;
 import static seedu.weme.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.weme.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.weme.logic.commands.CommandTestUtil.showMemeAtIndex;
@@ -33,6 +33,7 @@ public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalMemeBook(), new UserPrefs());
 
+
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Meme editedMeme = new MemeBuilder().build();
@@ -53,11 +54,11 @@ public class EditCommandTest {
         Meme lastMeme = model.getFilteredMemeList().get(indexLastPerson.getZeroBased());
 
         MemeBuilder memeInList = new MemeBuilder(lastMeme);
-        Meme editedMeme = memeInList.withName(VALID_NAME_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+        Meme editedMeme = memeInList.withUrl(VALID_URL_BOB)
+                .withUrl(VALID_URL_BOB).withTags(VALID_TAG_HUSBAND).build();
 
-        EditMemeDescriptor descriptor = new EditMemeDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+        EditMemeDescriptor descriptor = new EditMemeDescriptorBuilder().withUrl(VALID_URL_BOB)
+                .withUrl(VALID_URL_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_MEME_SUCCESS, editedMeme);
@@ -85,9 +86,9 @@ public class EditCommandTest {
         showMemeAtIndex(model, INDEX_FIRST_MEME);
 
         Meme memeInFilteredList = model.getFilteredMemeList().get(INDEX_FIRST_MEME.getZeroBased());
-        Meme editedMeme = new MemeBuilder(memeInFilteredList).withName(VALID_NAME_BOB).build();
+        Meme editedMeme = new MemeBuilder(memeInFilteredList).withUrl(VALID_URL_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_MEME,
-                new EditMemeDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditMemeDescriptorBuilder().withUrl(VALID_URL_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_MEME_SUCCESS, editedMeme);
 
@@ -121,7 +122,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidMemeIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredMemeList().size() + 1);
-        EditMemeDescriptor descriptor = new EditMemeDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditMemeDescriptor descriptor = new EditMemeDescriptorBuilder().withUrl(VALID_URL_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_MEME_DISPLAYED_INDEX);
@@ -139,7 +140,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getMemeBook().getMemeList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditMemeDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditMemeDescriptorBuilder().withUrl(VALID_URL_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_MEME_DISPLAYED_INDEX);
     }

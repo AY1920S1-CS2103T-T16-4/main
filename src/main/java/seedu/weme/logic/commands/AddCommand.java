@@ -2,8 +2,8 @@ package seedu.weme.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.weme.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_URL;
 
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.model.Model;
@@ -18,11 +18,11 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meme to weme. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + PREFIX_URL + "URL "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
+            + PREFIX_URL + "https://tinyurl.com/testWeme"
             + PREFIX_DESCRIPTION + "Popular Meme among SoC Students  "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";

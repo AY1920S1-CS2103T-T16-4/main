@@ -3,6 +3,7 @@ package seedu.weme.storage;
 import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -53,7 +54,7 @@ public class JsonMemeBookStorage implements MemeBookStorage {
 
         try {
             return Optional.of(jsonAddressBook.get().toModelType());
-        } catch (IllegalValueException ive) {
+        } catch (IllegalValueException | MalformedURLException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }

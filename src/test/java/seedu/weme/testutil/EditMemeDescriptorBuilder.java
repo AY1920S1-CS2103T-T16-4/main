@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 import seedu.weme.logic.commands.EditCommand;
 import seedu.weme.logic.commands.EditCommand.EditMemeDescriptor;
 import seedu.weme.model.meme.Description;
+import seedu.weme.model.meme.ImageUrl;
 import seedu.weme.model.meme.Meme;
-import seedu.weme.model.meme.Name;
 import seedu.weme.model.tag.Tag;
 
 /**
@@ -31,17 +31,9 @@ public class EditMemeDescriptorBuilder {
      */
     public EditMemeDescriptorBuilder(Meme meme) {
         descriptor = new EditMemeDescriptor();
-        descriptor.setName(meme.getName());
+        descriptor.setUrl(meme.getUrl());
         descriptor.setDescription(meme.getDescription());
         descriptor.setTags(meme.getTags());
-    }
-
-    /**
-     * Sets the {@code Name} of the {@code EditMemeDescriptor} that we are building.
-     */
-    public EditMemeDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
-        return this;
     }
 
     /**
@@ -50,6 +42,14 @@ public class EditMemeDescriptorBuilder {
      */
     public EditMemeDescriptorBuilder withDescription(String description) {
         descriptor.setDescription(new Description(description));
+        return this;
+    }
+
+    /**
+     * Sets the {@code ImageUrl} of the {@code EditMemeDescriptor} that we are building.
+     */
+    public EditMemeDescriptorBuilder withUrl(String url) {
+        descriptor.setUrl(new ImageUrl(url));
         return this;
     }
 

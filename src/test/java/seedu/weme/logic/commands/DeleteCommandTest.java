@@ -47,6 +47,7 @@ public class DeleteCommandTest {
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_MEME_DISPLAYED_INDEX);
     }
 
+
     @Test
     public void execute_validIndexFilteredList_success() {
         showMemeAtIndex(model, INDEX_FIRST_MEME);

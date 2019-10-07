@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weme.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.weme.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.weme.logic.commands.CommandTestUtil.VALID_URL_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,9 +32,9 @@ public class EditMemeDescriptorTest {
         // different values -> returns false
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
-        // different name -> returns false
+        // different url -> returns false
         EditCommand.EditMemeDescriptor editedAmy = new EditMemeDescriptorBuilder(DESC_AMY)
-                .withName(VALID_NAME_BOB).build();
+                .withUrl(VALID_URL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different weme -> returns false

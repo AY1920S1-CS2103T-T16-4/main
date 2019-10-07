@@ -2,7 +2,7 @@
   "memes": [ {
     "name": "Alice Pau@!line",
     "description": "Popular Meme among NUS Students",
-    "tagged": [ "friends" ]
-  }
-  ]
+    "tagged": [ "friends" ],
+    "url": "https://tinyurl.com/testWeme"
+  } ]
 }

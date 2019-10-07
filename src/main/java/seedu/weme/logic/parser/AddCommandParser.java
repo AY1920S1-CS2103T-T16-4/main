@@ -2,8 +2,8 @@ package seedu.weme.logic.parser;
 
 import static seedu.weme.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.weme.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_URL;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -11,8 +11,8 @@ import java.util.stream.Stream;
 import seedu.weme.logic.commands.AddCommand;
 import seedu.weme.logic.parser.exceptions.ParseException;
 import seedu.weme.model.meme.Description;
+import seedu.weme.model.meme.ImageUrl;
 import seedu.weme.model.meme.Meme;
-import seedu.weme.model.meme.Name;
 import seedu.weme.model.tag.Tag;
 
 /**
@@ -27,18 +27,18 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_URL, PREFIX_DESCRIPTION, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_URL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
+        ImageUrl url = ParserUtil.parseUrl(argMultimap.getValue(PREFIX_URL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Meme meme = new Meme(name, description, tagList);
+        Meme meme = new Meme(url, description, tagList);
 
         return new AddCommand(meme);
     }

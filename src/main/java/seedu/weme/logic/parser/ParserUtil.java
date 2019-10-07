@@ -10,7 +10,7 @@ import seedu.weme.commons.core.index.Index;
 import seedu.weme.commons.util.StringUtil;
 import seedu.weme.logic.parser.exceptions.ParseException;
 import seedu.weme.model.meme.Description;
-import seedu.weme.model.meme.Name;
+import seedu.weme.model.meme.ImageUrl;
 import seedu.weme.model.tag.Tag;
 
 /**
@@ -34,18 +34,17 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String weme} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+    public static ImageUrl parseUrl(String input) throws ParseException {
+        requireNonNull(input);
+        String trimmedUrl = input.trim();
+        try {
+            return new ImageUrl(trimmedUrl);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(ImageUrl.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
     }
 
     /**

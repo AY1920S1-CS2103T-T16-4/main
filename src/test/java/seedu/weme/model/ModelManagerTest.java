@@ -10,12 +10,10 @@ import static seedu.weme.testutil.TypicalMemes.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.weme.commons.core.GuiSettings;
-import seedu.weme.model.meme.NameContainsKeywordsPredicate;
 import seedu.weme.testutil.MemeBookBuilder;
 
 public class ModelManagerTest {
@@ -115,11 +113,6 @@ public class ModelManagerTest {
 
         // different memeBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentMemeBook, userPrefs)));
-
-        // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredMemeList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(memeBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredMemeList(PREDICATE_SHOW_ALL_MEMES);

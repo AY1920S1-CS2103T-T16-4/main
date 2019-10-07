@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 import seedu.weme.model.MemeBook;
 import seedu.weme.model.ReadOnlyMemeBook;
 import seedu.weme.model.meme.Description;
+import seedu.weme.model.meme.ImageUrl;
 import seedu.weme.model.meme.Meme;
-import seedu.weme.model.meme.Name;
 import seedu.weme.model.tag.Tag;
 
 /**
@@ -17,22 +17,22 @@ import seedu.weme.model.tag.Tag;
 public class SampleDataUtil {
     public static Meme[] getSampleMemes() {
         return new Meme[] {
-            new Meme(new Name("Alex Yeoh"),
+            new Meme(new ImageUrl("https://tinyurl.com/testWeme"),
                 new Description("Meme Description 01"),
                 getTagSet("friends")),
-            new Meme(new Name("Bernice Yu"),
+            new Meme(new ImageUrl("https://tinyurl.com/testWeme"),
                 new Description("Meme Description 02"),
                 getTagSet("colleagues", "friends")),
-            new Meme(new Name("Charlotte Oliveiro"),
+            new Meme(new ImageUrl("https://tinyurl.com/testWeme"),
                 new Description("Meme Description 03"),
                 getTagSet("neighbours")),
-            new Meme(new Name("David Li"),
+            new Meme(new ImageUrl("https://tinyurl.com/testWeme"),
                 new Description("Meme Description 04"),
                 getTagSet("family")),
-            new Meme(new Name("Irfan Ibrahim"),
+            new Meme(new ImageUrl("https://tinyurl.com/testWeme"),
                 new Description("Meme Description 05"),
                 getTagSet("classmates")),
-            new Meme(new Name("Roy Balakrishnan"),
+            new Meme(new ImageUrl("https://tinyurl.com/testWeme"),
                 new Description("Meme Description 06"),
                 getTagSet("colleagues"))
         };

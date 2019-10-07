@@ -2,9 +2,9 @@ package seedu.weme.model.meme;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.weme.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
+import static seedu.weme.logic.commands.CommandTestUtil.VALID_URL_BOB;
 import static seedu.weme.testutil.Assert.assertThrows;
 import static seedu.weme.testutil.TypicalMemes.ALICE;
 import static seedu.weme.testutil.TypicalMemes.BOB;
@@ -22,16 +22,12 @@ public class MemeTest {
     }
 
     @Test
-    public void isSameMeme() {
+    public void isSameUrl() {
         // same object -> returns true
         assertTrue(ALICE.isSameMeme(ALICE));
 
         // null -> returns false
         assertFalse(ALICE.isSameMeme(null));
-
-        // different name -> returns false
-        Meme editedAlice = new MemeBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameMeme(editedAlice));
 
         // same name, different attributes -> returns true
         editedAlice = new MemeBuilder(ALICE).withDescription(VALID_DESCRIPTION_BOB)
@@ -57,12 +53,8 @@ public class MemeTest {
         // different meme -> returns false
         assertFalse(ALICE.equals(BOB));
 
-        // different name -> returns false
-        Meme editedAlice = new MemeBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different weme -> returns false
-        editedAlice = new MemeBuilder(ALICE).withDescription(VALID_DESCRIPTION_BOB).build();
+        // different url -> returns false
+        editedAlice = new MemeBuilder(ALICE).withUrl(VALID_URL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
