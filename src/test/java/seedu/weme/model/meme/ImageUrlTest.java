@@ -22,7 +22,7 @@ public class ImageUrlTest {
     @Test
     public void isValidUrl() {
         // null weme
-        assertThrows(NullPointerException.class, () -> Address.isValidAddress(null));
+        assertThrows(NullPointerException.class, () -> ImageUrl.isValidUrl(null));
 
         // invalid addresses
         assertFalse(ImageUrl.isValidUrl("")); // empty string

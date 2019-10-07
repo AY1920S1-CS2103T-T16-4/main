@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_URL_AMY;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_URL_BOB;
 import static seedu.weme.testutil.Assert.assertThrows;
 import static seedu.weme.testutil.TypicalMemes.ALICE;
