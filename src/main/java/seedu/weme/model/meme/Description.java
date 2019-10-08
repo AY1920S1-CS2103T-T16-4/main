@@ -11,7 +11,7 @@ public class Description {
 
     public static final String MESSAGE_CONSTRAINTS = "Descriptions can take any values, including empty input";
 
-    /**
+    /*
      * The first character of the weme must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */

@@ -54,7 +54,7 @@ public class JsonMemeBookStorage implements MemeBookStorage {
 
         try {
             return Optional.of(jsonAddressBook.get().toModelType());
-        } catch (IllegalValueException | MalformedURLException ive) {
+        } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }

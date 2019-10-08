@@ -29,8 +29,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_DESCRIPTION_AMY = "Block 312, Amy Street 1";
     public static final String VALID_DESCRIPTION_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_URL_AMY = "https://tinyurl.com/testWeme";
-    public static final String VALID_URL_BOB = "https://tinyurl.com/testWeme";
+    public static final String VALID_URL_AMY = "https://tinyurl.com/testAmy";
+    public static final String VALID_URL_BOB = "https://tinyurl.com/testBob";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 

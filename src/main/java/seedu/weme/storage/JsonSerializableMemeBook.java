@@ -46,7 +46,7 @@ class JsonSerializableMemeBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public MemeBook toModelType() throws IllegalValueException, MalformedURLException {
+    public MemeBook toModelType() throws IllegalValueException {
         MemeBook memeBook = new MemeBook();
         for (JsonAdaptedMeme jsonAdaptedMeme : memes) {
             Meme meme = jsonAdaptedMeme.toModelType();

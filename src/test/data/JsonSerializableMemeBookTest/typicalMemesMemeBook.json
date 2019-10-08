@@ -2,31 +2,31 @@
   "_comment": "AddressBook save file which contains the same Meme values as in TypicalMemes#getTypicalAddressBook()",
   "memes" : [ {
     "description": "Description of Alice",
-    "url": "https://tinyurl.com/testWeme",
+    "url": "https://tinyurl.com/testAlice",
     "tagged" : [ "friends" ]
   }, {
     "description": "Description of Benson",
-    "url": "https://tinyurl.com/testWeme",
+    "url": "https://tinyurl.com/testBenson",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "description": "Description of Carl",
-    "url": "https://tinyurl.com/testWeme",
+    "url": "https://tinyurl.com/testCarl",
     "tagged" : [ ]
   }, {
     "description": "Description of Daniel",
-    "url": "https://tinyurl.com/testWeme",
+    "url": "https://tinyurl.com/testDaniel",
     "tagged" : [ "friends" ]
   }, {
     "description": "Description of Elle",
-    "url": "https://tinyurl.com/testWeme",
+    "url": "https://tinyurl.com/testElle",
     "tagged" : [ ]
   }, {
     "description": "Description of Fiona",
-    "url": "https://tinyurl.com/testWeme",
+    "url": "https://tinyurl.com/testFiona",
     "tagged" : [ ]
   }, {
     "description": "Description of George",
-    "url": "https://tinyurl.com/testWeme",
+    "url": "https://tinyurl.com/testGeorge",
     "tagged" : [ ]
   } ]
 }

@@ -42,9 +42,9 @@ public class StringUtil {
      * Returns true if the {@code sentence} contains the {@code word}.
      *   Ignores case, and a full word match is not required.
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase("ABc def", "abc") == true
-     *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       containsPartialWordIgnoreCase("ABc def", "abc") == true
+     *       containsPartialWordIgnoreCase("ABc def", "DEF") == true
+     *       containsPartialWordIgnoreCase("ABc def", "AB") == true //accepts partial match
      *       </pre>
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word

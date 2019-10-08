@@ -53,7 +53,7 @@ public class AddCommandTest {
     @Test
     public void equals() {
         Meme meme1 = new MemeBuilder().withUrl("https://tinyurl.com/testWeme").build();
-        Meme meme2 = new MemeBuilder().withUrl("https://tinyurl.com/testWeme").build();
+        Meme meme2 = new MemeBuilder().withUrl("https://tinyurl.com/testWeme2").build();
         AddCommand addMeme1Command = new AddCommand(meme1);
         AddCommand addMeme2Command = new AddCommand(meme2);
 
