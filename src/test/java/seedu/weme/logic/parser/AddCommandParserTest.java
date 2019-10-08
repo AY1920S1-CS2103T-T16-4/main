@@ -6,7 +6,6 @@ import static seedu.weme.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
 import static seedu.weme.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.weme.logic.commands.CommandTestUtil.INVALID_URL_DESC;
 import static seedu.weme.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.weme.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.weme.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.weme.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.weme.logic.commands.CommandTestUtil.URL_DESC_AMY;
@@ -34,10 +33,6 @@ public class AddCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Meme expectedMeme = new MemeBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
-
-        // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + URL_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedMeme));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, URL_DESC_AMY + URL_DESC_BOB

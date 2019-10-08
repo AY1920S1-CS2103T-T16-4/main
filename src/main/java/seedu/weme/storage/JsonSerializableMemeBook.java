@@ -1,6 +1,5 @@
 package seedu.weme.storage;
 
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
