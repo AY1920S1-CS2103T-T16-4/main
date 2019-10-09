@@ -10,7 +10,6 @@ import static seedu.weme.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.weme.logic.commands.CommandTestUtil.URL_DESC_AMY;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_URL_AMY;
@@ -41,9 +40,6 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
-        // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
-
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
 

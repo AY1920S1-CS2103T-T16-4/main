@@ -35,8 +35,8 @@ public class AddCommandParserTest {
         Meme expectedMeme = new MemeBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, URL_DESC_AMY + URL_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedMeme));
+        assertParseSuccess(parser, URL_DESC_BOB + DESCRIPTION_DESC_BOB
+                + TAG_DESC_FRIEND, new AddCommand(expectedMeme));
 
         // multiple addresses - last weme accepted
         assertParseSuccess(parser, URL_DESC_BOB + DESCRIPTION_DESC_AMY

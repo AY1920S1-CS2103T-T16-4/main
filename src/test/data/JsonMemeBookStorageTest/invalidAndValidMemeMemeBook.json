@@ -1,9 +1,9 @@
 {
   "memes": [ {
     "description": "4th street",
-    "url": "https:tinyurl.com/testWeme"
+    "url": "https://tinyurl.com/testWeme"
   }, {
     "description": "",
-    "url": "http//tinyurl.com/testWeme"
+    "url": "https://tinyurl.com/testWeme"
   } ]
 }

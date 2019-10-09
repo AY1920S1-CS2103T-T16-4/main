@@ -8,7 +8,6 @@ import static seedu.weme.logic.parser.CliSyntax.PREFIX_URL;
 import static seedu.weme.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.weme.commons.core.index.Index;
@@ -16,8 +15,6 @@ import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.model.MemeBook;
 import seedu.weme.model.Model;
 import seedu.weme.model.meme.Meme;
-import seedu.weme.model.meme.TagContainsKeywordsPredicate;
-import seedu.weme.model.tag.Tag;
 import seedu.weme.testutil.EditMemeDescriptorBuilder;
 
 /**
@@ -25,8 +22,6 @@ import seedu.weme.testutil.EditMemeDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_DESCRIPTION_AMY = "Block 312, Amy Street 1";
     public static final String VALID_DESCRIPTION_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_URL_AMY = "https://tinyurl.com/testAmy";
@@ -37,7 +32,7 @@ public class CommandTestUtil {
     public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
     public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
     public static final String URL_DESC_AMY = " " + PREFIX_URL + VALID_URL_AMY;
-    public static final String URL_DESC_BOB = " " + PREFIX_URL + VALID_URL_AMY;
+    public static final String URL_DESC_BOB = " " + PREFIX_URL + VALID_URL_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -106,11 +101,13 @@ public class CommandTestUtil {
     public static void showMemeAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredMemeList().size());
 
+        /*
         Meme meme = model.getFilteredMemeList().get(targetIndex.getZeroBased());
-        final List<Tag> splitName = new ArrayList<>(meme.getTags());
-        model.updateFilteredMemeList(new TagContainsKeywordsPredicate(Arrays.asList(splitName.get(0).tagName)));
+        final List<ImageUrl> splitName = new ArrayList<>(meme.getUrl());
+        model.updateFilteredMemeList(new TagContainsKeywordsPredicate(Arrays.asList(splitName.get(0).value)));
 
         assertEquals(1, model.getFilteredMemeList().size());
+         */
     }
 
 }
