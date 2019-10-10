@@ -40,6 +40,9 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
+        // no index specified
+        assertParseFailure(parser, VALID_FILEPATH_CHARMANDER, MESSAGE_INVALID_FORMAT);
+
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
 
@@ -105,7 +108,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_oneFieldSpecified_success() {
-        // url
+        // path
         Index targetIndex = INDEX_THIRD_MEME;
         String userInput = targetIndex.getOneBased() + FILEPATH_DESC_CHARMANDER;
         EditMemeDescriptor descriptor = new EditMemeDescriptorBuilder().withFilePath(VALID_FILEPATH_CHARMANDER).build();

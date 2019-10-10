@@ -31,6 +31,8 @@ public class JsonAdaptedMemeTest {
         assertEquals(JOKER, meme.toModelType());
     }
 
+    // TODO: Null path and invalid path tests.
+
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
         JsonAdaptedMeme meme = new JsonAdaptedMeme(VALID_URL, null, VALID_TAGS);

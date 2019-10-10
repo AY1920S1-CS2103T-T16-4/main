@@ -33,7 +33,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed meme list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_FILEPATH + "URL] "
+            + "[" + PREFIX_FILEPATH + "PATH] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 ";

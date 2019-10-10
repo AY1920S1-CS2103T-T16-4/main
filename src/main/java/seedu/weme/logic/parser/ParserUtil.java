@@ -42,7 +42,7 @@ public class ParserUtil {
     public static ImagePath parseFilePath(String input) throws ParseException {
         requireNonNull(input);
         String trimmedPath = input.trim();
-        if (!(new File(trimmedPath)).exists()) {
+        if (!ImagePath.isValidFilePath(trimmedPath)) {
             throw new ParseException(MESSAGE_INVALID_FILEPATH);
         }
         return new ImagePath(trimmedPath);

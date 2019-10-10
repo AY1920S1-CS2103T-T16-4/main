@@ -33,7 +33,6 @@ class JsonAdaptedMeme {
     public JsonAdaptedMeme(@JsonProperty("filePath") String filePath, @JsonProperty("weme") String description,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
 
-
         this.filePath = filePath;
         this.description = description;
         if (tagged != null) {

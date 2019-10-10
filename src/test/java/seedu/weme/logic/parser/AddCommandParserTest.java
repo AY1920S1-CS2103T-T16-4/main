@@ -27,11 +27,24 @@ import seedu.weme.model.meme.Meme;
 import seedu.weme.model.tag.Tag;
 import seedu.weme.testutil.MemeBuilder;
 
+import java.nio.channels.FileLockInterruptionException;
+
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
+        Meme expectedMeme = new MemeBuilder(JOKER).withDescription(VALID_DESCRIPTION_JOKER).
+                withTags(VALID_TAG_JOKER).build();
+
+        // multiple paths - last paths accepted
+        assertParseSuccess(parser, FILEPATH_DESC_CHARMANDER + FILEPATH_DESC_JOKER
+                + DESCRIPTION_DESC_JOKER + TAG_DESC_JOKER, new AddCommand(expectedMeme));
+
+        // multiple addresses - last weme accepted
+        assertParseSuccess(parser, FILEPATH_DESC_JOKER + DESCRIPTION_DESC_CHARMANDER
+                + DESCRIPTION_DESC_JOKER + TAG_DESC_JOKER, new AddCommand(expectedMeme));
+
         // multiple tags - all accepted
         Meme expectedMemeMultipleTags = new MemeBuilder(JOKER).withTags(VALID_TAG_JOKER, VALID_TAG_CHARMANDER)
                 .build();

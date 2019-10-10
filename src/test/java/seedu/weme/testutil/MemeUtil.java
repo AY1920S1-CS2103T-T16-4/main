@@ -41,7 +41,7 @@ public class MemeUtil {
      */
     public static String getEditMemeDescriptorDetails(EditMemeDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getFilePath().ifPresent(url -> sb.append(PREFIX_FILEPATH).append(url.value).append(" "));
+        descriptor.getFilePath().ifPresent(path -> sb.append(PREFIX_FILEPATH).append(path.value).append(" "));
         descriptor.getDescription().ifPresent(description ->
                 sb.append(PREFIX_DESCRIPTION).append(description.value).append(" "));
         if (descriptor.getTags().isPresent()) {

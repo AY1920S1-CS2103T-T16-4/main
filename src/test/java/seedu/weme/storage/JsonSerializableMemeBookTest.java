@@ -1,5 +1,6 @@
 package seedu.weme.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.weme.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -25,12 +26,7 @@ public class JsonSerializableMemeBookTest {
                 JsonSerializableMemeBook.class).get();
         MemeBook memeBookFromFile = dataFromFile.toModelType();
         MemeBook typicalMemesMemeBook = TypicalMemes.getTypicalMemeBook();
-        /*
         assertEquals(memeBookFromFile, typicalMemesMemeBook);
-        This test fails with message:
-        expected: seedu.weme.model.MemeBook@785e4f12<4 memes> but was: seedu.weme.model.MemeBook@4b5c46bd<4 memes>
-        Both MemeBooks contain exactly the same memes and the equals are implemented by comparing the List of memes.
-         */
     }
 
     @Test

@@ -18,14 +18,13 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meme to weme. "
             + "Parameters: "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + PREFIX_FILEPATH + "PATH "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_FILEPATH + "https://tinyurl.com/testWeme"
+            + PREFIX_FILEPATH + "data/memes/funny_meme.jpg"
             + PREFIX_DESCRIPTION + "Popular Meme among SoC Students  "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "funny";
 
     public static final String MESSAGE_SUCCESS = "New meme added: %1$s";
     public static final String MESSAGE_DUPLICATE_MEME = "This meme already exists in weme";

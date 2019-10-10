@@ -40,6 +40,8 @@ public class ImagePath {
      * Returns true if the given string is a valid URL.
      */
     public static boolean isValidFilePath(String test) {
+        // Paths.get() throws InvalidPathException when the path is a invalid.
+        // It is caught and becomes return false.
         try {
             return test.matches(VALIDATION_REGEX)
                     && (new File(Paths.get(test).toAbsolutePath().toUri())).exists();
