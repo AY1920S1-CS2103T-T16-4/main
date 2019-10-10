@@ -41,8 +41,8 @@ public class ImagePath {
      */
     public static boolean isValidFilePath(String test) {
         try {
-            return test.matches(VALIDATION_REGEX) &&
-                    (new File(Paths.get(test).toAbsolutePath().toUri())).exists());
+            return test.matches(VALIDATION_REGEX)
+                    && (new File(Paths.get(test).toAbsolutePath().toUri())).exists();
         } catch (InvalidPathException e) {
             return false;
         }
