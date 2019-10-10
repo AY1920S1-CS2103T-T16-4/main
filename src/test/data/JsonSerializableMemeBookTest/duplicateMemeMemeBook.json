@@ -1,10 +1,10 @@
 {
   "memes" : [ {
-    "filePath": "data/memes/charmander_meme.jpg",
+    "filePath": "src/test/data/memes/charmander_meme.jpg",
     "tagged" : [ "charmander" ],
     "description" : "A meme about Char and charmander."
   }, {
-    "filePath": "data/memes/charmander_meme.jpg",
+    "filePath": "src/test/data/memes/charmander_meme.jpg",
     "tagged": [ "charmander" ],
     "description": "A meme about Char and charmander."
   } ]

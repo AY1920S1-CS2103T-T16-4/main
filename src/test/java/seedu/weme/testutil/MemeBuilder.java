@@ -15,7 +15,7 @@ import seedu.weme.model.util.SampleDataUtil;
 public class MemeBuilder {
 
     public static final String DEFAULT_DESCRIPTION = "Meme created for testing.";
-    public static final String DEFAULT_FILEPATH = "data/memes/test_meme.jpg";
+    public static final String DEFAULT_FILEPATH = "src/test/data/memes/test_meme.jpg";
 
     private Description description;
     private ImagePath filePath;

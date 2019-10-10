@@ -29,6 +29,6 @@ public class ImagePathTest {
         assertFalse(ImagePath.isValidFilePath(" ")); // spaces only
 
         // valid addresses
-        assertTrue(ImagePath.isValidFilePath("data/memes/Charmander_meme.jpg"));
+        assertTrue(ImagePath.isValidFilePath("src/test/data/memes/Charmander_meme.jpg"));
     }
 }

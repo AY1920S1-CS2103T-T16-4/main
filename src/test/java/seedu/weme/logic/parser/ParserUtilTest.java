@@ -23,7 +23,7 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
     private static final String VALID_DESCRIPTION = "Sit vitae voluptas sint non voluptates";
 
-    private static final String VALID_FILEPATH = "data/memes/charmander_meme.jpg";
+    private static final String VALID_FILEPATH = "src/test/data/memes/charmander_meme.jpg";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
