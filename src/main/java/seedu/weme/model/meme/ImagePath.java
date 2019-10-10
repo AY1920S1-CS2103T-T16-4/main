@@ -39,7 +39,6 @@ public class ImagePath {
      * Returns true if the given string is a valid URL.
      */
     public static boolean isValidFilePath(String test) {
-        System.out.println(Paths.get(test).toAbsolutePath().toUri().toString() + " " + (new File(Paths.get(test).toAbsolutePath().toUri())).exists());
         return (!test.equals("")) && ((new File(Paths.get(test).toAbsolutePath().toUri())).exists());
     }
 
