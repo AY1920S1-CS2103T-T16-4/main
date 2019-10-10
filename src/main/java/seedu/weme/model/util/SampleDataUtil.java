@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import seedu.weme.model.MemeBook;
 import seedu.weme.model.ReadOnlyMemeBook;
 import seedu.weme.model.meme.Description;
-import seedu.weme.model.meme.ImageUrl;
+import seedu.weme.model.meme.ImagePath;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.tag.Tag;
 
@@ -17,24 +17,18 @@ import seedu.weme.model.tag.Tag;
 public class SampleDataUtil {
     public static Meme[] getSampleMemes() {
         return new Meme[] {
-            new Meme(new ImageUrl("https://tinyurl.com/testWeme"),
-                new Description("Meme Description 01"),
-                getTagSet("friends")),
-            new Meme(new ImageUrl("https://tinyurl.com/testWeme"),
-                new Description("Meme Description 02"),
-                getTagSet("colleagues", "friends")),
-            new Meme(new ImageUrl("https://tinyurl.com/testWeme"),
-                new Description("Meme Description 03"),
-                getTagSet("neighbours")),
-            new Meme(new ImageUrl("https://tinyurl.com/testWeme"),
-                new Description("Meme Description 04"),
-                getTagSet("family")),
-            new Meme(new ImageUrl("https://tinyurl.com/testWeme"),
-                new Description("Meme Description 05"),
-                getTagSet("classmates")),
-            new Meme(new ImageUrl("https://tinyurl.com/testWeme"),
-                new Description("Meme Description 06"),
-                getTagSet("colleagues"))
+            new Meme(new ImagePath("data/memes/charmander_meme.jpg"),
+                new Description("A meme about Char and charmander."),
+                getTagSet("charmander")),
+            new Meme(new ImagePath("data/memes/doge_meme.jpg"),
+                    new Description("A meme about doge."),
+                    getTagSet("doge")),
+            new Meme(new ImagePath("data/memes/joker_meme.jpg"),
+                    new Description("A meme about joker."),
+                    getTagSet("joker")),
+            new Meme(new ImagePath("data/memes/joker_meme.jpg"),
+                    new Description("A meme about joker."),
+                    getTagSet("joker"))
         };
     }
 

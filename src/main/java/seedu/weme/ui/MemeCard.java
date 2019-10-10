@@ -41,7 +41,7 @@ public class MemeCard extends UiPart<Region> {
         super(FXML);
         this.meme = meme;
         id.setText(displayedIndex + ". ");
-        url.setText(meme.getUrl().value);
+        url.setText(meme.getFilePath().value);
         description.setText(meme.getDescription().value);
         meme.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

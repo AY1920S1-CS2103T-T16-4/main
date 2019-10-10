@@ -1,9 +1,9 @@
 {
   "memes": [ {
-    "description": "4th street",
-    "url": "https://tinyurl.com/testWeme"
+    "description": "A meme about Pikachu.",
+    "filePath": "data/memes/Pikachu.jpg"
   }, {
     "description": "",
-    "url": "https://tinyurl.com/testWeme"
+    "filePath": "data/memes/Pikachu.jpg"
   } ]
 }

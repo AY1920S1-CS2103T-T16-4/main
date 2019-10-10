@@ -52,8 +52,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Meme meme1 = new MemeBuilder().withUrl("https://tinyurl.com/testWeme").build();
-        Meme meme2 = new MemeBuilder().withUrl("https://tinyurl.com/testWeme2").build();
+        Meme meme1 = new MemeBuilder().withFilePath("data/memes/charmander_meme.jpg").build();
+        Meme meme2 = new MemeBuilder().withFilePath("data/memes/joker_meme.jpg").build();
         AddCommand addMeme1Command = new AddCommand(meme1);
         AddCommand addMeme2Command = new AddCommand(meme2);
 

@@ -3,8 +3,8 @@ package seedu.weme.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_FILEPATH;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.weme.logic.parser.CliSyntax.PREFIX_URL;
 import static seedu.weme.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -22,34 +22,34 @@ import seedu.weme.testutil.EditMemeDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_DESCRIPTION_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_DESCRIPTION_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_URL_AMY = "https://tinyurl.com/testAmy";
-    public static final String VALID_URL_BOB = "https://tinyurl.com/testBob";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_DESCRIPTION_CHARMANDER = "A meme about Char and charmander.";
+    public static final String VALID_DESCRIPTION_JOKER = "A meme about joker.";
+    public static final String VALID_FILEPATH_CHARMANDER = "data/memes/charmander_meme.jpg";
+    public static final String VALID_FILEPATH_JOKER = "data/memes/joker_meme.jpg";
+    public static final String VALID_TAG_CHARMANDER = "charmander";
+    public static final String VALID_TAG_JOKER = "joker";
 
-    public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
-    public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
-    public static final String URL_DESC_AMY = " " + PREFIX_URL + VALID_URL_AMY;
-    public static final String URL_DESC_BOB = " " + PREFIX_URL + VALID_URL_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String DESCRIPTION_DESC_CHARMANDER = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_CHARMANDER;
+    public static final String DESCRIPTION_DESC_JOKER = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_JOKER;
+    public static final String FILEPATH_DESC_CHARMANDER = " " + PREFIX_FILEPATH + VALID_FILEPATH_CHARMANDER;
+    public static final String FILEPATH_DESC_JOKER = " " + PREFIX_FILEPATH + VALID_FILEPATH_JOKER;
+    public static final String TAG_DESC_CHARMANDER = " " + PREFIX_TAG + VALID_TAG_CHARMANDER;
+    public static final String TAG_DESC_JOKER = " " + PREFIX_TAG + VALID_TAG_JOKER;
 
-    public static final String INVALID_URL_DESC = " " + PREFIX_URL; // empty string not allowed for URLs
+    public static final String INVALID_FILEPATH_DESC = " " + PREFIX_FILEPATH; // empty string not allowed for file path
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditMemeDescriptor DESC_AMY;
-    public static final EditCommand.EditMemeDescriptor DESC_BOB;
+    public static final EditCommand.EditMemeDescriptor DESC_CHARMANDER;
+    public static final EditCommand.EditMemeDescriptor DESC_JOKER;
 
     static {
-        DESC_AMY = new EditMemeDescriptorBuilder().withUrl(VALID_URL_AMY)
-                .withDescription(VALID_DESCRIPTION_AMY).withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditMemeDescriptorBuilder().withUrl(VALID_URL_BOB)
-                .withDescription(VALID_DESCRIPTION_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_CHARMANDER = new EditMemeDescriptorBuilder().withFilePath(VALID_FILEPATH_CHARMANDER)
+                .withDescription(VALID_DESCRIPTION_CHARMANDER).withTags(VALID_TAG_CHARMANDER).build();
+        DESC_JOKER = new EditMemeDescriptorBuilder().withFilePath(VALID_FILEPATH_JOKER)
+                .withDescription(VALID_DESCRIPTION_JOKER).withTags(VALID_TAG_JOKER).build();
     }
 
     /**

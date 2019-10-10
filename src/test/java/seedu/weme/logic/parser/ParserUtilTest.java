@@ -15,15 +15,15 @@ import org.junit.jupiter.api.Test;
 
 import seedu.weme.logic.parser.exceptions.ParseException;
 import seedu.weme.model.meme.Description;
-import seedu.weme.model.meme.ImageUrl;
+import seedu.weme.model.meme.ImagePath;
 import seedu.weme.model.tag.Tag;
 
 public class ParserUtilTest {
-    private static final String INVALID_URL = "http//tinyurl.com/testWeme";
+    private static final String INVALID_FILEPATH = "Hello world";
     private static final String INVALID_TAG = "#friend";
     private static final String VALID_DESCRIPTION = "Sit vitae voluptas sint non voluptates";
 
-    private static final String VALID_URL = "https://tinyurl.com/testWeme";
+    private static final String VALID_FILEPATH = "data/memes/charmander_meme.jpg";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -51,25 +51,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseUrl((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFilePath((String) null));
     }
 
     @Test
     public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseUrl(INVALID_URL));
+        assertThrows(ParseException.class, () -> ParserUtil.parseFilePath(INVALID_FILEPATH));
     }
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        ImageUrl expectedName = new ImageUrl(VALID_URL);
-        assertEquals(expectedName, ParserUtil.parseUrl(VALID_URL));
+        ImagePath expectedName = new ImagePath(VALID_FILEPATH);
+        assertEquals(expectedName, ParserUtil.parseFilePath(VALID_FILEPATH));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String urlWithWhitespace = WHITESPACE + VALID_URL + WHITESPACE;
-        ImageUrl expectedName = new ImageUrl(VALID_URL);
-        assertEquals(expectedName, ParserUtil.parseUrl(urlWithWhitespace));
+        String urlWithWhitespace = WHITESPACE + VALID_FILEPATH + WHITESPACE;
+        ImagePath expectedName = new ImagePath(VALID_FILEPATH);
+        assertEquals(expectedName, ParserUtil.parseFilePath(urlWithWhitespace));
     }
 
     @Test

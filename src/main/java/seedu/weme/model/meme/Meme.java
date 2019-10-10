@@ -16,7 +16,7 @@ import seedu.weme.model.tag.Tag;
 public class Meme {
 
     // Identity fields
-    private final ImageUrl url;
+    private final ImagePath filePath;
 
     // Data fields
     private final Description description;
@@ -25,9 +25,9 @@ public class Meme {
     /**
      * Every field must be present and not null.
      */
-    public Meme(ImageUrl url, Description description, Set<Tag> tags) {
-        requireAllNonNull(url, description, tags);
-        this.url = url;
+    public Meme(ImagePath filePath, Description description, Set<Tag> tags) {
+        requireAllNonNull(filePath, description, tags);
+        this.filePath = filePath;
         this.description = description;
         this.tags.addAll(tags);
     }
@@ -36,8 +36,8 @@ public class Meme {
         return description;
     }
 
-    public ImageUrl getUrl() {
-        return url;
+    public ImagePath getFilePath() {
+        return filePath;
     }
 
     /**
@@ -58,7 +58,7 @@ public class Meme {
         }
 
         return otherMeme != null
-                && otherMeme.getUrl().equals(getUrl());
+                && otherMeme.getFilePath().equals(getFilePath());
     }
 
     /**
@@ -76,7 +76,7 @@ public class Meme {
         }
 
         Meme otherMeme = (Meme) other;
-        return otherMeme.getUrl().equals(getUrl())
+        return otherMeme.getFilePath().equals(getFilePath())
                 && otherMeme.getDescription().equals(getDescription())
                 && otherMeme.getTags().equals(getTags());
     }
@@ -84,14 +84,14 @@ public class Meme {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(url, description, tags);
+        return Objects.hash(filePath, description, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("URL: ")
-                .append(getUrl())
+                .append(getFilePath())
                 .append(" Description: ")
                 .append(getDescription())
                 .append(" Tags: ");

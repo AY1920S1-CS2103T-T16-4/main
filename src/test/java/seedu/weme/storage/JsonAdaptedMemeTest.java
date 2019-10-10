@@ -3,7 +3,7 @@ package seedu.weme.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.weme.storage.JsonAdaptedMeme.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.weme.testutil.Assert.assertThrows;
-import static seedu.weme.testutil.TypicalMemes.BENSON;
+import static seedu.weme.testutil.TypicalMemes.JOKER;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,16 +19,16 @@ public class JsonAdaptedMemeTest {
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_URL = "http//tinyurl.com/testWeme";
 
-    private static final String VALID_DESCRIPTION = BENSON.getDescription().toString();
-    private static final String VALID_URL = BENSON.getUrl().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final String VALID_DESCRIPTION = JOKER.getDescription().toString();
+    private static final String VALID_URL = JOKER.getFilePath().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = JOKER.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validMemeDetails_returnsMeme() throws Exception {
-        JsonAdaptedMeme meme = new JsonAdaptedMeme(BENSON);
-        assertEquals(BENSON, meme.toModelType());
+        JsonAdaptedMeme meme = new JsonAdaptedMeme(JOKER);
+        assertEquals(JOKER, meme.toModelType());
     }
 
     @Test

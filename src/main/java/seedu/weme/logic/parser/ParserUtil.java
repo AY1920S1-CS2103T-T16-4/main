@@ -2,6 +2,7 @@ package seedu.weme.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +11,7 @@ import seedu.weme.commons.core.index.Index;
 import seedu.weme.commons.util.StringUtil;
 import seedu.weme.logic.parser.exceptions.ParseException;
 import seedu.weme.model.meme.Description;
-import seedu.weme.model.meme.ImageUrl;
+import seedu.weme.model.meme.ImagePath;
 import seedu.weme.model.tag.Tag;
 
 /**
@@ -19,6 +20,7 @@ import seedu.weme.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_FILEPATH = "File not found or invalid file path given";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -34,17 +36,16 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String weme} into an {@code Address}.
+     * Parses a {@code String input} into an {@code ImagePath}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static ImageUrl parseUrl(String input) throws ParseException {
+    public static ImagePath parseFilePath(String input) throws ParseException {
         requireNonNull(input);
-        String trimmedUrl = input.trim();
-        try {
-            return new ImageUrl(trimmedUrl);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(ImageUrl.MESSAGE_CONSTRAINTS);
+        String trimmedPath = input.trim();
+        if (!(new File(trimmedPath)).exists()) {
+            throw new ParseException(MESSAGE_INVALID_FILEPATH);
         }
+        return new ImagePath(trimmedPath);
     }
 
     /**

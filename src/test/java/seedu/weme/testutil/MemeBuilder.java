@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.weme.model.meme.Description;
-import seedu.weme.model.meme.ImageUrl;
+import seedu.weme.model.meme.ImagePath;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.tag.Tag;
 import seedu.weme.model.util.SampleDataUtil;
@@ -14,15 +14,15 @@ import seedu.weme.model.util.SampleDataUtil;
  */
 public class MemeBuilder {
 
-    public static final String DEFAULT_DESCRIPTION = "Meme created in CS2103 Lecture";
-    public static final String DEFAULT_URL = "https://tinyurl.com/testWeme";
+    public static final String DEFAULT_DESCRIPTION = "Meme created for testing.";
+    public static final String DEFAULT_FILEPATH = "data/memes/test_meme.jpg";
 
     private Description description;
-    private ImageUrl url;
+    private ImagePath filePath;
     private Set<Tag> tags;
 
     public MemeBuilder() {
-        url = new ImageUrl(DEFAULT_URL);
+        filePath = new ImagePath(DEFAULT_FILEPATH);
         description = new Description(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
     }
@@ -32,7 +32,7 @@ public class MemeBuilder {
      */
     public MemeBuilder(Meme memeToCopy) {
         description = memeToCopy.getDescription();
-        url = memeToCopy.getUrl();
+        filePath = memeToCopy.getFilePath();
         tags = new HashSet<>(memeToCopy.getTags());
     }
 
@@ -55,14 +55,15 @@ public class MemeBuilder {
 
     /**
      * Sets the {@code ImageUrl} of the {@code Meme} that we are building.
+     * @param filePath
      */
-    public MemeBuilder withUrl(String url) {
-        this.url = new ImageUrl(url);
+    public MemeBuilder withFilePath(String filePath) {
+        this.filePath = new ImagePath(filePath);
         return this;
     }
 
     public Meme build() {
-        return new Meme(url, description, tags);
+        return new Meme(filePath, description, tags);
     }
 
 }

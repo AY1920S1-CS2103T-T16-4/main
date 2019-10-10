@@ -5,8 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weme.model.Model.PREDICATE_SHOW_ALL_MEMES;
 import static seedu.weme.testutil.Assert.assertThrows;
-import static seedu.weme.testutil.TypicalMemes.ALICE;
-import static seedu.weme.testutil.TypicalMemes.BENSON;
+import static seedu.weme.testutil.TypicalMemes.DOGE;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -77,13 +76,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasMeme_memeNotInMemeBook_returnsFalse() {
-        assertFalse(modelManager.hasMeme(ALICE));
+        assertFalse(modelManager.hasMeme(DOGE));
     }
 
     @Test
     public void hasMeme_memeInMemeBook_returnsTrue() {
-        modelManager.addMeme(ALICE);
-        assertTrue(modelManager.hasMeme(ALICE));
+        modelManager.addMeme(DOGE);
+        assertTrue(modelManager.hasMeme(DOGE));
     }
 
     @Test
@@ -93,7 +92,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        MemeBook memeBook = new MemeBookBuilder().withMeme(ALICE).withMeme(BENSON).build();
+        MemeBook memeBook = new MemeBookBuilder().withMeme(DOGE).build();
         MemeBook differentMemeBook = new MemeBook();
         UserPrefs userPrefs = new UserPrefs();
 
