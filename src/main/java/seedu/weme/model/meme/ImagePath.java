@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.weme.commons.util.AppUtil.checkArgument;
 
 import java.io.File;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -39,7 +40,12 @@ public class ImagePath {
      * Returns true if the given string is a valid URL.
      */
     public static boolean isValidFilePath(String test) {
-        return (!test.equals("")) && ((new File(Paths.get(test).toAbsolutePath().toUri())).exists());
+        try {
+            return test.matches(VALIDATION_REGEX) &&
+                    (new File(Paths.get(test).toAbsolutePath().toUri())).exists());
+        } catch (InvalidPathException e) {
+            return false;
+        }
     }
 
     public Path getFilePath() {
