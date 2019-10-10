@@ -1,6 +1,7 @@
 package seedu.weme.logic.parser;
 
 import static seedu.weme.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import static seedu.weme.logic.commands.CommandTestUtil.DESCRIPTION_DESC_CHARMANDER;
 import static seedu.weme.logic.commands.CommandTestUtil.DESCRIPTION_DESC_JOKER;
 import static seedu.weme.logic.commands.CommandTestUtil.FILEPATH_DESC_CHARMANDER;
@@ -27,15 +28,13 @@ import seedu.weme.model.meme.Meme;
 import seedu.weme.model.tag.Tag;
 import seedu.weme.testutil.MemeBuilder;
 
-import java.nio.channels.FileLockInterruptionException;
-
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Meme expectedMeme = new MemeBuilder(JOKER).withDescription(VALID_DESCRIPTION_JOKER).
-                withTags(VALID_TAG_JOKER).build();
+        Meme expectedMeme = new MemeBuilder(JOKER).withDescription(VALID_DESCRIPTION_JOKER)
+                .withTags(VALID_TAG_JOKER).build();
 
         // multiple paths - last paths accepted
         assertParseSuccess(parser, FILEPATH_DESC_CHARMANDER + FILEPATH_DESC_JOKER
