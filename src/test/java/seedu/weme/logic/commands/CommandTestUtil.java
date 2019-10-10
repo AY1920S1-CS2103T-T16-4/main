@@ -24,8 +24,8 @@ public class CommandTestUtil {
 
     public static final String VALID_DESCRIPTION_CHARMANDER = "A meme about Char and charmander.";
     public static final String VALID_DESCRIPTION_JOKER = "A meme about joker.";
-    public static final String VALID_FILEPATH_CHARMANDER = "data/memes/charmander_meme.jpg";
-    public static final String VALID_FILEPATH_JOKER = "data/memes/joker_meme.jpg";
+    public static final String VALID_FILEPATH_CHARMANDER = "src/test/data/memes/charmander_meme.jpg";
+    public static final String VALID_FILEPATH_JOKER = "src/test/data/memes/joker_meme.jpg";
     public static final String VALID_TAG_CHARMANDER = "charmander";
     public static final String VALID_TAG_JOKER = "joker";
 

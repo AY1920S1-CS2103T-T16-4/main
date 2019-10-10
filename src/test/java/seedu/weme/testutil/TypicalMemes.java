@@ -13,19 +13,19 @@ import seedu.weme.model.meme.Meme;
 public class TypicalMemes {
 
     public static final Meme CHARMANDER = new MemeBuilder()
-            .withFilePath("data/memes/charmander_meme.jpg")
+            .withFilePath("src/test/data/memes/charmander_meme.jpg")
             .withDescription("A meme about Char and charmander.")
             .withTags("charmander").build();
     public static final Meme DOGE = new MemeBuilder()
-            .withFilePath("data/memes/doge_meme.jpg")
+            .withFilePath("src/test/data/memes/doge_meme.jpg")
             .withDescription("A meme about doge.")
             .withTags("doge").build();
     public static final Meme JOKER = new MemeBuilder()
-            .withFilePath("data/memes/joker_meme.jpg")
+            .withFilePath("src/test/data/memes/joker_meme.jpg")
             .withDescription("A meme about joker.")
             .withTags("joker").build();
     public static final Meme TOY = new MemeBuilder()
-            .withFilePath("data/memes/toy_meme.jpg")
+            .withFilePath("src/test/data/memes/toy_meme.jpg")
             .withDescription("A toy story meme.")
             .withTags("toy").build();
 
