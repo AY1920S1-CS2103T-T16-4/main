@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 import seedu.weme.commons.util.FileUtil;
 
 /**
- * Wrapper class for URL in {@code Meme}.
+ * Wrapper class for Path in {@code Meme}.
  * Acts as the identity reference to a {@code Meme}.
  */
 public class ImagePath {
@@ -31,7 +31,7 @@ public class ImagePath {
     }
 
     /**
-     * Returns true if the given string is a valid URL.
+     * Returns true if the given string is a valid Path.
      */
     public static boolean isValidFilePath(String test) {
         // Paths.get() throws InvalidPathException when the path is a invalid.

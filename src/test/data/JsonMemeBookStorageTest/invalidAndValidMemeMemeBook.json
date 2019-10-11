@@ -1,9 +1,9 @@
 {
   "memes": [ {
     "description": "A meme about Pikachu.",
-    "filePath": "data/memes/Pikachu.jpg"
+    "filePath": "Hello Pikachu"
   }, {
     "description": "",
-    "filePath": "data/memes/Pikachu.jpg"
+    "filePath": "test/data/memes/Pikachu.jpg"
   } ]
 }

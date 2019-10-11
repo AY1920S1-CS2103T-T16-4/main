@@ -37,6 +37,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String input} into an {@code ImagePath}.
      * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code name} is invalid.
      */
     public static ImagePath parseFilePath(String input) throws ParseException {
         requireNonNull(input);
