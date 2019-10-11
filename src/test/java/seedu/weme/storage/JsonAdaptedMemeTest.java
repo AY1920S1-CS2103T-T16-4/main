@@ -13,11 +13,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.weme.commons.exceptions.IllegalValueException;
 import seedu.weme.model.meme.Description;
+import seedu.weme.model.meme.ImagePath;
 
 public class JsonAdaptedMemeTest {
-    private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_URL = "http//tinyurl.com/testWeme";
+    private static final String INVALID_URL = "hello world";
 
     private static final String VALID_DESCRIPTION = JOKER.getDescription().toString();
     private static final String VALID_URL = JOKER.getFilePath().toString();
@@ -31,7 +31,18 @@ public class JsonAdaptedMemeTest {
         assertEquals(JOKER, meme.toModelType());
     }
 
-    // TODO: Null path and invalid path tests.
+    @Test
+    public void toModelType_nullPath_throwsIllegalValueException() {
+        JsonAdaptedMeme meme = new JsonAdaptedMeme(null, VALID_DESCRIPTION, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ImagePath.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, meme::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidPath_throwsIllegalValueException() {
+        JsonAdaptedMeme meme = new JsonAdaptedMeme(INVALID_URL, VALID_DESCRIPTION, VALID_TAGS);
+        assertThrows(IllegalValueException.class, meme::toModelType);
+    }
 
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {

@@ -6,13 +6,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weme.model.Model.PREDICATE_SHOW_ALL_MEMES;
 import static seedu.weme.testutil.Assert.assertThrows;
 import static seedu.weme.testutil.TypicalMemes.DOGE;
+import static seedu.weme.testutil.TypicalMemes.JOKER;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.weme.commons.core.GuiSettings;
+import seedu.weme.model.meme.TagContainsKeywordsPredicate;
 import seedu.weme.testutil.MemeBookBuilder;
 
 public class ModelManagerTest {
@@ -115,6 +118,11 @@ public class ModelManagerTest {
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredMemeList(PREDICATE_SHOW_ALL_MEMES);
+
+        // different filteredList -> returns false
+        String[] keywords = JOKER.getFilePath().value.split("\\s+");
+        modelManager.updateFilteredMemeList(new TagContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(memeBook, userPrefs)));
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
