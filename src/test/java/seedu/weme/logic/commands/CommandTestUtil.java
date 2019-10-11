@@ -14,7 +14,10 @@ import seedu.weme.commons.core.index.Index;
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.model.MemeBook;
 import seedu.weme.model.Model;
+import seedu.weme.model.meme.ImagePath;
 import seedu.weme.model.meme.Meme;
+import seedu.weme.model.meme.PathMatchesPathPredicate;
+import seedu.weme.model.meme.TagContainsKeywordsPredicate;
 import seedu.weme.testutil.EditMemeDescriptorBuilder;
 
 /**
@@ -101,13 +104,11 @@ public class CommandTestUtil {
     public static void showMemeAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredMemeList().size());
 
-        /*
         Meme meme = model.getFilteredMemeList().get(targetIndex.getZeroBased());
-        final List<ImageUrl> splitName = new ArrayList<>(meme.getUrl());
-        model.updateFilteredMemeList(new TagContainsKeywordsPredicate(Arrays.asList(splitName.get(0).value)));
+        final ImagePath filePath = meme.getFilePath();
+        model.updateFilteredMemeList(new PathMatchesPathPredicate(filePath));
 
         assertEquals(1, model.getFilteredMemeList().size());
-         */
     }
 
 }
