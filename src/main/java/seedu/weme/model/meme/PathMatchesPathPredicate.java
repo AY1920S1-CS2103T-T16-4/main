@@ -1,8 +1,5 @@
 package seedu.weme.model.meme;
 
-import seedu.weme.commons.util.StringUtil;
-
-import java.util.List;
 import java.util.function.Predicate;
 
 /**

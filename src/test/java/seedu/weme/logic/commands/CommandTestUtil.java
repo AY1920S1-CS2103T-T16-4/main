@@ -17,7 +17,6 @@ import seedu.weme.model.Model;
 import seedu.weme.model.meme.ImagePath;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.meme.PathMatchesPathPredicate;
-import seedu.weme.model.meme.TagContainsKeywordsPredicate;
 import seedu.weme.testutil.EditMemeDescriptorBuilder;
 
 /**
