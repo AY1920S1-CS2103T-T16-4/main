@@ -1,14 +1,13 @@
 package seedu.weme.model.meme;
 
-import seedu.weme.commons.util.FileUtil;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.weme.commons.util.AppUtil.checkArgument;
 
-import java.io.File;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import seedu.weme.commons.util.FileUtil;
 
 /**
  * Wrapper class for URL in {@code Meme}.

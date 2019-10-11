@@ -2,10 +2,8 @@
   "memes": [
     {
       "description": "Popular Meme among NUS Students",
-      "tagged": [
-        "friends"
-      ],
-      "filePath": "https://tinyurl.com/testWeme"
+      "tagged": [ "friends" ],
+      "filePath": "Hello world"
     },
     {
     "description": "Popular Meme among NUS Students",
