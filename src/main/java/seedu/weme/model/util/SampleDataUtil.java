@@ -17,18 +17,18 @@ import seedu.weme.model.tag.Tag;
 public class SampleDataUtil {
     public static Meme[] getSampleMemes() {
         return new Meme[] {
-            new Meme(new ImagePath("data/memes/charmander_meme.jpg"),
+            new Meme(new ImagePath("src/main/resources/memes/charmander_meme.jpg"),
                 new Description("A meme about Char and charmander."),
                 getTagSet("charmander")),
-            new Meme(new ImagePath("data/memes/doge_meme.jpg"),
+            new Meme(new ImagePath("src/main/resources/memes/doge_meme.jpg"),
                     new Description("A meme about doge."),
                     getTagSet("doge")),
-            new Meme(new ImagePath("data/memes/joker_meme.jpg"),
+            new Meme(new ImagePath("src/main/resources/memes/joker_meme.jpg"),
                     new Description("A meme about joker."),
                     getTagSet("joker")),
-            new Meme(new ImagePath("data/memes/joker_meme.jpg"),
-                    new Description("A meme about joker."),
-                    getTagSet("joker"))
+            new Meme(new ImagePath("src/main/resources/memes/toy_meme.jpg"),
+                    new Description("A meme about toy."),
+                    getTagSet("toy"))
         };
     }
 
