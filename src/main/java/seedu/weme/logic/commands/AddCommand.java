@@ -22,7 +22,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_FILEPATH + "data/memes/funny_meme.jpg"
+            + PREFIX_FILEPATH + "import/funny_meme.jpg "
             + PREFIX_DESCRIPTION + "Popular Meme among SoC Students  "
             + PREFIX_TAG + "funny";
 
