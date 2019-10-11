@@ -28,7 +28,7 @@ public class MemeUtil {
      */
     public static String getMemeDetails(Meme meme) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_FILEPATH + meme.getFilePath().value + " ");
+        sb.append(PREFIX_FILEPATH + meme.getFilePath().toString() + " ");
         sb.append(PREFIX_DESCRIPTION + meme.getDescription().value + " ");
         meme.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -41,7 +41,7 @@ public class MemeUtil {
      */
     public static String getEditMemeDescriptorDetails(EditMemeDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getFilePath().ifPresent(path -> sb.append(PREFIX_FILEPATH).append(path.value).append(" "));
+        descriptor.getFilePath().ifPresent(path -> sb.append(PREFIX_FILEPATH).append(path.toString()).append(" "));
         descriptor.getDescription().ifPresent(description ->
                 sb.append(PREFIX_DESCRIPTION).append(description.value).append(" "));
         if (descriptor.getTags().isPresent()) {

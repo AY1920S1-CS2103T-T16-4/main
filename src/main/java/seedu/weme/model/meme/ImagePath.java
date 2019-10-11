@@ -1,5 +1,7 @@
 package seedu.weme.model.meme;
 
+import seedu.weme.commons.util.FileUtil;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.weme.commons.util.AppUtil.checkArgument;
 
@@ -16,12 +18,6 @@ public class ImagePath {
 
     public static final String MESSAGE_CONSTRAINTS = "File not found or invalid file path given";
 
-    /**
-     * The first character of the URL must not be a whitespace.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
-    public final String value;
     public final Path filePath;
 
     /**
@@ -33,7 +29,6 @@ public class ImagePath {
         requireNonNull(relativeFilePath);
         checkArgument(isValidFilePath(relativeFilePath), MESSAGE_CONSTRAINTS);
         this.filePath = Paths.get(relativeFilePath);
-        this.value = relativeFilePath;
     }
 
     /**
@@ -43,8 +38,8 @@ public class ImagePath {
         // Paths.get() throws InvalidPathException when the path is a invalid.
         // It is caught and becomes return false.
         try {
-            return test.matches(VALIDATION_REGEX)
-                    && (new File(Paths.get(test).toAbsolutePath().toUri())).exists();
+            return FileUtil.isValidPath(test)
+                    && FileUtil.isFileExists(Paths.get(test));
         } catch (InvalidPathException e) {
             return false;
         }
@@ -56,18 +51,18 @@ public class ImagePath {
 
     @Override
     public String toString() {
-        return value;
+        return filePath.toString();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ImagePath // instanceof handles nulls
-                && value.equals(((ImagePath) other).value)); // state check
+                && toString().equals(((ImagePath) other).toString())); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return toString().hashCode();
     }
 }

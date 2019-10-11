@@ -20,7 +20,7 @@ public class TagContainsKeywordsPredicate implements Predicate<Meme> {
         return keywords.stream()
                 .anyMatch(keyword ->
                         meme.getTags().stream()
-                                .anyMatch(tag -> StringUtil.containsPartialWordIgnoreCase(tag.tagName, keyword))
+                                .anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.tagName, keyword))
                 );
     }
 

@@ -120,7 +120,7 @@ public class ModelManagerTest {
         modelManager.updateFilteredMemeList(PREDICATE_SHOW_ALL_MEMES);
 
         // different filteredList -> returns false
-        String[] keywords = JOKER.getFilePath().value.split("\\s+");
+        String[] keywords = JOKER.getFilePath().toString().split("\\s+");
         modelManager.updateFilteredMemeList(new TagContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(memeBook, userPrefs)));
 
