@@ -26,12 +26,10 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final MemeBookParser memeBookParser;
 
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        memeBookParser = new MemeBookParser();
     }
 
     @Override
@@ -39,6 +37,8 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
+
+        MemeBookParser memeBookParser = model.getContext().getParser();
         Command command = memeBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
