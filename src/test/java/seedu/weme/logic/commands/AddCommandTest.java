@@ -1,14 +1,12 @@
 package seedu.weme.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-//import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weme.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-//import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -29,19 +27,6 @@ public class AddCommandTest {
     public void constructor_nullMeme_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
-
-    /*
-    @Test
-    public void execute_memeAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingMemeAdded modelStub = new ModelStubAcceptingMemeAdded();
-        Meme validMeme = new MemeBuilder().build();
-
-        CommandResult commandResult = new AddCommand(validMeme).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validMeme), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validMeme), modelStub.memesAdded);
-    }
-    */
 
     @Test
     public void execute_duplicateMeme_throwsCommandException() {
