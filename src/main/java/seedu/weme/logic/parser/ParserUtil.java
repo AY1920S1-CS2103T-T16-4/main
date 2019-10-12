@@ -1,6 +1,7 @@
 package seedu.weme.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.weme.model.ModelContext.CONTEXT_MEMES;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -19,6 +20,7 @@ import seedu.weme.model.tag.Tag;
  */
 public class ParserUtil {
 
+    public static final String MESSAGE_INVALID_CONTEXT = "Tab provided is not a valid tab.";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_FILEPATH = "File not found or invalid file path given.";
 
@@ -36,6 +38,19 @@ public class ParserUtil {
         default:
             throw new IllegalArgumentException();
         }
+    }
+
+    /**
+     * Parses {@code context} into a {@code ModelContext} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified context is invalid (Not one of the enums).
+     */
+    public static ModelContext parseContext(String context) throws ParseException {
+        String trimmedContext = context.trim();
+        if (trimmedContext.equals(CONTEXT_MEMES.getContextName())) {
+            return CONTEXT_MEMES;
+        }
+        throw new ParseException(MESSAGE_INVALID_CONTEXT);
     }
 
     /**

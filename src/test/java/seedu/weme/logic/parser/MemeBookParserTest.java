@@ -3,17 +3,25 @@ package seedu.weme.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weme.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.weme.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.weme.model.ModelContext.CONTEXT_MEMES;
 import static seedu.weme.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.weme.logic.commands.ExitCommand;
 import seedu.weme.logic.commands.HelpCommand;
+import seedu.weme.logic.commands.TabCommand;
 import seedu.weme.logic.parser.exceptions.ParseException;
 
 public class MemeBookParserTest {
 
     private final MemeBookParser parser = new MemeBookParserStub();
+
+    @Test
+    public void parseCommand_tab() throws Exception {
+        assertTrue(parser.parseCommand(TabCommand.COMMAND_WORD + " "
+                + CONTEXT_MEMES.getContextName()) instanceof TabCommand);
+    }
 
     @Test
     public void parseCommand_exit() throws Exception {
