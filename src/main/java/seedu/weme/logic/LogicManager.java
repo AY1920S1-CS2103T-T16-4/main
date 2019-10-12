@@ -11,8 +11,10 @@ import seedu.weme.logic.commands.Command;
 import seedu.weme.logic.commands.CommandResult;
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.logic.parser.MemeBookParser;
+import seedu.weme.logic.parser.ParserUtil;
 import seedu.weme.logic.parser.exceptions.ParseException;
 import seedu.weme.model.Model;
+import seedu.weme.model.ModelContext;
 import seedu.weme.model.ReadOnlyMemeBook;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.storage.Storage;
@@ -38,7 +40,8 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
 
-        MemeBookParser memeBookParser = model.getContext().getParser();
+        ModelContext currentContext = model.getContext();
+        MemeBookParser memeBookParser = ParserUtil.forContext(currentContext);
         Command command = memeBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 

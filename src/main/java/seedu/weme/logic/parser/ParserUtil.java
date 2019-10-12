@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.weme.commons.core.index.Index;
 import seedu.weme.commons.util.StringUtil;
 import seedu.weme.logic.parser.exceptions.ParseException;
+import seedu.weme.model.ModelContext;
 import seedu.weme.model.meme.Description;
 import seedu.weme.model.meme.ImagePath;
 import seedu.weme.model.tag.Tag;
@@ -19,7 +20,23 @@ import seedu.weme.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_FILEPATH = "File not found or invalid file path given";
+    public static final String MESSAGE_INVALID_FILEPATH = "File not found or invalid file path given.";
+
+    public static final MemeBookMemeParser MEMES_PARSER = new MemeBookMemeParser();
+
+    /**
+     * Returns a Parser depending on the given ModelContext.
+     * @param modelContext Current context.
+     * @return Parser to parse commands with.
+     */
+    public static MemeBookParser forContext(ModelContext modelContext) {
+        switch (modelContext) {
+        case CONTEXT_MEMES:
+            return MEMES_PARSER;
+        default:
+            throw new IllegalArgumentException();
+        }
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
