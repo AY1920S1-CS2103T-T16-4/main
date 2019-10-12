@@ -13,7 +13,7 @@ import java.util.UUID;
 public class FileUtil {
 
     private static final String CHARSET = "UTF-8";
-    private static final String RELATIVE_PATH = "src/main/resources/memes/";
+    private static final String RELATIVE_PATH = "data/images/";
 
     public static boolean isFileExists(Path file) {
         return Files.exists(file) && Files.isRegularFile(file);
