@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.UUID;
 
 /**
  * Writes and reads files
@@ -12,6 +13,7 @@ import java.nio.file.Paths;
 public class FileUtil {
 
     private static final String CHARSET = "UTF-8";
+    private static final String RELATIVE_PATH = "src/main/resources/memes/";
 
     public static boolean isFileExists(Path file) {
         return Files.exists(file) && Files.isRegularFile(file);
@@ -66,7 +68,18 @@ public class FileUtil {
     }
 
     /**
-     * Assumes file exists
+     * Generates a relative path for images using uuid.
+     */
+    public static Path generateRelativePath(String extension) {
+        Path newPath = Paths.get(RELATIVE_PATH + UUID.randomUUID().toString() + extension);
+        while (Files.exists(newPath)) {
+            newPath = Paths.get(RELATIVE_PATH + UUID.randomUUID().toString() + extension);
+        }
+        return newPath;
+    }
+
+    /**
+     * Assumes file exists.
      */
     public static String readFromFile(Path file) throws IOException {
         return new String(Files.readAllBytes(file), CHARSET);
@@ -78,6 +91,10 @@ public class FileUtil {
      */
     public static void writeToFile(Path file, String content) throws IOException {
         Files.write(file, content.getBytes(CHARSET));
+    }
+
+    public static void copyFile(Path from, Path to) throws IOException {
+        Files.copy(from, to);
     }
 
 }

@@ -5,8 +5,13 @@ import static seedu.weme.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_FILEPATH;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.io.IOException;
+import java.nio.file.Path;
+
+import seedu.weme.commons.util.FileUtil;
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.model.Model;
+import seedu.weme.model.meme.ImagePath;
 import seedu.weme.model.meme.Meme;
 
 /**
@@ -47,8 +52,28 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MEME);
         }
 
-        model.addMeme(toAdd);
+        Meme relativePathMeme = createRelativePathMeme(toAdd);
+        model.addMeme(relativePathMeme);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+    }
+
+    /**
+     * Creates a meme with a relative path as its ImagePath.
+     * @param meme the meme to be reassigned a relative path.
+     * @return new meme with relative path.
+     * @throws CommandException when an error has occurred.
+     */
+    private Meme createRelativePathMeme(Meme meme) throws CommandException {
+        try {
+            String filename = meme.getFilePath().getFileName();
+            Path newPath = FileUtil.generateRelativePath(
+                    filename.contains(".") ? filename.substring(filename.lastIndexOf(".")) : "");
+            FileUtil.copyFile(meme.getFilePath().getFilePath(), newPath);
+            ImagePath newImagePath = new ImagePath(newPath.toString());
+            return new Meme(newImagePath, meme.getDescription(), meme.getTags());
+        } catch (IOException ioe) {
+            throw new CommandException("Error encountered while trying to convert path: " + ioe);
+        }
     }
 
     @Override

@@ -48,6 +48,10 @@ public class ImagePath {
         return filePath;
     }
 
+    public String getFileName() {
+        return filePath.getFileName().toString();
+    }
+
     @Override
     public String toString() {
         return filePath.toString();
