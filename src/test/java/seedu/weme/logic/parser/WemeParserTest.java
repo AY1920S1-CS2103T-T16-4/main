@@ -13,9 +13,9 @@ import seedu.weme.logic.commands.HelpCommand;
 import seedu.weme.logic.commands.TabCommand;
 import seedu.weme.logic.parser.exceptions.ParseException;
 
-public class MemeBookParserTest {
+public class WemeParserTest {
 
-    private final MemeBookParser parser = new MemeBookParserStub();
+    private final WemeParser parser = new WemeParserStub();
 
     @Test
     public void parseCommand_tab() throws Exception {
@@ -46,5 +46,5 @@ public class MemeBookParserTest {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 
-    class MemeBookParserStub extends MemeBookParser {};
+    class WemeParserStub extends WemeParser {};
 }

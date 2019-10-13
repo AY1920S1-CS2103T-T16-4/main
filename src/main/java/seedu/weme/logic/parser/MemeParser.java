@@ -17,7 +17,7 @@ import seedu.weme.logic.parser.exceptions.ParseException;
 /**
  * Parses user input in the meme context.
  */
-public class MemeBookMemeParser extends MemeBookParser {
+public class MemeParser extends WemeParser {
 
     /**
      * Parses user input into command for execution.

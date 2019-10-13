@@ -15,7 +15,7 @@ import seedu.weme.logic.parser.exceptions.ParseException;
 /**
  * Parses user input. Base context parser that all context parsers inherit from.
  */
-public abstract class MemeBookParser {
+public abstract class WemeParser {
 
     /**
      * Used for initial separation of command word and args.

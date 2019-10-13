@@ -24,14 +24,14 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_FILEPATH = "File not found or invalid file path given.";
 
-    public static final MemeBookMemeParser MEMES_PARSER = new MemeBookMemeParser();
+    public static final MemeParser MEMES_PARSER = new MemeParser();
 
     /**
      * Returns a Parser depending on the given ModelContext.
      * @param modelContext Current context.
      * @return Parser to parse commands with.
      */
-    public static MemeBookParser forContext(ModelContext modelContext) {
+    public static WemeParser forContext(ModelContext modelContext) {
         switch (modelContext) {
         case CONTEXT_MEMES:
             return MEMES_PARSER;

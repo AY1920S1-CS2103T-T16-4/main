@@ -28,9 +28,9 @@ import seedu.weme.testutil.EditMemeDescriptorBuilder;
 import seedu.weme.testutil.MemeBuilder;
 import seedu.weme.testutil.MemeUtil;
 
-public class MemeBookMemeParserTest {
+public class MemeParserTest {
 
-    private final MemeBookParser parser = new MemeBookMemeParser();
+    private final WemeParser parser = new MemeParser();
 
     @Test
     public void parseCommand_add() throws Exception {

@@ -34,7 +34,7 @@ public class ParserUtilTest {
 
     @Test
     public void forContext_success() {
-        assertEquals(MemeBookMemeParser.class, ParserUtil.forContext(CONTEXT_MEMES).getClass());
+        assertEquals(MemeParser.class, ParserUtil.forContext(CONTEXT_MEMES).getClass());
     }
 
     @Test
