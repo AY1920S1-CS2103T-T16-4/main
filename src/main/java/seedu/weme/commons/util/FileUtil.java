@@ -93,6 +93,10 @@ public class FileUtil {
         Files.write(file, content.getBytes(CHARSET));
     }
 
+    /**
+     * Copies File from one directory to another.
+     * Will create the directory if it does not exist yet.
+     */
     public static void copyFile(Path from, Path to) throws IOException {
         Files.createDirectories(Paths.get(RELATIVE_PATH));
         Files.copy(from, to);
