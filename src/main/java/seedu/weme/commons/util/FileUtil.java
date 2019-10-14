@@ -94,6 +94,7 @@ public class FileUtil {
     }
 
     public static void copyFile(Path from, Path to) throws IOException {
+        Files.createDirectories(Paths.get(RELATIVE_PATH));
         Files.copy(from, to);
     }
 
