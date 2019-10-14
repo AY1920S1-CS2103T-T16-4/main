@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.weme.logic.commands.CommandResult;
-import seedu.weme.logic.commands.ListCommand;
+import seedu.weme.logic.commands.MemeListCommand;
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.logic.parser.exceptions.ParseException;
 import seedu.weme.model.Model;
@@ -35,10 +35,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonMemeBookStorage addressBookStorage =
+        JsonMemeBookStorage memeBookStorage =
                 new JsonMemeBookStorage(temporaryFolder.resolve("weme.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(memeBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -56,8 +56,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = MemeListCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, MemeListCommand.MESSAGE_SUCCESS, model);
     }
 
     /* Test does not make sense.
@@ -72,7 +72,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + FILEPATH_DESC_CHARMANDER
+        String addCommand = MemeAddCommand.COMMAND_WORD + FILEPATH_DESC_CHARMANDER
                 + DESCRIPTION_DESC_CHARMANDER;
         Meme expectedMeme = new MemeBuilder(DOGE).withTags().build();
         ModelManager expectedModel = new ModelManager();

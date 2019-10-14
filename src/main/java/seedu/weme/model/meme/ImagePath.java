@@ -3,6 +3,8 @@ package seedu.weme.model.meme;
 import static java.util.Objects.requireNonNull;
 import static seedu.weme.commons.util.AppUtil.checkArgument;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +17,7 @@ import seedu.weme.commons.util.FileUtil;
  */
 public class ImagePath {
 
-    public static final String MESSAGE_CONSTRAINTS = "File not found or invalid file path given";
+    public static final String MESSAGE_CONSTRAINTS = "File not found or invalid file path given.";
 
     public final Path filePath;
 
@@ -50,6 +52,19 @@ public class ImagePath {
 
     public String getFileName() {
         return filePath.getFileName().toString();
+    }
+
+    /**
+     * Returns a URL object representing this {@code ImagePath}.
+     *
+     * @return a URL object representing this {@code ImagePath}
+     */
+    public URL toUrl() {
+        try {
+            return filePath.toUri().toURL();
+        } catch (MalformedURLException e) {
+            throw new IllegalArgumentException(e);
+        }
     }
 
     @Override

@@ -1,12 +1,15 @@
 package seedu.weme.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weme.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -16,39 +19,52 @@ import seedu.weme.commons.core.GuiSettings;
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.model.MemeBook;
 import seedu.weme.model.Model;
+import seedu.weme.model.ModelContext;
 import seedu.weme.model.ReadOnlyMemeBook;
 import seedu.weme.model.ReadOnlyUserPrefs;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.testutil.MemeBuilder;
 
-public class AddCommandTest {
+public class MemeAddCommandTest {
 
     @Test
     public void constructor_nullMeme_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new MemeAddCommand(null));
+    }
+
+    @Test
+    public void execute_memeAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingMemeAdded modelStub = new ModelStubAcceptingMemeAdded();
+        Meme validMeme = new MemeBuilder().build();
+
+        CommandResult commandResult = new MemeAddCommand(validMeme).execute(modelStub);
+
+        assertEquals(String.format(MemeAddCommand.MESSAGE_SUCCESS, validMeme), commandResult.getFeedbackToUser());
+        assertNotEquals(Arrays.asList(validMeme), modelStub.memesAdded);
     }
 
     @Test
     public void execute_duplicateMeme_throwsCommandException() {
         Meme validMeme = new MemeBuilder().build();
-        AddCommand addCommand = new AddCommand(validMeme);
+        MemeAddCommand memeAddCommand = new MemeAddCommand(validMeme);
         ModelStub modelStub = new ModelStubWithMeme(validMeme);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_MEME, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                MemeAddCommand.MESSAGE_DUPLICATE_MEME, () -> memeAddCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Meme meme1 = new MemeBuilder().withFilePath("src/test/data/memes/charmander_meme.jpg").build();
         Meme meme2 = new MemeBuilder().withFilePath("src/test/data/memes/joker_meme.jpg").build();
-        AddCommand addMeme1Command = new AddCommand(meme1);
-        AddCommand addMeme2Command = new AddCommand(meme2);
+        MemeAddCommand addMeme1Command = new MemeAddCommand(meme1);
+        MemeAddCommand addMeme2Command = new MemeAddCommand(meme2);
 
         // same object -> returns true
         assertTrue(addMeme1Command.equals(addMeme1Command));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(meme1);
+        MemeAddCommand addAliceCommandCopy = new MemeAddCommand(meme1);
         assertTrue(addMeme1Command.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -132,6 +148,16 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredMemeList(Predicate<Meme> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setContext(ModelContext context) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ModelContext getContext() {
             throw new AssertionError("This method should not be called.");
         }
     }
