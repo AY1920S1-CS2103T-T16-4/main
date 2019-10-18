@@ -12,7 +12,6 @@ import seedu.weme.logic.commands.MemeDeleteCommand;
 import seedu.weme.logic.commands.MemeEditCommand;
 import seedu.weme.logic.commands.MemeFindCommand;
 import seedu.weme.logic.commands.MemeListCommand;
-import seedu.weme.logic.commands.MemeStageCommand;
 
 import seedu.weme.logic.parser.exceptions.ParseException;
 
@@ -56,9 +55,6 @@ public class MemeParser extends WemeParser {
 
         case MemeListCommand.COMMAND_WORD:
             return new MemeListCommand();
-
-        case MemeStageCommand.COMMAND_WORD:
-            return new MemeStageCommandParser().parse(arguments);
 
         default:
             return super.parseCommand(userInput);

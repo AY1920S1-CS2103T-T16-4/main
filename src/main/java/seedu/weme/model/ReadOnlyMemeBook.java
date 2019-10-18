@@ -14,4 +14,10 @@ public interface ReadOnlyMemeBook {
      */
     ObservableList<Meme> getMemeList();
 
+    /**
+     * Returns an umodifiable view of the staged memes list.
+     * This list will not contain any duplicate memes.
+     */
+    ObservableList<Meme> getStagedMemeList();
+
 }

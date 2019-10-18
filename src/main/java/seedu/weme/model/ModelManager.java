@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final VersionedMemeBook versionedMemeBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Meme> filteredMemes;
+    private final FilteredList<Meme> filteredStagedMemeList;
 
     // ModelContext determines which parser to use at any point of time.
     private SimpleObjectProperty<ModelContext> context = new SimpleObjectProperty<>(ModelContext.CONTEXT_MEMES);
@@ -39,6 +40,7 @@ public class ModelManager implements Model {
         versionedMemeBook = new VersionedMemeBook(memeBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredMemes = new FilteredList<>(versionedMemeBook.getMemeList());
+        filteredStagedMemeList = new FilteredList<>(versionedMemeBook.getStagedMemeList());
     }
 
     public ModelManager() {
@@ -138,6 +140,12 @@ public class ModelManager implements Model {
         versionedMemeBook.setMeme(target, editedMeme);
     }
 
+    @Override
+    public void stageMeme(Meme meme) {
+        versionedMemeBook.stageMeme(meme);
+    }
+
+
     //=========== Filtered Meme List Accessors =============================================================
 
     /**
@@ -147,6 +155,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Meme> getFilteredMemeList() {
         return filteredMemes;
+    }
+
+    @Override
+    public ObservableList<Meme> getFilteredStagedMemeList() {
+        return filteredStagedMemeList;
     }
 
     @Override

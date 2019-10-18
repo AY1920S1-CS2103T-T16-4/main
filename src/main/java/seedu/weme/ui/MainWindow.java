@@ -155,6 +155,10 @@ public class MainWindow extends UiPart<Stage> {
         memesPanel.getChildren().add(memeGridPanel.getRoot());
 
         // TODO: Fill in other panels here
+
+        MemeGridPanel exportGridPanel = new MemeGridPanel(logic.getFilteredStagedMemeList());
+        storagePanel.getChildren().add(exportGridPanel.getRoot());
+
     }
 
     /**

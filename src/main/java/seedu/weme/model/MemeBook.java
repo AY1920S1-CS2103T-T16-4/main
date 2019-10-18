@@ -15,6 +15,7 @@ import seedu.weme.model.meme.UniqueMemeList;
 public class MemeBook implements ReadOnlyMemeBook {
 
     private final UniqueMemeList memes;
+    private final UniqueMemeList stage;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +26,7 @@ public class MemeBook implements ReadOnlyMemeBook {
      */
     {
         memes = new UniqueMemeList();
+        stage = new UniqueMemeList();
     }
 
     public MemeBook() {}
@@ -66,6 +68,10 @@ public class MemeBook implements ReadOnlyMemeBook {
         return memes.contains(meme);
     }
 
+    public void stageMeme(Meme meme) {
+        stage.add(meme);
+    }
+
     /**
      * Adds a meme to the meme book.
      * The meme must not already exist in the meme book.
@@ -104,6 +110,11 @@ public class MemeBook implements ReadOnlyMemeBook {
     @Override
     public ObservableList<Meme> getMemeList() {
         return memes.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Meme> getStagedMemeList() {
+        return stage.asUnmodifiableObservableList();
     }
 
     @Override

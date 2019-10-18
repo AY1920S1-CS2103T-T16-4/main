@@ -169,12 +169,22 @@ public class MemeAddCommandTest {
         }
 
         @Override
+        public void stageMeme(Meme meme) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setMeme(Meme target, Meme editedMeme) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Meme> getFilteredMemeList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Meme> getFilteredStagedMemeList() {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -79,6 +79,12 @@ public interface Model {
     boolean hasMeme(Meme meme);
 
     /**
+     * Stages the given meme for export.
+     * The meme must exist in the meme book.
+     */
+    void stageMeme(Meme meme);
+
+    /**
      * Deletes the given meme.
      * The meme must exist in the meme book.
      */
@@ -99,6 +105,11 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered meme list */
     ObservableList<Meme> getFilteredMemeList();
+
+    /**
+     * Returns an unmodifiable view of the staged meme list.
+     */
+    ObservableList<Meme> getFilteredStagedMemeList();
 
     /**
      * Updates the filter of the filtered meme list to filter by the given {@code predicate}.
