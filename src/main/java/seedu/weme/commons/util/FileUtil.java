@@ -148,8 +148,7 @@ public class FileUtil {
                     throw new IOException(MESSAGE_EXPORT_FAILURE_INVALID_FILENAME);
                 }
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new IOException(MESSAGE_EXPORT_FAILURE_UNKNOWN_ERROR + e.toString());
         }
     }

@@ -1,14 +1,17 @@
 package seedu.weme.logic.parser;
 
+import static seedu.weme.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.weme.logic.parser.CliSyntax.PREFIX_FILEPATH;
+
+import java.util.stream.Stream;
+
 import seedu.weme.logic.commands.MemeExportCommand;
 import seedu.weme.logic.parser.exceptions.ParseException;
 import seedu.weme.model.DirectoryPath;
 
-import java.util.stream.Stream;
-
-import static seedu.weme.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.weme.logic.parser.CliSyntax.PREFIX_FILEPATH;
-
+/**
+ * Parses input arguments and creates a new MemeExportCommand object
+ */
 public class MemeExportCommandParser implements Parser<MemeExportCommand> {
 
     /**

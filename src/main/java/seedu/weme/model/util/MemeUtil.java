@@ -3,9 +3,7 @@ package seedu.weme.model.util;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import javafx.collections.ObservableList;
 import seedu.weme.commons.util.FileUtil;
-import seedu.weme.model.DirectoryPath;
 import seedu.weme.model.meme.ImagePath;
 import seedu.weme.model.meme.Meme;
 

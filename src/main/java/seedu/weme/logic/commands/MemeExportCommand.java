@@ -1,18 +1,17 @@
 package seedu.weme.logic.commands;
 
-import javafx.collections.ObservableList;
-import seedu.weme.logic.commands.exceptions.CommandException;
-import seedu.weme.model.DirectoryPath;
-import seedu.weme.model.Model;
-import seedu.weme.model.meme.Meme;
-import seedu.weme.model.util.MemeUtil;
-
-import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_FILEPATH;
 
+import java.io.IOException;
+
+import seedu.weme.logic.commands.exceptions.CommandException;
+import seedu.weme.model.DirectoryPath;
+import seedu.weme.model.Model;
+
+/**
+ * Exports memes from staging area to a specified path.
+ */
 public class MemeExportCommand extends Command {
 
     public static final String COMMAND_WORD = "export";
@@ -21,7 +20,7 @@ public class MemeExportCommand extends Command {
             + "Parameters: "
             + PREFIX_FILEPATH + "PATH \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_FILEPATH + "C:\\Users\\username\\Downloads\\funny_meme.jpg ";
+            + PREFIX_FILEPATH + "C:/Users/username/Downloads/funny_meme.jpg ";
     public static final String MESSAGE_SUCCESS = "Memes exported successfully!";
 
     private final DirectoryPath exportPath;
@@ -37,27 +36,6 @@ public class MemeExportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        /*
-        // Copy the meme to internal data directory
-        Meme copiedMeme;
-        try {
-            copiedMeme = MemeUtil.copyMeme(toAdd, model.getMemeImagePath());
-        } catch (FileAlreadyExistsException e) {
-            throw new CommandException(MESSAGE_DUPLICATE_MEME);
-        } catch (IOException e) {
-            throw new CommandException(MESSAGE_COPY_FAILURE);
-        }
-
-        if (model.hasMeme(copiedMeme)) {
-            throw new CommandException(MESSAGE_DUPLICATE_MEME);
-        }
-
-        model.addMeme(copiedMeme);
-        model.commitMemeBook();
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, copiedMeme));
-        */
 
         try {
             model.exportMeme(exportPath);

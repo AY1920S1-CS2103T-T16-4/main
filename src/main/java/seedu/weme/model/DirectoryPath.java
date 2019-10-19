@@ -1,16 +1,18 @@
 package seedu.weme.model;
 
+import static java.util.Objects.requireNonNull;
 
-import seedu.weme.commons.util.FileUtil;
+import static seedu.weme.commons.util.AppUtil.checkArgument;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.weme.commons.util.AppUtil.checkArgument;
+import seedu.weme.commons.util.FileUtil;
+
 
 /**
  * Wrapper class for Path for Import and Export.
