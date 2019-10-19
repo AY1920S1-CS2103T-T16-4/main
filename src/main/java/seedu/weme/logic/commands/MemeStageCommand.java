@@ -24,6 +24,7 @@ public class MemeStageCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_SUCCESS = "New meme staged: %1$s";
+    public static final String MESSAGE_MEME_ALREADY_STAGED = "Meme is already in staging area";
 
     private final Index targetIndex;
 
@@ -39,24 +40,20 @@ public class MemeStageCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        /*
-        if (model.hasMeme(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_MEME);
-        }
-
-        model.addMeme(toAdd);
-        */
         List<Meme> lastShownList = model.getFilteredMemeList();
+        List<Meme> stageList = model.getFilteredStagedMemeList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEME_DISPLAYED_INDEX);
         }
 
-        Meme memetoStage = lastShownList.get(targetIndex.getZeroBased());
-        model.stageMeme(memetoStage);
-        //model.commitMemeBook();
+        Meme memeToStage = lastShownList.get(targetIndex.getZeroBased());
+        if (stageList.contains(memeToStage)) {
+            throw new CommandException(MESSAGE_MEME_ALREADY_STAGED);
+        }
+        model.stageMeme(memeToStage);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, memetoStage));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, memeToStage));
     }
 
     @Override

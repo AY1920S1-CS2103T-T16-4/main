@@ -86,6 +86,12 @@ public interface Model {
     void stageMeme(Meme meme);
 
     /**
+     * Unstages the given meme for export.
+     * The meme must exist in the meme book.
+     */
+    void unstageMeme(Meme meme);
+
+    /**
      * Deletes the given meme.
      * The meme must exist in the meme book.
      */

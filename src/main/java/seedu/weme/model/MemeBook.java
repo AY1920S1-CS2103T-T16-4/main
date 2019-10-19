@@ -68,8 +68,22 @@ public class MemeBook implements ReadOnlyMemeBook {
         return memes.contains(meme);
     }
 
+    /**
+     * Stages a meme to the staging area.
+     *
+     * @param meme meme to stage
+     */
     public void stageMeme(Meme meme) {
         stage.add(meme);
+    }
+
+    /**
+     * Unstages a meme from the staging area.
+     *
+     * @param meme meme to unstage
+     */
+    public void unstageMeme(Meme meme) {
+        stage.remove(meme);
     }
 
     /**

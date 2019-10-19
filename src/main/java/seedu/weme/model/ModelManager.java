@@ -58,8 +58,6 @@ public class ModelManager implements Model {
     }
 
 
-
-
     //=========== UserPrefs ==================================================================================
 
     @Override
@@ -156,6 +154,11 @@ public class ModelManager implements Model {
     @Override
     public void stageMeme(Meme meme) {
         versionedMemeBook.stageMeme(meme);
+    }
+
+    @Override
+    public void unstageMeme(Meme meme) {
+        versionedMemeBook.unstageMeme(meme);
     }
 
 
