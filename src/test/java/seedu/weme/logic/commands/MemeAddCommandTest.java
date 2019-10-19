@@ -18,6 +18,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.weme.commons.core.GuiSettings;
 import seedu.weme.logic.commands.exceptions.CommandException;
+import seedu.weme.model.DirectoryPath;
 import seedu.weme.model.MemeBook;
 import seedu.weme.model.Model;
 import seedu.weme.model.ModelContext;
@@ -175,6 +176,11 @@ public class MemeAddCommandTest {
 
         @Override
         public void setMeme(Meme target, Meme editedMeme) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void exportMeme(DirectoryPath exportLocation) {
             throw new AssertionError("This method should not be called.");
         }
 

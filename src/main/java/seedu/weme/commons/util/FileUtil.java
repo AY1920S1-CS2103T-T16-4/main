@@ -1,9 +1,5 @@
 package seedu.weme.commons.util;
 
-import seedu.weme.logic.commands.exceptions.CommandException;
-import seedu.weme.model.DirectoryPath;
-import seedu.weme.model.meme.Meme;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -13,6 +9,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
+
+import seedu.weme.model.DirectoryPath;
+import seedu.weme.model.meme.Meme;
+
+
 
 /**
  * Writes and reads files
@@ -118,7 +119,7 @@ public class FileUtil {
      *
      * @param from the source
      * @param to   the destination
-     * @throws IOException if the copy has
+     * @throws IOException if the source file does not exist.
      */
     public static void copy(Path from, Path to) throws IOException {
         if (isFileExists(from)) {
@@ -129,13 +130,20 @@ public class FileUtil {
         }
     }
 
+    /**
+     * Exports a list of memes to a given directory.
+     *
+     * @param memeList list of memes to be emported.
+     * @param directoryPath directory path for the memes to be exported to.
+     * @throws IOException error encountered while exporting.
+     */
     public static void export(List<Meme> memeList, DirectoryPath directoryPath) throws IOException {
         try {
             for (Meme meme : memeList) {
                 String fileName = meme.getFilePath().getFilePath().getFileName().toString();
                 String fileExportPath = directoryPath.getFilePath() + "/" + fileName;
                 if (isValidPath(fileExportPath)) {
-                    FileUtil.copy(meme.getFilePath().getFilePath(), Paths.get(fileExportPath)); // exportLocation is a directory
+                    FileUtil.copy(meme.getFilePath().getFilePath(), Paths.get(fileExportPath));
                 } else {
                     throw new IOException(MESSAGE_EXPORT_FAILURE_INVALID_FILENAME);
                 }
