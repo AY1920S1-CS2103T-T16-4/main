@@ -23,7 +23,6 @@ public class MemeExportCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_FILEPATH + "C:\\Users\\username\\Downloads\\funny_meme.jpg ";
     public static final String MESSAGE_SUCCESS = "Memes exported successfully!";
-    public static final String MESSAGE_EXPORT_FAILURE = "Error encountered while exporting the meme to data folder";
 
     private final DirectoryPath exportPath;
 
@@ -61,9 +60,9 @@ public class MemeExportCommand extends Command {
         */
 
         try {
-            MemeUtil.exportMeme(model.getFilteredStagedMemeList());
+            model.exportMeme(exportPath);
         } catch (IOException e) {
-            throw new CommandException(MESSAGE_EXPORT_FAILURE);
+            throw new CommandException(e.toString());
         }
 
         return new CommandResult(MESSAGE_SUCCESS);

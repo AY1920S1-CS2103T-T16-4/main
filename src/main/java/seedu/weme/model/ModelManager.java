@@ -3,6 +3,7 @@ package seedu.weme.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.weme.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -12,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.weme.commons.core.GuiSettings;
 import seedu.weme.commons.core.LogsCenter;
+import seedu.weme.commons.util.FileUtil;
 import seedu.weme.model.meme.Meme;
 
 /**
@@ -46,6 +48,17 @@ public class ModelManager implements Model {
     public ModelManager() {
         this(new MemeBook(), new UserPrefs());
     }
+
+    //=========== Export/Import ==============================================================================
+
+    @Override
+    public void exportMeme(DirectoryPath exportLocation) throws IOException {
+        ObservableList<Meme> memeList = getFilteredStagedMemeList();
+        FileUtil.export(memeList, exportLocation);
+    }
+
+
+
 
     //=========== UserPrefs ==================================================================================
 

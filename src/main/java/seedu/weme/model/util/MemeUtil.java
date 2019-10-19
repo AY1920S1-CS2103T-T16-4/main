@@ -29,15 +29,6 @@ public class MemeUtil {
         return new Meme(new ImagePath(newPath.toString()), toCopy.getDescription(), toCopy.getTags());
     }
 
-    public static void exportMeme(ObservableList<Meme> memeList, DirectoryPath exportLocation) throws IOException {
-        // implement
-        // loop through memeList
-        // copy given items in memelist to given direcoty
-        for (Meme meme : memeList) {
-            FileUtil.copy(meme.getFilePath().getFilePath(), exportLocation); // exportLocation is a directory
-        }
-    }
-
     /**
      * Generates the Path the meme image should be stored in.
      *

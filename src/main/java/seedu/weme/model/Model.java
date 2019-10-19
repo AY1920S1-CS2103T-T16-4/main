@@ -1,5 +1,6 @@
 package seedu.weme.model;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
@@ -95,6 +96,11 @@ public interface Model {
      * {@code meme} must not already exist in the meme book.
      */
     void addMeme(Meme meme);
+
+    /**
+     * Exports the meme to given directory
+     */
+    void exportMeme(DirectoryPath directoryPath) throws IOException;
 
     /**
      * Replaces the given meme {@code target} with {@code editedMeme}.

@@ -1,5 +1,9 @@
 package seedu.weme.commons.util;
 
+import seedu.weme.logic.commands.exceptions.CommandException;
+import seedu.weme.model.DirectoryPath;
+import seedu.weme.model.meme.Meme;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -7,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -16,6 +21,9 @@ public class FileUtil {
 
     public static final String MESSAGE_READ_FILE_FAILURE = "Error encountered while reading the file %s";
     public static final String MESSAGE_COPY_FAILURE_SOURCE_DOES_NOT_EXIST = "Copy failed: source file does not exist";
+    public static final String MESSAGE_EXPORT_FAILURE_INVALID_FILENAME = "Export failed: Invalid File Directory Given";
+    public static final String MESSAGE_EXPORT_FAILURE_UNKNOWN_ERROR = "Export failed: Internal Error Encountered: ";
+
 
     private static final String CHARSET = "UTF-8";
 
@@ -118,6 +126,23 @@ public class FileUtil {
             Files.copy(from, to);
         } else {
             throw new IOException(MESSAGE_COPY_FAILURE_SOURCE_DOES_NOT_EXIST);
+        }
+    }
+
+    public static void export(List<Meme> memeList, DirectoryPath directoryPath) throws IOException {
+        try {
+            for (Meme meme : memeList) {
+                String fileName = meme.getFilePath().getFilePath().getFileName().toString();
+                String fileExportPath = directoryPath.getFilePath() + "/" + fileName;
+                if (isValidPath(fileExportPath)) {
+                    FileUtil.copy(meme.getFilePath().getFilePath(), Paths.get(fileExportPath)); // exportLocation is a directory
+                } else {
+                    throw new IOException(MESSAGE_EXPORT_FAILURE_INVALID_FILENAME);
+                }
+            }
+        }
+        catch (IOException e) {
+            throw new IOException(MESSAGE_EXPORT_FAILURE_UNKNOWN_ERROR + e.toString());
         }
     }
 

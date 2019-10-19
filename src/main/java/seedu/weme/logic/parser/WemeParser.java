@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.weme.logic.commands.Command;
 import seedu.weme.logic.commands.ExitCommand;
 import seedu.weme.logic.commands.HelpCommand;
+import seedu.weme.logic.commands.MemeExportCommand;
 import seedu.weme.logic.commands.MemeStageCommand;
 import seedu.weme.logic.commands.RedoCommand;
 import seedu.weme.logic.commands.TabCommand;
@@ -58,6 +59,9 @@ public abstract class WemeParser {
 
         case MemeStageCommand.COMMAND_WORD:
             return new MemeStageCommandParser().parse(arguments);
+
+        case MemeExportCommand.COMMAND_WORD:
+            return new MemeExportCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
