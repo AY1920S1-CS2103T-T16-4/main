@@ -3,7 +3,9 @@ package seedu.weme.model.util;
 import java.io.IOException;
 import java.nio.file.Path;
 
+import javafx.collections.ObservableList;
 import seedu.weme.commons.util.FileUtil;
+import seedu.weme.model.DirectoryPath;
 import seedu.weme.model.meme.ImagePath;
 import seedu.weme.model.meme.Meme;
 
@@ -25,6 +27,15 @@ public class MemeUtil {
         Path newPath = getNewImagePath(originalPath, memeLocation);
         FileUtil.copy(originalPath, newPath);
         return new Meme(new ImagePath(newPath.toString()), toCopy.getDescription(), toCopy.getTags());
+    }
+
+    public static void exportMeme(ObservableList<Meme> memeList, DirectoryPath exportLocation) throws IOException {
+        // implement
+        // loop through memeList
+        // copy given items in memelist to given direcoty
+        for (Meme meme : memeList) {
+            FileUtil.copy(meme.getFilePath().getFilePath(), exportLocation); // exportLocation is a directory
+        }
     }
 
     /**

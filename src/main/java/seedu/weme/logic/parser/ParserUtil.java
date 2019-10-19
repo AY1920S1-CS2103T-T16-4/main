@@ -14,6 +14,7 @@ import java.util.Set;
 import seedu.weme.commons.core.index.Index;
 import seedu.weme.commons.util.StringUtil;
 import seedu.weme.logic.parser.exceptions.ParseException;
+import seedu.weme.model.DirectoryPath;
 import seedu.weme.model.ModelContext;
 import seedu.weme.model.meme.Description;
 import seedu.weme.model.meme.ImagePath;
@@ -97,6 +98,20 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_FILEPATH);
         }
         return new ImagePath(trimmedPath);
+    }
+
+    /**
+     * Parses a {@code String input} into a {@code DirectoryPath}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static DirectoryPath parseDirectoryPath(String input) throws ParseException {
+        requireNonNull(input);
+        String trimmedPath = input.trim();
+        if (!DirectoryPath.isValidDirectoryPath(trimmedPath)) {
+            throw new ParseException(MESSAGE_INVALID_FILEPATH);
+        }
+        return new DirectoryPath(trimmedPath);
     }
 
     /**
