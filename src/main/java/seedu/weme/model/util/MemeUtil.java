@@ -22,7 +22,10 @@ public class MemeUtil {
      */
     public static Meme copyMeme(Meme toCopy, Path memeLocation) throws IOException {
         Path originalPath = toCopy.getFilePath().getFilePath();
-        Path newPath = getNewImagePath(originalPath, memeLocation);
+        Path newPath;
+        do {
+            newPath = getNewImagePath(originalPath, memeLocation);
+        } while (FileUtil.isFileExists(newPath));
         FileUtil.copy(originalPath, newPath);
         return new Meme(new ImagePath(newPath.toString()), toCopy.getDescription(), toCopy.getTags());
     }
@@ -36,7 +39,7 @@ public class MemeUtil {
      */
     public static Path getNewImagePath(Path originalPath, Path memeLocation) {
         String extension = FileUtil.getExtension(originalPath).orElse("");
-        return memeLocation.resolve(FileUtil.hash(originalPath) + "." + extension);
+        return memeLocation.resolve(FileUtil.hash() + "." + extension);
     }
 
 }
