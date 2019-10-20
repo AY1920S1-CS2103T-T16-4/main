@@ -1,11 +1,7 @@
 package seedu.weme.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.weme.model.ModelContext.CONTEXT_ARCHIVE;
-import static seedu.weme.model.ModelContext.CONTEXT_MEMES;
-import static seedu.weme.model.ModelContext.CONTEXT_STATISTICS;
-import static seedu.weme.model.ModelContext.CONTEXT_STORAGE;
-import static seedu.weme.model.ModelContext.CONTEXT_TEMPLATES;
+import static seedu.weme.model.ModelContext.*;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -43,7 +39,8 @@ public class ParserUtil {
         case CONTEXT_TEMPLATES:
         case CONTEXT_ARCHIVE:
         case CONTEXT_STATISTICS:
-        case CONTEXT_STORAGE:
+        case CONTEXT_EXPORT:
+        case CONTEXT_IMPORT:
             // TODO: This is a temporary placeholder until all tabs have been implemented
             return new WemeParser() {
             };
@@ -67,8 +64,10 @@ public class ParserUtil {
             return CONTEXT_ARCHIVE;
         } else if (trimmedContext.equals(CONTEXT_STATISTICS.getContextName())) {
             return CONTEXT_STATISTICS;
-        } else if (trimmedContext.equals(CONTEXT_STORAGE.getContextName())) {
-            return CONTEXT_STORAGE;
+        } else if (trimmedContext.equals(CONTEXT_EXPORT.getContextName())) {
+            return CONTEXT_EXPORT;
+        } else if (trimmedContext.equals(CONTEXT_IMPORT.getContextName())) {
+            return CONTEXT_IMPORT;
         }
         throw new ParseException(MESSAGE_INVALID_CONTEXT);
     }
