@@ -1,14 +1,14 @@
 package seedu.weme.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.weme.commons.core.Messages;
 import seedu.weme.commons.core.index.Index;
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.model.Model;
 import seedu.weme.model.meme.Meme;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Unstage Command.

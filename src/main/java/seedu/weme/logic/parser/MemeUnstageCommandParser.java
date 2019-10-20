@@ -1,10 +1,10 @@
 package seedu.weme.logic.parser;
 
+import static seedu.weme.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.weme.commons.core.index.Index;
 import seedu.weme.logic.commands.MemeUnstageCommand;
 import seedu.weme.logic.parser.exceptions.ParseException;
-
-import static seedu.weme.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new MemeUnstageCommandParser object.

@@ -6,7 +6,15 @@ import static seedu.weme.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.weme.logic.commands.*;
+import seedu.weme.logic.commands.Command;
+import seedu.weme.logic.commands.ExitCommand;
+import seedu.weme.logic.commands.HelpCommand;
+import seedu.weme.logic.commands.MemeExportCommand;
+import seedu.weme.logic.commands.MemeStageCommand;
+import seedu.weme.logic.commands.MemeUnstageCommand;
+import seedu.weme.logic.commands.RedoCommand;
+import seedu.weme.logic.commands.TabCommand;
+import seedu.weme.logic.commands.UndoCommand;
 import seedu.weme.logic.parser.exceptions.ParseException;
 
 /**

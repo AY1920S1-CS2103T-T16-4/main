@@ -175,6 +175,11 @@ public class MemeAddCommandTest {
         }
 
         @Override
+        public void unstageMeme(Meme meme) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setMeme(Meme target, Meme editedMeme) {
             throw new AssertionError("This method should not be called.");
         }

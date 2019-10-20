@@ -1,7 +1,12 @@
 package seedu.weme.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.weme.model.ModelContext.*;
+import static seedu.weme.model.ModelContext.CONTEXT_ARCHIVE;
+import static seedu.weme.model.ModelContext.CONTEXT_EXPORT;
+import static seedu.weme.model.ModelContext.CONTEXT_IMPORT;
+import static seedu.weme.model.ModelContext.CONTEXT_MEMES;
+import static seedu.weme.model.ModelContext.CONTEXT_STATISTICS;
+import static seedu.weme.model.ModelContext.CONTEXT_TEMPLATES;
 
 import java.util.Collection;
 import java.util.HashSet;
