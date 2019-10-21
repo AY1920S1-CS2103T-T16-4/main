@@ -200,7 +200,7 @@ public class ModelManager implements Model {
                 filesToKeep.add(file);
             }
 
-            Files.walk(getMemeImagePath())
+            Files.list(getMemeImagePath())
                     .map(Path::toFile)
                     .filter(file -> !filesToKeep.contains(file))
                     .forEach(File::delete);
