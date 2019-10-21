@@ -3,7 +3,8 @@ package seedu.weme.model.util;
 import static seedu.weme.commons.util.FileUtil.MESSAGE_READ_FILE_FAILURE;
 
 import java.io.IOException;
-import java.nio.file.Paths;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -50,14 +51,16 @@ public class SampleDataUtil {
 
         for (int i = 0; i < copiedMemes.length; i++) {
             String path = memeFields[i].getImagePath();
-            String newPath = userPrefs.getMemeImagePath().toString() + "/" + FileUtil.getFileName(path);
+            Path newPath = userPrefs.getMemeImagePath().resolve(FileUtil.getFileName(path));
             try {
-                FileUtil.copy(classLoader.getResourceAsStream(path), Paths.get(newPath));
+                FileUtil.copy(classLoader.getResourceAsStream(path), newPath);
+            } catch (FileAlreadyExistsException e) {
+                // let the file pass
             } catch (IOException e) {
                 throw new IllegalArgumentException(MESSAGE_READ_FILE_FAILURE);
             }
-            copiedMemes[i] = new Meme(new ImagePath(newPath), new Description(memeFields[i].getDescription()),
-                    getTagSet(memeFields[i].getTags()));
+            copiedMemes[i] = new Meme(new ImagePath(newPath.toString()),
+                    new Description(memeFields[i].getDescription()), getTagSet(memeFields[i].getTags()));
         }
         return copiedMemes;
     }

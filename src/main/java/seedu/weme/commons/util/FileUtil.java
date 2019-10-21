@@ -155,10 +155,6 @@ public class FileUtil {
      * @return the filename
      */
     public static String getFileName(String pathString) {
-        if (pathString.contains("/")) {
-            return pathString.substring(pathString.lastIndexOf("/") + 1);
-        } else {
-            return pathString;
-        }
+        return Paths.get(pathString).getFileName().toString();
     }
 }
