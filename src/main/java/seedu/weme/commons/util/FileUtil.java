@@ -89,7 +89,7 @@ public class FileUtil {
     /**
      * Returns a randomly generated UUID String
      */
-    public static String hash() {
+    public static String generateUuidString() {
         return UUID.randomUUID().toString();
     }
 

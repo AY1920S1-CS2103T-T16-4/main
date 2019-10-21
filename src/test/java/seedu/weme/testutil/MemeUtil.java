@@ -65,7 +65,7 @@ public class MemeUtil {
     /**
      * Returns the SHA-1 hash of a given file as a String.
      */
-    public static String hash(Path file) {
+    public static String generateSha1Hash(Path file) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-1");
             byte[] content = Files.readAllBytes(file);
@@ -83,7 +83,8 @@ public class MemeUtil {
      * and therefore the same contents.
      */
     public static boolean isSameMemeImage(Meme firstMeme, Meme secondMeme) {
-        return hash(firstMeme.getFilePath().getFilePath()).equals(hash(secondMeme.getFilePath().getFilePath()));
+        return generateSha1Hash(firstMeme.getFilePath().getFilePath())
+                .equals(generateSha1Hash(secondMeme.getFilePath().getFilePath()));
     }
 
 }
