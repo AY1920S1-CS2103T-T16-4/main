@@ -67,7 +67,9 @@ public class ModelManager implements Model {
 
     @Override
     public void importMeme() throws IOException {
-        versionedMemeBook.importMeme();
+        versionedMemeBook.importMeme(getMemeImagePath());
+        //updateFilteredMemeList(PREDICATE_SHOW_ALL_MEMES);
+        versionedMemeBook.clearImportList();
     }
 
     @Override

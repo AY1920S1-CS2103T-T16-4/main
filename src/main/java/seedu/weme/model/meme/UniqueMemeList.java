@@ -79,6 +79,13 @@ public class UniqueMemeList implements Iterable<Meme> {
         }
     }
 
+    /**
+     * Clears all the memes in the import list after successful import
+     */
+    public void clear() {
+        internalList.clear();
+    }
+
     public void setMemes(UniqueMemeList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

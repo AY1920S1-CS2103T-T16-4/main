@@ -3,6 +3,7 @@ package seedu.weme.model;
 import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,6 +13,7 @@ import seedu.weme.model.meme.Meme;
 import seedu.weme.model.meme.UniqueMemeList;
 import seedu.weme.model.template.Template;
 import seedu.weme.model.template.UniqueTemplateList;
+import seedu.weme.model.util.ImageUtil;
 
 /**
  * Wraps all data at the memebook level
@@ -108,10 +110,15 @@ public class MemeBook implements ReadOnlyMemeBook {
     /**
      * Transfers all memes from importList into storage.
      */
-    public void importMeme() {
+    public void importMeme(Path internalImagePath) throws IOException {
         for (Meme meme : importList) {
-            memes.add(meme);
+            Meme copiedMeme = ImageUtil.copyMeme(meme, internalImagePath);
+            addMeme(copiedMeme);
         }
+    }
+
+    public void clearImportList() {
+        importList.clear();
     }
 
     /**
