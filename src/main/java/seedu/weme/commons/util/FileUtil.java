@@ -2,13 +2,13 @@ package seedu.weme.commons.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
+import java.util.UUID;
 
 import seedu.weme.model.DirectoryPath;
 import seedu.weme.model.meme.Meme;
@@ -97,22 +97,10 @@ public class FileUtil {
     }
 
     /**
-     * Computes the SHA-1 hash of a file.
-     *
-     * @param file the file to compute
-     * @return the SHA-1 hash of the file
+     * Returns a randomly generated UUID String
      */
-    public static String hash(Path file) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-1");
-            byte[] content = Files.readAllBytes(file);
-            return StringUtil.byteArrayToHex(digest.digest(content));
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            throw new RuntimeException();
-        } catch (IOException e) {
-            throw new IllegalArgumentException(String.format(MESSAGE_READ_FILE_FAILURE, file.toString()));
-        }
+    public static String generateUuidString() {
+        return UUID.randomUUID().toString();
     }
 
     /**
@@ -129,6 +117,18 @@ public class FileUtil {
         } else {
             throw new IOException(MESSAGE_COPY_FAILURE_SOURCE_DOES_NOT_EXIST);
         }
+    }
+
+    /**
+     * Copies the file from a given InputStream to a file path.
+     *
+     * @param from the source
+     * @param to   the destination
+     * @throws IOException if the copy failed
+     */
+    public static void copy(InputStream from, Path to) throws IOException {
+        createParentDirsOfFile(to);
+        Files.copy(from, to);
     }
 
     /**
@@ -168,7 +168,6 @@ public class FileUtil {
             } else {
                 if (isFileExists(fileEntry.toPath()) && isValidImageExtension(getExtension(fileEntry.toPath()).get())) {
                     Meme meme = MemeUtil.generateImportMeme(fileEntry.getPath());
-                    //Meme meme = new Meme(new ImagePath(fileEntry.getPath()), "", new HashSet<>());
                     importList.add(meme);
                 }
             }
@@ -192,5 +191,14 @@ public class FileUtil {
         } else {
             return Optional.empty();
         }
+    }
+
+    /**
+     * Gets the filename of a path represented by a string.
+     * @param pathString the String to extract the file name from
+     * @return the filename
+     */
+    public static String getFileName(String pathString) {
+        return Paths.get(pathString).getFileName().toString();
     }
 }
