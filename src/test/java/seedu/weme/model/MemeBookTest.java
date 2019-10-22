@@ -7,12 +7,11 @@ import static seedu.weme.logic.commands.CommandTestUtil.VALID_DESCRIPTION_JOKER;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_FILEPATH_JOKER;
 import static seedu.weme.logic.commands.CommandTestUtil.VALID_TAG_JOKER;
 import static seedu.weme.testutil.Assert.assertThrows;
+import static seedu.weme.testutil.TypicalMemeBook.getTypicalMemeBook;
 import static seedu.weme.testutil.TypicalMemes.DOGE;
 import static seedu.weme.testutil.TypicalMemes.JOKER;
-import static seedu.weme.testutil.TypicalMemes.getTypicalMemeBook;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,6 +21,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.meme.exceptions.DuplicateMemeException;
+import seedu.weme.model.template.Template;
 import seedu.weme.testutil.MemeBuilder;
 
 public class MemeBookTest {
@@ -51,7 +51,8 @@ public class MemeBookTest {
         Meme editedAlice = new MemeBuilder(JOKER).withDescription(VALID_DESCRIPTION_JOKER)
                 .withFilePath(VALID_FILEPATH_JOKER).withTags(VALID_TAG_JOKER).build();
         List<Meme> newMemes = Arrays.asList(JOKER, editedAlice);
-        MemeBookStub newData = new MemeBookStub(newMemes);
+        MemeBookStub newData = new MemeBookStub();
+        newData.setMemes(newMemes);
 
         assertThrows(DuplicateMemeException.class, () -> memeBook.resetData(newData));
     }
@@ -93,8 +94,12 @@ public class MemeBookTest {
         private final ObservableList<Meme> memes = FXCollections.observableArrayList();
         private final ObservableList<Meme> stagedMemes = FXCollections.observableArrayList();
         private final ObservableList<Meme> importList = FXCollections.observableArrayList();
+        private final ObservableList<Template> templates = FXCollections.observableArrayList();
 
-        MemeBookStub(Collection<Meme> memes) {
+        MemeBookStub() {
+        }
+
+        void setMemes(List<Meme> memes) {
             this.memes.setAll(memes);
         }
 
@@ -113,6 +118,9 @@ public class MemeBookTest {
             return importList;
         }
 
+        public ObservableList<Template> getTemplateList() {
+            return templates;
+        }
     }
 
 }

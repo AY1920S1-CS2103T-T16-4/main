@@ -19,6 +19,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.weme.commons.core.GuiSettings;
 import seedu.weme.commons.core.LogsCenter;
 import seedu.weme.model.meme.Meme;
+import seedu.weme.model.template.Template;
 
 /**
  * Represents the in-memory model of the meme book data.
@@ -31,6 +32,7 @@ public class ModelManager implements Model {
     private final FilteredList<Meme> filteredMemes;
     private final FilteredList<Meme> filteredStagedMemeList;
     private final FilteredList<Meme> importMemeList;
+    private final FilteredList<Template> filteredTemplates;
 
     // ModelContext determines which parser to use at any point of time.
     private SimpleObjectProperty<ModelContext> context = new SimpleObjectProperty<>(ModelContext.CONTEXT_MEMES);
@@ -49,6 +51,7 @@ public class ModelManager implements Model {
         filteredMemes = new FilteredList<>(versionedMemeBook.getMemeList());
         filteredStagedMemeList = new FilteredList<>(versionedMemeBook.getStagedMemeList());
         importMemeList = new FilteredList<>(versionedMemeBook.getImportList());
+        filteredTemplates = new FilteredList<>(versionedMemeBook.getTemplateList());
     }
 
     public ModelManager() {
@@ -177,7 +180,7 @@ public class ModelManager implements Model {
     }
 
 
-    //=========== Filtered Meme List Accessors =============================================================
+    //=========== Filtered Meme/Template List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Meme} backed by the internal list of
@@ -202,6 +205,17 @@ public class ModelManager implements Model {
     public void updateFilteredMemeList(Predicate<Meme> predicate) {
         requireNonNull(predicate);
         filteredMemes.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Template> getFilteredTemplateList() {
+        return filteredTemplates;
+    }
+
+    @Override
+    public void updateFilteredTemplateList(Predicate<Template> predicate) {
+        requireNonNull(predicate);
+        filteredTemplates.setPredicate(predicate);
     }
 
     @Override

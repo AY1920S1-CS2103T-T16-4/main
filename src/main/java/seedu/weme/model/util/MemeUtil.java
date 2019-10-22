@@ -5,8 +5,8 @@ import java.nio.file.Path;
 import java.util.HashSet;
 
 import seedu.weme.commons.util.FileUtil;
+import seedu.weme.model.imagePath.ImagePath;
 import seedu.weme.model.meme.Description;
-import seedu.weme.model.meme.ImagePath;
 import seedu.weme.model.meme.Meme;
 
 /**
