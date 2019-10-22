@@ -92,6 +92,7 @@ public class MemeBookTest {
     private static class MemeBookStub implements ReadOnlyMemeBook {
         private final ObservableList<Meme> memes = FXCollections.observableArrayList();
         private final ObservableList<Meme> stagedMemes = FXCollections.observableArrayList();
+        private final ObservableList<Meme> importList = FXCollections.observableArrayList();
 
         MemeBookStub(Collection<Meme> memes) {
             this.memes.setAll(memes);
@@ -106,6 +107,12 @@ public class MemeBookTest {
         public ObservableList<Meme> getStagedMemeList() {
             return stagedMemes;
         }
+
+        @Override
+        public ObservableList<Meme> getImportList() {
+            return importList;
+        }
+
     }
 
 }

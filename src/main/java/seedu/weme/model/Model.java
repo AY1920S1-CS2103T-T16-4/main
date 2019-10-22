@@ -109,6 +109,16 @@ public interface Model {
     void exportMeme(DirectoryPath directoryPath) throws IOException;
 
     /**
+     * Imports the meme to storage
+     */
+    void importMeme() throws IOException;
+
+    /**
+     * Loads the memes to import staging area.
+     */
+    void loadMeme(DirectoryPath directoryPath) throws IOException;
+
+    /**
      * Replaces the given meme {@code target} with {@code editedMeme}.
      * {@code target} must exist in the meme book.
      * The meme identity of {@code editedMeme} must not be the same as another existing meme in the meme book.
@@ -122,6 +132,11 @@ public interface Model {
      * Returns an unmodifiable view of the staged meme list.
      */
     ObservableList<Meme> getFilteredStagedMemeList();
+
+    /**
+     * Returns an unmodifiable view of the import meme list.
+     */
+    ObservableList<Meme> getImportList();
 
     /**
      * Updates the filter of the filtered meme list to filter by the given {@code predicate}.

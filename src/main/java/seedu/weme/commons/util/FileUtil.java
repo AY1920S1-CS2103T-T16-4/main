@@ -1,5 +1,6 @@
 package seedu.weme.commons.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -7,12 +8,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 import java.util.Optional;
 
 import seedu.weme.model.DirectoryPath;
 import seedu.weme.model.meme.Meme;
-
+import seedu.weme.model.meme.UniqueMemeList;
+import seedu.weme.model.util.MemeUtil;
 
 
 /**
@@ -137,7 +138,7 @@ public class FileUtil {
      * @param directoryPath directory path for the memes to be exported to.
      * @throws IOException error encountered while exporting.
      */
-    public static void export(List<Meme> memeList, DirectoryPath directoryPath) throws IOException {
+    public static void export(UniqueMemeList memeList, DirectoryPath directoryPath) throws IOException {
         try {
             for (Meme meme : memeList) {
                 String fileName = meme.getFilePath().getFilePath().getFileName().toString();
@@ -151,6 +152,31 @@ public class FileUtil {
         } catch (IOException e) {
             throw new IOException(MESSAGE_EXPORT_FAILURE_UNKNOWN_ERROR + e.toString());
         }
+    }
+
+    /**
+     * Loads a meme from a given directory into the application.
+     *
+     * @param importList Internal List for memes to be loaded in.
+     * @param directoryPath Path containing memes to load.
+     */
+    public static void load(UniqueMemeList importList, DirectoryPath directoryPath) {
+        final File folder = new File(directoryPath.toString());
+        for (final File fileEntry : folder.listFiles()) {
+            if (fileEntry.isDirectory()) {
+                load(importList, new DirectoryPath(fileEntry.getPath())); // recursive call
+            } else {
+                if (isFileExists(fileEntry.toPath()) && isValidImageExtension(getExtension(fileEntry.toPath()).get())) {
+                    Meme meme = MemeUtil.generateImportMeme(fileEntry.getPath());
+                    //Meme meme = new Meme(new ImagePath(fileEntry.getPath()), "", new HashSet<>());
+                    importList.add(meme);
+                }
+            }
+        }
+    }
+
+    private static boolean isValidImageExtension(String extension) {
+        return extension.equals("png") || extension.equals("jpg");
     }
 
     /**

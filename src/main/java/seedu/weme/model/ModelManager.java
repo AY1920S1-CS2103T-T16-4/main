@@ -13,7 +13,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.weme.commons.core.GuiSettings;
 import seedu.weme.commons.core.LogsCenter;
-import seedu.weme.commons.util.FileUtil;
 import seedu.weme.model.meme.Meme;
 
 /**
@@ -26,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Meme> filteredMemes;
     private final FilteredList<Meme> filteredStagedMemeList;
+    private final FilteredList<Meme> importMemeList;
 
     // ModelContext determines which parser to use at any point of time.
     private SimpleObjectProperty<ModelContext> context = new SimpleObjectProperty<>(ModelContext.CONTEXT_MEMES);
@@ -43,6 +43,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredMemes = new FilteredList<>(versionedMemeBook.getMemeList());
         filteredStagedMemeList = new FilteredList<>(versionedMemeBook.getStagedMemeList());
+        importMemeList = new FilteredList<>(versionedMemeBook.getImportList());
     }
 
     public ModelManager() {
@@ -53,8 +54,17 @@ public class ModelManager implements Model {
 
     @Override
     public void exportMeme(DirectoryPath exportLocation) throws IOException {
-        ObservableList<Meme> memeList = getFilteredStagedMemeList();
-        FileUtil.export(memeList, exportLocation);
+        versionedMemeBook.export(exportLocation);
+    }
+
+    @Override
+    public void importMeme() throws IOException {
+        versionedMemeBook.importMeme();
+    }
+
+    @Override
+    public void loadMeme(DirectoryPath directoryPath) throws IOException {
+        versionedMemeBook.loadMeme(directoryPath);
     }
 
 
@@ -176,6 +186,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Meme> getFilteredStagedMemeList() {
         return filteredStagedMemeList;
+    }
+
+    @Override
+    public ObservableList<Meme> getImportList() {
+        return importMemeList;
     }
 
     @Override

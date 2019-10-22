@@ -20,4 +20,10 @@ public interface ReadOnlyMemeBook {
      */
     ObservableList<Meme> getStagedMemeList();
 
+    /**
+     * Returns an umodifiable view of the import memes list.
+     * This list will not contain any duplicate memes.
+     */
+    ObservableList<Meme> getImportList();
+
 }

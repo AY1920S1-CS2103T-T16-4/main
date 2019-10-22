@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weme.testutil.Assert.assertThrows;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -100,6 +101,11 @@ public class MemeAddCommandTest {
         }
 
         @Override
+        public void importMeme() throws IOException {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
@@ -131,6 +137,11 @@ public class MemeAddCommandTest {
 
         @Override
         public void setMemeImagePath(Path memeImagePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void loadMeme(DirectoryPath directoryPath) throws IOException {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -196,6 +207,11 @@ public class MemeAddCommandTest {
 
         @Override
         public ObservableList<Meme> getFilteredStagedMemeList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Meme> getImportList() {
             throw new AssertionError("This method should not be called.");
         }
 

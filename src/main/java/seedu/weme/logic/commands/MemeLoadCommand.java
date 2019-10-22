@@ -10,28 +10,28 @@ import seedu.weme.model.DirectoryPath;
 import seedu.weme.model.Model;
 
 /**
- * Exports memes from staging area to a specified path.
+ * Loads memes from a directory to the import context.
  */
-public class MemeExportCommand extends Command {
+public class MemeLoadCommand extends Command {
 
-    public static final String COMMAND_WORD = "export";
+    public static final String COMMAND_WORD = "load";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Exports memes in the export context to a given directory. "
+            + ": Loads memes to the import staging area from a given directory. "
             + "Parameters: "
             + PREFIX_FILEPATH + "PATH \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_FILEPATH + "C:/Users/username/Downloads/funny_meme.jpg ";
-    public static final String MESSAGE_SUCCESS = "Memes exported successfully!";
+            + PREFIX_FILEPATH + "C:/Users/username/Downloads/ ";
+    public static final String MESSAGE_SUCCESS = "Memes loaded successfully to the import staging area.";
 
-    private final DirectoryPath exportPath;
+    private final DirectoryPath importPath;
 
     /**
-     * Creates an MemeExportCommand to export the memes from the specified {@code Path}.
+     * Creates an MemeLoadCommand to import the memes from the specified {@code Path}.
      */
-    public MemeExportCommand(DirectoryPath path) {
+    public MemeLoadCommand(DirectoryPath path) {
         requireNonNull(path);
-        exportPath = path;
+        importPath = path;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class MemeExportCommand extends Command {
         requireNonNull(model);
 
         try {
-            model.exportMeme(exportPath);
+            model.loadMeme(importPath);
         } catch (IOException e) {
             throw new CommandException(e.toString());
         }
@@ -50,8 +50,8 @@ public class MemeExportCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MemeExportCommand // instanceof handles nulls
-                && exportPath.equals(((MemeExportCommand) other).exportPath));
+                || (other instanceof MemeLoadCommand // instanceof handles nulls
+                && importPath.equals(((MemeLoadCommand) other).importPath));
     }
 
 }

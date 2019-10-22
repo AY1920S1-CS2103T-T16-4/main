@@ -10,6 +10,8 @@ import seedu.weme.logic.commands.Command;
 import seedu.weme.logic.commands.ExitCommand;
 import seedu.weme.logic.commands.HelpCommand;
 import seedu.weme.logic.commands.MemeExportCommand;
+import seedu.weme.logic.commands.MemeImportCommand;
+import seedu.weme.logic.commands.MemeLoadCommand;
 import seedu.weme.logic.commands.MemeStageCommand;
 import seedu.weme.logic.commands.MemeUnstageCommand;
 import seedu.weme.logic.commands.RedoCommand;
@@ -66,6 +68,12 @@ public abstract class WemeParser {
 
         case MemeExportCommand.COMMAND_WORD:
             return new MemeExportCommandParser().parse(arguments);
+
+        case MemeLoadCommand.COMMAND_WORD:
+            return new MemeLoadCommandParser().parse(arguments);
+
+        case MemeImportCommand.COMMAND_WORD:
+            return new MemeImportCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

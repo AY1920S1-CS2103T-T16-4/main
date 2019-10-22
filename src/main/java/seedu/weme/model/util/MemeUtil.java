@@ -2,8 +2,10 @@ package seedu.weme.model.util;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.HashSet;
 
 import seedu.weme.commons.util.FileUtil;
+import seedu.weme.model.meme.Description;
 import seedu.weme.model.meme.ImagePath;
 import seedu.weme.model.meme.Meme;
 
@@ -25,6 +27,10 @@ public class MemeUtil {
         Path newPath = getNewImagePath(originalPath, memeLocation);
         FileUtil.copy(originalPath, newPath);
         return new Meme(new ImagePath(newPath.toString()), toCopy.getDescription(), toCopy.getTags());
+    }
+
+    public static Meme generateImportMeme(String path) {
+        return new Meme(new ImagePath(path), new Description(""), new HashSet<>());
     }
 
     /**

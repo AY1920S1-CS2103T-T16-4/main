@@ -76,6 +76,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Meme> getImportList() {
+        return model.getImportList();
+    }
+
+    @Override
     public Path getMemeBookFilePath() {
         return model.getDataFilePath();
     }

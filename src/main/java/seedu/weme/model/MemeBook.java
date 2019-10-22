@@ -2,9 +2,11 @@ package seedu.weme.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.weme.commons.util.FileUtil;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.meme.UniqueMemeList;
 
@@ -15,7 +17,8 @@ import seedu.weme.model.meme.UniqueMemeList;
 public class MemeBook implements ReadOnlyMemeBook {
 
     private final UniqueMemeList memes;
-    private final UniqueMemeList stage;
+    private final UniqueMemeList exportList;
+    private final UniqueMemeList importList;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,7 +29,8 @@ public class MemeBook implements ReadOnlyMemeBook {
      */
     {
         memes = new UniqueMemeList();
-        stage = new UniqueMemeList();
+        exportList = new UniqueMemeList();
+        importList = new UniqueMemeList();
     }
 
     public MemeBook() {}
@@ -74,7 +78,7 @@ public class MemeBook implements ReadOnlyMemeBook {
      * @param meme meme to stage
      */
     public void stageMeme(Meme meme) {
-        stage.add(meme);
+        exportList.add(meme);
     }
 
     /**
@@ -83,7 +87,30 @@ public class MemeBook implements ReadOnlyMemeBook {
      * @param meme meme to unstage
      */
     public void unstageMeme(Meme meme) {
-        stage.remove(meme);
+        exportList.remove(meme);
+    }
+
+    /**
+     * Transfers all memes from importList into storage.
+     */
+    public void importMeme() {
+        for (Meme meme : importList) {
+            memes.add(meme);
+        }
+    }
+
+    /**
+     * Loads meme from given directory to staging area.
+     *
+     * @param directoryPath
+     */
+    public void loadMeme(DirectoryPath directoryPath) throws IOException {
+        // File util importStagingArea
+        FileUtil.load(importList, directoryPath);
+    }
+
+    public void export(DirectoryPath exportLocation) throws IOException {
+        FileUtil.export(exportList, exportLocation);
     }
 
     /**
@@ -128,7 +155,12 @@ public class MemeBook implements ReadOnlyMemeBook {
 
     @Override
     public ObservableList<Meme> getStagedMemeList() {
-        return stage.asUnmodifiableObservableList();
+        return exportList.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Meme> getImportList() {
+        return importList.asUnmodifiableObservableList();
     }
 
     @Override
