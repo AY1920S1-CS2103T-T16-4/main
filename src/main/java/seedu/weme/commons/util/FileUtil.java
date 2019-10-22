@@ -141,10 +141,10 @@ public class FileUtil {
     public static void export(UniqueMemeList memeList, DirectoryPath directoryPath) throws IOException {
         try {
             for (Meme meme : memeList) {
-                String fileName = meme.getFilePath().getFilePath().getFileName().toString();
+                String fileName = meme.getImagePath().getFilePath().getFileName().toString();
                 String fileExportPath = directoryPath.getFilePath() + "/" + fileName;
                 if (isValidPath(fileExportPath)) {
-                    FileUtil.copy(meme.getFilePath().getFilePath(), Paths.get(fileExportPath));
+                    FileUtil.copy(meme.getImagePath().getFilePath(), Paths.get(fileExportPath));
                 } else {
                     throw new IOException(MESSAGE_EXPORT_FAILURE_INVALID_FILENAME);
                 }

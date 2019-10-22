@@ -16,7 +16,7 @@ import seedu.weme.model.tag.Tag;
 public class Meme {
 
     // Identity fields
-    private final ImagePath filePath;
+    private final ImagePath imagePath;
 
     // Data fields
     private final Description description;
@@ -25,9 +25,9 @@ public class Meme {
     /**
      * Every field must be present and not null.
      */
-    public Meme(ImagePath filePath, Description description, Set<Tag> tags) {
-        requireAllNonNull(filePath, description, tags);
-        this.filePath = filePath;
+    public Meme(ImagePath imagePath, Description description, Set<Tag> tags) {
+        requireAllNonNull(imagePath, description, tags);
+        this.imagePath = imagePath;
         this.description = description;
         this.tags.addAll(tags);
     }
@@ -36,8 +36,8 @@ public class Meme {
         return description;
     }
 
-    public ImagePath getFilePath() {
-        return filePath;
+    public ImagePath getImagePath() {
+        return imagePath;
     }
 
     /**
@@ -58,7 +58,7 @@ public class Meme {
         }
 
         return otherMeme != null
-                && otherMeme.getFilePath().equals(getFilePath());
+                && otherMeme.getImagePath().equals(getImagePath());
     }
 
     /**
@@ -76,7 +76,7 @@ public class Meme {
         }
 
         Meme otherMeme = (Meme) other;
-        return otherMeme.getFilePath().equals(getFilePath())
+        return otherMeme.getImagePath().equals(getImagePath())
                 && otherMeme.getDescription().equals(getDescription())
                 && otherMeme.getTags().equals(getTags());
     }
@@ -84,7 +84,7 @@ public class Meme {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(filePath, description, tags);
+        return Objects.hash(imagePath, description, tags);
     }
 
     @Override

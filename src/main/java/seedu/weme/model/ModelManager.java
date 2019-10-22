@@ -239,7 +239,7 @@ public class ModelManager implements Model {
         try {
             Set<File> filesToKeep = new HashSet<>();
             for (Meme meme : versionedMemeBook.getMemeList()) {
-                File file = meme.getFilePath().getFilePath().toFile();
+                File file = meme.getImagePath().getFilePath().toFile();
                 filesToKeep.add(file);
             }
 
