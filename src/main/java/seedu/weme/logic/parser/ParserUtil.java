@@ -31,6 +31,8 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_FILEPATH = "File not found or invalid file path given.";
 
     public static final MemeParser MEMES_PARSER = new MemeParser();
+    public static final ImportParser IMPORT_PARSER = new ImportParser();
+    public static final ExportParser EXPORT_PARSER = new ExportParser();
 
     /**
      * Returns a Parser depending on the given ModelContext.
@@ -41,11 +43,13 @@ public class ParserUtil {
         switch (modelContext) {
         case CONTEXT_MEMES:
             return MEMES_PARSER;
+        case CONTEXT_IMPORT:
+            return IMPORT_PARSER;
+        case CONTEXT_EXPORT:
+            return EXPORT_PARSER;
         case CONTEXT_TEMPLATES:
         case CONTEXT_ARCHIVE:
         case CONTEXT_STATISTICS:
-        case CONTEXT_EXPORT:
-        case CONTEXT_IMPORT:
             // TODO: This is a temporary placeholder until all tabs have been implemented
             return new WemeParser() {
             };

@@ -10,7 +10,7 @@ import seedu.weme.model.Model;
 /**
  * Imports memes from the import context into application storage.
  */
-public class MemeImportCommand extends Command {
+public class ImportCommand extends Command {
 
     public static final String COMMAND_WORD = "import";
 
@@ -35,7 +35,7 @@ public class MemeImportCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MemeImportCommand); // instanceof handles nulls
+                || (other instanceof ImportCommand); // instanceof handles nulls
     }
 
 }

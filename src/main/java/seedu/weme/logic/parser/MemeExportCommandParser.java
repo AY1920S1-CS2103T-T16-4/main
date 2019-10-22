@@ -5,32 +5,32 @@ import static seedu.weme.logic.parser.CliSyntax.PREFIX_FILEPATH;
 
 import java.util.stream.Stream;
 
-import seedu.weme.logic.commands.MemeExportCommand;
+import seedu.weme.logic.commands.ExportCommand;
 import seedu.weme.logic.parser.exceptions.ParseException;
 import seedu.weme.model.DirectoryPath;
 
 /**
  * Parses input arguments and creates a new MemeExportCommand object
  */
-public class MemeExportCommandParser implements Parser<MemeExportCommand> {
+public class MemeExportCommandParser implements Parser<ExportCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the MemeExportCommand
      * and returns an MemeExportCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public MemeExportCommand parse(String args) throws ParseException {
+    public ExportCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_FILEPATH);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_FILEPATH)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MemeExportCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportCommand.MESSAGE_USAGE));
         }
 
         DirectoryPath path = ParserUtil.parseDirectoryPath(argMultimap.getValue(PREFIX_FILEPATH).get());
 
-        return new MemeExportCommand(path);
+        return new ExportCommand(path);
     }
 
     /**

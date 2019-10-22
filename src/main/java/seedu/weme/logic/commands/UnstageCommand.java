@@ -13,7 +13,7 @@ import seedu.weme.model.meme.Meme;
 /**
  * Unstage Command.
  */
-public class MemeUnstageCommand extends Command {
+public class UnstageCommand extends Command {
 
     public static final String COMMAND_WORD = "unstage";
 
@@ -27,9 +27,9 @@ public class MemeUnstageCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates an MemeStageCommand to add the specified {@code Meme}
+     * Creates an UnstageCommand to add the specified {@code Meme}
      */
-    public MemeUnstageCommand(Index index) {
+    public UnstageCommand(Index index) {
         requireNonNull(index);
         targetIndex = index;
     }
@@ -52,7 +52,7 @@ public class MemeUnstageCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MemeUnstageCommand // instanceof handles nulls
-                && targetIndex.equals(((MemeUnstageCommand) other).targetIndex));
+                || (other instanceof UnstageCommand // instanceof handles nulls
+                && targetIndex.equals(((UnstageCommand) other).targetIndex));
     }
 }

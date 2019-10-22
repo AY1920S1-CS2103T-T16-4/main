@@ -121,6 +121,10 @@ public class MemeBook implements ReadOnlyMemeBook {
         importList.clear();
     }
 
+    public void clearExportList() {
+        exportList.clear();
+    }
+
     /**
      * Loads meme from given directory to staging area.
      *
