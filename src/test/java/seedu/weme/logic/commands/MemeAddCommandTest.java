@@ -200,7 +200,7 @@ public class MemeAddCommandTest {
         }
 
         @Override
-        public ObservableList<Meme> getImportList() {
+        public ObservableList<Meme> getFilteredImportList() {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -35,7 +35,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Meme> filteredMemes;
     private final FilteredList<Meme> filteredStagedMemeList;
-    private final FilteredList<Meme> importMemeList;
+    private final FilteredList<Meme> filteredImportMemeList;
     private final FilteredList<Template> filteredTemplates;
     private final Stats stats;
 
@@ -55,7 +55,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredMemes = new FilteredList<>(versionedMemeBook.getMemeList());
         filteredStagedMemeList = new FilteredList<>(versionedMemeBook.getStagedMemeList());
-        importMemeList = new FilteredList<>(versionedMemeBook.getImportList());
+        filteredImportMemeList = new FilteredList<>(versionedMemeBook.getImportList());
         filteredTemplates = new FilteredList<>(versionedMemeBook.getTemplateList());
         this.stats = stats;
     }
@@ -206,8 +206,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Meme> getImportList() {
-        return importMemeList;
+    public ObservableList<Meme> getFilteredImportList() {
+        return filteredImportMemeList;
     }
 
     @Override

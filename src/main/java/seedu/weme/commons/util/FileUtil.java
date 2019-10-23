@@ -11,9 +11,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 import seedu.weme.model.DirectoryPath;
+import seedu.weme.model.imagePath.ImagePath;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.meme.UniqueMemeList;
-import seedu.weme.model.util.MemeUtil;
 
 
 /**
@@ -34,10 +34,9 @@ public class FileUtil {
     }
 
     /**
-     * Checks if give string is convertible to Path.
-     *
-     * @param path A string representing the file Path. Cannot be null.
-     * @return true if path can be converted into Path, otherwise false.
+     * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths#get(String)},
+     * otherwise returns false.
+     * @param path A string representing the file path. Cannot be null.
      */
     public static boolean isValidPath(String path) {
         try {
@@ -46,6 +45,20 @@ public class FileUtil {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths#get(String)}
+     * and {@link Files#exists(Path)}, otherwise returns false.
+     * @param path A string representing the file path. Cannot be null.
+     */
+    public static boolean isValidDirectoryPath(String path) {
+        try {
+            Paths.get(path);
+        } catch (InvalidPathException ipe) {
+            return false;
+        }
+        return Files.exists(Paths.get(path));
     }
 
     /**
@@ -143,7 +156,7 @@ public class FileUtil {
         try {
             for (Meme meme : memeList) {
                 String fileName = meme.getImagePath().getFilePath().getFileName().toString();
-                String fileExportPath = exportPath.getFilePath() + "/" + fileName;
+                String fileExportPath = exportPath.toPath() + "/" + fileName;
                 if (isValidPath(fileExportPath)) {
                     FileUtil.copy(meme.getImagePath().getFilePath(), Paths.get(fileExportPath));
                 } else {
@@ -168,7 +181,7 @@ public class FileUtil {
                 load(importList, new DirectoryPath(fileEntry.getPath())); // recursive call
             } else {
                 if (isFileExists(fileEntry.toPath()) && isValidImageExtension(getExtension(fileEntry.toPath()).get())) {
-                    Meme meme = MemeUtil.generateImportMeme(fileEntry.getPath());
+                    Meme meme = new Meme(new ImagePath(fileEntry.getPath()));
                     importList.add(meme);
                 }
             }

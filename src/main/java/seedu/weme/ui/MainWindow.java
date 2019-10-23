@@ -164,7 +164,7 @@ public class MainWindow extends UiPart<Stage> {
         MemeGridPanel exportGridPanel = new MemeGridPanel(
                 logic.getFilteredStagedMemeList(), logic.getObservableLikeData());
         MemeGridPanel importGridPanel = new MemeGridPanel(
-                logic.getImportList(), logic.getObservableLikeData());
+                logic.getFilteredImportList(), logic.getObservableLikeData());
 
         exportPanel.getChildren().add(exportGridPanel.getRoot());
         importPanel.getChildren().add(importGridPanel.getRoot());

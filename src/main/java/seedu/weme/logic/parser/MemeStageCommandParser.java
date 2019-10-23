@@ -8,12 +8,12 @@ import seedu.weme.logic.parser.exceptions.ParseException;
 
 
 /**
- * Parses input arguments and creates a new MemeStageCommandParser object.
+ * Parses input arguments and creates a new MemeStageCommand object.
  */
 public class MemeStageCommandParser implements Parser<MemeStageCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the MemeParseCommand
-     * and returns a MemeParseCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the MemeStageCommand
+     * and returns a MemeStageCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public MemeStageCommand parse(String args) throws ParseException {

@@ -2,9 +2,10 @@ package seedu.weme.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import static seedu.weme.commons.core.Messages.MESSAGE_INVALID_MEME_DISPLAYED_INDEX;
+
 import java.util.List;
 
-import seedu.weme.commons.core.Messages;
 import seedu.weme.commons.core.index.Index;
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.model.Model;
@@ -44,7 +45,7 @@ public class MemeStageCommand extends Command {
         List<Meme> stageList = model.getFilteredStagedMemeList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MEME_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_MEME_DISPLAYED_INDEX);
         }
 
         Meme memeToStage = lastShownList.get(targetIndex.getZeroBased());

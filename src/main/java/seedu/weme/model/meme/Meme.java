@@ -33,6 +33,14 @@ public class Meme {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Overloaded Constructor used to generate imported memes.
+     */
+    public Meme(ImagePath path) {
+        this.imagePath = path;
+        this.description = new Description("");
+    }
+
     public Description getDescription() {
         return description;
     }

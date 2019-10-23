@@ -144,7 +144,7 @@ public interface Model {
     /**
      * Returns an unmodifiable view of the import meme list.
      */
-    ObservableList<Meme> getImportList();
+    ObservableList<Meme> getFilteredImportList();
 
     /**
      * Updates the filter of the filtered meme list to filter by the given {@code predicate}.

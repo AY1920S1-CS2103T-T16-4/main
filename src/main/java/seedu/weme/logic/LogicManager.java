@@ -80,8 +80,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Meme> getImportList() {
-        return model.getImportList();
+    public ObservableList<Meme> getFilteredImportList() {
+        return model.getFilteredImportList();
     }
     public ObservableList<Template> getFilteredTemplateList() {
         return model.getFilteredTemplateList();

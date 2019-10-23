@@ -29,6 +29,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_CONTEXT = "Tab provided is not a valid tab.";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_FILEPATH = "File not found or invalid file path given.";
+    public static final String MESSAGE_INVALID_DIRECTORYPATH = "Invalid directory path given.";
 
     public static final MemeParser MEMES_PARSER = new MemeParser();
     public static final ImportParser IMPORT_PARSER = new ImportParser();
@@ -117,7 +118,7 @@ public class ParserUtil {
         requireNonNull(input);
         String trimmedPath = input.trim();
         if (!DirectoryPath.isValidDirectoryPath(trimmedPath)) {
-            throw new ParseException(MESSAGE_INVALID_FILEPATH);
+            throw new ParseException(MESSAGE_INVALID_DIRECTORYPATH);
         }
         return new DirectoryPath(trimmedPath);
     }

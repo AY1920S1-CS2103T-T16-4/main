@@ -7,12 +7,12 @@ import seedu.weme.logic.commands.UnstageCommand;
 import seedu.weme.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new MemeUnstageCommandParser object.
+ * Parses input arguments and creates a new UnstageCommand object.
  */
 public class MemeUnstageCommandParser implements Parser<UnstageCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the MemeParseCommand
-     * and returns a MemeParseCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the MemeUnstageCommand
+     * and returns a MemeUnstageCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public UnstageCommand parse(String args) throws ParseException {
