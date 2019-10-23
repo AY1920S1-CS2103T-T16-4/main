@@ -135,8 +135,8 @@ public class MemeBook implements ReadOnlyMemeBook {
         FileUtil.load(importList, directoryPath);
     }
 
-    public void export(DirectoryPath exportLocation) throws IOException {
-        FileUtil.export(exportList, exportLocation);
+    public void export(DirectoryPath exportPath) throws IOException {
+        FileUtil.export(exportList, exportPath);
     }
 
     /**

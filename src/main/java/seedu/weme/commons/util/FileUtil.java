@@ -34,9 +34,10 @@ public class FileUtil {
     }
 
     /**
-     * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths#get(String)},
-     * otherwise returns false.
-     * @param path A string representing the file path. Cannot be null.
+     * Checks if give string is convertible to Path.
+     *
+     * @param path A string representing the file Path. Cannot be null.
+     * @return true if path can be converted into Path, otherwise false.
      */
     public static boolean isValidPath(String path) {
         try {
@@ -135,14 +136,14 @@ public class FileUtil {
      * Exports a list of memes to a given directory.
      *
      * @param memeList list of memes to be emported.
-     * @param directoryPath directory path for the memes to be exported to.
+     * @param exportPath directory path for the memes to be exported to.
      * @throws IOException error encountered while exporting.
      */
-    public static void export(UniqueMemeList memeList, DirectoryPath directoryPath) throws IOException {
+    public static void export(UniqueMemeList memeList, DirectoryPath exportPath) throws IOException {
         try {
             for (Meme meme : memeList) {
                 String fileName = meme.getImagePath().getFilePath().getFileName().toString();
-                String fileExportPath = directoryPath.getFilePath() + "/" + fileName;
+                String fileExportPath = exportPath.getFilePath() + "/" + fileName;
                 if (isValidPath(fileExportPath)) {
                     FileUtil.copy(meme.getImagePath().getFilePath(), Paths.get(fileExportPath));
                 } else {

@@ -114,7 +114,7 @@ public interface Model {
     /**
      * Exports the meme to given directory
      */
-    void exportMeme(DirectoryPath directoryPath) throws IOException;
+    void exportMeme(DirectoryPath exportPath) throws IOException;
 
     /**
      * Imports the meme to storage

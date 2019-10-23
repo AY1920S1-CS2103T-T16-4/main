@@ -67,8 +67,8 @@ public class ModelManager implements Model {
     //=========== Export/Import ==============================================================================
 
     @Override
-    public void exportMeme(DirectoryPath exportLocation) throws IOException {
-        versionedMemeBook.export(exportLocation);
+    public void exportMeme(DirectoryPath exportPath) throws IOException {
+        versionedMemeBook.export(exportPath);
         versionedMemeBook.clearExportList();
     }
 
