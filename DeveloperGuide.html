@@ -25,10 +25,11 @@
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
 <li><a href="#templates-feature">3.2. Templates feature</a></li>
 <li><a href="#statistics-feature-1-like-meme">3.3. Statistics feature 1: Like Meme</a></li>
-<li><a href="#command-suggestion-feature">3.4. Command Suggestion Feature</a></li>
-<li><a href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.6. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
+<li><a href="#export-import-feature">3.4. Export/Import feature</a></li>
+<li><a href="#command-suggestion-feature">3.5. Command Suggestion Feature</a></li>
+<li><a href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.7. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -915,7 +916,119 @@ Also, it looks somewhat out of place in <code>Model</code> as alternative 1 seem
 </div>
 </div>
 <div class="sect2">
-<h3 id="command-suggestion-feature"><a class="link" href="#command-suggestion-feature">3.4. Command Suggestion Feature</a></h3>
+<h3 id="export-import-feature"><a class="link" href="#export-import-feature">3.4. Export/Import feature</a></h3>
+<div class="sect3">
+<h4 id="export"><a class="link" href="#export">3.4.1. Export</a></h4>
+<div class="paragraph">
+<p>The user may not want to export everything in the Meme storage to a directory. The Stage command
+functionality introduces flexibility for the user to stage and shortlist which memes he wants to export,
+which will be in the staging area under the export tab. When the user accidentally stages a meme, he can
+either use the undo command or the Unstage command. When the user finally confirms the memes to be export
+in the staging area, the user can execute the ExportCommand with a provided directory path. The
+following sequence diagram illustrates the execution of the <code>Stage Command</code> and <code>Emport Command</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/StageSequenceDiagram.png" alt="StageSequenceDiagram">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ExportSequenceDiagram.png" alt="ExportSequenceDiagram">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="import"><a class="link" href="#import">3.4.2. Import</a></h4>
+<div class="paragraph">
+<p>The user can use the <code>Load Command</code> to batch load all memes in the correct picture format into the import
+context. However, the memes are not immediately imported to storage because there may be memes in the directory
+that the user does not wish to import. Furthermore, the user may want to set descriptions and tag them before
+it gets populated into the meme storage. Hence, the user is allowed to use Edit Command and Delete Command
+in the import context to finalise the memes in the import context before executing the import command.
+The import command will then populate all of the memes in the staging area to the memes storage, followed
+by clearing the memes in the import context.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.3. Current Implementation</a></h4>
+<div class="paragraph">
+<p>Export and Import do not share the same UniqueMemeList as that in the Meme context.</p>
+</div>
+<div class="paragraph">
+<p>While the user is selecting which meme to stage, the user should have a visual reference all the existing memes.
+Hence, the <code>Stage Command</code> works in the Meme Context, and the user is able to stage by the Meme Index.
+On the contrary, the unstage command is only available in the export tab, where the user can reference which
+memes to delete using the index in the export tab.</p>
+</div>
+<div class="paragraph">
+<p> Step 1. The user enters the import tab</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes LoadCommand and provide a directory path.
+Weme will find files which are in valid format (e.g. png) and create a new memes
+based on the given file path. The memes will be added into the import tab which is visible to the user.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The user executes edit 1 d/Description t/newly added meme to edit the
+description and tag of the newly added meme based on its index in the import area.
+This change will also be reflected visually.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. User executes import, and weme will transfer the memes from the import list into
+the memeList, which is now viewable in the meme tab. The memes in the import tab are cleared
+so that the user can continue importing the memes in a new directory.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summaries the load and import process:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ImportActivityDiagram.png" alt="ImportActivityDiagram">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration"><a class="link" href="#design-consideration">3.4.4. Design Consideration</a></h4>
+<div class="sect4">
+<h5 id="aspect-storage-of-the-imported-and-exported-meme"><a class="link" href="#aspect-storage-of-the-imported-and-exported-meme">Aspect: Storage of the imported and exported meme</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Use 3 separate UniqueMemeList to store memes in the meme,
+export and import tab separately.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Straightforward Implementation. Lesser dependency among the 3 different context.</p>
+</li>
+<li>
+<p>Cons: Repetitive method involved in retrieving the 3 different list using model.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Use a single UniqueMemeList to store the memes, and introduce a flag attribute
+to distinguish between staged meme, imported meme and ordinary meme.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Lesser methods defined to retrieve 3 different UniqueMemeList, and a minimalist design.</p>
+</li>
+<li>
+<p>Cons: More coupling involved and the list can get very large, hence iterating through it may cause lagging.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="command-suggestion-feature"><a class="link" href="#command-suggestion-feature">3.5. Command Suggestion Feature</a></h3>
 <div class="paragraph">
 <p>Users can be forgetful about the command format and sometimes unsure of what arguments to supply.
 Auto-suggestion of command arguments while the user keys in inputs can be very helpful to provide user hints.
@@ -924,7 +1037,7 @@ Depending on what the user has typed in for the argument, the most similar argum
 records will be displayed to the user for reference.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The command suggestions is achieved using a package of prompter files.
 For each parser, there will a corresponding prompter to process the current user input and return the <code>CommandPrompt</code> for display in <code>ResultBox</code>.
@@ -937,7 +1050,7 @@ Step 5: The prompt will be passed to and displayed by <code>ResultBox</code>.</p
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-process-the-input-and-produce-the-command-prompt"><a class="link" href="#aspect-how-to-process-the-input-and-produce-the-command-prompt">Aspect: How to process the input and produce the command prompt</a></h5>
 <div class="ulist">
@@ -1007,20 +1120,20 @@ Step 5: The prompt will be passed to and displayed by <code>ResultBox</code>.</p
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1051,7 +1164,7 @@ Step 5: The prompt will be passed to and displayed by <code>ResultBox</code>.</p
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1705,4 +1818,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 15:17:45 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 15:44:20 UTC</div></div></div></body></html>
