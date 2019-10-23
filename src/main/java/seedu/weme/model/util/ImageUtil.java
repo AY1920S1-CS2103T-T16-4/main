@@ -37,7 +37,7 @@ public class ImageUtil {
      * @return a new {@code Template} with the new {@code ImagePath}.
      */
     public static Template copyTemplate(Template toCopy, Path templateLocation) throws IOException {
-        Path originalPath = toCopy.getFilePath().getFilePath();
+        Path originalPath = toCopy.getImagePath().getFilePath();
         Path newPath = getNewImagePath(originalPath, templateLocation);
         FileUtil.copy(originalPath, newPath);
         return new Template(toCopy.getName(), new ImagePath(newPath.toString()));
