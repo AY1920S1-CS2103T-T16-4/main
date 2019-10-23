@@ -359,7 +359,6 @@ For example, `a` to add a piece of text, arrow keys to adjust the position of th
 // tag::stats[]
 === Statistics feature 1: Like Meme
 
-Unlike other file management system, people have preference of some memes over others.
 It is important to include a like meme feature such that the user gets to indicate their preference of certain memes.
 This is part of the statistics feature and isolated from the main MemeBook.
 The like data can be used for other statistical analysis.
@@ -393,9 +392,9 @@ image::LikeMemeSequenceDiagram.png[]
 
 ===== Aspect: Implementation of LikeData.
 
-* **Alternative 1:** put like data as a field inside Meme object.
-** Pros: simple to implement.
-** Cons: it breaks the current closed structure of Meme.
+* **Alternative 1:** Put like data as a field inside Meme object.
+** Pros: Simple to implement.
+** Cons: It breaks the current closed structure of Meme.
 It would not make sense to add new field everytime we have some new statistics data for a meme (Like views in 2.0)
 * **Alternative 2 (Current choice):** Separate `LikeData` as a `HashMap` and keep it in Stats.
 ** Pros: It isolates an additional feature (which is not essential) from Meme
