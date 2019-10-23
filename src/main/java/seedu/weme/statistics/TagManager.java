@@ -42,7 +42,7 @@ public class TagManager {
      * Get {@code TagWithCount} in PriorityQueue from a {@code ReadOnlyMemeBook}.
      */
     public PriorityQueue<TagWithCount> getTagsInOrderOfCounts(ReadOnlyMemeBook memeBook) {
-        resetData();
+        purgeData();
         parseMemeBookForTags(memeBook);
         return tagsWithCount;
     }
@@ -61,15 +61,10 @@ public class TagManager {
         return tagWithCountList;
     }
 
-    public void setTags(Set<Tag> tags) {
-        resetData();
-        tags.addAll(tags);
-    }
-
     /**
      * Resets the data.
      */
-    public void resetData() {
+    public void purgeData() {
         tags.clear();
         tagsWithCount.clear();
     }
@@ -78,7 +73,7 @@ public class TagManager {
      * Parses a {@code ReadOnlyMemeBook} for tags.
      */
     public void parseMemeBookForTags(ReadOnlyMemeBook memeBook) {
-        resetData();
+        purgeData();
         ObservableList<Meme> memeList = memeBook.getMemeList();
         Map<Tag, Integer> tagToCount = new HashMap<>();
         Set<Tag> memeTags;
