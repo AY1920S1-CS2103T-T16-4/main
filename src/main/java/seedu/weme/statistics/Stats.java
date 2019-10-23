@@ -2,7 +2,9 @@ package seedu.weme.statistics;
 
 import java.util.List;
 import java.util.PriorityQueue;
+
 import javafx.collections.ObservableMap;
+
 import seedu.weme.model.ReadOnlyMemeBook;
 import seedu.weme.model.meme.Meme;
 

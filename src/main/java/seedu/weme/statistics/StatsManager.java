@@ -1,9 +1,9 @@
 package seedu.weme.statistics;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 import java.util.PriorityQueue;
-
-import static java.util.Objects.requireNonNull;
 
 import javafx.collections.ObservableMap;
 
@@ -87,7 +87,7 @@ public class StatsManager implements Stats {
 
     @Override
     public PriorityQueue<TagWithCount> getTagsInOrderOfCounts() {
-        return tagManager.getTagsWithCountInPQ();
+        return tagManager.getTagsWithCountInPriorityQ();
     };
 
     @Override

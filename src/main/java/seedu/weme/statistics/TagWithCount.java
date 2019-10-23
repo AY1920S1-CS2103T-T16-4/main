@@ -2,10 +2,19 @@ package seedu.weme.statistics;
 
 import seedu.weme.model.tag.Tag;
 
+/**
+ * A wrapper class of {@code Tag} that carries the number of occurrence of such a tag
+ * in a {@code MemeBook}for {@code TagManager} in statistics.
+ */
 public class TagWithCount implements Comparable<TagWithCount> {
     private Tag tag;
     private int count;
 
+    /**
+     * Constructs a {@code TagWithCount}
+     * @param tag
+     * @param count
+     */
     public TagWithCount(Tag tag, int count) {
         this.tag = tag;
         this.count = count;

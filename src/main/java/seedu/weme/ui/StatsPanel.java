@@ -2,18 +2,18 @@ package seedu.weme.ui;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
 import javafx.scene.layout.Region;
-import javafx.util.converter.IntegerStringConverter;
+
 import seedu.weme.model.ReadOnlyMemeBook;
+import seedu.weme.model.meme.Meme;
 import seedu.weme.statistics.Stats;
 import seedu.weme.statistics.TagWithCount;
 
@@ -28,9 +28,18 @@ public class StatsPanel extends UiPart<Region> {
 
     public StatsPanel(ReadOnlyMemeBook memeBook, Stats stats) {
         super(FXML);
+        generatePieChart(memeBook, stats);
+        memeBook.getMemeList().addListener((ListChangeListener<Meme>) change -> generatePieChart(memeBook, stats));
+    }
+
+    /**
+     * Generates a {@code PieChart} with a given {@code MemeBook} and {@code Stats}.
+     *
+     * <p>Styling is mainly done in the CSS file.</p>
+     */
+    private void generatePieChart(ReadOnlyMemeBook memeBook, Stats stats) {
         stats.parseMemeBookForTags(memeBook);
         List<TagWithCount> tagsWithCount = stats.getTagsWithCountList();
-        System.out.println(tagsWithCount);
         ObservableList<PieChart.Data> pieChartData =
                 tagsWithCount.stream()
                         .map(tagWithCount -> new PieChart.Data(tagWithCount.getTag().tagName, tagWithCount.getCount()))
@@ -52,4 +61,3 @@ public class StatsPanel extends UiPart<Region> {
     }
 
 }
-

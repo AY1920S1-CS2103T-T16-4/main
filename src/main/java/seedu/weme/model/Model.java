@@ -2,7 +2,6 @@ package seedu.weme.model;
 
 import java.nio.file.Path;
 import java.util.List;
-import java.util.PriorityQueue;
 import java.util.function.Predicate;
 
 import javafx.beans.property.SimpleObjectProperty;

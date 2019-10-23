@@ -7,11 +7,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
+
 import javafx.collections.ObservableList;
+
 import seedu.weme.model.ReadOnlyMemeBook;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.tag.Tag;
 
+/**
+ * Tag manager in Statistics feature that reads tags from a {@code MemeBook}.
+ */
 public class TagManager {
 
     private Set<Tag> tags;
@@ -26,19 +31,28 @@ public class TagManager {
         return tags;
     }
 
-    public PriorityQueue<TagWithCount> getTagsWithCountInPQ() {
+    /**
+     * Get {@code TagWithCount} in PriorityQueue from the pre-stored data.
+     */
+    public PriorityQueue<TagWithCount> getTagsWithCountInPriorityQ() {
         return tagsWithCount;
     }
 
+    /**
+     * Get {@code TagWithCount} in PriorityQueue from a {@code ReadOnlyMemeBook}.
+     */
     public PriorityQueue<TagWithCount> getTagsInOrderOfCounts(ReadOnlyMemeBook memeBook) {
         resetData();
         parseMemeBookForTags(memeBook);
         return tagsWithCount;
     }
 
+    /**
+     * Returns {@code TagWithCount} in List.
+     */
     public List<TagWithCount> getTagsWithCountList() {
         List<TagWithCount> tagWithCountList = new ArrayList<>();
-        PriorityQueue<TagWithCount> temp = getTagsWithCountInPQ();
+        PriorityQueue<TagWithCount> temp = getTagsWithCountInPriorityQ();
 
         while (!tagsWithCount.isEmpty()) {
             tagWithCountList.add(temp.poll());
@@ -52,11 +66,17 @@ public class TagManager {
         tags.addAll(tags);
     }
 
+    /**
+     * Resets the data.
+     */
     public void resetData() {
         tags.clear();
         tagsWithCount.clear();
     }
 
+    /**
+     * Parses a {@code ReadOnlyMemeBook} for tags.
+     */
     public void parseMemeBookForTags(ReadOnlyMemeBook memeBook) {
         resetData();
         ObservableList<Meme> memeList = memeBook.getMemeList();
