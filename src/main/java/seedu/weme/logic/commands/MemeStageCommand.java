@@ -30,7 +30,7 @@ public class MemeStageCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates an MemeStageCommand to add the specified {@code Meme}
+     * Creates an MemeStageCommand to add the specified {@code Meme} to the staging area.
      */
     public MemeStageCommand(Index index) {
         requireNonNull(index);

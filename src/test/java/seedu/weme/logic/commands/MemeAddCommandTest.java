@@ -130,7 +130,7 @@ public class MemeAddCommandTest {
         }
 
         @Override
-        public void loadMeme(DirectoryPath directoryPath) throws IOException {
+        public void loadMemes(DirectoryPath directoryPath) throws IOException {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -131,7 +131,7 @@ public class MemeBook implements ReadOnlyMemeBook {
      *
      * @param directoryPath
      */
-    public void loadMeme(DirectoryPath directoryPath) throws IOException {
+    public void loadMemes(DirectoryPath directoryPath) throws IOException {
         // File util importStagingArea
         List<Path> pathList = FileUtil.load(directoryPath);
         for (Path path : pathList) {

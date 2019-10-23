@@ -37,13 +37,13 @@ public class UnstageCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Meme> lastShownList = model.getFilteredStagedMemeList();
+        List<Meme> stagedMemeList = model.getFilteredStagedMemeList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= stagedMemeList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEME_DISPLAYED_INDEX);
         }
 
-        Meme memeToUnstage = lastShownList.get(targetIndex.getZeroBased());
+        Meme memeToUnstage = stagedMemeList.get(targetIndex.getZeroBased());
         model.unstageMeme(memeToUnstage);
         model.commitMemeBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, memeToUnstage));

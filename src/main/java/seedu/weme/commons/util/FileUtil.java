@@ -181,7 +181,7 @@ public class FileUtil {
      */
     public static List<Path> load(DirectoryPath directoryPath) {
         List<Path> pathList = new ArrayList<>();
-        final File folder = new File(directoryPath.toString());
+        final File folder = toFile(directoryPath);
         for (final File fileEntry : folder.listFiles()) {
             if (fileEntry.isDirectory()) {
                 load(new DirectoryPath(fileEntry.getPath())); // recursive call
@@ -192,6 +192,10 @@ public class FileUtil {
             }
         }
         return pathList;
+    }
+
+    private static File toFile(DirectoryPath directoryPath) {
+        return new File(directoryPath.toString());
     }
 
     private static boolean isValidImageExtension(String extension) {

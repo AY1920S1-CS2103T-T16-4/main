@@ -62,6 +62,6 @@ public class DirectoryPath {
 
     @Override
     public int hashCode() {
-        return toString().hashCode();
+        return directoryPath().hashCode();
     }
 }

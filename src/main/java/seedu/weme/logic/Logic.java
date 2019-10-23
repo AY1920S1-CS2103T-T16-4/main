@@ -38,7 +38,7 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of memes */
     ObservableList<Meme> getFilteredMemeList();
 
-    /** Returns an unmodifiable view of the filtered list of memes */
+    /** Returns an unmodifiable view of the filtered list of imported memes */
     ObservableList<Meme> getFilteredImportList();
 
     /** Returns an unmodifiable view of the filtered staged list of memes */

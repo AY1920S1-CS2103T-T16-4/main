@@ -81,8 +81,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void loadMeme(DirectoryPath directoryPath) throws IOException {
-        versionedMemeBook.loadMeme(directoryPath);
+    public void loadMemes(DirectoryPath directoryPath) throws IOException {
+        versionedMemeBook.loadMemes(directoryPath);
     }
 
 

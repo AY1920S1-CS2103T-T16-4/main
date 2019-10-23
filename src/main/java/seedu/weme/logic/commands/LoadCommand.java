@@ -39,7 +39,7 @@ public class LoadCommand extends Command {
         requireNonNull(model);
 
         try {
-            model.loadMeme(importPath);
+            model.loadMemes(importPath);
         } catch (IOException e) {
             throw new CommandException(e.toString());
         }

@@ -124,7 +124,7 @@ public interface Model {
     /**
      * Loads the memes to import staging area.
      */
-    void loadMeme(DirectoryPath directoryPath) throws IOException;
+    void loadMemes(DirectoryPath directoryPath) throws IOException;
 
     /**
      * Replaces the given meme {@code target} with {@code editedMeme}.
