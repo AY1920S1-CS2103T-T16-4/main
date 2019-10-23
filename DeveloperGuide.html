@@ -27,9 +27,10 @@
 <li><a href="#statistics-feature-1-like-meme">3.3. Statistics feature 1: Like Meme</a></li>
 <li><a href="#export-import-feature">3.4. Export/Import feature</a></li>
 <li><a href="#command-suggestion-feature">3.5. Command Suggestion Feature</a></li>
-<li><a href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.7. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
+<li><a href="#tabs-feature">3.6. Tabs feature</a></li>
+<li><a href="#proposed-data-encryption">3.7. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.8. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.9. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -275,7 +276,10 @@ The lifeline for <code>MemeDeleteCommandParser</code> should end at the destroy 
 <p>exposes an unmodifiable <code>ObservableList&lt;Meme&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Template&gt;</code></p>
+<p>exposes an unmodifiable <code>ObservableList&lt;Template&gt;</code>.</p>
+</li>
+<li>
+<p>stores and exposes the current Weme context (will be discussed later)</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
@@ -1120,20 +1124,231 @@ Step 5: The prompt will be passed to and displayed by <code>ResultBox</code>.</p
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></h3>
+<h3 id="tabs-feature"><a class="link" href="#tabs-feature">3.6. Tabs feature</a></h3>
+<div class="paragraph">
+<p>Most features in Weme can be logically grouped together.
+For example, listing memes and viewing a single meme forms a group,
+listing templates and generating memes with templates forms another group,
+whereas statistics and import/export form their own groups.
+As such, it seems logical for us to separate distinct groups of features at the UI level to make it more intuitive to the user.
+We achieve this by putting each group of features into a tab.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current implementation</a></h4>
+<div class="paragraph">
+<p>As discussed earlier, <code>ModelManager</code> stores <code>ModelContext</code> which keeps track of the current context Weme is in.
+Within each context, Weme exposes different commands and has different behaviors.</p>
+</div>
+<div class="paragraph">
+<p>Tabs can be roughly seen as the reflection of <code>ModelContext</code> at the UI level.
+For example, when the <code>ModelContext</code> changes from <code>Memes</code> to <code>Templates</code>, the UI should switch from the <strong>Memes</strong> tab to the <strong>Templates</strong> tab.
+However, a tab can house multiple contexts.
+For example, both <strong>Templates</strong> context for viewing templates and <strong>MemeCreation</strong> context for creating memes will be under the <strong>Templates</strong> tab.</p>
+</div>
+<div class="paragraph">
+<p>Shown below are the tabs and their associated `ModelContext`s.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Memes</strong> tab</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Memes (showing all memes)</p>
+</li>
+<li>
+<p>Meme (viewing a particular meme) (<em>to be added</em>)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Screenshot of Weme in the <strong>Memes</strong> tab</div>
+<p><span class="image"><img src="images/MemesTabScreenshot.png" alt="MemesTabScreenshot"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Templates</strong> tab</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Templates (showing all templates)</p>
+</li>
+<li>
+<p>MemeCreation (creating a meme from a template)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Screenshot of Weme in the <strong>Templates</strong> tab</div>
+<p><span class="image"><img src="images/TemplatesTabScreenshot.png" alt="TemplatesTabScreenshot"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Archive</strong> tab</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Archive (showing archived entries)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Statistics</strong> tab</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Statistics (showing Weme statistics)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Storage</strong> tab</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Import (for importing <code>Meme`s and `Templates</code>)</p>
+</li>
+<li>
+<p>Export (for exporting <code>Meme`s and `Templates</code>)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>ModelContext</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>is stored in <code>ModelManager</code> as a <code>SimpleObjectProperty</code>.</p>
+</li>
+<li>
+<p>can be changed by <code>Comamnd</code> execution.</p>
+</li>
+<li>
+<p>is exposed in <code>Logic</code>.</p>
+</li>
+<li>
+<p>is observed by <code>MainWindow</code> to update the UI.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The user can switch tabs with <code>tab xyz</code> command, where <code>xyz</code> is the tab the user would like to switch to.</p>
+</div>
+<div class="paragraph">
+<p>The class diagram below shows the relationship between <code>Ui</code>, <code>Logic</code> and <code>Model</code> with regard to <code>ModelContext</code>.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/ModelContextClassDiagram.png" alt="ModelContextClassDiagram"></span></p>
+</div>
+<div class="paragraph">
+<p>The sequence diagram below summarizes what happens when the user switches tabs.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/TabSwitchSequenceDiagram.png" alt="TabSwitchSequenceDiagram">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.6.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-to-switch-tabs"><a class="link" href="#aspect-how-to-switch-tabs">Aspect: How to switch tabs</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Use commands to switch tabs.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Keyboard friendly.</p>
+</li>
+<li>
+<p>Cons: New users who have not read the user guide might not know the command syntax.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Use mouse to click on tab buttons.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More intuitive for new users.</p>
+</li>
+<li>
+<p>Cons: Users who prefer a keyboard-driven workflow might not want to use their mouse.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-number-of-contexts-a-tab-should-have"><a class="link" href="#aspect-number-of-contexts-a-tab-should-have">Aspect: Number of contexts a tab should have</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Each tab can have multiple contexts.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More intuitive to the user, less screen space wasted for extra tabs.</p>
+</li>
+<li>
+<p>Cons: More difficult to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Each tab has exactly one context.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: Similar features not closely grouped together, more tabs for the same amount of features.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.7. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.8. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.9, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1164,7 +1379,7 @@ Step 5: The prompt will be passed to and displayed by <code>ResultBox</code>.</p
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.9. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1818,4 +2033,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 15:44:20 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 15:49:40 UTC</div></div></div></body></html>
