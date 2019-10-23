@@ -3,12 +3,16 @@ package seedu.weme.ui;
 import java.util.List;
 import java.util.stream.Collectors;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
 import javafx.scene.layout.Region;
+import javafx.util.converter.IntegerStringConverter;
 import seedu.weme.model.ReadOnlyMemeBook;
 import seedu.weme.statistics.Stats;
 import seedu.weme.statistics.TagWithCount;
@@ -33,8 +37,9 @@ public class StatsPanel extends UiPart<Region> {
                         .map(data -> {
                                     data.nameProperty().bind(
                                             Bindings.concat(
-                                                    data.getName(), " ", data.pieValueProperty(), " likes"
+                                                    data.getName(), ": ", Math.round(data.getPieValue())
                                             )
+
                                     );
                                     return data;
                                 }
