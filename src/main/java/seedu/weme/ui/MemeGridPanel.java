@@ -46,7 +46,7 @@ public class MemeGridPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                String filePath = meme.getFilePath().toString();
+                String filePath = meme.getImagePath().toString();
                 int likes = likeData.getOrDefault(filePath, 0);
                 setGraphic(new MemeCard(meme, getIndex() + 1, likes).getRoot());
             }

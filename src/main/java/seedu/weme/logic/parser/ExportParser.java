@@ -1,14 +1,14 @@
 package seedu.weme.logic.parser;
 
-import seedu.weme.logic.commands.Command;
-import seedu.weme.logic.commands.HelpCommand;
-import seedu.weme.logic.commands.ExportCommand;
-import seedu.weme.logic.commands.UnstageCommand;
-import seedu.weme.logic.parser.exceptions.ParseException;
+import static seedu.weme.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.regex.Matcher;
 
-import static seedu.weme.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.weme.logic.commands.Command;
+import seedu.weme.logic.commands.ExportCommand;
+import seedu.weme.logic.commands.HelpCommand;
+import seedu.weme.logic.commands.UnstageCommand;
+import seedu.weme.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input in the import context.
