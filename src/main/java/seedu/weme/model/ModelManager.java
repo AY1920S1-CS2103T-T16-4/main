@@ -15,11 +15,15 @@ import java.util.logging.Logger;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.collections.transformation.FilteredList;
 import seedu.weme.commons.core.GuiSettings;
 import seedu.weme.commons.core.LogsCenter;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.template.Template;
+import seedu.weme.statistics.LikeData;
+import seedu.weme.statistics.Stats;
+import seedu.weme.statistics.StatsManager;
 
 /**
  * Represents the in-memory model of the meme book data.
@@ -33,6 +37,7 @@ public class ModelManager implements Model {
     private final FilteredList<Meme> filteredStagedMemeList;
     private final FilteredList<Meme> importMemeList;
     private final FilteredList<Template> filteredTemplates;
+    private final Stats stats;
 
     // ModelContext determines which parser to use at any point of time.
     private SimpleObjectProperty<ModelContext> context = new SimpleObjectProperty<>(ModelContext.CONTEXT_MEMES);
@@ -40,7 +45,7 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given memeBook and userPrefs.
      */
-    public ModelManager(ReadOnlyMemeBook memeBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyMemeBook memeBook, ReadOnlyUserPrefs userPrefs, Stats stats) {
         super();
         requireAllNonNull(memeBook, userPrefs);
 
@@ -52,10 +57,11 @@ public class ModelManager implements Model {
         filteredStagedMemeList = new FilteredList<>(versionedMemeBook.getStagedMemeList());
         importMemeList = new FilteredList<>(versionedMemeBook.getImportList());
         filteredTemplates = new FilteredList<>(versionedMemeBook.getTemplateList());
+        this.stats = stats;
     }
 
     public ModelManager() {
-        this(new MemeBook(), new UserPrefs());
+        this(new MemeBook(), new UserPrefs(), new StatsManager());
     }
 
     //=========== Export/Import ==============================================================================
@@ -249,6 +255,33 @@ public class ModelManager implements Model {
     @Override
     public void commitMemeBook() {
         versionedMemeBook.commit();
+    }
+
+    //=========== Statistics Methods =============================================================
+
+    @Override
+    public Stats getStats() {
+        return stats;
+    }
+
+    @Override
+    public LikeData getLikeData() {
+        return stats.getLikeManager();
+    }
+
+    @Override
+    public ObservableMap<String, Integer> getObservableLikeData() {
+        return stats.getObservableLikeData();
+    }
+
+    @Override
+    public void incrementMemeLikeCount(Meme meme) {
+        stats.incrementMemeLikeCount(meme);
+    }
+
+    @Override
+    public void clearMemeStats(Meme meme) {
+        stats.deleteLikesByMeme(meme);
     }
 
     @Override
