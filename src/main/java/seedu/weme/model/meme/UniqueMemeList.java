@@ -51,7 +51,7 @@ public class UniqueMemeList implements Iterable<Meme> {
     }
 
     /**
-     * List<Path> representation of the list of memes.
+     * List representation of the list of Meme paths.
      */
     public List<Path> asPathList() {
         return internalList
