@@ -122,14 +122,11 @@ image::ModelClassDiagram.png[]
 The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
-* stores the Address Book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the Weme data in `MemeBook`.
+* exposes an unmodifiable `ObservableList<Meme>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Template>`
 * does not depend on any of the other three components.
 
-[NOTE]
-As a more OOP model, we can store a `Tag` list in `Address Book`, which `Person` can reference. This would allow `Address Book` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. An example of how such a model may look like is given below. +
- +
-image:BetterModelClassDiagram.png[]
 
 [[Design-Storage]]
 === Storage component
@@ -154,42 +151,50 @@ Classes used by multiple components are in the `seedu.weme.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 // tag::undoredo[]
-=== [Proposed] Undo/Redo feature
-==== Proposed Implementation
+=== Undo/Redo feature
 
-The undo/redo mechanism is facilitated by `VersionedAddressBook`.
-It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`.
+Undo and Redo is necessary to give users the flexibility of undoing or redoing a wrongly executed command. Especially in Weme where we deal with image files, it is possible to key in the wrong file when adding a meme. Hence, simply entering the command `undo` allows the user to revert this mistake and add the correct file accordingly.
+
+==== Current implementation
+
+The undo/redo mechanism is facilitated by `VersionedMemeBook` and `VersionedStatsEngine`.
+`VersionedMemeBook` extends `MemeBook` with an undo/redo history, stored internally as a `versionedMemeBookStates`, `stateIndex` and a `undoableCommandHistoryList`.
 Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` -- Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` -- Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` -- Restores a previously undone address book state from its history.
+* `VersionedMemeBook#commit()` -- Saves the current meme book state in its history.
+* `VersionedMemeBook#undo()` -- Restores the previous meme book state from its history and returns the undo message of the undone command.
+* `VersionedMemeBook#redo()` -- Restores a previously undone meme book state from its history and returns the redo message of the redone command.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitMemeBook()`, `Model#undoMemeBook()` and `Model#redoMemeBook()` respectively.
+
+`VersionedStatsEngine` extends `StatsEngine` with similar additional methods and components.
+
+[NOTE]
+Only state changes are undoable. Commands such as `list`, `find` that only change the user interface are not undoable.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedMemeBook` will be initialized with the initial meme book state, and the `stateIndex` pointing to that single meme book state.
 
 image::UndoRedoState0.png[]
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th meme in the meme book. The `delete` command calls `Model#commitMemeBook()`, causing the modified state of the meme book after the `delete 5` command executes to be saved in the `versionedMemeBookStates`, and the `stateIndex` is shifted to the newly inserted meme book state. The delete command is then inserted into the `undoableCommandHistoryList`.
 
 image::UndoRedoState1.png[]
 
-Step 3. The user executes `add n/David ...` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `edit 2 d/surprised pikachu` to edit a meme's description. The `edit` command also calls `Model#commitMemeBook()`, causing another modified meme book state to be saved into the `versionedMemeBookStates`.
 
 image::UndoRedoState2.png[]
 
 [NOTE]
-If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+If a command fails its execution, it will not call `Model#commitMemeBook()`, so the meme book state will not be saved into the `versionedMemeBookStates`.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that editing the meme was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoMemeBook()`, which will shift the `stateIndex` once to the left, pointing it to the previous meme book state, and restores the meme book to that state.
 
 image::UndoRedoState3.png[]
 
 [NOTE]
-If the `currentStatePointer` is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+If the `stateIndex` is at index 0, pointing to the initial meme book state, then there are no previous meme book states to restore. The `undo` command uses `Model#canUndoMemeBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
@@ -197,16 +202,16 @@ image::UndoSequenceDiagram.png[]
 
 NOTE: The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite -- it calls `Model#redoMemeBook()`, which shifts the `stateIndex` once to the right, pointing to the previously undone state, and restores the meme book to that state.
 
 [NOTE]
-If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+If the `stateIndex` is at index `versionedMemeBookStates.size() - 1`, pointing to the latest meme book state, then there are no undone meme book states to restore. The `redo` command uses `Model#canRedoMemeBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the meme book, such as `list`, will usually not call `Model#commitMemeBook()`, `Model#undoMemeBook()` or `Model#redoMemeBook()`. Thus, the `versionedMemeBookStates` remains unchanged.
 
 image::UndoRedoState4.png[]
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitMemeBook()`. Since the `stateIndex` is not pointing at the end of the `versionedMemeBookStates`, all meme book states after the `stateIndex` will be purged. We designed it this way because it no longer makes sense to redo the `edit 2 d/surprised pikachu` command. This is the behavior that most modern desktop applications follow.
 
 image::UndoRedoState5.png[]
 
@@ -214,26 +219,141 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 image::CommitActivityDiagram.png[]
 
+The addition of undo redo complicates certain commands. An example of this complication is when undoing add or delete commands. Originally, deleting a Meme will delete the corresponding image file on the disk. However, this means it is not possible to retrieve the file afterwards. Hence, the current implementation is to delete the Meme Entry in the json, but keep the original image file until Weme is closed. When Weme is closed, a thread will clean up all unreferenced image files in the image folder.
+
 ==== Design Considerations
 
 ===== Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire state.
 ** Pros: Easy to implement.
 ** Cons: May have performance issues in terms of memory usage.
 * **Alternative 2:** Individual command knows how to undo/redo by itself.
 ** Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
 ** Cons: We must ensure that the implementation of each individual command are correct.
 
+===== Aspect: Types of commands to undo
+
+* **Alternative 1 (current choice):** Includes only commands that modify the underlying data. (Add, Edit, Clear, Delete)
+** Pros: Only changes that permanently affect the application are reverted.
+** Cons: Might be less intuitive as a user calling `tab templates` then `undo` might expect to revert the Tab command instead.
+* **Alternative 2:** Includes all commands
+** Pros: Intuitive
+** Cons: Might be very troublesome for a user if they want to revert the state instead of the view.
+
+===== Aspect: Context for commands to be undoable
+
+* **Alternative 1 (current choice):** Allow undoing throughout the application regardless of context.
+** Pros: User in a different context is able to easily undo the state.
+** Cons: User might expect to undo only when they are in the same context. i.e. Undo Meme commands in Meme context.
+* **Alternative 2:** Restrict undoing to its own context
+** Pros: More user intuitive. Commands will only affect their own context.
+** Cons: Heavily complicates the model. Model will then need to keep track of a versioning of every single context.
+
 ===== Aspect: Data structure to support the undo/redo commands
 
-* **Alternative 1 (current choice):** Use a list to store the history of address book states.
-** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.
-** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`.
-* **Alternative 2:** Use `HistoryManager` for undo/redo
-** Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.
-** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
+* **Alternative 1 (current choice):** Use a list to store the history of past states.
+** Pros: Easy to understand and adjust according to needs. Undo and redo simply moves along the list to change the state.
+** Cons: Each individual type (in this case, StatsEngine and MemeBook) will need to keep track of it's own versions.
+* **Alternative 2:** Use a wrapper class
+** Pros: Everything will be handled within a single UndoRedoManager class.
+** Cons: Might introduce complications as managing states now needs to go through another class instead of just the model.
+
+===== Aspect: Handling file changes
+
+* **Alternative 1 (current choice):** Remove files only on exit.
+** Pros: No need to deal with files when managing commands. Easy to execute add and delete commands without an issue.
+** Cons: Might take a while to delete if we had a lot of images.
+* **Alternative 2:** Implement a recycle bin to move files to/from on command.
+** Pros: Commands do what they are fully expected to do (Delete deletes the image as well).
+** Cons: Heavily complicates the logic with a need to copy and paste when undoing and redoing. Very difficult to understand and error-prone.
 // end::undoredo[]
+
+// tag::templates[]
+=== Templates feature
+Many memes are based off templates. Meme lovers often store a list of templates and process them to generate new memes when needed.
+A template typically reserves whitespace for the user to fill in text to give the template meanings.
+Weme provides this feature and allows the users to store their favourite templates and generate memes with the templates.
+
+==== Current Implementation
+
+Like a `Meme`, a `Template` also has an associated image that is stored on the hard disk.
+Each `Template` object has 2 fields, `Name` and `ImagePath`, where `Name` serves as the identifier and `ImagePath` holds the path to the image of this template.
+A user can add, edit, delete, or find a template.
+
+image::ModelClassDiagram.png[]
+
+Templates are stored alongside `Memes` in `MemeBook` in a `UniqueTemplateList`.
+The `ModelManager` will store a `FilteredList<Template>` that only holds the `Templates` that satisfy the current filter predicate.
+The `Model` exposes this filtered list of `Templates` as an unmodifiable `ObservableList<Template>` that the UI can subscribe to.
+In order to display the effect of adding text to a template while in meme creation mode,
+`CommandResult` will be extended to store the user's actions and the UI will use this information to update itself accordingly.
+
+When the user requests to generate a meme using a template, Weme will enter meme creation mode.
+The user can then add any text to one or more places on the template image.
+When the user is done, Weme will create a new `Meme` with all the added text included.
+The user can then browse this `Meme` in the collection and export or share it as desired.
+
+Given below is an example usage scenario of meme creation using a template.
+
+Step 1. The user launches the application and enters the *Templates* tab.
+
+Step 2. The user executes `find doge` command to find the _doge_ template.
+The `FilteredList<Template>` in `ModelManager` will be updated with a predicate that matches only templates whose names match _doge_.
+
+Step 3. Assuming the template that the user wants to use is displayed as the first template, the user executes `use 1` to enter meme creation mode.
+Weme will update the `ModelContext` to receive commands that are meant for template manipulation, and the UI will zoom into the template chosen.
+
+Step 4. The user executes `add cs students be like x/0.3 y/0.5` command to add the text "cs students be like".
+The text will be placed 30% horizontally from the left border and 50% vertically from the top border.
+This is made possible because the execution of this command returns a `CommandResult` that stores the text and position information.
+UI will then use this information to render the text at the correct position.
+The newly added text will be labelled number *1* for future references.
+
+Step 5. The user decides that there is a typo in the text because "cs" is not capitalized.
+The user executes the command `delete 1` to delete the text labelled *1*, which is the text that was just added.
+
+Step 6. The user then executes `add CS student be like x/0.3 y/0.5` to add the correct text.
+
+Step 7. The user executes `generate d/A meme about CS students t/funny t/CS` to complete the editing session.
+Weme will create a new image with the text added and create a new `Meme` with that image.
+The `Meme` created will also have description "A meme about CS students" and tags "funny" and "CS".
+The description and tag arguments are similar to those for `Meme` add command.
+
+[NOTE]
+The user can also abort any meme creation session by typing `abort`. This will put Weme back to displaying the content of the *Templates* tab.
+
+The following activity diagram summarizes the meme creation process:
+
+image::MemeCreationActivityDiagram.png[]
+
+The following sequence diagram shows how `CommandResult` relays information about the text added to the UI.
+
+image::TemplateCommandResultSequenceDiagram.png[]
+
+==== Design Considerations
+
+===== Aspect: How to update the UI while adding text to templates
+
+* **Alternative 1 (current choice):** Wrap the text and position information in `CommandResult`, let the UI decide what to do.
+** Pros: No additional coupling, clearer separation of concerns.
+** Cons: Additional layer of abstraction in `CommandResult`.
+* **Alternative 2:** Execution of the command updates the UI directly.
+** Pros: More direct, less abstraction
+** Cons: `Command` will have dependency on `UI`
+
+===== Aspect: How the user adds/deletes text
+
+* **Alternative 1 (current choice):** The user enters commands to add/delete text.
+** Pros: Easier to implement.
+** Cons: User might not be able to position the text accurately.
+* **Alternative 2:** The user controls the UI through individual key strokes.
+For example, `a` to add a piece of text, arrow keys to adjust the position of the currently selected text,
+`1` to select text labelled *1* and `d` to delete the currently selected text.
+** Pros: The user can accurately adjust the position of the text.
+** Cons: Very hard to implement. Requires major work on the UI.
+
+// end::templates[]
 
 // tag::dataencryption[]
 === [Proposed] Data Encryption
