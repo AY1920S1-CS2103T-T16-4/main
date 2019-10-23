@@ -1,9 +1,13 @@
 package seedu.weme.statistics;
 
+import java.util.List;
+import java.util.PriorityQueue;
+
 import static java.util.Objects.requireNonNull;
 
 import javafx.collections.ObservableMap;
 
+import seedu.weme.model.ReadOnlyMemeBook;
 import seedu.weme.model.meme.Meme;
 
 /**
@@ -12,12 +16,14 @@ import seedu.weme.model.meme.Meme;
 public class StatsManager implements Stats {
 
     private LikeManager likeManager;
+    private TagManager tagManager;
 
     /**
      * Constructs a {@code StatsManager} without data.
      */
     public StatsManager() {
         this.likeManager = new LikeManager();
+        this.tagManager = new TagManager();
     }
 
     /**
@@ -27,6 +33,8 @@ public class StatsManager implements Stats {
         this();
         resetData(stats);
     }
+
+    //============= Like Data ====================================
 
     @Override
     public LikeData getLikeManager() {
@@ -65,9 +73,32 @@ public class StatsManager implements Stats {
         likeManager.deleteLikesByMeme(meme);
     }
 
+    //============= Tag Data ====================================
+
+    @Override
+    public void parseMemeBookForTags(ReadOnlyMemeBook memeBook) {
+        tagManager.parseMemeBookForTags(memeBook);
+    };
+
+    @Override
+    public List<TagWithCount> getTagsWithCountList() {
+        return tagManager.getTagsWithCountList();
+    };
+
+    @Override
+    public PriorityQueue<TagWithCount> getTagsInOrderOfCounts() {
+        return tagManager.getTagsWithCountInPQ();
+    };
+
+    @Override
+    public PriorityQueue<TagWithCount> getTagsInOrderOfCounts(ReadOnlyMemeBook memeBook) {
+        return tagManager.getTagsInOrderOfCounts(memeBook);
+    };
+
     /**
      * Resets the existing data of this {@code StatsManager} with {@code newData}.
      */
+
     public void resetData(Stats newData) {
         requireNonNull(newData);
 

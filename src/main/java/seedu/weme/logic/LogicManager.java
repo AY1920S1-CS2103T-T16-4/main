@@ -20,7 +20,7 @@ import seedu.weme.model.ModelContext;
 import seedu.weme.model.ReadOnlyMemeBook;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.template.Template;
-import seedu.weme.statistics.LikeData;
+import seedu.weme.statistics.Stats;
 import seedu.weme.storage.Storage;
 
 /**
@@ -95,8 +95,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public LikeData getLikeData() {
-        return model.getLikeData();
+    public Stats getStats() {
+        return model.getStats();
     }
 
     @Override

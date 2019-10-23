@@ -1,6 +1,8 @@
 package seedu.weme.model;
 
 import java.nio.file.Path;
+import java.util.List;
+import java.util.PriorityQueue;
 import java.util.function.Predicate;
 
 import javafx.beans.property.SimpleObjectProperty;
@@ -11,6 +13,7 @@ import seedu.weme.model.meme.Meme;
 import seedu.weme.model.template.Template;
 import seedu.weme.statistics.LikeData;
 import seedu.weme.statistics.Stats;
+import seedu.weme.statistics.TagWithCount;
 
 /**
  * The API of the Model component.
@@ -181,6 +184,15 @@ public interface Model {
      */
     void clearMemeStats(Meme memeToDelete);
 
+    /**
+     * Parses a {@code MemeBook} and stores the tags into {@code TagManager}.
+     */
+    void parseMemeBookForTags(ReadOnlyMemeBook memeBook);
+
+    /**
+     * Returns a list of tags with counts.
+     */
+    List<TagWithCount> getTagsWithCountList();
 
     /**
      * Clears the image data folder of any memes that are not referenced in weme.

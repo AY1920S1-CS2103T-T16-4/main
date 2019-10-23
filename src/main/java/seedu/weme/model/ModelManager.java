@@ -9,6 +9,7 @@ import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -24,6 +25,7 @@ import seedu.weme.model.template.Template;
 import seedu.weme.statistics.LikeData;
 import seedu.weme.statistics.Stats;
 import seedu.weme.statistics.StatsManager;
+import seedu.weme.statistics.TagWithCount;
 
 /**
  * Represents the in-memory model of the meme book data.
@@ -241,6 +243,17 @@ public class ModelManager implements Model {
     public void clearMemeStats(Meme meme) {
         stats.deleteLikesByMeme(meme);
     }
+
+    @Override
+    public void parseMemeBookForTags(ReadOnlyMemeBook memeBook) {
+        stats.parseMemeBookForTags(memeBook);
+    };
+
+    @Override
+    public List<TagWithCount> getTagsWithCountList() {
+        return stats.getTagsWithCountList();
+    };
+
 
     @Override
     public void cleanMemeStorage() {

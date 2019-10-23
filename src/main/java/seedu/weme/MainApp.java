@@ -67,6 +67,8 @@ public class MainApp extends Application {
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
+        model.parseMemeBookForTags(model.getMemeBook());
+        System.out.println(model.getTagsWithCountList());
 
         logic = new LogicManager(model, storage);
 
