@@ -3,8 +3,10 @@ package seedu.weme.model.meme;
 import static java.util.Objects.requireNonNull;
 import static seedu.weme.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,6 +48,16 @@ public class UniqueMemeList implements Iterable<Meme> {
             throw new DuplicateMemeException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * List<Path> representation of the list of memes.
+     */
+    public List<Path> asPathList() {
+        return internalList
+                .stream()
+                .map(meme -> meme.getImagePath().getFilePath())
+                .collect(Collectors.toList());
     }
 
     /**

@@ -7,13 +7,12 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import seedu.weme.model.DirectoryPath;
-import seedu.weme.model.imagePath.ImagePath;
-import seedu.weme.model.meme.Meme;
-import seedu.weme.model.meme.UniqueMemeList;
 
 
 /**
@@ -148,17 +147,22 @@ public class FileUtil {
     /**
      * Exports a list of memes to a given directory.
      *
-     * @param memeList list of memes to be emported.
+     * @param pathList list of memes to be emported.
      * @param exportPath directory path for the memes to be exported to.
      * @throws IOException error encountered while exporting.
      */
-    public static void export(UniqueMemeList memeList, DirectoryPath exportPath) throws IOException {
+    public static void export(List<Path> pathList, DirectoryPath exportPath) throws IOException {
         try {
-            for (Meme meme : memeList) {
-                String fileName = meme.getImagePath().getFilePath().getFileName().toString();
-                String fileExportPath = exportPath.toPath() + "/" + fileName;
+            int i = 1;
+            for (Path path : pathList) {
+                String fileExportPath;
+                do {
+                    fileExportPath = exportPath.toPath()
+                            + "/" + Integer.toString(i) + "." + getExtension(path).get();
+                    i++;
+                } while (Files.exists(Paths.get(fileExportPath)));
                 if (isValidPath(fileExportPath)) {
-                    FileUtil.copy(meme.getImagePath().getFilePath(), Paths.get(fileExportPath));
+                    copy(path, Paths.get(fileExportPath));
                 } else {
                     throw new IOException(MESSAGE_EXPORT_FAILURE_INVALID_FILENAME);
                 }
@@ -169,23 +173,25 @@ public class FileUtil {
     }
 
     /**
+     /**
      * Loads a meme from a given directory into the application.
      *
-     * @param importList Internal List for memes to be loaded in.
      * @param directoryPath Path containing memes to load.
+     * @return List of loadable paths.
      */
-    public static void load(UniqueMemeList importList, DirectoryPath directoryPath) {
+    public static List<Path> load(DirectoryPath directoryPath) {
+        List<Path> pathList = new ArrayList<>();
         final File folder = new File(directoryPath.toString());
         for (final File fileEntry : folder.listFiles()) {
             if (fileEntry.isDirectory()) {
-                load(importList, new DirectoryPath(fileEntry.getPath())); // recursive call
+                load(new DirectoryPath(fileEntry.getPath())); // recursive call
             } else {
                 if (isFileExists(fileEntry.toPath()) && isValidImageExtension(getExtension(fileEntry.toPath()).get())) {
-                    Meme meme = new Meme(new ImagePath(fileEntry.getPath()));
-                    importList.add(meme);
+                    pathList.add(Paths.get(fileEntry.getPath()));
                 }
             }
         }
+        return pathList;
     }
 
     private static boolean isValidImageExtension(String extension) {

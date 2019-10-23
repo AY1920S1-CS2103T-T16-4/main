@@ -9,6 +9,7 @@ import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.weme.commons.util.FileUtil;
+import seedu.weme.model.imagePath.ImagePath;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.meme.UniqueMemeList;
 import seedu.weme.model.template.Template;
@@ -132,11 +133,15 @@ public class MemeBook implements ReadOnlyMemeBook {
      */
     public void loadMeme(DirectoryPath directoryPath) throws IOException {
         // File util importStagingArea
-        FileUtil.load(importList, directoryPath);
+        List<Path> pathList = FileUtil.load(directoryPath);
+        for (Path path : pathList) {
+            Meme meme = new Meme(new ImagePath(path.toString()));
+            importList.add(meme);
+        }
     }
 
     public void export(DirectoryPath exportPath) throws IOException {
-        FileUtil.export(exportList, exportPath);
+        FileUtil.export(exportList.asPathList(), exportPath);
     }
 
     /**

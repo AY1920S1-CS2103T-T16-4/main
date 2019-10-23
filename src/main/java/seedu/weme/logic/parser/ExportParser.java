@@ -20,7 +20,7 @@ public class ExportParser extends WemeParser {
      *
      * @param userInput full user input string
      * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
     @Override
     public Command parseCommand(String userInput) throws ParseException {
