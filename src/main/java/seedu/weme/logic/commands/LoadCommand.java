@@ -42,7 +42,7 @@ public class LoadCommand extends Command {
         requireNonNull(model);
 
         try {
-            List<Path> pathList = StorageUtil.load(importDirectoryPath);
+            List<Path> pathList = StorageUtil.loadImages(importDirectoryPath);
             model.loadMemes(pathList);
         } catch (IOException ioe) {
             throw new CommandException(MESSAGE_LOAD_FAILURE);

@@ -17,7 +17,7 @@ public class StorageUtil {
      * @param directoryPath Path containing memes to load.
      * @return List of loadable paths.
      */
-    public static List<Path> load(DirectoryPath directoryPath) throws IOException {
+    public static List<Path> loadImages(DirectoryPath directoryPath) throws IOException {
         return FileUtil.loadImagePath(directoryPath);
     }
 

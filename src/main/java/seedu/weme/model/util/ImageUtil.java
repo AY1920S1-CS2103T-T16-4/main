@@ -55,7 +55,7 @@ public class ImageUtil {
         Path newPath;
         do {
             newPath = destination.resolve(FileUtil.generateUuidString() + "." + extension);
-        } while (FileUtil.doesFileExists(newPath));
+        } while (FileUtil.fileExists(newPath));
         return newPath;
     }
 }

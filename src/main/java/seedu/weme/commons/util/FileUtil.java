@@ -29,7 +29,7 @@ public class FileUtil {
 
     private static final String CHARSET = "UTF-8";
 
-    public static boolean doesFileExists(Path file) {
+    public static boolean fileExists(Path file) {
         return Files.exists(file) && Files.isRegularFile(file);
     }
 
@@ -48,7 +48,7 @@ public class FileUtil {
                 do {
                     newFilePath = buildFilePath(folderPath, fileLabel, path);
                     fileLabel = incrementFileLabel(fileLabel);
-                } while (doesFileExists(Paths.get(newFilePath)));
+                } while (fileExists(Paths.get(newFilePath)));
 
                 if (isValidPath(newFilePath)) {
                     copy(path, Paths.get(newFilePath));
@@ -68,20 +68,30 @@ public class FileUtil {
      * @return List of loadable paths.
      */
     public static List<Path> loadImagePath(DirectoryPath directoryPath) throws IOException {
-        List<Path> pathList = new ArrayList<>();
+        List<Path> imageList = new ArrayList<>();
+        recursiveLoad(imageList, directoryPath);
+        return imageList;
+    }
 
+    /**
+     * Recursively loads all valid image files in a given directory.
+     *
+     * @param imageList
+     * @param directoryPath
+     * @throws IOException
+     */
+    private static void recursiveLoad(List<Path> imageList, DirectoryPath directoryPath) throws IOException {
         final File folder = toFile(directoryPath);
         for (final File fileEntry : folder.listFiles()) {
             if (fileEntry.isDirectory()) {
-                loadImagePath(new DirectoryPath(fileEntry.getPath())); // recursive call
+                recursiveLoad(imageList, new DirectoryPath(fileEntry.getPath())); // recursive call
             } else {
-                if (doesFileExists(fileEntry.toPath())
+                if (fileExists(fileEntry.toPath())
                         && isValidImageExtension(fileEntry.toPath())) {
-                    pathList.add(Paths.get(fileEntry.getPath()));
+                    imageList.add(Paths.get(fileEntry.getPath()));
                 }
             }
         }
-        return pathList;
     }
 
 
@@ -141,7 +151,7 @@ public class FileUtil {
      * @throws IOException if the file or directory cannot be created.
      */
     public static void createIfMissing(Path file) throws IOException {
-        if (!doesFileExists(file)) {
+        if (!fileExists(file)) {
             createFile(file);
         }
     }
@@ -198,7 +208,7 @@ public class FileUtil {
      * @throws IOException if the source file does not exist.
      */
     public static void copy(Path from, Path to) throws IOException {
-        if (doesFileExists(from)) {
+        if (fileExists(from)) {
             createParentDirsOfFile(to);
             Files.copy(from, to);
         } else {
@@ -232,10 +242,10 @@ public class FileUtil {
     private static boolean isValidImageExtension(Path filePath) throws IOException {
         File file = new File(filePath.toString());
 
-        Optional<String> mimetype = Optional.of(Files.probeContentType(file.toPath()));
-        // mimetype should be something like "image/png"
+        Optional<String> mimeType = Optional.ofNullable(Files.probeContentType(file.toPath()));
+        return mimeType.isPresent() && mimeType.get().split("/")[0].equals("image");
+        // mime type refers to media type, e.g. "image/png"
 
-        return mimetype.isPresent() && mimetype.get().split("/")[0].equals("image");
     }
 
     /**
