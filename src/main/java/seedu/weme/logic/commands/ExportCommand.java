@@ -45,8 +45,8 @@ public class ExportCommand extends Command {
             List<Path> pathList = model.getExportPathList();
             StorageUtil.export(pathList, exportPath.toPath());
             model.clearExportList();
-        } catch (IOException e) {
-            throw new CommandException(e.toString());
+        } catch (IOException ioe) {
+            throw new CommandException(ioe.toString());
         }
 
         return new CommandResult(MESSAGE_SUCCESS);

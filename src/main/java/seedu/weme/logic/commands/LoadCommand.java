@@ -3,6 +3,7 @@ package seedu.weme.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_FILEPATH;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class LoadCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_FILEPATH + "C:/Users/username/Downloads/ ";
     public static final String MESSAGE_SUCCESS = "Memes loaded successfully to the import staging area.";
-
+    public static final String MESSAGE_LOAD_FAILURE = "Invalid directory path given.";
     private final DirectoryPath importDirectoryPath;
 
     /**
@@ -37,11 +38,15 @@ public class LoadCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Path> pathList = StorageUtil.load(importDirectoryPath);
-        model.loadMemes(pathList);
+        try {
+            List<Path> pathList = StorageUtil.load(importDirectoryPath);
+            model.loadMemes(pathList);
+        } catch (IOException ioe) {
+            throw new CommandException(MESSAGE_LOAD_FAILURE);
+        }
 
         return new CommandResult(MESSAGE_SUCCESS);
     }

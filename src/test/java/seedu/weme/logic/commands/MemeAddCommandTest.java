@@ -7,9 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weme.testutil.Assert.assertThrows;
 import static seedu.weme.testutil.MemeUtil.isSameMemeImage;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +19,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.weme.commons.core.GuiSettings;
-import seedu.weme.model.DirectoryPath;
 import seedu.weme.model.MemeBook;
 import seedu.weme.model.Model;
 import seedu.weme.model.ModelContext;
@@ -90,7 +89,22 @@ public class MemeAddCommandTest {
         }
 
         @Override
-        public void importMeme() throws IOException {
+        public void importMeme() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public List<Path> getExportPathList() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void clearExportList() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void loadMemes(List<Path> pathList) {
             throw new AssertionError("This method should not be called");
         }
 
@@ -126,11 +140,6 @@ public class MemeAddCommandTest {
 
         @Override
         public void setMemeImagePath(Path memeImagePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void loadMemes(DirectoryPath directoryPath) throws IOException {
             throw new AssertionError("This method should not be called.");
         }
 

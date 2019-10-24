@@ -1,23 +1,23 @@
 package seedu.weme.commons.util;
 
-import seedu.weme.model.DirectoryPath;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
+
+import seedu.weme.model.DirectoryPath;
 
 /**
  * Utility class for Import and Export.
  */
 public class StorageUtil {
 
-     /**
+    /**
      * Loads a meme from a given directory into the application.
      *
      * @param directoryPath Path containing memes to load.
      * @return List of loadable paths.
      */
-    public static List<Path> load(DirectoryPath directoryPath) {
+    public static List<Path> load(DirectoryPath directoryPath) throws IOException {
         return FileUtil.loadImagePath(directoryPath);
     }
 
@@ -29,7 +29,7 @@ public class StorageUtil {
      * @throws IOException error encountered while exporting.
      */
     public static void export(List<Path> pathList, Path exportPath) throws IOException {
-        FileUtil.copyFiles(List<Path> pathList, Path exportPath);
+        FileUtil.copyFiles(pathList, exportPath);
     }
 
 }

@@ -34,7 +34,7 @@ public class ImportParser extends WemeParser {
         switch (commandWord) {
 
         case LoadCommand.COMMAND_WORD:
-            return new MemeLoadCommandParser().parse(arguments);
+            return new LoadCommandParser().parse(arguments);
 
         case ImportCommand.COMMAND_WORD:
             return new ImportCommand();

@@ -7,15 +7,15 @@ import seedu.weme.logic.parser.exceptions.ParseException;
 import seedu.weme.model.DirectoryPath;
 
 /**
- * Parses input arguments and creates a new MemeExportCommand object
+ * Parses input arguments and creates a new LoadCommand object
  */
-public class MemeLoadCommandParser implements Parser<LoadCommand> {
+public class LoadCommandParser implements Parser<LoadCommand> {
 
-    public static final String MESSAGE_MISSING_PATH = "Please provide a directory path for export.";
+    public static final String MESSAGE_MISSING_PATH = "Please provide a directory path to load.";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the MemeExportCommand
-     * and returns an MemeExportCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the LoadCommand
+     * and returns an LoadCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public LoadCommand parse(String args) throws ParseException {

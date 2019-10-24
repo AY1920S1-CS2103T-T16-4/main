@@ -48,7 +48,7 @@ public class FileUtil {
                 do {
                     newFilePath = buildFilePath(folderPath, fileLabel, path);
                     fileLabel = incrementFileLabel(fileLabel);
-                } while (doesFileExists(newFilePath));
+                } while (doesFileExists(Paths.get(newFilePath)));
 
                 if (isValidPath(newFilePath)) {
                     copy(path, Paths.get(newFilePath));
@@ -67,7 +67,7 @@ public class FileUtil {
      * @param directoryPath Path containing memes to load.
      * @return List of loadable paths.
      */
-    public static List<Path> loadImagePath(DirectoryPath directoryPath) {
+    public static List<Path> loadImagePath(DirectoryPath directoryPath) throws IOException {
         List<Path> pathList = new ArrayList<>();
 
         final File folder = toFile(directoryPath);
@@ -75,8 +75,8 @@ public class FileUtil {
             if (fileEntry.isDirectory()) {
                 loadImagePath(new DirectoryPath(fileEntry.getPath())); // recursive call
             } else {
-                if (doesFileExists(fileEntry.toPath()) &&
-                        isValidImageExtension(getExtension(fileEntry.toPath()).get())) {
+                if (doesFileExists(fileEntry.toPath())
+                        && isValidImageExtension(fileEntry.toPath())) {
                     pathList.add(Paths.get(fileEntry.getPath()));
                 }
             }
@@ -85,14 +85,22 @@ public class FileUtil {
     }
 
 
-    private static String buildFilePath(Path folderPath, Integer fileLabel, Path fromPath) {
+    /**
+     * Builds a new file path in string representation based on the given parameters
+     *
+     * @param newDirectoryPath New directory path of the file.
+     * @param fileLabel The label of the file.
+     * @param initialPath The initial path of the file.
+     * @return
+     */
+    private static String buildFilePath(Path newDirectoryPath, Integer fileLabel, Path initialPath) {
         StringBuilder newFilePath = new StringBuilder();
         newFilePath
-                .append(folderPath)
+                .append(newDirectoryPath)
                 .append("/")
                 .append(fileLabel)
                 .append(".")
-                .append(getExtension(fromPath).get());
+                .append(getExtension(initialPath).get());
         return newFilePath.toString();
     }
 
@@ -145,9 +153,7 @@ public class FileUtil {
         if (Files.exists(file)) {
             return;
         }
-
         createParentDirsOfFile(file);
-
         Files.createFile(file);
     }
 
@@ -216,8 +222,20 @@ public class FileUtil {
         return new File(directoryPath.toString());
     }
 
-    public static boolean isValidImageExtension(String extension) {
-        return extension.equals("png") || extension.equals("jpg");
+    /**
+     * Checks if the given filePath represents a valid image file.
+     *
+     * @param filePath Given file path.
+     * @return True if the file is a valid image file path.
+     * @throws IOException Unexpected error encountered from probeContentType().
+     */
+    private static boolean isValidImageExtension(Path filePath) throws IOException {
+        File file = new File(filePath.toString());
+
+        Optional<String> mimetype = Optional.of(Files.probeContentType(file.toPath()));
+        // mimetype should be something like "image/png"
+
+        return mimetype.isPresent() && mimetype.get().split("/")[0].equals("image");
     }
 
     /**

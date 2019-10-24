@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
-import seedu.weme.commons.util.FileUtil;
 import seedu.weme.model.imagePath.ImagePath;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.meme.UniqueMemeList;
