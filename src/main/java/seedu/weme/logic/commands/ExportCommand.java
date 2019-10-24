@@ -4,7 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_FILEPATH;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.util.List;
 
+import seedu.weme.commons.util.StorageUtil;
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.model.DirectoryPath;
 import seedu.weme.model.Model;
@@ -39,7 +42,9 @@ public class ExportCommand extends Command {
         requireNonNull(model);
 
         try {
-            model.exportMeme(exportPath);
+            List<Path> pathList = model.getExportPathList();
+            StorageUtil.export(pathList, exportPath.toPath());
+            model.clearExportList();
         } catch (IOException e) {
             throw new CommandException(e.toString());
         }

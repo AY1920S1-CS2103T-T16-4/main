@@ -22,14 +22,82 @@ public class FileUtil {
 
     public static final String MESSAGE_READ_FILE_FAILURE = "Error encountered while reading the file %s";
     public static final String MESSAGE_COPY_FAILURE_SOURCE_DOES_NOT_EXIST = "Copy failed: source file does not exist";
-    public static final String MESSAGE_EXPORT_FAILURE_INVALID_FILENAME = "Export failed: Invalid File Directory Given";
-    public static final String MESSAGE_EXPORT_FAILURE_UNKNOWN_ERROR = "Export failed: Internal Error Encountered: ";
+    public static final String MESSAGE_COPY_FAILURE_INVALID_DIRECTORY = "Copy failed: Invalid Directory Given";
+    public static final String MESSAGE_COPY_FAILURE_INTERNAL_ERROR = "Copy failed: Internal Error Encountered";
+    private static final int INITIAL_FILE_LABEL = 1;
 
 
     private static final String CHARSET = "UTF-8";
 
-    public static boolean isFileExists(Path file) {
+    public static boolean doesFileExists(Path file) {
         return Files.exists(file) && Files.isRegularFile(file);
+    }
+
+    /**
+     * Copies a list of files given by their path to a given directory.
+     *
+     * @param pathList list of paths containing files.
+     * @param folderPath directory path to copy to.
+     * @throws IOException error encountered while copying.
+     */
+    public static void copyFiles(List<Path> pathList, Path folderPath) throws IOException {
+        try {
+            int fileLabel = INITIAL_FILE_LABEL;
+            for (Path path : pathList) {
+                String newFilePath;
+                do {
+                    newFilePath = buildFilePath(folderPath, fileLabel, path);
+                    fileLabel = incrementFileLabel(fileLabel);
+                } while (doesFileExists(newFilePath));
+
+                if (isValidPath(newFilePath)) {
+                    copy(path, Paths.get(newFilePath));
+                } else {
+                    throw new IOException(MESSAGE_COPY_FAILURE_INVALID_DIRECTORY);
+                }
+            }
+        } catch (IOException e) {
+            throw new IOException(MESSAGE_COPY_FAILURE_INTERNAL_ERROR);
+        }
+    }
+
+    /**
+     * Returns a list of valid Image files found in the given directory path.
+     *
+     * @param directoryPath Path containing memes to load.
+     * @return List of loadable paths.
+     */
+    public static List<Path> loadImagePath(DirectoryPath directoryPath) {
+        List<Path> pathList = new ArrayList<>();
+
+        final File folder = toFile(directoryPath);
+        for (final File fileEntry : folder.listFiles()) {
+            if (fileEntry.isDirectory()) {
+                loadImagePath(new DirectoryPath(fileEntry.getPath())); // recursive call
+            } else {
+                if (doesFileExists(fileEntry.toPath()) &&
+                        isValidImageExtension(getExtension(fileEntry.toPath()).get())) {
+                    pathList.add(Paths.get(fileEntry.getPath()));
+                }
+            }
+        }
+        return pathList;
+    }
+
+
+    private static String buildFilePath(Path folderPath, Integer fileLabel, Path fromPath) {
+        StringBuilder newFilePath = new StringBuilder();
+        newFilePath
+                .append(folderPath)
+                .append("/")
+                .append(fileLabel)
+                .append(".")
+                .append(getExtension(fromPath).get());
+        return newFilePath.toString();
+    }
+
+    private static int incrementFileLabel(int fileLabel) {
+        return fileLabel + 1;
     }
 
     /**
@@ -65,7 +133,7 @@ public class FileUtil {
      * @throws IOException if the file or directory cannot be created.
      */
     public static void createIfMissing(Path file) throws IOException {
-        if (!isFileExists(file)) {
+        if (!doesFileExists(file)) {
             createFile(file);
         }
     }
@@ -124,7 +192,7 @@ public class FileUtil {
      * @throws IOException if the source file does not exist.
      */
     public static void copy(Path from, Path to) throws IOException {
-        if (isFileExists(from)) {
+        if (doesFileExists(from)) {
             createParentDirsOfFile(to);
             Files.copy(from, to);
         } else {
@@ -144,61 +212,11 @@ public class FileUtil {
         Files.copy(from, to);
     }
 
-    /**
-     * Exports a list of memes to a given directory.
-     *
-     * @param pathList list of memes to be emported.
-     * @param exportPath directory path for the memes to be exported to.
-     * @throws IOException error encountered while exporting.
-     */
-    public static void export(List<Path> pathList, DirectoryPath exportPath) throws IOException {
-        try {
-            int i = 1;
-            for (Path path : pathList) {
-                String fileExportPath;
-                do {
-                    fileExportPath = exportPath.toPath()
-                            + "/" + Integer.toString(i) + "." + getExtension(path).get();
-                    i++;
-                } while (Files.exists(Paths.get(fileExportPath)));
-                if (isValidPath(fileExportPath)) {
-                    copy(path, Paths.get(fileExportPath));
-                } else {
-                    throw new IOException(MESSAGE_EXPORT_FAILURE_INVALID_FILENAME);
-                }
-            }
-        } catch (IOException e) {
-            throw new IOException(MESSAGE_EXPORT_FAILURE_UNKNOWN_ERROR + e.toString());
-        }
-    }
-
-    /**
-     /**
-     * Loads a meme from a given directory into the application.
-     *
-     * @param directoryPath Path containing memes to load.
-     * @return List of loadable paths.
-     */
-    public static List<Path> load(DirectoryPath directoryPath) {
-        List<Path> pathList = new ArrayList<>();
-        final File folder = toFile(directoryPath);
-        for (final File fileEntry : folder.listFiles()) {
-            if (fileEntry.isDirectory()) {
-                load(new DirectoryPath(fileEntry.getPath())); // recursive call
-            } else {
-                if (isFileExists(fileEntry.toPath()) && isValidImageExtension(getExtension(fileEntry.toPath()).get())) {
-                    pathList.add(Paths.get(fileEntry.getPath()));
-                }
-            }
-        }
-        return pathList;
-    }
-
-    private static File toFile(DirectoryPath directoryPath) {
+    public static File toFile(DirectoryPath directoryPath) {
         return new File(directoryPath.toString());
     }
 
-    private static boolean isValidImageExtension(String extension) {
+    public static boolean isValidImageExtension(String extension) {
         return extension.equals("png") || extension.equals("jpg");
     }
 

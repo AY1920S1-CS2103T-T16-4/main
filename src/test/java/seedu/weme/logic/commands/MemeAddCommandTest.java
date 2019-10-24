@@ -185,11 +185,6 @@ public class MemeAddCommandTest {
         }
 
         @Override
-        public void exportMeme(DirectoryPath exportLocation) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<Meme> getFilteredMemeList() {
             throw new AssertionError("This method should not be called.");
         }

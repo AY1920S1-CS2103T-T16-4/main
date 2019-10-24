@@ -129,19 +129,17 @@ public class MemeBook implements ReadOnlyMemeBook {
     /**
      * Loads meme from given directory to staging area.
      *
-     * @param directoryPath
+     * @param pathList
      */
-    public void loadMemes(DirectoryPath directoryPath) throws IOException {
-        // File util importStagingArea
-        List<Path> pathList = FileUtil.load(directoryPath);
+    public void loadMemes(List<Path> pathList) {
         for (Path path : pathList) {
             Meme meme = new Meme(new ImagePath(path.toString()));
             importList.add(meme);
         }
     }
 
-    public void export(DirectoryPath exportPath) throws IOException {
-        FileUtil.export(exportList.asPathList(), exportPath);
+    public List<Path> getExportPathList() {
+        return exportList.asPathList();
     }
 
     /**

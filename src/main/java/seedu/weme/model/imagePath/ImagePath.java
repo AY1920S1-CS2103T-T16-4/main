@@ -40,7 +40,7 @@ public class ImagePath {
         // It is caught and becomes return false.
         try {
             return FileUtil.isValidPath(test)
-                    && FileUtil.isFileExists(Paths.get(test));
+                    && FileUtil.doesFileExists(Paths.get(test));
         } catch (InvalidPathException e) {
             return false;
         }

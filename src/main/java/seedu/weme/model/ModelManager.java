@@ -9,6 +9,7 @@ import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -68,21 +69,24 @@ public class ModelManager implements Model {
     //=========== Export/Import ==============================================================================
 
     @Override
-    public void exportMeme(DirectoryPath exportPath) throws IOException {
-        versionedMemeBook.export(exportPath);
-        versionedMemeBook.clearExportList();
+    public List<Path> getExportPathList() {
+        return versionedMemeBook.getExportPathList();
     }
 
     @Override
     public void importMeme() throws IOException {
         versionedMemeBook.importMeme(getMemeImagePath());
-        //updateFilteredMemeList(PREDICATE_SHOW_ALL_MEMES);
         versionedMemeBook.clearImportList();
     }
 
     @Override
-    public void loadMemes(DirectoryPath directoryPath) throws IOException {
-        versionedMemeBook.loadMemes(directoryPath);
+    public void loadMemes(List<Path> pathList) {
+        versionedMemeBook.loadMemes(pathList);
+    }
+
+    @Override
+    public void clearExportList() {
+        versionedMemeBook.clearExportList();
     }
 
 

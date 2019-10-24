@@ -2,6 +2,7 @@ package seedu.weme.model;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.beans.value.ObservableValue;
@@ -111,20 +112,17 @@ public interface Model {
      */
     void addMeme(Meme meme);
 
-    /**
-     * Exports the meme to given directory
-     */
-    void exportMeme(DirectoryPath exportPath) throws IOException;
+    List<Path> getExportPathList();
 
     /**
-     * Imports the meme to storage
+     * Imports the meme to storage.
      */
     void importMeme() throws IOException;
 
     /**
      * Loads the memes to import staging area.
      */
-    void loadMemes(DirectoryPath directoryPath) throws IOException;
+    void loadMemes(List<Path> pathList);
 
     /**
      * Replaces the given meme {@code target} with {@code editedMeme}.
@@ -219,6 +217,11 @@ public interface Model {
      * Deletes stats data by meme.
      */
     void clearMemeStats(Meme memeToDelete);
+
+    /**
+     * Clears the list memes in export tab after exporting.
+     */
+    void clearExportList();
 
 
     /**
