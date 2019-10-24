@@ -19,6 +19,8 @@ import seedu.weme.model.tag.Tag;
  */
 public class TagManager {
 
+    public static final int INITIAL_LIKE_COUNT = 0;
+
     private Set<Tag> tags;
     private PriorityQueue<TagWithCount> tagsWithCount;
 
@@ -82,7 +84,7 @@ public class TagManager {
             memeTags = meme.getTags();
             tags.addAll(memeTags);
             for (Tag tag : memeTags) {
-                int count = tagToCount.getOrDefault(tag, 0);
+                int count = tagToCount.getOrDefault(tag, INITIAL_LIKE_COUNT);
                 tagToCount.put(tag, count + 1);
             }
         }

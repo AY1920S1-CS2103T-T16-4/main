@@ -22,6 +22,8 @@ import seedu.weme.statistics.TagWithCount;
  */
 public class StatsPanel extends UiPart<Region> {
     private static final String FXML = "StatsPanel.fxml";
+    private static final String PIE_CHART_TITLE = "Tag usage";
+    private static final int LABEL_LINE_LENGTH = 10;
 
     @FXML
     private PieChart piechart;
@@ -43,21 +45,17 @@ public class StatsPanel extends UiPart<Region> {
         ObservableList<PieChart.Data> pieChartData =
                 tagsWithCount.stream()
                         .map(tagWithCount -> new PieChart.Data(tagWithCount.getTag().tagName, tagWithCount.getCount()))
-                        .map(data -> {
-                                    data.nameProperty().bind(
-                                            Bindings.concat(
-                                                    data.getName(), ": ", Math.round(data.getPieValue())
-                                            )
-
-                                    );
-                                    return data;
-                                }
-                        )
+                        .map(data -> bindLikeCountToLabel(data))
                         .collect(Collectors.toCollection(FXCollections::observableArrayList));
         piechart.setData(pieChartData);
-        piechart.setTitle("Tags used");
-        piechart.setLabelLineLength(10);
+        piechart.setTitle(PIE_CHART_TITLE);
+        piechart.setLabelLineLength(LABEL_LINE_LENGTH);
         piechart.setLegendSide(Side.LEFT);
+    }
+
+    private PieChart.Data bindLikeCountToLabel(PieChart.Data data) {
+        data.nameProperty().bind(Bindings.concat(data.getName(), ": ", Math.round(data.getPieValue())));
+        return data;
     }
 
 }
