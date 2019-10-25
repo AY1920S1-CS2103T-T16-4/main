@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 
-import seedu.weme.commons.util.StorageUtil;
+import seedu.weme.commons.util.FileUtil;
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.model.DirectoryPath;
 import seedu.weme.model.Model;
@@ -42,7 +42,7 @@ public class LoadCommand extends Command {
         requireNonNull(model);
 
         try {
-            List<Path> pathList = StorageUtil.loadImages(importDirectoryPath);
+            List<Path> pathList = FileUtil.loadImagePath(importDirectoryPath);
             model.loadMemes(pathList);
         } catch (IOException ioe) {
             throw new CommandException(MESSAGE_LOAD_FAILURE);

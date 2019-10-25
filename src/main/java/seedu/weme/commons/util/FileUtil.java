@@ -110,7 +110,7 @@ public class FileUtil {
                 .append("/")
                 .append(fileLabel)
                 .append(".")
-                .append(getExtension(initialPath).get());
+                .append(getExtension(initialPath).orElse(""));
         return newFilePath.toString();
     }
 
