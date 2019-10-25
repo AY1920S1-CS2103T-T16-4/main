@@ -15,15 +15,19 @@ public interface Stats {
 
     //============= Like Data ====================================
 
+    LikeData getLikeData();
+
     LikeData getLikeManager();
 
-    void setLikeManager(LikeData likeManager);
+    void setLikeData(LikeData likeData);
 
     ObservableMap<String, Integer> getObservableLikeData();
 
     void incrementMemeLikeCount(Meme meme);
 
     void deleteLikesByMeme(Meme meme);
+
+    void resetData(Stats stats);
 
     //============= Tag Data ====================================
 

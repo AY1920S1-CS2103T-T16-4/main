@@ -37,7 +37,7 @@ public class StatsManager implements Stats {
     //============= Like Data ====================================
 
     @Override
-    public LikeData getLikeManager() {
+    public LikeData getLikeData() {
         return likeManager.getLikeData();
     }
 
@@ -45,8 +45,8 @@ public class StatsManager implements Stats {
      * Replaces the contents of the like data with {@code likeData}.
      */
     @Override
-    public void setLikeManager(LikeData likeManager) {
-        this.likeManager.setLikeData(likeManager);
+    public void setLikeData(LikeData likeData) {
+        this.likeManager.setLikeData(likeData);
     }
 
     /**
@@ -98,10 +98,10 @@ public class StatsManager implements Stats {
     /**
      * Resets the existing data of this {@code StatsManager} with {@code newData}.
      */
-
+    @Override
     public void resetData(Stats newData) {
         requireNonNull(newData);
 
-        setLikeManager(newData.getLikeManager());
+        setLikeData(newData.getLikeData());
     }
 }
