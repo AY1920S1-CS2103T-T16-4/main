@@ -35,9 +35,9 @@ public class TagWithCount implements Comparable<TagWithCount> {
 
     @Override
     public int compareTo(TagWithCount o) {
-        if (this.count > o.count) {
+        if (this.count < o.count) {
             return 1;
-        } else if (this.count < o.count) {
+        } else if (this.count > o.count) {
             return -1;
         } else {
             return tag.tagName.compareTo(o.tag.tagName);
