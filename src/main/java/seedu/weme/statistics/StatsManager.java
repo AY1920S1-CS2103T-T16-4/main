@@ -3,11 +3,10 @@ package seedu.weme.statistics;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.PriorityQueue;
 
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 
-import seedu.weme.model.ReadOnlyMemeBook;
 import seedu.weme.model.meme.Meme;
 
 /**
@@ -37,16 +36,21 @@ public class StatsManager implements Stats {
     //============= Like Data ====================================
 
     @Override
-    public LikeData getLikeManager() {
+    public LikeData getLikeData() {
         return likeManager.getLikeData();
+    }
+
+    @Override
+    public LikeManager getLikeManager() {
+        return likeManager;
     }
 
     /**
      * Replaces the contents of the like data with {@code likeData}.
      */
     @Override
-    public void setLikeManager(LikeData likeManager) {
-        this.likeManager.setLikeData(likeManager);
+    public void setLikeData(LikeData likeData) {
+        this.likeManager.setLikeData(likeData);
     }
 
     /**
@@ -76,32 +80,18 @@ public class StatsManager implements Stats {
     //============= Tag Data ====================================
 
     @Override
-    public void parseMemeBookForTags(ReadOnlyMemeBook memeBook) {
-        tagManager.parseMemeBookForTags(memeBook);
-    };
-
-    @Override
-    public List<TagWithCount> getTagsWithCountList() {
-        return tagManager.getTagsWithCountList();
-    };
-
-    @Override
-    public PriorityQueue<TagWithCount> getTagsInOrderOfCounts() {
-        return tagManager.getTagsWithCountInPriorityQ();
-    };
-
-    @Override
-    public PriorityQueue<TagWithCount> getTagsInOrderOfCounts(ReadOnlyMemeBook memeBook) {
-        return tagManager.getTagsInOrderOfCounts(memeBook);
+    public List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList) {
+        return tagManager.getTagsWithCountList(memeList);
     };
 
     /**
      * Resets the existing data of this {@code StatsManager} with {@code newData}.
      */
+    @Override
 
     public void resetData(Stats newData) {
         requireNonNull(newData);
 
-        setLikeManager(newData.getLikeManager());
+        setLikeData(newData.getLikeData());
     }
 }

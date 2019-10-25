@@ -12,9 +12,8 @@ import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
 import javafx.scene.layout.Region;
 
-import seedu.weme.model.ReadOnlyMemeBook;
+import seedu.weme.model.ReadOnlyWeme;
 import seedu.weme.model.meme.Meme;
-import seedu.weme.statistics.Stats;
 import seedu.weme.statistics.TagWithCount;
 
 /**
@@ -28,10 +27,10 @@ public class StatsPanel extends UiPart<Region> {
     @FXML
     private PieChart piechart;
 
-    public StatsPanel(ReadOnlyMemeBook memeBook, Stats stats) {
+    public StatsPanel(ReadOnlyWeme weme) {
         super(FXML);
-        generatePieChart(memeBook, stats);
-        memeBook.getMemeList().addListener((ListChangeListener<Meme>) change -> generatePieChart(memeBook, stats));
+        generatePieChart(weme);
+        weme.getMemeList().addListener((ListChangeListener<Meme>) change -> generatePieChart(weme));
     }
 
     /**
@@ -39,9 +38,8 @@ public class StatsPanel extends UiPart<Region> {
      *
      * <p>Styling is mainly done in the CSS file.</p>
      */
-    private void generatePieChart(ReadOnlyMemeBook memeBook, Stats stats) {
-        stats.parseMemeBookForTags(memeBook);
-        List<TagWithCount> tagsWithCount = stats.getTagsWithCountList();
+    private void generatePieChart(ReadOnlyWeme weme) {
+        List<TagWithCount> tagsWithCount = weme.getTagsWithCountList();
         ObservableList<PieChart.Data> pieChartData =
                 tagsWithCount.stream()
                         .map(tagWithCount -> new PieChart.Data(tagWithCount.getTag().tagName, tagWithCount.getCount()))

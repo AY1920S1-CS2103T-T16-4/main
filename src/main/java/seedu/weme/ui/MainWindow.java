@@ -138,7 +138,7 @@ public class MainWindow extends UiPart<Stage> {
         TabBar tabBar = new TabBar(logic.getContext());
         tabBarPlaceholder.getChildren().add(tabBar.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMemeBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getWemeFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
     /**
@@ -157,7 +157,7 @@ public class MainWindow extends UiPart<Stage> {
         TemplateGridPanel templateGridPanel = new TemplateGridPanel(logic.getFilteredTemplateList());
         templatesPanel.getChildren().add(templateGridPanel.getRoot());
 
-        StatsPanel statsPanel = new StatsPanel(logic.getMemeBook(), logic.getStats());
+        StatsPanel statsPanel = new StatsPanel(logic.getWeme());
         statisticsPanel.getChildren().add(statsPanel.getRoot());
         // TODO: Fill in other panels here
     }

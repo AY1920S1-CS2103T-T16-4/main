@@ -1,11 +1,10 @@
 package seedu.weme.statistics;
 
 import java.util.List;
-import java.util.PriorityQueue;
 
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 
-import seedu.weme.model.ReadOnlyMemeBook;
 import seedu.weme.model.meme.Meme;
 
 /**
@@ -15,9 +14,11 @@ public interface Stats {
 
     //============= Like Data ====================================
 
-    LikeData getLikeManager();
+    LikeData getLikeData();
 
-    void setLikeManager(LikeData likeManager);
+    LikeManager getLikeManager();
+
+    void setLikeData(LikeData likeData);
 
     ObservableMap<String, Integer> getObservableLikeData();
 
@@ -25,13 +26,10 @@ public interface Stats {
 
     void deleteLikesByMeme(Meme meme);
 
+    void resetData(Stats stats);
+
     //============= Tag Data ====================================
 
-    void parseMemeBookForTags(ReadOnlyMemeBook memeBook);
+    List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList);
 
-    List<TagWithCount> getTagsWithCountList();
-
-    PriorityQueue<TagWithCount> getTagsInOrderOfCounts();
-
-    PriorityQueue<TagWithCount> getTagsInOrderOfCounts(ReadOnlyMemeBook memeBook);
 }

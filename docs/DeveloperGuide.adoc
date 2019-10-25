@@ -124,7 +124,8 @@ The `Model`,
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Weme data in `MemeBook`.
 * exposes an unmodifiable `ObservableList<Meme>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* exposes an unmodifiable `ObservableList<Template>`
+* exposes an unmodifiable `ObservableList<Template>`.
+* stores and exposes the current Weme context (will be discussed later)
 * does not depend on any of the other three components.
 
 
@@ -355,6 +356,241 @@ For example, `a` to add a piece of text, arrow keys to adjust the position of th
 ** Cons: Very hard to implement. Requires major work on the UI.
 
 // end::templates[]
+
+// tag::stats[]
+=== Statistics feature 1: Like Meme
+
+It is important to include a like meme feature such that the user gets to indicate their preference of certain memes.
+This is part of the statistics feature and isolated from the main MemeBook.
+The like data can be used for other statistical analysis.
+
+==== Current Implementation
+
+Like data of the memes are stored inside `LikeData` class. It is built upon the infrastructure of statistics.
+Statistics infrastructure is parallel to `MemeBook` structure from the runtime storage to logic to hard disk storage.
+
+image::ModelClassDiagram.png[]
+
+An interface for statistics `Stats` is set up for access to statistics components.
+`StatsManager` implements it and manages and carries LikeManager, which manages LikeData access.
+`Stats` exposes the `LikeData` as an unmodifiable `ObservableMap<String, Integer>` that the UI can subscribe to.
+Updates to the like count of any memes inside the currently displayed memes will be reflected on the UI.
+
+image::StorageClassDiagram.png[]
+
+In the storage component, LikeData is stored in a similar fashion as `MemeBook`,
+whereas the LikeData is stored as json file.
+
+The following activity diagram summarizes the meme liking process:
+
+image::MemeLikeActivityDiagram.png[]
+
+The following sequence diagram shows how `MemeLikeCommand` communicates with `Stats` and update the like count.
+
+image::LikeMemeSequenceDiagram.png[]
+
+==== Design Considerations
+
+===== Aspect: Implementation of LikeData.
+
+* **Alternative 1:** Put like data as a field inside Meme object.
+** Pros: Simple to implement.
+** Cons: It breaks the current closed structure of Meme.
+It would not make sense to add new field everytime we have some new statistics data for a meme (Like views in 2.0)
+* **Alternative 2 (Current choice):** Separate `LikeData` as a `HashMap` and keep it in Stats.
+** Pros: It isolates an additional feature (which is not essential) from Meme
+and allows `Stats` features in the future to use the data easily without looking through the entire MemeBook.
+(After a long while, when the number of memes pile up, like statistics has a O(n) growth in running time)
+** Cons: Harder to implement as it involves constructing a new infrastructure.
+Also, it looks somewhat out of place in `Model` as alternative 1 seems to be able to solve the problem (for now).
+
+// end::stats[]
+
+// tag::export/import
+
+===  Export/Import feature
+==== Export
+The user may not want to export everything in the Meme storage to a directory. The Stage command
+functionality introduces flexibility for the user to stage and shortlist which memes he wants to export,
+which will be in the staging area under the export tab. When the user accidentally stages a meme, he can
+either use the undo command or the Unstage command. When the user finally confirms the memes to be export
+in the staging area, the user can execute the ExportCommand with a provided directory path. The
+following sequence diagram illustrates the execution of the `Stage Command` and `Emport Command`:
+
+image::StageSequenceDiagram.png[]
+image::ExportSequenceDiagram.png[]
+
+==== Import
+The user can use the `Load Command` to batch load all memes in the correct picture format into the import
+context. However, the memes are not immediately imported to storage because there may be memes in the directory
+that the user does not wish to import. Furthermore, the user may want to set descriptions and tag them before
+it gets populated into the meme storage. Hence, the user is allowed to use Edit Command and Delete Command
+in the import context to finalise the memes in the import context before executing the import command.
+The import command will then populate all of the memes in the staging area to the memes storage, followed
+by clearing the memes in the import context.
+
+==== Current Implementation
+Export and Import do not share the same UniqueMemeList as that in the Meme context.
+
+While the user is selecting which meme to stage, the user should have a visual reference all the existing memes.
+Hence, the `Stage Command` works in the Meme Context, and the user is able to stage by the Meme Index.
+On the contrary, the unstage command is only available in the export tab, where the user can reference which
+memes to delete using the index in the export tab.
+
+ Step 1. The user enters the import tab
+
+Step 2. The user executes LoadCommand and provide a directory path.
+Weme will find files which are in valid format (e.g. png) and create a new memes
+based on the given file path. The memes will be added into the import tab which is visible to the user.
+
+Step 3. The user executes edit 1 d/Description t/newly added meme to edit the
+description and tag of the newly added meme based on its index in the import area.
+This change will also be reflected visually.
+
+Step 4. User executes import, and weme will transfer the memes from the import list into
+the memeList, which is now viewable in the meme tab. The memes in the import tab are cleared
+so that the user can continue importing the memes in a new directory.
+
+The following activity diagram summaries the load and import process:
+
+image::ImportActivityDiagram.png[]
+
+==== Design Consideration
+
+===== Aspect: Storage of the imported and exported meme
+
+* **Alternative 1 (current choice):** Use 3 separate UniqueMemeList to store memes in the meme,
+export and import tab separately.
+** Pros: Straightforward Implementation. Lesser dependency among the 3 different context.
+** Cons: Repetitive method involved in retrieving the 3 different list using model.
+* **Alternative 2:** Use a single UniqueMemeList to store the memes, and introduce a flag attribute
+to distinguish between staged meme, imported meme and ordinary meme.
+** Pros: Lesser methods defined to retrieve 3 different UniqueMemeList, and a minimalist design.
+** Cons: More coupling involved and the list can get very large, hence iterating through it may cause lagging.
+
+// end::export/import[]
+
+// tag::command suggestions[]
+=== Command Suggestion Feature
+Users can be forgetful about the command format and sometimes unsure of what arguments to supply.
+Auto-suggestion of command arguments while the user keys in inputs can be very helpful to provide user hints.
+Possible command words will be suggested to user based on incomplete input.
+Depending on what the user has typed in for the argument, the most similar argument values retrieved from the historical
+records will be displayed to the user for reference.
+
+==== Current Implementation
+The command suggestions is achieved using a package of prompter files.
+For each parser, there will a corresponding prompter to process the current user input and return the `CommandPrompt` for display in `ResultBox`.
+Step 1. The user types commands into the `CommandBox`.
+Step 2. The `MainWindow` listens to changes in the content in `CommandBox` and direct the input to `WemePrompter`.
+Step 3. Depending on the context, the prompter that implements `WemePrompter` (e.g. `MemePrompter`) will then pass the arguments
+to different `Prompter` (e.g. `MemeAddCommandPrompter`) based on the command word.
+Step 4: The `Prompter` will process the input and return a `CommandPrompt` containing the command suggestion for the given input.
+Step 5: The prompt will be passed to and displayed by `ResultBox`.
+
+==== Design Considerations
+
+===== Aspect: How to process the input and produce the command prompt
+
+* **Alternative 1 (current choice):** Use a prompter package to abstract out the prompter for each command.
+** Pros: Single Responsibility Principle and Separation of Concerns are achieved and coupling is reduced.
+** Cons: Additional layer of abstraction and longer code.
+* **Alternative 2:** Add one more method in each parser.
+** Pros: Easier to implement.
+** Cons: The class that processses input will depend on `Parser`.
+
+===== Aspect: How to store and access historical records.
+
+* **Alternative 1 (current choice):** Use a separate `Records` storage file to store all the historical arguments.
+** Pros: Better abstraction and the records has the option to persist even if the file is deleted.
+** Cons: More files to store and longer code.
+* **Alternative 2:** Store arguments of a resource (e.g. `Meme`) as a field of the resource.
+** Pros: Easier to implement and cleaner.
+** Cons: Irrelevant information needs to be stored as a field (e.g. original file path of a resource).
+// end::command suggestions[]
+
+// tag::tabs[]
+=== Tabs feature
+
+Most features in Weme can be logically grouped together.
+For example, listing memes and viewing a single meme forms a group,
+listing templates and generating memes with templates forms another group,
+whereas statistics and import/export form their own groups.
+As such, it seems logical for us to separate distinct groups of features at the UI level to make it more intuitive to the user.
+We achieve this by putting each group of features into a tab.
+
+==== Current implementation
+
+As discussed earlier, `ModelManager` stores `ModelContext` which keeps track of the current context Weme is in.
+Within each context, Weme exposes different commands and has different behaviors.
+
+Tabs can be roughly seen as the reflection of `ModelContext` at the UI level.
+For example, when the `ModelContext` changes from `Memes` to `Templates`, the UI should switch from the *Memes* tab to the *Templates* tab.
+However, a tab can house multiple contexts.
+For example, both *Templates* context for viewing templates and *MemeCreation* context for creating memes will be under the *Templates* tab.
+
+Shown below are the tabs and their associated `ModelContext`s.
+
+* *Memes* tab
+** Memes (showing all memes)
+** Meme (viewing a particular meme) (_to be added_)
+
+.Screenshot of Weme in the *Memes* tab
+image:MemesTabScreenshot.png[]
+
+* *Templates* tab
+** Templates (showing all templates)
+** MemeCreation (creating a meme from a template)
+
+.Screenshot of Weme in the *Templates* tab
+image:TemplatesTabScreenshot.png[]
+
+* *Archive* tab
+** Archive (showing archived entries)
+* *Statistics* tab
+** Statistics (showing Weme statistics)
+* *Storage* tab
+** Import (for importing `Meme`s and `Templates`)
+** Export (for exporting `Meme`s and `Templates`)
+
+`ModelContext`,
+
+* is stored in `ModelManager` as a `SimpleObjectProperty`.
+* can be changed by `Comamnd` execution.
+* is exposed in `Logic`.
+* is observed by `MainWindow` to update the UI.
+
+The user can switch tabs with `tab xyz` command, where `xyz` is the tab the user would like to switch to.
+
+The class diagram below shows the relationship between `Ui`, `Logic` and `Model` with regard to `ModelContext`.
+
+image:ModelContextClassDiagram.png[]
+
+The sequence diagram below summarizes what happens when the user switches tabs.
+
+image::TabSwitchSequenceDiagram.png[]
+
+==== Design Considerations
+
+===== Aspect: How to switch tabs
+
+* **Alternative 1 (current choice):** Use commands to switch tabs.
+** Pros: Keyboard friendly.
+** Cons: New users who have not read the user guide might not know the command syntax.
+* **Alternative 2:** Use mouse to click on tab buttons.
+** Pros: More intuitive for new users.
+** Cons: Users who prefer a keyboard-driven workflow might not want to use their mouse.
+
+===== Aspect: Number of contexts a tab should have
+
+* **Alternative 1 (current choice):** Each tab can have multiple contexts.
+** Pros: More intuitive to the user, less screen space wasted for extra tabs.
+** Cons: More difficult to implement.
+* **Alternative 2:** Each tab has exactly one context.
+** Pros: Easy to implement.
+** Cons: Similar features not closely grouped together, more tabs for the same amount of features.
+
+// end::tabs[]
 
 // tag::dataencryption[]
 === [Proposed] Data Encryption

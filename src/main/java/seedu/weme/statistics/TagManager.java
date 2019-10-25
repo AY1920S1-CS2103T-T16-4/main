@@ -10,7 +10,6 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 
-import seedu.weme.model.ReadOnlyMemeBook;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.tag.Tag;
 
@@ -43,16 +42,17 @@ public class TagManager {
     /**
      * Get {@code TagWithCount} in PriorityQueue from a {@code ReadOnlyMemeBook}.
      */
-    public PriorityQueue<TagWithCount> getTagsInOrderOfCounts(ReadOnlyMemeBook memeBook) {
+    public PriorityQueue<TagWithCount> getTagsInOrderOfCounts(ObservableList<Meme> memeList) {
         purgeData();
-        parseMemeBookForTags(memeBook);
+        parseMemeListForTags(memeList);
         return tagsWithCount;
     }
 
     /**
      * Returns {@code TagWithCount} in List.
      */
-    public List<TagWithCount> getTagsWithCountList() {
+    public List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList) {
+        parseMemeListForTags(memeList);
         List<TagWithCount> tagWithCountList = new ArrayList<>();
         PriorityQueue<TagWithCount> temp = getTagsWithCountInPriorityQ();
 
@@ -73,10 +73,10 @@ public class TagManager {
 
     /**
      * Parses a {@code ReadOnlyMemeBook} for tags.
+     * @param memeList
      */
-    public void parseMemeBookForTags(ReadOnlyMemeBook memeBook) {
+    public void parseMemeListForTags(ObservableList<Meme> memeList) {
         purgeData();
-        ObservableList<Meme> memeList = memeBook.getMemeList();
         Map<Tag, Integer> tagToCount = new HashMap<>();
         Set<Tag> memeTags;
 
