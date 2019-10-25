@@ -35,11 +35,13 @@ public class TagWithCount implements Comparable<TagWithCount> {
 
     @Override
     public int compareTo(TagWithCount o) {
+        // Tag with more occurrence count will have higher priority in comparison.
         if (this.count < o.count) {
             return 1;
         } else if (this.count > o.count) {
             return -1;
         } else {
+            // If both tags have the same occurrence count, it is compared lexicographically.
             return tag.tagName.compareTo(o.tag.tagName);
         }
     }

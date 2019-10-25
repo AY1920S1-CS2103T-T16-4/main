@@ -2,7 +2,6 @@ package seedu.weme.statistics;
 
 import java.util.List;
 
-import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 
 import seedu.weme.model.meme.Meme;
@@ -28,6 +27,6 @@ public interface Stats {
 
     //============= Tag Data ====================================
 
-    List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList);
+    List<TagWithCount> getTagsWithCountList(List<Meme> memeList);
 
 }

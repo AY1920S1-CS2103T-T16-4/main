@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 
 import seedu.weme.model.meme.Meme;
@@ -75,7 +74,7 @@ public class StatsManager implements Stats {
     //============= Tag Data ====================================
 
     @Override
-    public List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList) {
+    public List<TagWithCount> getTagsWithCountList(List<Meme> memeList) {
         return tagManager.getTagsWithCountList(memeList);
     };
 
