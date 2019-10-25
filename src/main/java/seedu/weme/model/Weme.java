@@ -21,7 +21,7 @@ import seedu.weme.statistics.Stats;
 import seedu.weme.statistics.StatsManager;
 
 /**
- * Wraps all data at weme level
+ * Wraps all data at Weme level
  * Duplicates are not allowed (by {@link Meme#isSameMeme(Meme)} and
  * {@link Template#isSameTemplate(Template)} comparisons)
  */
@@ -94,7 +94,7 @@ public class Weme implements ReadOnlyWeme {
     //// meme-level operations
 
     /**
-     * Returns true if a meme with the same identity as {@code meme} exists in weme.
+     * Returns true if a meme with the same identity as {@code meme} exists in Weme.
      */
     public boolean hasMeme(Meme meme) {
         requireNonNull(meme);
@@ -102,7 +102,6 @@ public class Weme implements ReadOnlyWeme {
     }
 
     /**
-<<<<<<< HEAD:src/main/java/seedu/weme/model/MemeBook.java
      * Stages a meme to the staging area.
      *
      * @param meme meme to stage
@@ -155,10 +154,7 @@ public class Weme implements ReadOnlyWeme {
     }
 
     /**
-     * Returns true if a template with the same identity as {@code template} exists in the meme book.
-=======
-     * Returns true if a template with the same identity as {@code template} exists in weme.
->>>>>>> master:src/main/java/seedu/weme/model/Weme.java
+     * Returns true if a template with the same identity as {@code template} exists in Weme.
      */
     public boolean hasTemplate(Template template) {
         requireNonNull(template);
@@ -166,16 +162,16 @@ public class Weme implements ReadOnlyWeme {
     }
 
     /**
-     * Adds a meme to weme.
-     * The meme must not already exist in weme.
+     * Adds a meme to Weme.
+     * The meme must not already exist in Weme.
      */
     public void addMeme(Meme p) {
         memes.add(p);
     }
 
     /**
-     * Adds a template to weme.
-     * The template must not already exist in weme.
+     * Adds a template to Weme.
+     * The template must not already exist in Weme.
      */
     public void addTemplate(Template p) {
         templates.add(p);
@@ -183,8 +179,8 @@ public class Weme implements ReadOnlyWeme {
 
     /**
      * Replaces the given meme {@code target} in the list with {@code editedMeme}.
-     * {@code target} must exist in weme.
-     * The meme identity of {@code editedMeme} must not be the same as another existing meme in weme.
+     * {@code target} must exist in Weme.
+     * The meme identity of {@code editedMeme} must not be the same as another existing meme in Weme.
      */
     public void setMeme(Meme target, Meme editedMeme) {
         requireNonNull(editedMeme);
@@ -194,9 +190,9 @@ public class Weme implements ReadOnlyWeme {
 
     /**
      * Replaces the given template {@code target} in the list with {@code editedTemplate}.
-     * {@code target} must exist in weme.
+     * {@code target} must exist in Weme.
      * The template identity of {@code editedTemplate} must not be the same as another existing template in the
-     * weme.
+     * Weme.
      */
     public void setTemplate(Template target, Template editedTemplate) {
         requireNonNull(editedTemplate);
@@ -206,7 +202,7 @@ public class Weme implements ReadOnlyWeme {
 
     /**
      * Removes {@code key} from this {@code Weme}.
-     * {@code key} must exist in weme.
+     * {@code key} must exist in Weme.
      */
     public void removeMeme(Meme key) {
         memes.remove(key);
@@ -214,7 +210,7 @@ public class Weme implements ReadOnlyWeme {
 
     /**
      * Removes {@code key} from this {@code Weme}.
-     * {@code key} must exist in weme.
+     * {@code key} must exist in Weme.
      */
     public void removeTemplate(Template key) {
         templates.remove(key);
