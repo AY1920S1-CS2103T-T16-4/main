@@ -4,6 +4,7 @@ import static seedu.weme.logic.parser.ParserUtil.MESSAGE_INVALID_CONTEXT;
 
 import java.util.logging.Logger;
 
+import javafx.beans.property.ReadOnlyMapWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -19,6 +20,7 @@ import seedu.weme.logic.commands.CommandResult;
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.logic.parser.exceptions.ParseException;
 import seedu.weme.model.ModelContext;
+import seedu.weme.model.ReadOnlyWeme;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -157,7 +159,7 @@ public class MainWindow extends UiPart<Stage> {
         TemplateGridPanel templateGridPanel = new TemplateGridPanel(logic.getFilteredTemplateList());
         templatesPanel.getChildren().add(templateGridPanel.getRoot());
 
-        StatsPanel statsPanel = new StatsPanel(logic.getMemeBook(), logic.getStats());
+        StatsPanel statsPanel = new StatsPanel(logic.getWeme());
         statisticsPanel.getChildren().add(statsPanel.getRoot());
         // TODO: Fill in other panels here
     }

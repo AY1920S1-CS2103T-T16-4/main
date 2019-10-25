@@ -10,7 +10,6 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 
-import seedu.weme.model.ReadOnlyMemeBook;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.tag.Tag;
 
@@ -29,38 +28,29 @@ public class TagManager {
         tagsWithCount = new PriorityQueue<>();
     }
 
-    public Set<Tag> getTagsInSet() {
-        return tags;
-    }
-
-    /**
-     * Get {@code TagWithCount} in PriorityQueue from the pre-stored data.
-     */
-    public PriorityQueue<TagWithCount> getTagsWithCountInPriorityQ() {
-        return tagsWithCount;
-    }
-
-    /**
-     * Get {@code TagWithCount} in PriorityQueue from a {@code ReadOnlyMemeBook}.
-     */
-    public PriorityQueue<TagWithCount> getTagsInOrderOfCounts(ReadOnlyMemeBook memeBook) {
-        purgeData();
-        parseMemeBookForTags(memeBook);
-        return tagsWithCount;
-    }
-
     /**
      * Returns {@code TagWithCount} in List.
+     * @param memeList
      */
-    public List<TagWithCount> getTagsWithCountList() {
+    public List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList) {
         List<TagWithCount> tagWithCountList = new ArrayList<>();
-        PriorityQueue<TagWithCount> temp = getTagsWithCountInPriorityQ();
+        PriorityQueue<TagWithCount> temp = getTagsInOrderOfCounts(memeList);
 
         while (!tagsWithCount.isEmpty()) {
             tagWithCountList.add(temp.poll());
         }
 
         return tagWithCountList;
+    }
+
+    /**
+     * Get {@code TagWithCount} in PriorityQueue from a {@code ReadOnlyMemeBook}.
+     * @param memeList
+     */
+    public PriorityQueue<TagWithCount> getTagsInOrderOfCounts(ObservableList<Meme> memeList) {
+        purgeData();
+        parseWemeForTags(memeList);
+        return tagsWithCount;
     }
 
     /**
@@ -73,10 +63,10 @@ public class TagManager {
 
     /**
      * Parses a {@code ReadOnlyMemeBook} for tags.
+     * @param memeList
      */
-    public void parseMemeBookForTags(ReadOnlyMemeBook memeBook) {
+    public void parseWemeForTags(ObservableList<Meme> memeList) {
         purgeData();
-        ObservableList<Meme> memeList = memeBook.getMemeList();
         Map<Tag, Integer> tagToCount = new HashMap<>();
         Set<Tag> memeTags;
 

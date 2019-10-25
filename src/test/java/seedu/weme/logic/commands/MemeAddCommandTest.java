@@ -246,16 +246,6 @@ public class MemeAddCommandTest {
         }
 
         @Override
-        public void parseMemeBookForTags(ReadOnlyMemeBook memeBook) {
-            throw new AssertionError("This method should not be called");
-        }
-
-        @Override
-        public List<TagWithCount> getTagsWithCountList() {
-            throw new AssertionError("This method should not be called");
-        }
-
-        @Override
         public void clearMemeStats(Meme meme) {
             throw new AssertionError("This method should not be called");
         }

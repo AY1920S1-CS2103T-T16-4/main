@@ -3,11 +3,10 @@ package seedu.weme.statistics;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.PriorityQueue;
 
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 
-import seedu.weme.model.ReadOnlyMemeBook;
 import seedu.weme.model.meme.Meme;
 
 /**
@@ -76,23 +75,8 @@ public class StatsManager implements Stats {
     //============= Tag Data ====================================
 
     @Override
-    public void parseMemeBookForTags(ReadOnlyMemeBook memeBook) {
-        tagManager.parseMemeBookForTags(memeBook);
-    };
-
-    @Override
-    public List<TagWithCount> getTagsWithCountList() {
-        return tagManager.getTagsWithCountList();
-    };
-
-    @Override
-    public PriorityQueue<TagWithCount> getTagsInOrderOfCounts() {
-        return tagManager.getTagsWithCountInPriorityQ();
-    };
-
-    @Override
-    public PriorityQueue<TagWithCount> getTagsInOrderOfCounts(ReadOnlyMemeBook memeBook) {
-        return tagManager.getTagsInOrderOfCounts(memeBook);
+    public List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList) {
+        return tagManager.getTagsWithCountList(memeList);
     };
 
     /**

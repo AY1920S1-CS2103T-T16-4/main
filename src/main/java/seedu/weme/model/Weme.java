@@ -14,6 +14,7 @@ import seedu.weme.model.template.UniqueTemplateList;
 import seedu.weme.statistics.LikeData;
 import seedu.weme.statistics.Stats;
 import seedu.weme.statistics.StatsManager;
+import seedu.weme.statistics.TagWithCount;
 
 /**
  * Wraps all data at weme level
@@ -192,6 +193,10 @@ public class Weme implements ReadOnlyWeme {
 
     public void clearMemeStats(Meme meme) {
         stats.deleteLikesByMeme(meme);
+    }
+
+    public List<TagWithCount> getTagsWithCountList() {
+        return stats.getTagsWithCountList(getMemeList());
     }
 
     @Override

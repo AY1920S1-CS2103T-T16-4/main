@@ -185,16 +185,6 @@ public interface Model {
     void clearMemeStats(Meme memeToDelete);
 
     /**
-     * Parses a {@code MemeBook} and stores the tags into {@code TagManager}.
-     */
-    void parseMemeBookForTags(ReadOnlyMemeBook memeBook);
-
-    /**
-     * Returns a list of tags with counts.
-     */
-    List<TagWithCount> getTagsWithCountList();
-
-    /**
      * Clears the image data folder of any memes that are not referenced in weme.
      */
     void cleanMemeStorage();

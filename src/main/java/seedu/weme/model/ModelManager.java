@@ -245,17 +245,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void parseMemeBookForTags(ReadOnlyMemeBook memeBook) {
-        stats.parseMemeBookForTags(memeBook);
-    };
-
-    @Override
-    public List<TagWithCount> getTagsWithCountList() {
-        return stats.getTagsWithCountList();
-    };
-
-
-    @Override
     public void cleanMemeStorage() {
         try {
             Set<File> filesToKeep = new HashSet<>();
