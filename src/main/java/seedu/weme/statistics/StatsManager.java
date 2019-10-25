@@ -40,11 +40,6 @@ public class StatsManager implements Stats {
         return likeManager.getLikeData();
     }
 
-    @Override
-    public LikeManager getLikeManager() {
-        return likeManager;
-    }
-
     /**
      * Replaces the contents of the like data with {@code likeData}.
      */

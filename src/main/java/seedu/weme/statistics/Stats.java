@@ -16,8 +16,6 @@ public interface Stats {
 
     LikeData getLikeData();
 
-    LikeManager getLikeManager();
-
     void setLikeData(LikeData likeData);
 
     ObservableMap<String, Integer> getObservableLikeData();

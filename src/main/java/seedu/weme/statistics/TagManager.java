@@ -1,11 +1,11 @@
 package seedu.weme.statistics;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
@@ -21,11 +21,11 @@ public class TagManager {
     public static final int INITIAL_LIKE_COUNT = 0;
 
     private Set<Tag> tags;
-    private PriorityQueue<TagWithCount> tagsWithCount;
+    private List<TagWithCount> tagsWithCount;
 
     public TagManager() {
         tags = new HashSet<>();
-        tagsWithCount = new PriorityQueue<>();
+        tagsWithCount = new ArrayList<>();
     }
 
     public Set<Tag> getTagsInSet() {
@@ -33,34 +33,12 @@ public class TagManager {
     }
 
     /**
-     * Get {@code TagWithCount} in PriorityQueue from the pre-stored data.
-     */
-    public PriorityQueue<TagWithCount> getTagsWithCountInPriorityQ() {
-        return tagsWithCount;
-    }
-
-    /**
-     * Get {@code TagWithCount} in PriorityQueue from a {@code ReadOnlyMemeBook}.
-     */
-    public PriorityQueue<TagWithCount> getTagsInOrderOfCounts(ObservableList<Meme> memeList) {
-        purgeData();
-        parseMemeListForTags(memeList);
-        return tagsWithCount;
-    }
-
-    /**
      * Returns {@code TagWithCount} in List.
      */
     public List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList) {
         parseMemeListForTags(memeList);
-        List<TagWithCount> tagWithCountList = new ArrayList<>();
-        PriorityQueue<TagWithCount> temp = getTagsWithCountInPriorityQ();
 
-        while (!tagsWithCount.isEmpty()) {
-            tagWithCountList.add(temp.poll());
-        }
-
-        return tagWithCountList;
+        return tagsWithCount;
     }
 
     /**
@@ -90,8 +68,10 @@ public class TagManager {
         }
 
         for (Map.Entry<Tag, Integer> mapEntry : tagToCount.entrySet()) {
-            tagsWithCount.offer(new TagWithCount(mapEntry.getKey(), mapEntry.getValue()));
+            tagsWithCount.add(new TagWithCount(mapEntry.getKey(), mapEntry.getValue()));
         }
+
+        tagsWithCount.sort(Comparator.naturalOrder());
     }
 
 }
