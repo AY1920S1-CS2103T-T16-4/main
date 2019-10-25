@@ -244,12 +244,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public List<TagWithCount> getTagsWithCountList() {
-        return versionedWeme.getTagsWithCountList();
-    };
-
-
-    @Override
     public void cleanMemeStorage() {
         try {
             Set<File> filesToKeep = new HashSet<>();

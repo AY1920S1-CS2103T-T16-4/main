@@ -185,11 +185,6 @@ public interface Model {
     void clearMemeStats(Meme memeToDelete);
 
     /**
-     * Returns a list of tags with counts.
-     */
-    List<TagWithCount> getTagsWithCountList();
-
-    /**
      * Clears the image data folder of any memes that are not referenced in weme.
      */
     void cleanMemeStorage();

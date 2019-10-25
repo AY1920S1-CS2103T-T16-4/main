@@ -1,7 +1,7 @@
 package seedu.weme.statistics;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -22,10 +22,12 @@ public class TagManager {
 
     private Set<Tag> tags;
     private List<TagWithCount> tagsWithCount;
+    private List<TagWithLike> tagsWithLike;
 
     public TagManager() {
         tags = new HashSet<>();
         tagsWithCount = new ArrayList<>();
+        tagsWithLike = new ArrayList<>();
     }
 
     public Set<Tag> getTagsInSet() {
@@ -37,8 +39,12 @@ public class TagManager {
      */
     public List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList) {
         parseMemeListForTags(memeList);
-
         return tagsWithCount;
+    }
+
+    public List<TagWithLike> getTagsWithLike(ObservableList memeList, LikeManager likeData) {
+        parseMemeListAndLikeDataForTags(memeList, likeData);
+        return tagsWithLike;
     }
 
     /**
@@ -71,7 +77,28 @@ public class TagManager {
             tagsWithCount.add(new TagWithCount(mapEntry.getKey(), mapEntry.getValue()));
         }
 
-        tagsWithCount.sort(Comparator.naturalOrder());
+        Collections.sort(tagsWithCount);
+    }
+
+    public void parseMemeListAndLikeDataForTags(ObservableList<Meme> memeList, LikeManager likeData) {
+        purgeData();
+        Map<Tag, Integer> tagToLike = new HashMap<>();
+        int likeCount;
+
+        for (Meme meme : memeList) {
+            likeCount = likeData.getLikesByMeme(meme);
+            tags = meme.getTags();
+            for (Tag tag : tags) {
+                tagToLike.put(tag, tagToLike.getOrDefault(tag, INITIAL_LIKE_COUNT) + likeCount);
+            }
+        }
+        System.out.println(tagToLike);
+
+        for (Map.Entry<Tag, Integer> mapEntry : tagToLike.entrySet()) {
+            tagsWithLike.add(new TagWithLike(mapEntry.getKey(), mapEntry.getValue()));
+        }
+
+        Collections.sort(tagsWithLike);
     }
 
 }

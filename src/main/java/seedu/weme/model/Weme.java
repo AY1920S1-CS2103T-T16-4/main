@@ -15,6 +15,7 @@ import seedu.weme.statistics.LikeData;
 import seedu.weme.statistics.Stats;
 import seedu.weme.statistics.StatsManager;
 import seedu.weme.statistics.TagWithCount;
+import seedu.weme.statistics.TagWithLike;
 
 /**
  * Wraps all data at weme level
@@ -200,6 +201,10 @@ public class Weme implements ReadOnlyWeme {
     public List<TagWithCount> getTagsWithCountList() {
         return stats.getTagsWithCountList(getMemeList());
     }
+
+    public List<TagWithLike> getTagsWithLikeCountList() {
+        return stats.getTagsWithLikeCountList(getMemeList());
+    };
 
     @Override
     public boolean equals(Object other) {

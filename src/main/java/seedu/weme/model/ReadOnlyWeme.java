@@ -8,6 +8,7 @@ import seedu.weme.model.meme.Meme;
 import seedu.weme.model.template.Template;
 import seedu.weme.statistics.Stats;
 import seedu.weme.statistics.TagWithCount;
+import seedu.weme.statistics.TagWithLike;
 
 /**
  * Unmodifiable view of an weme
@@ -35,4 +36,9 @@ public interface ReadOnlyWeme {
      * Returns a list of tags with their counts.
      */
     List<TagWithCount> getTagsWithCountList();
+
+    /**
+     * Returns a list of tags with their like counts.
+     */
+    List<TagWithLike> getTagsWithLikeCountList();
 }

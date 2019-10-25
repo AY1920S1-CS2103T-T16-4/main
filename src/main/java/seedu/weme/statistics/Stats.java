@@ -28,6 +28,14 @@ public interface Stats {
 
     //============= Tag Data ====================================
 
+    /**
+     * Returns a list of tags with their use counts in descending order.
+     */
     List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList);
+
+    /**
+     * Returns a list of tags with their like counts in descending order.
+     */
+    List<TagWithLike> getTagsWithLikeCountList(ObservableList<Meme> memeList);
 
 }
