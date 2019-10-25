@@ -83,7 +83,6 @@ public class StatsManager implements Stats {
      * Resets the existing data of this {@code StatsManager} with {@code newData}.
      */
     @Override
-
     public void resetData(Stats newData) {
         requireNonNull(newData);
 

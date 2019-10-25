@@ -35,7 +35,7 @@ public class TagManager {
     /**
      * Returns {@code TagWithCount} in List.
      */
-    public List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList) {
+    public List<TagWithCount> getTagsWithCountList(List<Meme> memeList) {
         parseMemeListForTags(memeList);
 
         return tagsWithCount;
@@ -53,7 +53,7 @@ public class TagManager {
      * Parses a {@code ReadOnlyMemeBook} for tags.
      * @param memeList
      */
-    public void parseMemeListForTags(ObservableList<Meme> memeList) {
+    public void parseMemeListForTags(List<Meme> memeList) {
         purgeData();
         Map<Tag, Integer> tagToCount = new HashMap<>();
         Set<Tag> memeTags;
