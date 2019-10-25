@@ -3,11 +3,12 @@ package seedu.weme.model;
 import javafx.collections.ObservableList;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.template.Template;
+import seedu.weme.statistics.Stats;
 
 /**
- * Unmodifiable view of an meme book
+ * Unmodifiable view of an weme
  */
-public interface ReadOnlyMemeBook {
+public interface ReadOnlyWeme {
 
     /**
      * Returns an unmodifiable view of the memes list.
@@ -34,4 +35,8 @@ public interface ReadOnlyMemeBook {
      */
     ObservableList<Template> getTemplateList();
 
+    /**
+     * Returns the statistics data of Weme.
+     */
+    Stats getStats();
 }
