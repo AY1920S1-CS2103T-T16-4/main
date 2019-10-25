@@ -11,7 +11,7 @@ import seedu.weme.logic.commands.UnstageCommand;
 import seedu.weme.logic.parser.exceptions.ParseException;
 
 /**
- * Parses user input in the import context.
+ * Parses user input in the export context.
  */
 public class ExportParser extends WemeParser {
 
@@ -34,7 +34,7 @@ public class ExportParser extends WemeParser {
         switch (commandWord) {
 
         case UnstageCommand.COMMAND_WORD:
-            return new MemeUnstageCommandParser().parse(arguments);
+            return new UnstageCommandParser().parse(arguments);
 
         case ExportCommand.COMMAND_WORD:
             return new MemeExportCommandParser().parse(arguments);

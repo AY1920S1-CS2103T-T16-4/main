@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import static seedu.weme.commons.util.AppUtil.checkArgument;
 
-import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -37,11 +36,7 @@ public class DirectoryPath {
     public static boolean isValidDirectoryPath(String test) {
         // Paths.get() throws InvalidPathException when the path is a invalid.
         // It is caught and becomes return false.
-        try {
-            return FileUtil.isValidDirectoryPath(test);
-        } catch (InvalidPathException e) {
-            return false;
-        }
+        return FileUtil.isValidDirectoryPath(test);
     }
 
     public Path toPath() {

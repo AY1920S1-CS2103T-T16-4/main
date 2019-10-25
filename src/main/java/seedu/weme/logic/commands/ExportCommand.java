@@ -24,7 +24,7 @@ public class ExportCommand extends Command {
             + "Parameters: "
             + PREFIX_FILEPATH + "PATH \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_FILEPATH + "C:/Users/username/Downloads/funny_meme.jpg ";
+            + PREFIX_FILEPATH + "C:/Users/username/Downloads/meme_folder/ ";
     public static final String MESSAGE_SUCCESS = "Memes exported successfully!";
 
     private final DirectoryPath exportPath;

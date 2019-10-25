@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import javafx.scene.image.Image;
+
 import seedu.weme.model.DirectoryPath;
 
 
@@ -29,12 +31,14 @@ public class FileUtil {
 
     private static final String CHARSET = "UTF-8";
 
-    public static boolean fileExists(Path file) {
+    public static boolean isFileExists(Path file) {
         return Files.exists(file) && Files.isRegularFile(file);
     }
 
     /**
      * Copies a list of files given by their path to a given directory.
+     * Files are named in the following format: number.extension, where
+     * number starts from 1 and increments. e.g. 1.jpg, 2.jpg ...
      *
      * @param pathList list of paths containing files.
      * @param folderPath directory path to copy to.
@@ -46,9 +50,9 @@ public class FileUtil {
             for (Path path : pathList) {
                 String newFilePath;
                 do {
-                    newFilePath = buildFilePath(folderPath, fileLabel, path);
+                    newFilePath = buildFilePath(folderPath, String.valueOf(fileLabel), path);
                     fileLabel = incrementFileLabel(fileLabel);
-                } while (fileExists(Paths.get(newFilePath)));
+                } while (isFileExists(Paths.get(newFilePath)));
 
                 if (isValidPath(newFilePath)) {
                     copy(path, Paths.get(newFilePath));
@@ -85,11 +89,9 @@ public class FileUtil {
         for (final File fileEntry : folder.listFiles()) {
             if (fileEntry.isDirectory()) {
                 recursiveLoad(imageList, new DirectoryPath(fileEntry.getPath())); // recursive call
-            } else {
-                if (fileExists(fileEntry.toPath())
-                        && isValidImageExtension(fileEntry.toPath())) {
-                    imageList.add(Paths.get(fileEntry.getPath()));
-                }
+            } else if (isFileExists(fileEntry.toPath())
+                    && isValidImageExtension(fileEntry.toPath())) {
+                imageList.add(Paths.get(fileEntry.getPath()));
             }
         }
     }
@@ -103,7 +105,7 @@ public class FileUtil {
      * @param initialPath The initial path of the file.
      * @return
      */
-    private static String buildFilePath(Path newDirectoryPath, Integer fileLabel, Path initialPath) {
+    private static String buildFilePath(Path newDirectoryPath, String fileLabel, Path initialPath) {
         StringBuilder newFilePath = new StringBuilder();
         newFilePath
                 .append(newDirectoryPath)
@@ -138,12 +140,7 @@ public class FileUtil {
      * @param path A string representing the file path. Cannot be null.
      */
     public static boolean isValidDirectoryPath(String path) {
-        try {
-            Paths.get(path);
-        } catch (InvalidPathException ipe) {
-            return false;
-        }
-        return Files.exists(Paths.get(path));
+        return Files.isDirectory(Paths.get(path));
     }
 
     /**
@@ -151,7 +148,7 @@ public class FileUtil {
      * @throws IOException if the file or directory cannot be created.
      */
     public static void createIfMissing(Path file) throws IOException {
-        if (!fileExists(file)) {
+        if (!isFileExists(file)) {
             createFile(file);
         }
     }
@@ -208,7 +205,7 @@ public class FileUtil {
      * @throws IOException if the source file does not exist.
      */
     public static void copy(Path from, Path to) throws IOException {
-        if (fileExists(from)) {
+        if (isFileExists(from)) {
             createParentDirsOfFile(to);
             Files.copy(from, to);
         } else {
@@ -240,12 +237,7 @@ public class FileUtil {
      * @throws IOException Unexpected error encountered from probeContentType().
      */
     private static boolean isValidImageExtension(Path filePath) throws IOException {
-        File file = new File(filePath.toString());
-
-        Optional<String> mimeType = Optional.ofNullable(Files.probeContentType(file.toPath()));
-        return mimeType.isPresent() && mimeType.get().split("/")[0].equals("image");
-        // mime type refers to media type, e.g. "image/png"
-
+        return !(new Image(filePath.toUri().toURL().toString()).isError());
     }
 
     /**

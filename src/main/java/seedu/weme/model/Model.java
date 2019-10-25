@@ -112,12 +112,17 @@ public interface Model {
      */
     void addMeme(Meme meme);
 
+    /**
+     * Retrieves paths of memes in the staging area.
+     *
+     * @return A List of Path representing memes in staging area.
+     */
     List<Path> getExportPathList();
 
     /**
      * Imports the meme to storage.
      */
-    void importMeme() throws IOException;
+    void importMemes() throws IOException;
 
     /**
      * Loads the memes to import staging area.

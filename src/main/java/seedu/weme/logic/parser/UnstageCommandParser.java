@@ -9,9 +9,9 @@ import seedu.weme.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new UnstageCommand object.
  */
-public class MemeUnstageCommandParser implements Parser<UnstageCommand> {
+public class UnstageCommandParser implements Parser<UnstageCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the MemeUnstageCommand
+     * Parses the given {@code String} of arguments in the context of the UnstageCommand
      * and returns a MemeUnstageCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */

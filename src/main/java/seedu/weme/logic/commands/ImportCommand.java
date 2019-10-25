@@ -24,7 +24,7 @@ public class ImportCommand extends Command {
         requireNonNull(model);
 
         try {
-            model.importMeme();
+            model.importMemes();
         } catch (IOException e) {
             throw new CommandException(e.toString());
         }

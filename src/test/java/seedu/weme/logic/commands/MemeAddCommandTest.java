@@ -89,7 +89,7 @@ public class MemeAddCommandTest {
         }
 
         @Override
-        public void importMeme() {
+        public void importMemes() {
             throw new AssertionError("This method should not be called");
         }
 
