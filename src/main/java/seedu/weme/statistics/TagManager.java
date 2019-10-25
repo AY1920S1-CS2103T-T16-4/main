@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javafx.collections.ObservableList;
-
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.tag.Tag;
 
