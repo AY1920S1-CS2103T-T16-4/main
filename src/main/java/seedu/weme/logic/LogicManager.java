@@ -15,6 +15,10 @@ import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.logic.parser.ParserUtil;
 import seedu.weme.logic.parser.WemeParser;
 import seedu.weme.logic.parser.exceptions.ParseException;
+import seedu.weme.logic.prompter.CommandPrompt;
+import seedu.weme.logic.prompter.PrompterUtil;
+import seedu.weme.logic.prompter.WemePrompter;
+import seedu.weme.logic.prompter.exceptions.PromptException;
 import seedu.weme.model.Model;
 import seedu.weme.model.ModelContext;
 import seedu.weme.model.ReadOnlyWeme;
@@ -69,6 +73,15 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public CommandPrompt prompt(String commandText) throws PromptException {
+        ModelContext currentContext = model.getContext().getValue();
+        WemePrompter wemePrompter = PrompterUtil.forContext(currentContext);
+        CommandPrompt commandPrompt = wemePrompter.promptCommand(model, commandText);
+
+        return commandPrompt;
+    }
+
+    @Override
     public ReadOnlyWeme getWeme() {
         return model.getWeme();
     }
@@ -79,6 +92,14 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Meme> getFilteredStagedMemeList() {
+        return model.getFilteredStagedMemeList();
+    }
+
+    @Override
+    public ObservableList<Meme> getFilteredImportList() {
+        return model.getFilteredImportList();
+    }
     public ObservableList<Template> getFilteredTemplateList() {
         return model.getFilteredTemplateList();
     }

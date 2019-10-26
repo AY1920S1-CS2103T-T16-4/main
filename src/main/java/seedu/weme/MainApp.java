@@ -22,10 +22,8 @@ import seedu.weme.model.ReadOnlyWeme;
 import seedu.weme.model.UserPrefs;
 import seedu.weme.model.Weme;
 import seedu.weme.model.util.SampleDataUtil;
-import seedu.weme.storage.JsonStatsDataStorage;
 import seedu.weme.storage.JsonUserPrefsStorage;
 import seedu.weme.storage.JsonWemeStorage;
-import seedu.weme.storage.StatsDataStorage;
 import seedu.weme.storage.Storage;
 import seedu.weme.storage.StorageManager;
 import seedu.weme.storage.UserPrefsStorage;
@@ -59,7 +57,6 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         WemeStorage wemeStorage = new JsonWemeStorage(userPrefs.getDataFilePath());
-        StatsDataStorage statsDataStorage = new JsonStatsDataStorage(userPrefs.getStatsDataFilePath());
         storage = new StorageManager(wemeStorage, userPrefsStorage);
 
         initLogging(config);
@@ -72,9 +69,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s weme and {@code userPrefs}. <br>
-     * The data from the sample weme will be used instead if {@code storage}'s weme is not found,
-     * or an empty weme will be used instead if errors occur when reading {@code storage}'s weme.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s Weme and {@code userPrefs}. <br>
+     * The data from the sample Weme will be used instead if {@code storage}'s Weme is not found,
+     * or an empty Weme will be used instead if errors occur when reading {@code storage}'s Weme.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyWeme> wemeOptional;

@@ -10,6 +10,7 @@ import static seedu.weme.testutil.MemeUtil.isSameMemeImage;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -23,6 +24,7 @@ import seedu.weme.model.Model;
 import seedu.weme.model.ModelContext;
 import seedu.weme.model.ReadOnlyUserPrefs;
 import seedu.weme.model.ReadOnlyWeme;
+import seedu.weme.model.Records;
 import seedu.weme.model.Weme;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.template.Template;
@@ -87,6 +89,26 @@ public class MemeAddCommandTest {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void importMemes() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public List<Path> getExportPathList() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void clearExportList() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void loadMemes(List<Path> pathList) {
+            throw new AssertionError("This method should not be called");
         }
 
         @Override
@@ -160,12 +182,32 @@ public class MemeAddCommandTest {
         }
 
         @Override
+        public void stageMeme(Meme meme) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unstageMeme(Meme meme) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setMeme(Meme target, Meme editedMeme) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Meme> getFilteredMemeList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Meme> getFilteredStagedMemeList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Meme> getFilteredImportList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -255,6 +297,35 @@ public class MemeAddCommandTest {
             throw new AssertionError("This method should not be called");
         }
 
+        @Override
+        public Records getRecords() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public Set<String> getPathRecords() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public Set<String> getDescriptionRecords() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public Set<String> getTagRecords() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public Set<String> getNameRecords() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void addMemeToRecord(Meme meme) {
+            throw new AssertionError("This method should not be called");
+        }
     }
 
     /**
@@ -312,6 +383,10 @@ public class MemeAddCommandTest {
         public ReadOnlyWeme getWeme() {
             return new Weme();
         }
+
+        @Override
+        public void addMemeToRecord(Meme meme) {}
+
     }
 
 }

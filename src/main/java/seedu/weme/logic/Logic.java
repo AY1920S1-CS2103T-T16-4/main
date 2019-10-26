@@ -9,6 +9,8 @@ import seedu.weme.commons.core.GuiSettings;
 import seedu.weme.logic.commands.CommandResult;
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.logic.parser.exceptions.ParseException;
+import seedu.weme.logic.prompter.CommandPrompt;
+import seedu.weme.logic.prompter.exceptions.PromptException;
 import seedu.weme.model.ModelContext;
 import seedu.weme.model.ReadOnlyWeme;
 import seedu.weme.model.meme.Meme;
@@ -29,6 +31,14 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
+     * Prompt the command and return the command prompt.
+     * @param commandText The command as entered by the user
+     * @return the command prompt
+     * @throws PromptException If and error occurs during analyzing.
+     */
+    CommandPrompt prompt(String commandText) throws PromptException;
+
+    /**
      * Returns weme.
      *
      * @see seedu.weme.model.Model#getWeme()
@@ -37,6 +47,12 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of memes */
     ObservableList<Meme> getFilteredMemeList();
+
+    /** Returns an unmodifiable view of the filtered list of imported memes */
+    ObservableList<Meme> getFilteredImportList();
+
+    /** Returns an unmodifiable view of the filtered staged list of memes */
+    ObservableList<Meme> getFilteredStagedMemeList();
 
     /** Returns an unmodifiable view of the filtered list of templates */
     ObservableList<Template> getFilteredTemplateList();
@@ -54,7 +70,7 @@ public interface Logic {
     void setContext(ModelContext context);
 
     /**
-     * Returns the user prefs' weme file path.
+     * Returns the user prefs' Weme file path.
      */
     Path getWemeFilePath();
 
@@ -79,7 +95,7 @@ public interface Logic {
     ObservableMap<String, Integer> getObservableLikeData();
 
     /**
-     * Handles any logic that needs to be done before exiting weme.
+     * Handles any logic that needs to be done before exiting Weme.
      */
     void cleanUp();
 }
