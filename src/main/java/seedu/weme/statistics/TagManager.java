@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import seedu.weme.model.meme.Meme;
@@ -22,8 +21,8 @@ public class TagManager {
     public static final int INITIAL_LIKE_COUNT = 0;
 
     private final Set<Tag> tags;
-    private final ObservableList<TagWithCount> tagsWithCount;
-    private final ObservableList<TagWithLike> tagsWithLike;
+    private final List<TagWithCount> tagsWithCount;
+    private final List<TagWithLike> tagsWithLike;
 
     public TagManager() {
         tags = new HashSet<>();
@@ -38,14 +37,14 @@ public class TagManager {
     /**
      * Returns {@code TagWithCount} in List.
      */
-    public ObservableList<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList) {
+    public List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList) {
         parseMemeListForTags(memeList);
-        return FXCollections.observableList(tagsWithCount);
+        return tagsWithCount;
     }
 
-    public ObservableList<TagWithLike> getTagsWithLike(ObservableList<Meme> memeList, LikeManager likeData) {
+    public List<TagWithLike> getTagsWithLike(ObservableList<Meme> memeList, LikeManager likeData) {
         parseMemeListAndLikeDataForTags(memeList, likeData);
-        return FXCollections.observableList(tagsWithLike);
+        return tagsWithLike;
     }
 
     /**

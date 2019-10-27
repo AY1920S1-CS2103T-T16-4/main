@@ -75,12 +75,12 @@ public class StatsManager implements Stats {
     //============= Tag Data ====================================
 
     @Override
-    public ObservableList<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList) {
+    public List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList) {
         return tagManager.getTagsWithCountList(memeList);
     };
 
     @Override
-    public ObservableList<TagWithLike> getTagsWithLikeCountList(ObservableList<Meme> memeList) {
+    public List<TagWithLike> getTagsWithLikeCountList(ObservableList<Meme> memeList) {
         return tagManager.getTagsWithLike(memeList, likeManager);
     }
 

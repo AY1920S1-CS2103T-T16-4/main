@@ -279,11 +279,11 @@ public class Weme implements ReadOnlyWeme {
 
     // ============== Tag Data Methods ===============================
 
-    public ObservableList<TagWithCount> getTagsWithCountList() {
+    public List<TagWithCount> getTagsWithCountList() {
         return stats.getTagsWithCountList(getMemeList());
     }
 
-    public ObservableList<TagWithLike> getTagsWithLikeCountList() {
+    public List<TagWithLike> getTagsWithLikeCountList() {
         return stats.getTagsWithLikeCountList(getMemeList());
     };
 

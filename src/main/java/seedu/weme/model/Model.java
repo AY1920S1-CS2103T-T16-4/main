@@ -14,7 +14,6 @@ import seedu.weme.model.meme.Meme;
 import seedu.weme.model.template.Template;
 import seedu.weme.statistics.LikeData;
 import seedu.weme.statistics.Stats;
-import seedu.weme.statistics.TagWithCount;
 
 /**
  * The API of the Model component.

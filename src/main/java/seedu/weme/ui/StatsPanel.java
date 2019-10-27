@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
+import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Side;
@@ -34,14 +35,17 @@ public class StatsPanel extends UiPart<Region> {
     public StatsPanel(ReadOnlyWeme weme) {
         super(FXML);
         renderCharts(weme);
-        weme.getMemeList().addListener((ListChangeListener<Meme>) change -> renderCharts(weme));
-        weme.getTagsWithCountList().addListener((ListChangeListener<TagWithStats>) change -> renderCharts(weme));
-        weme.getTagsWithLikeCountList().addListener((ListChangeListener<TagWithStats>) change -> renderCharts(weme));
     }
 
+    /**
+     * Renders the charts with Chart generator methods.
+     */
     private void renderCharts(ReadOnlyWeme weme) {
         generateTagCountChart(weme);
         generateTagLikeChart(weme);
+        weme.getMemeList().addListener((ListChangeListener<Meme>) change -> renderCharts(weme));
+        weme.getStats().getObservableLikeData().addListener((MapChangeListener<String, Integer>) change ->
+                renderCharts(weme));
     }
 
     /**
@@ -64,9 +68,6 @@ public class StatsPanel extends UiPart<Region> {
 
     /**
      * Generates pie chart with a list of tags with stats and the title.
-     * @param tagsWithStats
-     * @param chart
-     * @param title
      */
     private void generatePieChart(List<? extends TagWithStats> tagsWithStats, PieChart chart, String title) {
         List<PieChart.Data> data = new ArrayList<>();

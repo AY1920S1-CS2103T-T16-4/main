@@ -10,8 +10,6 @@ public class TagWithLike extends TagWithStats implements Comparable<TagWithLike>
 
     /**
      * Constructs a {@code TagWithCount}
-     * @param tag
-     * @param like
      */
     public TagWithLike(Tag tag, int like) {
         super(tag, like);
@@ -26,9 +24,10 @@ public class TagWithLike extends TagWithStats implements Comparable<TagWithLike>
     public int compareTo(TagWithLike o) {
         int count = getData();
         int targetCount = o.getData();
-        if (count > targetCount) {
+        // Reverse the order so that tags with more likes appears before.
+        if (count < targetCount) {
             return 1;
-        } else if (count < targetCount) {
+        } else if (count > targetCount) {
             return -1;
         } else {
             return getTag().tagName.compareTo(o.getTag().tagName);

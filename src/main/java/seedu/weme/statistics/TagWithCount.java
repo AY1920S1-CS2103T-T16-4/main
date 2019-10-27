@@ -10,8 +10,6 @@ public class TagWithCount extends TagWithStats implements Comparable<TagWithCoun
 
     /**
      * Constructs a {@code TagWithCount}
-     * @param tag
-     * @param count
      */
     public TagWithCount(Tag tag, int count) {
         super(tag, count);
@@ -26,9 +24,10 @@ public class TagWithCount extends TagWithStats implements Comparable<TagWithCoun
     public int compareTo(TagWithCount o) {
         int count = getData();
         int targetCount = o.getData();
-        if (count > targetCount) {
+        // Reverse the order so that tags with more occurrence appears before.
+        if (count < targetCount) {
             return 1;
-        } else if (count < targetCount) {
+        } else if (count > targetCount) {
             return -1;
         } else {
             return getTag().tagName.compareTo(o.getTag().tagName);

@@ -47,12 +47,12 @@ public interface ReadOnlyWeme {
     /**
      * Returns a list of tags with their counts.
      */
-    ObservableList<TagWithCount> getTagsWithCountList();
+    List<TagWithCount> getTagsWithCountList();
 
     /**
      * Returns a list of tags with their like counts.
      */
-    ObservableList<TagWithLike> getTagsWithLikeCountList();
+    List<TagWithLike> getTagsWithLikeCountList();
 
     /** Return records of Weme.
      * @return
