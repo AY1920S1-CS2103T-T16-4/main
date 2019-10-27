@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weme.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.weme.model.ModelContext.CONTEXT_MEMES;
+import static seedu.weme.model.ModelContext.CONTEXT_MEME_CREATION;
 import static seedu.weme.testutil.Assert.assertThrows;
 import static seedu.weme.testutil.TypicalIndexes.INDEX_FIRST_MEME;
 
@@ -20,12 +21,11 @@ import seedu.weme.model.meme.Description;
 import seedu.weme.model.tag.Tag;
 
 public class ParserUtilTest {
-    private static final String INVALID_CONTEXT = "NOT A CONTEXT";
+    private static final String INVALID_TAB = "NOT A TAB";
     private static final String INVALID_FILEPATH = "Hello world";
     private static final String INVALID_TAG = "#friend";
     private static final String VALID_DESCRIPTION = "Sit vitae voluptas sint non voluptates";
 
-    private static final String VALID_CONTEXT = "memes";
     private static final String VALID_FILEPATH = "src/test/data/memes/charmander_meme.jpg";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -38,17 +38,25 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseContext_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseContext(INVALID_CONTEXT));
+    public void parseTab_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTab(INVALID_TAB));
     }
 
     @Test
-    public void parseContext_validInput_success() throws Exception {
+    public void parseTab_validNonTabContext_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+            ParserUtil.parseTab(CONTEXT_MEME_CREATION.getContextName()));
+    }
+
+    @Test
+    public void parseTab_validInput_success() throws Exception {
+        String contextName = CONTEXT_MEMES.getContextName();
+
         // No whitespaces
-        assertEquals(CONTEXT_MEMES, ParserUtil.parseContext(VALID_CONTEXT));
+        assertEquals(CONTEXT_MEMES, ParserUtil.parseTab(contextName));
 
         // With whitespaces
-        assertEquals(CONTEXT_MEMES, ParserUtil.parseContext(" " + VALID_CONTEXT + " "));
+        assertEquals(CONTEXT_MEMES, ParserUtil.parseTab(" " + contextName + " "));
     }
 
     @Test

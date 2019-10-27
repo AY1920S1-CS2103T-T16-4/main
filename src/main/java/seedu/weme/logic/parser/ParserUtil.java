@@ -27,7 +27,7 @@ import seedu.weme.model.template.Name;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_CONTEXT = "Tab provided is not a valid tab.";
+    public static final String MESSAGE_INVALID_TAB = "Tab provided is not a valid tab.";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_FILEPATH = "File not found or invalid file path given.";
     public static final String MESSAGE_INVALID_DIRECTORYPATH = "Invalid directory path given.";
@@ -63,11 +63,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code context} into a {@code ModelContext} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified context is invalid (Not one of the enums).
+     * Parses {@code context} into a {@code ModelContext} that has its own tab and returns it.
+     *
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified context does not corresponds to a tab
      */
-    public static ModelContext parseContext(String context) throws ParseException {
+    public static ModelContext parseTab(String context) throws ParseException {
         String trimmedContext = context.trim();
         if (trimmedContext.equals(CONTEXT_MEMES.getContextName())) {
             return CONTEXT_MEMES;
@@ -82,7 +83,7 @@ public class ParserUtil {
         } else if (trimmedContext.equals(CONTEXT_PREFERENCES.getContextName())) {
             return CONTEXT_PREFERENCES;
         }
-        throw new ParseException(MESSAGE_INVALID_CONTEXT);
+        throw new ParseException(MESSAGE_INVALID_TAB);
     }
 
     /**

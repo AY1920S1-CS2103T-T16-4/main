@@ -1,6 +1,6 @@
 package seedu.weme.ui;
 
-import static seedu.weme.logic.parser.ParserUtil.MESSAGE_INVALID_CONTEXT;
+import static seedu.weme.logic.parser.ParserUtil.MESSAGE_INVALID_TAB;
 
 import java.util.logging.Logger;
 
@@ -213,7 +213,7 @@ public class MainWindow extends UiPart<Stage> {
             appContentPlaceholder.getChildren().add(importPanel);
             break;
         default:
-            throw new IllegalArgumentException(MESSAGE_INVALID_CONTEXT);
+            throw new IllegalArgumentException(MESSAGE_INVALID_TAB);
         }
     }
 
