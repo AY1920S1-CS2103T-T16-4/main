@@ -2,15 +2,24 @@ package seedu.weme.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+
+import seedu.weme.model.imagePath.ImagePath;
+import seedu.weme.model.meme.Description;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.meme.UniqueMemeList;
+import seedu.weme.model.tag.Tag;
+import seedu.weme.model.template.Name;
 import seedu.weme.model.template.Template;
 import seedu.weme.model.template.UniqueTemplateList;
+import seedu.weme.model.util.ImageUtil;
 import seedu.weme.statistics.LikeData;
 import seedu.weme.statistics.Stats;
 import seedu.weme.statistics.StatsManager;
@@ -18,15 +27,18 @@ import seedu.weme.statistics.TagWithCount;
 import seedu.weme.statistics.TagWithLike;
 
 /**
- * Wraps all data at weme level
+ * Wraps all data at Weme level
  * Duplicates are not allowed (by {@link Meme#isSameMeme(Meme)} and
  * {@link Template#isSameTemplate(Template)} comparisons)
  */
 public class Weme implements ReadOnlyWeme {
 
     private final UniqueMemeList memes;
+    private final UniqueMemeList exportList;
+    private final UniqueMemeList importList;
     private final UniqueTemplateList templates;
     private final Stats stats;
+    private final Records records;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -37,8 +49,11 @@ public class Weme implements ReadOnlyWeme {
      */
     {
         memes = new UniqueMemeList();
+        exportList = new UniqueMemeList();
+        importList = new UniqueMemeList();
         templates = new UniqueTemplateList();
         stats = new StatsManager();
+        records = new RecordsManager();
     }
 
     public Weme() {}
@@ -55,6 +70,9 @@ public class Weme implements ReadOnlyWeme {
         stats.resetData(replacement);
     }
 
+    public void setRecords(Records replacement) {
+        records.resetRecords(replacement);
+    }
     //// list overwrite operations
 
     /**
@@ -82,12 +100,13 @@ public class Weme implements ReadOnlyWeme {
         setMemes(newData.getMemeList());
         setTemplates(newData.getTemplateList());
         setStats(newData.getStats());
+        setRecords(newData.getRecords());
     }
 
     //// meme-level operations
 
     /**
-     * Returns true if a meme with the same identity as {@code meme} exists in weme.
+     * Returns true if a meme with the same identity as {@code meme} exists in Weme.
      */
     public boolean hasMeme(Meme meme) {
         requireNonNull(meme);
@@ -95,7 +114,59 @@ public class Weme implements ReadOnlyWeme {
     }
 
     /**
-     * Returns true if a template with the same identity as {@code template} exists in weme.
+     * Stages a meme to the staging area.
+     *
+     * @param meme meme to stage
+     */
+    public void stageMeme(Meme meme) {
+        exportList.add(meme);
+    }
+
+    /**
+     * Unstages a meme from the staging area.
+     *
+     * @param meme meme to unstage
+     */
+    public void unstageMeme(Meme meme) {
+        exportList.remove(meme);
+    }
+
+    /**
+     * Transfers all memes from importList into storage.
+     */
+    public void importMeme(Path internalImagePath) throws IOException {
+        for (Meme meme : importList) {
+            Meme copiedMeme = ImageUtil.copyMeme(meme, internalImagePath);
+            addMeme(copiedMeme);
+        }
+    }
+
+    public void clearImportList() {
+        importList.clear();
+    }
+
+    public void clearExportList() {
+        exportList.clear();
+    }
+
+    /**
+     * Loads meme from given directory to staging area.
+     *
+     * @param pathList
+     */
+    public void loadMemes(List<Path> pathList) {
+        for (Path path : pathList) {
+            Meme meme = new Meme(new ImagePath(path.toString()));
+            importList.add(meme);
+        }
+    }
+
+    public List<Path> getExportPathList() {
+        return exportList.asPathList();
+    }
+
+    /**
+     * Returns true if a template with the same identity as {@code template} exists in Weme.
      */
     public boolean hasTemplate(Template template) {
         requireNonNull(template);
@@ -103,16 +174,16 @@ public class Weme implements ReadOnlyWeme {
     }
 
     /**
-     * Adds a meme to weme.
-     * The meme must not already exist in weme.
+     * Adds a meme to Weme.
+     * The meme must not already exist in Weme.
      */
     public void addMeme(Meme p) {
         memes.add(p);
     }
 
     /**
-     * Adds a template to weme.
-     * The template must not already exist in weme.
+     * Adds a template to Weme.
+     * The template must not already exist in Weme.
      */
     public void addTemplate(Template p) {
         templates.add(p);
@@ -120,8 +191,8 @@ public class Weme implements ReadOnlyWeme {
 
     /**
      * Replaces the given meme {@code target} in the list with {@code editedMeme}.
-     * {@code target} must exist in weme.
-     * The meme identity of {@code editedMeme} must not be the same as another existing meme in weme.
+     * {@code target} must exist in Weme.
+     * The meme identity of {@code editedMeme} must not be the same as another existing meme in Weme.
      */
     public void setMeme(Meme target, Meme editedMeme) {
         requireNonNull(editedMeme);
@@ -131,9 +202,9 @@ public class Weme implements ReadOnlyWeme {
 
     /**
      * Replaces the given template {@code target} in the list with {@code editedTemplate}.
-     * {@code target} must exist in weme.
+     * {@code target} must exist in Weme.
      * The template identity of {@code editedTemplate} must not be the same as another existing template in the
-     * weme.
+     * Weme.
      */
     public void setTemplate(Template target, Template editedTemplate) {
         requireNonNull(editedTemplate);
@@ -143,7 +214,7 @@ public class Weme implements ReadOnlyWeme {
 
     /**
      * Removes {@code key} from this {@code Weme}.
-     * {@code key} must exist in weme.
+     * {@code key} must exist in Weme.
      */
     public void removeMeme(Meme key) {
         memes.remove(key);
@@ -151,7 +222,7 @@ public class Weme implements ReadOnlyWeme {
 
     /**
      * Removes {@code key} from this {@code Weme}.
-     * {@code key} must exist in weme.
+     * {@code key} must exist in Weme.
      */
     public void removeTemplate(Template key) {
         templates.remove(key);
@@ -162,7 +233,7 @@ public class Weme implements ReadOnlyWeme {
     @Override
     public String toString() {
         return memes.asUnmodifiableObservableList().size() + " memes and "
-            + templates.asUnmodifiableObservableList().size() + " templates";
+                + templates.asUnmodifiableObservableList().size() + " templates";
         // TODO: refine later
     }
 
@@ -172,10 +243,20 @@ public class Weme implements ReadOnlyWeme {
     }
 
     @Override
+    public ObservableList<Meme> getStagedMemeList() {
+        return exportList.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Meme> getImportList() {
+        return importList.asUnmodifiableObservableList();
+    }
+
     public ObservableList<Template> getTemplateList() {
         return templates.asUnmodifiableObservableList();
     }
 
+    @Override
     public Stats getStats() {
         return stats;
     }
@@ -198,13 +279,50 @@ public class Weme implements ReadOnlyWeme {
 
     // ============== Tag Data Methods ===============================
 
-    public List<TagWithCount> getTagsWithCountList() {
+    public ObservableList<TagWithCount> getTagsWithCountList() {
         return stats.getTagsWithCountList(getMemeList());
     }
 
-    public List<TagWithLike> getTagsWithLikeCountList() {
+    public ObservableList<TagWithLike> getTagsWithLikeCountList() {
         return stats.getTagsWithLikeCountList(getMemeList());
     };
+
+    @Override
+    public Records getRecords() {
+        return records;
+    }
+
+    public Set<String> getPaths() {
+        return records.getPaths();
+    }
+
+    public Set<String> getDescriptions() {
+        return records.getDescriptions();
+    }
+
+    public Set<String> getTags() {
+        return records.getTags();
+    }
+
+    public Set<String> getNames() {
+        return records.getNames();
+    }
+
+    public void addPath(ImagePath path) {
+        records.addPath(path);
+    }
+
+    public void addDescription(Description description) {
+        records.addDescription(description);
+    }
+
+    public void addTags(Set<Tag> tags) {
+        records.addTags(tags);
+    }
+
+    public void addName(Name name) {
+        records.addName(name);
+    }
 
     @Override
     public boolean equals(Object other) {

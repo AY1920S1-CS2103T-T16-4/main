@@ -7,6 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.weme.logic.commands.CommandResult;
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.logic.parser.exceptions.ParseException;
+import seedu.weme.logic.prompter.exceptions.PromptException;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -19,6 +20,8 @@ public class CommandBox extends UiPart<Region> {
     private final CommandExecutor commandExecutor;
     private final CommandPrompter commandPrompter;
 
+    private boolean isShowingCommandSuccess = false;
+
     @FXML
     private TextField commandTextField;
 
@@ -29,7 +32,11 @@ public class CommandBox extends UiPart<Region> {
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> {
             setStyleToDefault();
-            displayCommandPrompt();
+            if (!isShowingCommandSuccess) {
+                displayCommandPrompt();
+            } else {
+                isShowingCommandSuccess = false;
+            }
         });
     }
 
@@ -40,6 +47,7 @@ public class CommandBox extends UiPart<Region> {
     private void handleCommandEntered() {
         try {
             commandExecutor.execute(commandTextField.getText());
+            isShowingCommandSuccess = true;
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
@@ -57,7 +65,11 @@ public class CommandBox extends UiPart<Region> {
      * Display the command prompt in the result box.
      */
     private void displayCommandPrompt() {
-        commandPrompter.execute(commandTextField.getText());
+        try {
+            commandPrompter.execute(commandTextField.getText());
+        } catch (PromptException e) {
+            setStyleToIndicateCommandFailure();
+        }
     }
 
     /**
@@ -95,7 +107,7 @@ public class CommandBox extends UiPart<Region> {
          * Parse the user input and display the suggestions in ResultDisplay.
          * @param userInput text input from CommandBox
          */
-        void execute(String userInput);
+        void execute(String userInput) throws PromptException;
     }
 
 }

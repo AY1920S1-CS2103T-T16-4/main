@@ -35,6 +35,8 @@ public class StatsPanel extends UiPart<Region> {
         super(FXML);
         renderCharts(weme);
         weme.getMemeList().addListener((ListChangeListener<Meme>) change -> renderCharts(weme));
+        weme.getTagsWithCountList().addListener((ListChangeListener<TagWithStats>) change -> renderCharts(weme));
+        weme.getTagsWithLikeCountList().addListener((ListChangeListener<TagWithStats>) change -> renderCharts(weme));
     }
 
     private void renderCharts(ReadOnlyWeme weme) {

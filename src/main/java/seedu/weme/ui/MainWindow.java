@@ -18,6 +18,8 @@ import seedu.weme.logic.Logic;
 import seedu.weme.logic.commands.CommandResult;
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.logic.parser.exceptions.ParseException;
+import seedu.weme.logic.prompter.CommandPrompt;
+import seedu.weme.logic.prompter.exceptions.PromptException;
 import seedu.weme.model.ModelContext;
 
 /**
@@ -40,9 +42,9 @@ public class MainWindow extends UiPart<Stage> {
     // App content for different tabs
     private StackPane memesPanel;
     private StackPane templatesPanel;
-    private StackPane archivePanel;
     private StackPane statisticsPanel;
-    private StackPane storagePanel;
+    private StackPane exportPanel;
+    private StackPane importPanel;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -147,9 +149,9 @@ public class MainWindow extends UiPart<Stage> {
     private void fillAppContent() {
         memesPanel = new StackPane();
         templatesPanel = new StackPane();
-        archivePanel = new StackPane();
         statisticsPanel = new StackPane();
-        storagePanel = new StackPane();
+        exportPanel = new StackPane();
+        importPanel = new StackPane();
 
         MemeGridPanel memeGridPanel = new MemeGridPanel(logic.getFilteredMemeList(), logic.getObservableLikeData());
         memesPanel.getChildren().add(memeGridPanel.getRoot());
@@ -160,6 +162,15 @@ public class MainWindow extends UiPart<Stage> {
         StatsPanel statsPanel = new StatsPanel(logic.getWeme());
         statisticsPanel.getChildren().add(statsPanel.getRoot());
         // TODO: Fill in other panels here
+
+        MemeGridPanel exportGridPanel = new MemeGridPanel(
+                logic.getFilteredStagedMemeList(), logic.getObservableLikeData());
+        ImportGridPanel importGridPanel = new ImportGridPanel(
+                logic.getFilteredImportList());
+
+        exportPanel.getChildren().add(exportGridPanel.getRoot());
+        importPanel.getChildren().add(importGridPanel.getRoot());
+
     }
 
     /**
@@ -184,14 +195,14 @@ public class MainWindow extends UiPart<Stage> {
         case CONTEXT_TEMPLATES:
             appContentPlaceholder.getChildren().add(templatesPanel);
             break;
-        case CONTEXT_ARCHIVE:
-            appContentPlaceholder.getChildren().add(archivePanel);
-            break;
         case CONTEXT_STATISTICS:
             appContentPlaceholder.getChildren().add(statisticsPanel);
             break;
-        case CONTEXT_STORAGE:
-            appContentPlaceholder.getChildren().add(storagePanel);
+        case CONTEXT_EXPORT:
+            appContentPlaceholder.getChildren().add(exportPanel);
+            break;
+        case CONTEXT_IMPORT:
+            appContentPlaceholder.getChildren().add(importPanel);
             break;
         default:
             throw new IllegalArgumentException(MESSAGE_INVALID_CONTEXT);
@@ -268,8 +279,15 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Parse the user input and display the suggestions in ResultDisplay.
-     * @param userInput text input from CommandBox
+     * @param commandText text input from CommandBox
      */
-    private void promptCommand(String userInput) {
+    private void promptCommand(String commandText) throws PromptException {
+        try {
+            CommandPrompt commandPrompt = logic.prompt(commandText);
+            resultDisplay.setFeedbackToUser(commandPrompt.toString());
+        } catch (PromptException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        }
     }
 }

@@ -7,9 +7,9 @@ public enum ModelContext {
     // List of all contexts in the application.
     CONTEXT_MEMES("memes"),
     CONTEXT_TEMPLATES("templates"),
-    CONTEXT_ARCHIVE("archive"),
     CONTEXT_STATISTICS("statistics"),
-    CONTEXT_STORAGE("storage");
+    CONTEXT_EXPORT("export"),
+    CONTEXT_IMPORT("import");
 
     private final String contextName;
 

@@ -75,12 +75,12 @@ public class StatsManager implements Stats {
     //============= Tag Data ====================================
 
     @Override
-    public List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList) {
+    public ObservableList<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList) {
         return tagManager.getTagsWithCountList(memeList);
     };
 
     @Override
-    public List<TagWithLike> getTagsWithLikeCountList(ObservableList<Meme> memeList) {
+    public ObservableList<TagWithLike> getTagsWithLikeCountList(ObservableList<Meme> memeList) {
         return tagManager.getTagsWithLike(memeList, likeManager);
     }
 
@@ -88,7 +88,6 @@ public class StatsManager implements Stats {
      * Resets the existing data of this {@code StatsManager} with {@code newData}.
      */
     @Override
-
     public void resetData(Stats newData) {
         requireNonNull(newData);
 

@@ -31,11 +31,11 @@ public interface Stats {
     /**
      * Returns a list of tags with their use counts in descending order.
      */
-    List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList);
+    ObservableList<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList);
 
     /**
      * Returns a list of tags with their like counts in descending order.
      */
-    List<TagWithLike> getTagsWithLikeCountList(ObservableList<Meme> memeList);
+    ObservableList<TagWithLike> getTagsWithLikeCountList(ObservableList<Meme> memeList);
 
 }

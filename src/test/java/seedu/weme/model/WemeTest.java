@@ -96,8 +96,11 @@ public class WemeTest {
      */
     private static class WemeStub implements ReadOnlyWeme {
         private final ObservableList<Meme> memes = FXCollections.observableArrayList();
+        private final ObservableList<Meme> stagedMemes = FXCollections.observableArrayList();
+        private final ObservableList<Meme> importList = FXCollections.observableArrayList();
         private final ObservableList<Template> templates = FXCollections.observableArrayList();
         private final Stats stats = new StatsManager();
+        private final Records records = new RecordsManager();
 
         WemeStub() {
         }
@@ -117,6 +120,15 @@ public class WemeTest {
         }
 
         @Override
+        public ObservableList<Meme> getStagedMemeList() {
+            return stagedMemes;
+        }
+
+        @Override
+        public ObservableList<Meme> getImportList() {
+            return importList;
+        }
+
         public ObservableList<Template> getTemplateList() {
             return templates;
         }
@@ -129,6 +141,11 @@ public class WemeTest {
         @Override
         public List<TagWithLike> getTagsWithLikeCountList() {
             return stats.getTagsWithLikeCountList(memes);
+        }
+
+        @Override
+        public Records getRecords() {
+            return records;
         }
     }
 

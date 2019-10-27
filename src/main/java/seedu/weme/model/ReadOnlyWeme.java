@@ -11,7 +11,7 @@ import seedu.weme.statistics.TagWithCount;
 import seedu.weme.statistics.TagWithLike;
 
 /**
- * Unmodifiable view of an weme
+ * Unmodifiable view of a Weme
  */
 public interface ReadOnlyWeme {
 
@@ -20,6 +20,18 @@ public interface ReadOnlyWeme {
      * This list will not contain any duplicate memes.
      */
     ObservableList<Meme> getMemeList();
+
+    /**
+     * Returns an umodifiable view of the staged memes list.
+     * This list will not contain any duplicate memes.
+     */
+    ObservableList<Meme> getStagedMemeList();
+
+    /**
+     * Returns an umodifiable view of the import memes list.
+     * This list will not contain any duplicate memes.
+     */
+    ObservableList<Meme> getImportList();
 
     /**
      * Returns an unmodifiable view of the template list.
@@ -35,10 +47,16 @@ public interface ReadOnlyWeme {
     /**
      * Returns a list of tags with their counts.
      */
-    List<TagWithCount> getTagsWithCountList();
+    ObservableList<TagWithCount> getTagsWithCountList();
 
     /**
      * Returns a list of tags with their like counts.
      */
-    List<TagWithLike> getTagsWithLikeCountList();
+    ObservableList<TagWithLike> getTagsWithLikeCountList();
+
+    /** Return records of Weme.
+     * @return
+     */
+    Records getRecords();
+
 }
