@@ -9,7 +9,6 @@ import static seedu.weme.testutil.MemeUtil.isSameMemeImage;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -28,7 +27,6 @@ import seedu.weme.model.meme.Meme;
 import seedu.weme.model.template.Template;
 import seedu.weme.statistics.LikeData;
 import seedu.weme.statistics.Stats;
-import seedu.weme.statistics.TagWithCount;
 import seedu.weme.testutil.MemeBuilder;
 import seedu.weme.testutil.TestUtil;
 import seedu.weme.testutil.UserPrefsBuilder;
@@ -242,11 +240,6 @@ public class MemeAddCommandTest {
 
         @Override
         public void incrementMemeLikeCount(Meme meme) {
-            throw new AssertionError("This method should not be called");
-        }
-
-        @Override
-        public List<TagWithCount> getTagsWithCountList() {
             throw new AssertionError("This method should not be called");
         }
 

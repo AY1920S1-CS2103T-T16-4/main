@@ -20,9 +20,9 @@ public class TagManager {
 
     public static final int INITIAL_LIKE_COUNT = 0;
 
-    private Set<Tag> tags;
-    private List<TagWithCount> tagsWithCount;
-    private List<TagWithLike> tagsWithLike;
+    private final Set<Tag> tags;
+    private final List<TagWithCount> tagsWithCount;
+    private final List<TagWithLike> tagsWithLike;
 
     public TagManager() {
         tags = new HashSet<>();
@@ -42,7 +42,7 @@ public class TagManager {
         return tagsWithCount;
     }
 
-    public List<TagWithLike> getTagsWithLike(ObservableList memeList, LikeManager likeData) {
+    public List<TagWithLike> getTagsWithLike(ObservableList<Meme> memeList, LikeManager likeData) {
         parseMemeListAndLikeDataForTags(memeList, likeData);
         return tagsWithLike;
     }
@@ -53,11 +53,11 @@ public class TagManager {
     public void purgeData() {
         tags.clear();
         tagsWithCount.clear();
+        tagsWithLike.clear();
     }
 
     /**
-     * Parses a {@code ReadOnlyMemeBook} for tags.
-     * @param memeList
+     * Parses a {@code ReadOnlyMemeBook} for tags and their occurrence.
      */
     public void parseMemeListForTags(ObservableList<Meme> memeList) {
         purgeData();
@@ -80,6 +80,9 @@ public class TagManager {
         Collections.sort(tagsWithCount);
     }
 
+    /**
+     * Parses a {@code ReadOnlyMemeBook} for tags and their like counts.
+     */
     public void parseMemeListAndLikeDataForTags(ObservableList<Meme> memeList, LikeManager likeData) {
         purgeData();
         Map<Tag, Integer> tagToLike = new HashMap<>();
@@ -87,12 +90,11 @@ public class TagManager {
 
         for (Meme meme : memeList) {
             likeCount = likeData.getLikesByMeme(meme);
-            tags = meme.getTags();
+            tags.addAll(meme.getTags());
             for (Tag tag : tags) {
                 tagToLike.put(tag, tagToLike.getOrDefault(tag, INITIAL_LIKE_COUNT) + likeCount);
             }
         }
-        System.out.println(tagToLike);
 
         for (Map.Entry<Tag, Integer> mapEntry : tagToLike.entrySet()) {
             tagsWithLike.add(new TagWithLike(mapEntry.getKey(), mapEntry.getValue()));

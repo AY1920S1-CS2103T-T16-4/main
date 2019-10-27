@@ -25,6 +25,7 @@ import seedu.weme.model.template.Template;
 import seedu.weme.statistics.Stats;
 import seedu.weme.statistics.StatsManager;
 import seedu.weme.statistics.TagWithCount;
+import seedu.weme.statistics.TagWithLike;
 import seedu.weme.testutil.MemeBuilder;
 
 public class WemeTest {
@@ -123,6 +124,11 @@ public class WemeTest {
         @Override
         public List<TagWithCount> getTagsWithCountList() {
             return stats.getTagsWithCountList(memes);
+        }
+
+        @Override
+        public List<TagWithLike> getTagsWithLikeCountList() {
+            return stats.getTagsWithLikeCountList(memes);
         }
     }
 

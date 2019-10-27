@@ -1,5 +1,6 @@
 package seedu.weme.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,8 +15,7 @@ import javafx.scene.layout.Region;
 
 import seedu.weme.model.ReadOnlyWeme;
 import seedu.weme.model.meme.Meme;
-import seedu.weme.statistics.TagWithCount;
-import seedu.weme.statistics.TagWithLike;
+import seedu.weme.statistics.TagWithStats;
 
 /**
  * Panel containing the statistical data about memes in Weme.
@@ -48,30 +48,36 @@ public class StatsPanel extends UiPart<Region> {
      * <p>Styling is mainly done in the CSS file.</p>
      */
     private void generateTagCountChart(ReadOnlyWeme weme) {
-        List<TagWithCount> tagsWithCount = weme.getTagsWithCountList();
-        ObservableList<PieChart.Data> pieChartData =
-                tagsWithCount.stream()
-                        .map(tagWithCount -> new PieChart.Data(tagWithCount.getTag().tagName, tagWithCount.getCount()))
-                        .map(data -> bindValueToLabel(data))
-                        .collect(Collectors.toCollection(FXCollections::observableArrayList));
-        tagCountChart.setData(pieChartData);
-        tagCountChart.setTitle(COUNT_CHART_TITLE);
-        tagCountChart.setLabelLineLength(LABEL_LINE_LENGTH);
-        tagCountChart.setLegendSide(Side.LEFT);
+        generatePieChart(weme.getTagsWithCountList(), tagCountChart, COUNT_CHART_TITLE);
     }
 
+    /**
+     * Generates a {@code PieChart} with a given {@code MemeBook} and {@code Stats}.
+     *
+     * <p>Styling is mainly done in the CSS file.</p>
+     */
     private void generateTagLikeChart(ReadOnlyWeme weme) {
-        List<TagWithLike> tagsWithLikeCountList = weme.getTagsWithLikeCountList();
-        System.out.println(tagsWithLikeCountList);
-        ObservableList<PieChart.Data> pieChartData =
-                tagsWithLikeCountList.stream()
-                        .map(tagWithLike -> new PieChart.Data(tagWithLike.getTag().tagName, tagWithLike.getLike()))
-                        .map(data -> bindValueToLabel(data))
-                        .collect(Collectors.toCollection(FXCollections::observableArrayList));
-        tagLikeChart.setData(pieChartData);
-        tagLikeChart.setTitle(LIKE_CHART_TITLE);
-        tagLikeChart.setLabelLineLength(LABEL_LINE_LENGTH);
-        tagLikeChart.setLegendSide(Side.LEFT);
+        generatePieChart(weme.getTagsWithLikeCountList(), tagLikeChart, LIKE_CHART_TITLE);
+    }
+
+    /**
+     * Generates pie chart with a list of tags with stats and the title.
+     * @param tagsWithStats
+     * @param chart
+     * @param title
+     */
+    private void generatePieChart(List<? extends TagWithStats> tagsWithStats, PieChart chart, String title) {
+        List<PieChart.Data> data = new ArrayList<>();
+        for (TagWithStats tag : tagsWithStats) {
+            data.add(new PieChart.Data(tag.getTag().tagName, tag.getData()));
+        }
+        ObservableList<PieChart.Data> pieChartData = data.stream()
+                .map(chartData -> bindValueToLabel(chartData))
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+        chart.setData(pieChartData);
+        chart.setTitle(title);
+        chart.setLabelLineLength(LABEL_LINE_LENGTH);
+        chart.setLegendSide(Side.LEFT);
     }
 
     private PieChart.Data bindValueToLabel(PieChart.Data data) {

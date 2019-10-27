@@ -6,9 +6,7 @@ import seedu.weme.model.tag.Tag;
  * A wrapper class of {@code Tag} that carries the number of occurrence of such a tag
  * in a {@code MemeBook}for {@code TagManager} in statistics.
  */
-public class TagWithCount implements Comparable<TagWithCount> {
-    private Tag tag;
-    private int count;
+public class TagWithCount extends TagWithStats implements Comparable<TagWithCount> {
 
     /**
      * Constructs a {@code TagWithCount}
@@ -16,31 +14,24 @@ public class TagWithCount implements Comparable<TagWithCount> {
      * @param count
      */
     public TagWithCount(Tag tag, int count) {
-        this.tag = tag;
-        this.count = count;
-    }
-
-    public Tag getTag() {
-        return tag;
-    }
-
-    public int getCount() {
-        return count;
+        super(tag, count);
     }
 
     @Override
     public String toString() {
-        return tag.tagName + " count: " + count;
+        return getTag().tagName + " count: " + getData();
     }
 
     @Override
     public int compareTo(TagWithCount o) {
-        if (this.count > o.count) {
+        int count = getData();
+        int targetCount = o.getData();
+        if (count > targetCount) {
             return 1;
-        } else if (this.count < o.count) {
+        } else if (count < targetCount) {
             return -1;
         } else {
-            return tag.tagName.compareTo(o.tag.tagName);
+            return getTag().tagName.compareTo(o.getTag().tagName);
         }
     }
 }
