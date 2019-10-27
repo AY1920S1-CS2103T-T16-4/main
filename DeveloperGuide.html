@@ -921,6 +921,11 @@ Also, it looks somewhat out of place in <code>Model</code> as alternative 1 seem
 </div>
 <div class="sect2">
 <h3 id="export-import-feature"><a class="link" href="#export-import-feature">3.4. Export/Import feature</a></h3>
+<div class="paragraph">
+<p>This feature allows the user to do exporting and importing of memes using their respective staging areas as
+intermediate platforms. This allows the user to both load memes into the application from their local directory,
+and also export memes from the application to their local directory.</p>
+</div>
 <div class="sect3">
 <h4 id="export"><a class="link" href="#export">3.4.1. Export</a></h4>
 <div class="paragraph">
@@ -929,7 +934,7 @@ functionality introduces flexibility for the user to stage and shortlist which m
 which will be in the staging area under the export tab. When the user accidentally stages a meme, he can
 either use the undo command or the Unstage command. When the user finally confirms the memes to be export
 in the staging area, the user can execute the ExportCommand with a provided directory path. The
-following sequence diagram illustrates the execution of the <code>Stage Command</code> and <code>Emport Command</code>:</p>
+following sequence diagram illustrates the execution of the <code>Stage Command</code> and <code>Export Command</code>:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -957,10 +962,8 @@ by clearing the memes in the import context.</p>
 <div class="sect3">
 <h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.3. Current Implementation</a></h4>
 <div class="paragraph">
-<p>Export and Import do not share the same UniqueMemeList as that in the Meme context.</p>
-</div>
-<div class="paragraph">
-<p>While the user is selecting which meme to stage, the user should have a visual reference all the existing memes.
+<p>Internally, <code>Weme</code> uses two <code>UniqueMemeList</code> to store memes that are to be imported or exported.
+While the user is selecting which meme to stage, the user should have a visual reference all the existing memes.
 Hence, the <code>Stage Command</code> works in the Meme Context, and the user is able to stage by the Meme Index.
 On the contrary, the unstage command is only available in the export tab, where the user can reference which
 memes to delete using the index in the export tab.</p>
@@ -995,33 +998,34 @@ so that the user can continue importing the memes in a new directory.</p>
 <div class="sect3">
 <h4 id="design-consideration"><a class="link" href="#design-consideration">3.4.4. Design Consideration</a></h4>
 <div class="sect4">
-<h5 id="aspect-storage-of-the-imported-and-exported-meme"><a class="link" href="#aspect-storage-of-the-imported-and-exported-meme">Aspect: Storage of the imported and exported meme</a></h5>
+<h5 id="aspect-tab-for-export-and-import-feature"><a class="link" href="#aspect-tab-for-export-and-import-feature">Aspect: Tab for Export and Import feature</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Use 3 separate UniqueMemeList to store memes in the meme,
-export and import tab separately.</p>
+<p><strong>Alternative 1 (current choice):</strong> Separate import and export into two different tabs.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Straightforward Implementation. Lesser dependency among the 3 different context.</p>
+<p>Pros: Shows clear segregation of the two different feature since they are implemented
+differently. This will not confuse the user.</p>
 </li>
 <li>
-<p>Cons: Repetitive method involved in retrieving the 3 different list using model.</p>
+<p>Cons: Extra tab is required.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Use a single UniqueMemeList to store the memes, and introduce a flag attribute
-to distinguish between staged meme, imported meme and ordinary meme.</p>
+<p><strong>Alternative 2:</strong> Use a storage tab to represent both import and export. User can toggle between
+import and export using subcontext.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Lesser methods defined to retrieve 3 different UniqueMemeList, and a minimalist design.</p>
+<p>Pros: Only one tab is used and also <code>storage</code> label captures the concept of import and export.</p>
 </li>
 <li>
-<p>Cons: More coupling involved and the list can get very large, hence iterating through it may cause lagging.</p>
+<p>Cons: Easily confuses the user due to extra complexity involved (subcontext). This will also cause
+navigating between import and export mode to be less subtle.</p>
 </li>
 </ul>
 </div>
@@ -2033,4 +2037,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-27 09:18:09 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-27 09:28:39 UTC</div></div></div></body></html>
