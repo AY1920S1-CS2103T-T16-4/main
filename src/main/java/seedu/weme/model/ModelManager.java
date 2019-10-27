@@ -23,6 +23,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.weme.commons.core.GuiSettings;
 import seedu.weme.commons.core.LogsCenter;
 import seedu.weme.model.meme.Meme;
+import seedu.weme.model.template.MemeCreation;
 import seedu.weme.model.template.Template;
 import seedu.weme.statistics.Stats;
 import seedu.weme.statistics.TagWithCount;
@@ -42,6 +43,9 @@ public class ModelManager implements Model {
 
     // ModelContext determines which parser to use at any point of time.
     private SimpleObjectProperty<ModelContext> context = new SimpleObjectProperty<>(ModelContext.CONTEXT_MEMES);
+
+    // Current meme creation session
+    private SimpleObjectProperty<MemeCreation> memeCreation = new SimpleObjectProperty<>(null);
 
     /**
      * Initializes a ModelManager with the given Weme and userPrefs.
@@ -270,6 +274,21 @@ public class ModelManager implements Model {
     @Override
     public ObservableValue<ModelContext> getContext() {
         return context;
+    }
+
+    @Override
+    public void startMemeCreation(Template template) throws IOException {
+        memeCreation.setValue(new MemeCreation(template));
+    }
+
+    @Override
+    public ObservableValue<MemeCreation> getMemeCreation() {
+        return memeCreation;
+    }
+
+    @Override
+    public void abortMemeCreation() {
+        memeCreation.setValue(null);
     }
 
     @Override

@@ -42,6 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     // App content for different tabs
     private StackPane memesPanel;
     private StackPane templatesPanel;
+    private StackPane createPanel;
     private StackPane statisticsPanel;
     private StackPane exportPanel;
     private StackPane importPanel;
@@ -150,6 +151,7 @@ public class MainWindow extends UiPart<Stage> {
     private void fillAppContent() {
         memesPanel = new StackPane();
         templatesPanel = new StackPane();
+        createPanel = new StackPane();
         statisticsPanel = new StackPane();
         exportPanel = new StackPane();
         importPanel = new StackPane();
@@ -161,9 +163,11 @@ public class MainWindow extends UiPart<Stage> {
         TemplateGridPanel templateGridPanel = new TemplateGridPanel(logic.getFilteredTemplateList());
         templatesPanel.getChildren().add(templateGridPanel.getRoot());
 
+        CreateImageDisplay createImageDisplay = new CreateImageDisplay(logic.getMemeCreation());
+        createPanel.getChildren().add(createImageDisplay.getRoot());
+
         StatsPanel statsPanel = new StatsPanel(logic.getWeme());
         statisticsPanel.getChildren().add(statsPanel.getRoot());
-        // TODO: Fill in other panels here
 
         MemeGridPanel exportGridPanel = new MemeGridPanel(
                 logic.getFilteredStagedMemeList(), logic.getObservableLikeData());
@@ -202,6 +206,9 @@ public class MainWindow extends UiPart<Stage> {
             break;
         case CONTEXT_PREFERENCES:
             appContentPlaceholder.getChildren().add(preferencesPanel);
+            break;
+        case CONTEXT_CREATE:
+            appContentPlaceholder.getChildren().add(createPanel);
             break;
         case CONTEXT_STATISTICS:
             appContentPlaceholder.getChildren().add(statisticsPanel);

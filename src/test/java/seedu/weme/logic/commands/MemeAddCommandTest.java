@@ -27,6 +27,7 @@ import seedu.weme.model.ReadOnlyWeme;
 import seedu.weme.model.Records;
 import seedu.weme.model.Weme;
 import seedu.weme.model.meme.Meme;
+import seedu.weme.model.template.MemeCreation;
 import seedu.weme.model.template.Template;
 import seedu.weme.statistics.Stats;
 import seedu.weme.statistics.TagWithCount;
@@ -262,6 +263,21 @@ public class MemeAddCommandTest {
 
         @Override
         public ObservableValue<ModelContext> getContext() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void startMemeCreation(Template template) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableValue<MemeCreation> getMemeCreation() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void abortMemeCreation() {
             throw new AssertionError("This method should not be called.");
         }
 

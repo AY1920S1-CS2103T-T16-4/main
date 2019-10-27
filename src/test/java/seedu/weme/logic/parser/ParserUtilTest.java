@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weme.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.weme.model.ModelContext.CONTEXT_MEMES;
-import static seedu.weme.model.ModelContext.CONTEXT_MEME_CREATION;
 import static seedu.weme.testutil.Assert.assertThrows;
 import static seedu.weme.testutil.TypicalIndexes.INDEX_FIRST_MEME;
 
@@ -40,12 +39,6 @@ public class ParserUtilTest {
     @Test
     public void parseTab_invalidInput_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseTab(INVALID_TAB));
-    }
-
-    @Test
-    public void parseTab_validNonTabContext_throwsParseException() {
-        assertThrows(ParseException.class, () ->
-            ParserUtil.parseTab(CONTEXT_MEME_CREATION.getContextName()));
     }
 
     @Test

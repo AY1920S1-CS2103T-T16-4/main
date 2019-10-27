@@ -4,25 +4,23 @@ import static seedu.weme.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.regex.Matcher;
 
+import seedu.weme.logic.commands.AbortCreationCommand;
 import seedu.weme.logic.commands.Command;
 import seedu.weme.logic.commands.HelpCommand;
-import seedu.weme.logic.commands.TemplateAddCommand;
-import seedu.weme.logic.commands.TemplateDeleteCommand;
-import seedu.weme.logic.commands.TemplateEditCommand;
-import seedu.weme.logic.commands.TemplateUseCommand;
+import seedu.weme.logic.commands.TextAddCommand;
 import seedu.weme.logic.parser.exceptions.ParseException;
 
 /**
- * Parses user input in the templates context.
+ * Parses user input in the create context.
  */
-public class TemplateParser extends WemeParser {
+public class CreateParser extends WemeParser {
 
     /**
      * Parses user input into command for execution.
      *
      * @param userInput full user input string
      * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
     @Override
     public Command parseCommand(String userInput) throws ParseException {
@@ -33,19 +31,14 @@ public class TemplateParser extends WemeParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
 
-        case TemplateAddCommand.COMMAND_WORD:
-            return new TemplateAddCommandParser().parse(arguments);
+        case TextAddCommand.COMMAND_WORD:
+            return new TextAddCommandParser().parse(arguments);
 
-        case TemplateDeleteCommand.COMMAND_WORD:
-            return new TemplateDeleteCommandParser().parse(arguments);
-
-        case TemplateEditCommand.COMMAND_WORD:
-            return new TemplateEditCommandParser().parse(arguments);
-
-        case TemplateUseCommand.COMMAND_WORD:
-            return new TemplateUseCommandParser().parse(arguments);
+        case AbortCreationCommand.COMMAND_WORD:
+            return new AbortCreationCommand();
 
         default:
             return super.parseCommand(userInput);

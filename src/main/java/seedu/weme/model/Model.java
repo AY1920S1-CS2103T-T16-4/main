@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.weme.commons.core.GuiSettings;
 import seedu.weme.model.meme.Meme;
+import seedu.weme.model.template.MemeCreation;
 import seedu.weme.model.template.Template;
 import seedu.weme.statistics.Stats;
 import seedu.weme.statistics.TagWithCount;
@@ -211,6 +212,23 @@ public interface Model {
      * @return the current context
      */
     ObservableValue<ModelContext> getContext();
+
+    /**
+     * Starts a meme creation session.
+     * @param template the template to use for meme creation
+     */
+    void startMemeCreation(Template template) throws IOException;
+
+    /**
+     * Returns the current meme creation session.
+     * @return the current meme creation session.
+     */
+    ObservableValue<MemeCreation> getMemeCreation();
+
+    /**
+     * Aborts the current meme creation session.
+     **/
+    void abortMemeCreation();
 
     /**
      * Returns true if model has a previous state to restore.
