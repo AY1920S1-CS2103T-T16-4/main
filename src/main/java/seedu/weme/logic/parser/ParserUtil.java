@@ -112,18 +112,18 @@ public class ParserUtil {
      * @throws ParseException if x or y is not between 0 to 1
      */
     public static Coordinates parseCoordinates(String x, String y) throws ParseException {
-        float x_val;
-        float y_val;
+        float xVal;
+        float yVal;
         try {
-            x_val = Float.parseFloat(x);
-            y_val = Float.parseFloat(y);
+            xVal = Float.parseFloat(x);
+            yVal = Float.parseFloat(y);
         } catch (NumberFormatException nfe) {
             throw new ParseException(MESSAGE_INVALID_COORDINATES);
         }
-        if (x_val < 0 || x_val > 1 || y_val < 0 || y_val > 1) {
+        if (xVal < 0 || xVal > 1 || yVal < 0 || yVal > 1) {
             throw new ParseException(MESSAGE_INVALID_COORDINATES);
         }
-        return new Coordinates(x_val, y_val);
+        return new Coordinates(xVal, yVal);
     }
 
     /**

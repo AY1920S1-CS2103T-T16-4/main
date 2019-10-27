@@ -1,6 +1,5 @@
 package seedu.weme.ui;
 
-import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
@@ -22,10 +21,9 @@ public class CreateImageDisplay extends UiPart<Region> {
 
     private CreateImagePlaceholder placeholder = new CreateImagePlaceholder();
 
-    public CreateImageDisplay(ObservableValue<MemeCreation> memeCreation) {
+    public CreateImageDisplay(MemeCreation memeCreation) {
         super(FXML);
-        updateImage(memeCreation.getValue());
-        memeCreation.addListener(((observable, oldValue, newValue) -> updateImage(newValue)));
+        updateImage(memeCreation);
     }
 
     /**
@@ -33,13 +31,13 @@ public class CreateImageDisplay extends UiPart<Region> {
      *
      * @param session the current meme creation session
      */
-    private void updateImage(MemeCreation session) {
-        if (session == null) {
+    public void updateImage(MemeCreation session) {
+        if (session.getCurrentImage().isPresent()) {
+            memeImage.setImage(SwingFXUtils.toFXImage(session.getCurrentImage().get(), null));
+            memeCreationImageBox.getChildren().setAll(memeImage);
+        } else {
             memeImage.setImage(null);
             memeCreationImageBox.getChildren().setAll(placeholder.getRoot());
-        } else {
-            memeImage.setImage(SwingFXUtils.toFXImage(session.getCurrentImage(), null));
-            memeCreationImageBox.getChildren().setAll(memeImage);
         }
     }
 

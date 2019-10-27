@@ -21,7 +21,7 @@ public class TextAddCommandParser implements Parser<TextAddCommand> {
      */
     public TextAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_X_COORDINATE,  PREFIX_Y_COORDINATE);
+            ArgumentTokenizer.tokenize(args, PREFIX_X_COORDINATE, PREFIX_Y_COORDINATE);
 
         if (!argMultimap.arePrefixesPresent(PREFIX_X_COORDINATE, PREFIX_Y_COORDINATE)
             || argMultimap.getPreamble().isEmpty()) {

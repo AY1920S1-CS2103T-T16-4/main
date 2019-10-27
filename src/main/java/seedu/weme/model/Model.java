@@ -223,7 +223,7 @@ public interface Model {
      * Returns the current meme creation session.
      * @return the current meme creation session.
      */
-    ObservableValue<MemeCreation> getMemeCreation();
+    MemeCreation getMemeCreation();
 
     /**
      * Aborts the current meme creation session.

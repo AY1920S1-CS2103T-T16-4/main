@@ -272,7 +272,7 @@ public class MemeAddCommandTest {
         }
 
         @Override
-        public ObservableValue<MemeCreation> getMemeCreation() {
+        public MemeCreation getMemeCreation() {
             throw new AssertionError("This method should not be called.");
         }
 

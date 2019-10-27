@@ -78,7 +78,7 @@ public interface Logic {
      *
      * @return the current meme creation session.
      */
-    ObservableValue<MemeCreation> getMemeCreation();
+    MemeCreation getMemeCreation();
 
     /**
      * Returns the user prefs' Weme file path.

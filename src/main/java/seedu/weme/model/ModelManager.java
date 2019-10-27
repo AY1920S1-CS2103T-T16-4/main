@@ -44,9 +44,6 @@ public class ModelManager implements Model {
     // ModelContext determines which parser to use at any point of time.
     private SimpleObjectProperty<ModelContext> context = new SimpleObjectProperty<>(ModelContext.CONTEXT_MEMES);
 
-    // Current meme creation session
-    private SimpleObjectProperty<MemeCreation> memeCreation = new SimpleObjectProperty<>(null);
-
     /**
      * Initializes a ModelManager with the given Weme and userPrefs.
      */
@@ -278,17 +275,17 @@ public class ModelManager implements Model {
 
     @Override
     public void startMemeCreation(Template template) throws IOException {
-        memeCreation.setValue(new MemeCreation(template));
+        versionedWeme.startMemeCreation(template);
     }
 
     @Override
-    public ObservableValue<MemeCreation> getMemeCreation() {
-        return memeCreation;
+    public MemeCreation getMemeCreation() {
+        return versionedWeme.getMemeCreation();
     }
 
     @Override
     public void abortMemeCreation() {
-        memeCreation.setValue(null);
+        versionedWeme.abortMemeCreation();
     }
 
     @Override

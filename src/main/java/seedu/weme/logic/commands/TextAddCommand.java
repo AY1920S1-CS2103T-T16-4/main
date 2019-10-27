@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_X_COORDINATE;
 import static seedu.weme.logic.parser.CliSyntax.PREFIX_Y_COORDINATE;
 
+import seedu.weme.commons.exceptions.IllegalValueException;
+import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.model.Model;
 import seedu.weme.model.template.MemeCreation;
 import seedu.weme.model.template.MemeText;
@@ -27,6 +29,7 @@ public class TextAddCommand extends Command {
         + PREFIX_Y_COORDINATE + "0.3";
 
     public static final String MESSAGE_SUCCESS = "New text added at (%s, %s): %s";
+    public static final String MESSAGE_TEXT_EXCEEDS_IMAGE_BOUNDARY = "Error: Text would exceed image boundary";
 
     private final MemeText text;
 
@@ -39,11 +42,16 @@ public class TextAddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        MemeCreation session = model.getMemeCreation().getValue();
-        session.addText(text);
+        MemeCreation session = model.getMemeCreation();
+        try {
+            session.addText(text);
+        } catch (IllegalValueException e) {
+            throw new CommandException(MESSAGE_TEXT_EXCEEDS_IMAGE_BOUNDARY, e);
+        }
+
         model.commitWeme();
         return new CommandResult(String.format(MESSAGE_SUCCESS, text.getX(), text.getY(), text.getText()));
     }

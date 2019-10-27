@@ -21,6 +21,7 @@ import seedu.weme.logic.parser.exceptions.ParseException;
 import seedu.weme.logic.prompter.CommandPrompt;
 import seedu.weme.logic.prompter.exceptions.PromptException;
 import seedu.weme.model.ModelContext;
+import seedu.weme.model.template.MemeCreation;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -43,6 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane memesPanel;
     private StackPane templatesPanel;
     private StackPane createPanel;
+    private CreateImageDisplay createImageDisplay;
     private StackPane statisticsPanel;
     private StackPane exportPanel;
     private StackPane importPanel;
@@ -163,7 +165,7 @@ public class MainWindow extends UiPart<Stage> {
         TemplateGridPanel templateGridPanel = new TemplateGridPanel(logic.getFilteredTemplateList());
         templatesPanel.getChildren().add(templateGridPanel.getRoot());
 
-        CreateImageDisplay createImageDisplay = new CreateImageDisplay(logic.getMemeCreation());
+        createImageDisplay = new CreateImageDisplay(logic.getMemeCreation());
         createPanel.getChildren().add(createImageDisplay.getRoot());
 
         StatsPanel statsPanel = new StatsPanel(logic.getWeme());
@@ -275,6 +277,11 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (logic.getContext().getValue() == ModelContext.CONTEXT_CREATE) {
+                MemeCreation memeCreation = logic.getMemeCreation();
+                createImageDisplay.updateImage(memeCreation);
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

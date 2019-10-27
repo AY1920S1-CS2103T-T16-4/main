@@ -74,7 +74,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableValue<MemeCreation> getMemeCreation() {
+    public MemeCreation getMemeCreation() {
         return model.getMemeCreation();
     }
 
