@@ -1,13 +1,19 @@
 package seedu.weme.ui;
 
+import java.util.regex.Matcher;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.weme.logic.commands.CommandResult;
 import seedu.weme.logic.commands.exceptions.CommandException;
+import seedu.weme.logic.parser.contextparser.WemeParser;
 import seedu.weme.logic.parser.exceptions.ParseException;
 import seedu.weme.logic.prompter.exceptions.PromptException;
+
+import static seedu.weme.logic.parser.contextparser.WemeParser.ARGUMENTS;
+import static seedu.weme.logic.parser.contextparser.WemeParser.BASIC_COMMAND_FORMAT;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -38,6 +44,36 @@ public class CommandBox extends UiPart<Region> {
                 isShowingCommandSuccess = false;
             }
         });
+    }
+
+    /**
+     * Handles the key press event, {@code keyEvent}.
+     */
+    @FXML
+    private void handleKeyPress(KeyEvent keyEvent) {
+        switch (keyEvent.getCode()) {
+        case UP:
+            // As up and down buttons will alter the position of the caret,
+            // consuming it causes the caret's position to remain unchanged
+            keyEvent.consume();
+            final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandTextField.getText().trim());
+            if (matcher.matches()) {
+                try {
+                    final String commandWord = matcher.group(WemeParser.COMMAND_WORD);
+                    final String arguments = matcher.group(ARGUMENTS);
+                    System.out.println(commandWord + arguments);
+                    commandExecutor.execute(commandTextField.getText());
+                } catch (CommandException | ParseException e) {
+                    setStyleToIndicateCommandFailure();
+                }
+            }
+            break;
+        case DOWN:
+            keyEvent.consume();
+            break;
+        default:
+            // let JavaFx handle the keypress
+        }
     }
 
     /**
