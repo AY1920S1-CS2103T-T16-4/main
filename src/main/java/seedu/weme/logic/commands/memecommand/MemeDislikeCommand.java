@@ -1,6 +1,9 @@
 package seedu.weme.logic.commands.memecommand;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
+
 import seedu.weme.commons.core.Messages;
 import seedu.weme.commons.core.index.Index;
 import seedu.weme.logic.commands.Command;
@@ -8,8 +11,6 @@ import seedu.weme.logic.commands.CommandResult;
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.model.Model;
 import seedu.weme.model.meme.Meme;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Likes a meme in the display window.

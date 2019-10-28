@@ -1,6 +1,5 @@
 package seedu.weme.ui;
 
-import static seedu.weme.logic.parser.contextparser.WemeParser.ARGUMENTS;
 import static seedu.weme.logic.parser.contextparser.WemeParser.BASIC_COMMAND_FORMAT;
 
 import java.util.regex.Matcher;
@@ -15,6 +14,8 @@ import javafx.scene.layout.Region;
 
 import seedu.weme.logic.commands.CommandResult;
 import seedu.weme.logic.commands.exceptions.CommandException;
+import seedu.weme.logic.commands.memecommand.MemeDislikeCommand;
+import seedu.weme.logic.commands.memecommand.MemeLikeCommand;
 import seedu.weme.logic.parser.contextparser.WemeParser;
 import seedu.weme.logic.parser.exceptions.ParseException;
 import seedu.weme.logic.prompter.exceptions.PromptException;
@@ -26,6 +27,8 @@ public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
+    private static final String KEYPRESS_UP = "up";
+    private static final String KEYPRESS_DOWN = "down";
 
     private final CommandExecutor commandExecutor;
     private final CommandPrompter commandPrompter;
@@ -61,22 +64,36 @@ public class CommandBox extends UiPart<Region> {
             // As up and down buttons will alter the position of the caret,
             // consuming it causes the caret's position to remain unchanged
             keyEvent.consume();
-            final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandTextField.getText().trim());
-            if (matcher.matches()) {
-                try {
-                    final String commandWord = matcher.group(WemeParser.COMMAND_WORD);
-                    final String arguments = matcher.group(ARGUMENTS);
-                    commandExecutor.execute(commandTextField.getText());
-                } catch (CommandException | ParseException e) {
-                    setStyleToIndicateCommandFailure();
-                }
-            }
+            handleLikeByKeypress(KEYPRESS_UP);
             break;
         case DOWN:
             keyEvent.consume();
+            handleLikeByKeypress(KEYPRESS_DOWN);
+            break;
+        case LEFT:
+            break;
+        case RIGHT:
             break;
         default:
             // let JavaFx handle the keypress
+        }
+    }
+
+    /**
+     * Handles like command in the form of key press.
+     */
+    private void handleLikeByKeypress(String keyPress) {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandTextField.getText().trim());
+        if (matcher.matches()) {
+            try {
+                final String commandWord = matcher.group(WemeParser.COMMAND_WORD);
+                if (commandWord.equals(MemeLikeCommand.COMMAND_WORD) && keyPress.equals(KEYPRESS_UP)
+                        || commandWord.equals(MemeDislikeCommand.COMMAND_WORD) && keyPress.equals(KEYPRESS_DOWN)) {
+                    commandExecutor.execute(commandTextField.getText());
+                }
+            } catch (CommandException | ParseException e) {
+                setStyleToIndicateCommandFailure();
+            }
         }
     }
 

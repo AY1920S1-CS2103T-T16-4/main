@@ -332,6 +332,11 @@ public class MemeAddCommandTest {
         }
 
         @Override
+        public void decrementMemeLikeCount(Meme meme) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public int getCountOfTag(Tag tag) {
             throw new AssertionError("This method should not be called");
         }
