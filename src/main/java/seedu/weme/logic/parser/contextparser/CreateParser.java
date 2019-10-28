@@ -30,8 +30,8 @@ public class CreateParser extends WemeParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
+        final String commandWord = matcher.group(COMMAND_WORD);
+        final String arguments = matcher.group(ARGUMENTS);
 
         switch (commandWord) {
 

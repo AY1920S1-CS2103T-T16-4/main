@@ -15,9 +15,6 @@ public class AbortCreationCommand extends Command {
     public static final String COMMAND_WORD = "abort";
     public static final String MESSAGE_SUCCESS = "Meme creation aborted.";
 
-    /**
-     * Creates an TextAddCommand to add {@code MemeText} to the meme being created..
-     */
     public AbortCreationCommand() {
     }
 
