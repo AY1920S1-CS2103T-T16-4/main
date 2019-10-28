@@ -5,11 +5,11 @@ import java.util.List;
 import javafx.collections.ObservableList;
 
 import seedu.weme.model.meme.Meme;
+import seedu.weme.model.statistics.Stats;
+import seedu.weme.model.statistics.TagWithCount;
+import seedu.weme.model.statistics.TagWithLike;
 import seedu.weme.model.tag.Tag;
 import seedu.weme.model.template.Template;
-import seedu.weme.statistics.Stats;
-import seedu.weme.statistics.TagWithCount;
-import seedu.weme.statistics.TagWithLike;
 
 /**
  * Unmodifiable view of a Weme
@@ -49,7 +49,7 @@ public interface ReadOnlyWeme {
      * Returns the count of a tag in the memeList.
      * Returns -1 if the tag is not present in the memeList.
      */
-    public int getCountOfTag(Tag tag);
+    int getCountOfTag(Tag tag);
 
     /**
      * Returns a list of tags with their counts.

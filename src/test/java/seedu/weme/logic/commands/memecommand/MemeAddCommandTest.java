@@ -28,10 +28,10 @@ import seedu.weme.model.ReadOnlyWeme;
 import seedu.weme.model.Records;
 import seedu.weme.model.Weme;
 import seedu.weme.model.meme.Meme;
+import seedu.weme.model.statistics.Stats;
+import seedu.weme.model.statistics.TagWithCount;
 import seedu.weme.model.tag.Tag;
 import seedu.weme.model.template.Template;
-import seedu.weme.statistics.Stats;
-import seedu.weme.statistics.TagWithCount;
 import seedu.weme.testutil.MemeBuilder;
 import seedu.weme.testutil.TestUtil;
 import seedu.weme.testutil.UserPrefsBuilder;
@@ -278,17 +278,17 @@ public class MemeAddCommandTest {
         }
 
         @Override
-        public void undoWeme() {
+        public String undoWeme() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void redoWeme() {
+        public String redoWeme() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void commitWeme() {
+        public void commitWeme(String feedback) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -411,7 +411,7 @@ public class MemeAddCommandTest {
         }
 
         @Override
-        public void commitWeme() {
+        public void commitWeme(String feedback) {
             // called by {@code MemeAddCommand#execute()}
         }
 

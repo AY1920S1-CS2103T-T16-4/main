@@ -11,10 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.weme.commons.core.GuiSettings;
 import seedu.weme.model.meme.Meme;
+import seedu.weme.model.statistics.Stats;
+import seedu.weme.model.statistics.TagWithCount;
 import seedu.weme.model.tag.Tag;
 import seedu.weme.model.template.Template;
-import seedu.weme.statistics.Stats;
-import seedu.weme.statistics.TagWithCount;
 
 /**
  * The API of the Model component.
@@ -225,18 +225,21 @@ public interface Model {
 
     /**
      * Restores the model's Weme to its previous state.
+     * @return the feedback to give the user of the undone command.
      */
-    void undoWeme();
+    String undoWeme();
 
     /**
      * Restores the model's Weme to its previously undone state.
+     * @return the feedback to give the user of the redone command.
      */
-    void redoWeme();
+    String redoWeme();
 
     /**
      * Saves the current Weme state for undo/redo.
+     * @param feedback The string to inform the user what command was undone / redone
      */
-    void commitWeme();
+    void commitWeme(String feedback);
 
     /**
      * Returns statistics data.
