@@ -16,7 +16,6 @@ import javafx.scene.layout.Region;
 
 import seedu.weme.model.ReadOnlyWeme;
 import seedu.weme.model.meme.Meme;
-import seedu.weme.model.statistics.TagWithCount;
 import seedu.weme.model.statistics.TagWithStats;
 
 /**
@@ -36,6 +35,9 @@ public class StatsPanel extends UiPart<Region> {
     public StatsPanel(ReadOnlyWeme weme) {
         super(FXML);
         renderCharts(weme);
+        weme.getMemeList().addListener((ListChangeListener<Meme>) change -> renderCharts(weme));
+        weme.getStats().getObservableLikeData().addListener((MapChangeListener<String, Integer>) change ->
+                renderCharts(weme));
     }
 
     /**
@@ -44,9 +46,6 @@ public class StatsPanel extends UiPart<Region> {
     private void renderCharts(ReadOnlyWeme weme) {
         generateTagCountChart(weme);
         generateTagLikeChart(weme);
-        weme.getMemeList().addListener((ListChangeListener<Meme>) change -> renderCharts(weme));
-        weme.getStats().getObservableLikeData().addListener((MapChangeListener<String, Integer>) change ->
-                renderCharts(weme));
     }
 
     /**

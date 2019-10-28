@@ -18,15 +18,12 @@ import seedu.weme.model.meme.UniqueMemeList;
 import seedu.weme.model.statistics.Stats;
 import seedu.weme.model.statistics.StatsManager;
 import seedu.weme.model.statistics.TagWithCount;
+import seedu.weme.model.statistics.TagWithLike;
 import seedu.weme.model.tag.Tag;
 import seedu.weme.model.template.Name;
 import seedu.weme.model.template.Template;
 import seedu.weme.model.template.UniqueTemplateList;
 import seedu.weme.model.util.ImageUtil;
-import seedu.weme.statistics.Stats;
-import seedu.weme.statistics.StatsManager;
-import seedu.weme.statistics.TagWithCount;
-import seedu.weme.statistics.TagWithLike;
 
 /**
  * Wraps all data at Weme level
