@@ -3,7 +3,6 @@ package seedu.weme.statistics;
 import java.util.List;
 import java.util.Map;
 
-import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 
 import seedu.weme.model.meme.Meme;
@@ -34,15 +33,14 @@ public interface Stats {
 
     public int getCountOfTag(List<Meme> memeList, Tag tag);
 
-    List<TagWithCount> getTagsWithCountList(List<Meme> memeList);
     /**
      * Returns a list of tags with their use counts in descending order.
      */
-    List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList);
+    List<TagWithCount> getTagsWithCountList(List<Meme> memeList);
 
     /**
      * Returns a list of tags with their like counts in descending order.
      */
-    List<TagWithLike> getTagsWithLikeCountList(ObservableList<Meme> memeList);
+    List<TagWithLike> getTagsWithLikeCountList(List<Meme> memeList);
 
 }

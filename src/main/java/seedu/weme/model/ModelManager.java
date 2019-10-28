@@ -26,6 +26,7 @@ import seedu.weme.model.meme.Meme;
 import seedu.weme.model.tag.Tag;
 import seedu.weme.model.template.Template;
 import seedu.weme.statistics.Stats;
+import seedu.weme.statistics.TagWithCount;
 
 /**
  * Represents the in-memory model of Weme data.

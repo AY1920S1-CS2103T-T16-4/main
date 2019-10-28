@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javafx.collections.ObservableList;
-
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.tag.Tag;
 
@@ -42,7 +40,7 @@ public class TagManager {
         return getTagsWithCountList(memeList)
                 .stream()
                 .filter(t -> t.getTag().equals(tag))
-                .map(t -> t.getCount())
+                .map(t -> t.getData())
                 .reduce((t1, t2) -> t1)
                 .orElse(-1);
     }
@@ -50,12 +48,12 @@ public class TagManager {
     /**
      * Returns {@code TagWithCount} in List.
      */
-    public List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList) {
+    public List<TagWithCount> getTagsWithCountList(List<Meme> memeList) {
         parseMemeListForTags(memeList);
         return tagsWithCount;
     }
 
-    public List<TagWithLike> getTagsWithLike(ObservableList<Meme> memeList, LikeManager likeData) {
+    public List<TagWithLike> getTagsWithLike(List<Meme> memeList, LikeManager likeData) {
         parseMemeListAndLikeDataForTags(memeList, likeData);
         return tagsWithLike;
     }
@@ -72,7 +70,7 @@ public class TagManager {
     /**
      * Parses a {@code ReadOnlyMemeBook} for tags and their occurrence.
      */
-    public void parseMemeListForTags(ObservableList<Meme> memeList) {
+    public void parseMemeListForTags(List<Meme> memeList) {
         purgeData();
         Map<Tag, Integer> tagToCount = new HashMap<>();
         Set<Tag> memeTags;
@@ -96,7 +94,7 @@ public class TagManager {
     /**
      * Parses a {@code ReadOnlyMemeBook} for tags and their like counts.
      */
-    public void parseMemeListAndLikeDataForTags(ObservableList<Meme> memeList, LikeManager likeData) {
+    public void parseMemeListAndLikeDataForTags(List<Meme> memeList, LikeManager likeData) {
         purgeData();
         Map<Tag, Integer> tagToLike = new HashMap<>();
         int likeCount;

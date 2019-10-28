@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.Map;
 
-import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 
 import seedu.weme.model.meme.Meme;
@@ -84,12 +83,12 @@ public class StatsManager implements Stats {
     }
 
     @Override
-    public List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList) {
+    public List<TagWithCount> getTagsWithCountList(List<Meme> memeList) {
         return tagManager.getTagsWithCountList(memeList);
     };
 
     @Override
-    public List<TagWithLike> getTagsWithLikeCountList(ObservableList<Meme> memeList) {
+    public List<TagWithLike> getTagsWithLikeCountList(List<Meme> memeList) {
         return tagManager.getTagsWithLike(memeList, likeManager);
     }
 
