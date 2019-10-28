@@ -29,6 +29,8 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
     private static final String KEYPRESS_UP = "up";
     private static final String KEYPRESS_DOWN = "down";
+    private static final String KEYPRESS_LEFT = "left";
+    private static final String KEYPRESS_RIGHT = "right";
 
     private final CommandExecutor commandExecutor;
     private final CommandPrompter commandPrompter;
@@ -64,15 +66,19 @@ public class CommandBox extends UiPart<Region> {
             // As up and down buttons will alter the position of the caret,
             // consuming it causes the caret's position to remain unchanged
             keyEvent.consume();
-            handleLikeByKeypress(KEYPRESS_UP);
+            handleLikeByKeyPress(KEYPRESS_UP);
             break;
         case DOWN:
             keyEvent.consume();
-            handleLikeByKeypress(KEYPRESS_DOWN);
+            handleLikeByKeyPress(KEYPRESS_DOWN);
             break;
         case LEFT:
+            keyEvent.consume();
+            handleIndexToggleByKeyPress(KEYPRESS_LEFT);
             break;
         case RIGHT:
+            keyEvent.consume();
+            handleIndexToggleByKeyPress(KEYPRESS_RIGHT);
             break;
         default:
             // let JavaFx handle the keypress
@@ -80,9 +86,22 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Changes index in the command box with key press to enable fast liking.
+     */
+    private void handleIndexToggleByKeyPress(String keyPress) {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandTextField.getText().trim());
+        if (matcher.matches()) {
+            final String commandWord = matcher.group(WemeParser.COMMAND_WORD);
+            final String argument = matcher.group(WemeParser.ARGUMENTS);
+            int change = keyPress.equals(KEYPRESS_LEFT) ? -1 : 1;
+            commandTextField.setText(commandWord + " " + (Integer.parseInt(argument.trim()) + change));
+        }
+    }
+
+    /**
      * Handles like command in the form of key press.
      */
-    private void handleLikeByKeypress(String keyPress) {
+    private void handleLikeByKeyPress(String keyPress) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandTextField.getText().trim());
         if (matcher.matches()) {
             try {
