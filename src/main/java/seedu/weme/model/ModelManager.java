@@ -23,11 +23,11 @@ import javafx.collections.transformation.FilteredList;
 import seedu.weme.commons.core.GuiSettings;
 import seedu.weme.commons.core.LogsCenter;
 import seedu.weme.model.meme.Meme;
+import seedu.weme.model.statistics.Stats;
+import seedu.weme.model.statistics.TagWithCount;
 import seedu.weme.model.tag.Tag;
 import seedu.weme.model.template.MemeCreation;
 import seedu.weme.model.template.Template;
-import seedu.weme.statistics.Stats;
-import seedu.weme.statistics.TagWithCount;
 
 /**
  * Represents the in-memory model of Weme data.
@@ -300,18 +300,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void undoWeme() {
-        versionedWeme.undo();
+    public String undoWeme() {
+        return versionedWeme.undo();
     }
 
     @Override
-    public void redoWeme() {
-        versionedWeme.redo();
+    public String redoWeme() {
+        return versionedWeme.redo();
     }
 
     @Override
-    public void commitWeme() {
-        versionedWeme.commit();
+    public void commitWeme(String feedback) {
+        versionedWeme.commit(feedback);
     }
 
     //=========== Statistics Methods =============================================================

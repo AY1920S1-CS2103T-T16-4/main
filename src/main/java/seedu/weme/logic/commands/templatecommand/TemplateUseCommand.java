@@ -58,8 +58,9 @@ public class TemplateUseCommand extends Command {
             throw new CommandException(MESSAGE_USE_TEMPLATE_FAILED_TO_START_SESSION, ioe);
         }
         model.setContext(ModelContext.CONTEXT_CREATE);
-        model.commitWeme();
-        return new CommandResult(String.format(MESSAGE_USE_TEMPLATE_SUCCESS, templateToUse));
+        CommandResult result = new CommandResult(String.format(MESSAGE_USE_TEMPLATE_SUCCESS, templateToUse));
+        model.commitWeme(result.getFeedbackToUser());
+        return result;
     }
 
     @Override

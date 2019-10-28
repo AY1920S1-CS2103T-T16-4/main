@@ -26,8 +26,9 @@ public class AbortCreationCommand extends Command {
         requireNonNull(model);
         model.abortMemeCreation();
         model.setContext(ModelContext.CONTEXT_TEMPLATES);
-        model.commitWeme();
-        return new CommandResult(MESSAGE_SUCCESS);
+        CommandResult result = new CommandResult(MESSAGE_SUCCESS);
+        model.commitWeme(result.getFeedbackToUser());
+        return result;
     }
 
 }

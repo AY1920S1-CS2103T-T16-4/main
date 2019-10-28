@@ -14,9 +14,9 @@ import seedu.weme.logic.prompter.prompt.CommandPrompt;
 import seedu.weme.model.ModelContext;
 import seedu.weme.model.ReadOnlyWeme;
 import seedu.weme.model.meme.Meme;
+import seedu.weme.model.statistics.Stats;
 import seedu.weme.model.template.MemeCreation;
 import seedu.weme.model.template.Template;
-import seedu.weme.statistics.Stats;
 
 /**
  * API of the Logic component

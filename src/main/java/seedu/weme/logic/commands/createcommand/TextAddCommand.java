@@ -54,8 +54,10 @@ public class TextAddCommand extends Command {
             throw new CommandException(MESSAGE_TEXT_EXCEEDS_IMAGE_BOUNDARY, e);
         }
 
-        model.commitWeme();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, text.getX(), text.getY(), text.getText()));
+        CommandResult result = new CommandResult(
+            String.format(MESSAGE_SUCCESS, text.getX(), text.getY(), text.getText()));
+        model.commitWeme(result.getFeedbackToUser());
+        return result;
     }
 
     @Override
