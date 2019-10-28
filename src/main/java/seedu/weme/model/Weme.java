@@ -280,9 +280,15 @@ public class Weme implements ReadOnlyWeme {
         return templates.asUnmodifiableObservableList();
     }
 
+    // ============== Stats data Methods ===============================
+
     @Override
     public Stats getStats() {
         return stats.getStats();
+    }
+
+    public int getLikesByMeme(Meme meme) {
+        return stats.getLikesByMeme(meme);
     }
 
     public ObservableMap<String, Integer> getObservableLikeData() {
@@ -299,9 +305,15 @@ public class Weme implements ReadOnlyWeme {
 
     // ============== Tag Data Methods ===============================
 
+    public int getCountOfTag(Tag tag) {
+        return stats.getCountOfTag(getMemeList(), tag);
+    }
+
     public List<TagWithCount> getTagsWithCountList() {
         return stats.getTagsWithCountList(getMemeList());
     }
+
+    // ============== Records Methods ===============================
 
     @Override
     public Records getRecords() {

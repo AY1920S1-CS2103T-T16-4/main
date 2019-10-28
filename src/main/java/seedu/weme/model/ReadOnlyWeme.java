@@ -4,6 +4,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.weme.model.meme.Meme;
+import seedu.weme.model.tag.Tag;
 import seedu.weme.model.template.MemeCreation;
 import seedu.weme.model.template.Template;
 import seedu.weme.statistics.Stats;
@@ -42,6 +43,12 @@ public interface ReadOnlyWeme {
      * Returns the statistics data of Weme.
      */
     Stats getStats();
+
+    /**
+     * Returns the count of a tag in the memeList.
+     * Returns -1 if the tag is not present in the memeList.
+     */
+    public int getCountOfTag(Tag tag);
 
     /**
      * Returns a list of tags with their counts.
