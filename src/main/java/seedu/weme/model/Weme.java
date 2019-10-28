@@ -20,7 +20,6 @@ import seedu.weme.model.template.Name;
 import seedu.weme.model.template.Template;
 import seedu.weme.model.template.UniqueTemplateList;
 import seedu.weme.model.util.ImageUtil;
-import seedu.weme.statistics.LikeData;
 import seedu.weme.statistics.Stats;
 import seedu.weme.statistics.StatsManager;
 import seedu.weme.statistics.TagWithCount;
@@ -256,13 +255,15 @@ public class Weme implements ReadOnlyWeme {
         return templates.asUnmodifiableObservableList();
     }
 
+    // ============== Stats data Methods ===============================
+
     @Override
     public Stats getStats() {
-        return stats;
+        return stats.getStats();
     }
 
-    public LikeData getLikeData() {
-        return stats.getLikeData();
+    public int getLikesByMeme(Meme meme) {
+        return stats.getLikesByMeme(meme);
     }
 
     public ObservableMap<String, Integer> getObservableLikeData() {
@@ -279,9 +280,15 @@ public class Weme implements ReadOnlyWeme {
 
     // ============== Tag Data Methods ===============================
 
+    public int getCountOfTag(Tag tag) {
+        return stats.getCountOfTag(getMemeList(), tag);
+    }
+
     public List<TagWithCount> getTagsWithCountList() {
         return stats.getTagsWithCountList(getMemeList());
     }
+
+    // ============== Records Methods ===============================
 
     public List<TagWithLike> getTagsWithLikeCountList() {
         return stats.getTagsWithLikeCountList(getMemeList());

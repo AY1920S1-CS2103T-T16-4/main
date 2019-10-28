@@ -11,8 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.weme.commons.core.GuiSettings;
 import seedu.weme.model.meme.Meme;
+import seedu.weme.model.tag.Tag;
 import seedu.weme.model.template.Template;
-import seedu.weme.statistics.LikeData;
 import seedu.weme.statistics.Stats;
 
 /**
@@ -38,6 +38,12 @@ public interface Model {
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
+
+    /**
+     * Returns the user's preferences for Weme.
+     */
+    ObservableMap<String, String> getObservableUserPreferences();
+
 
     /**
      * Sets the user prefs' GUI settings.
@@ -142,6 +148,30 @@ public interface Model {
      */
     void setMeme(Meme target, Meme editedMeme);
 
+    /**
+     * Returns true if a template with the same identity as {@code template} exists in Weme.
+     */
+    boolean hasTemplate(Template template);
+
+    /**
+     * Deletes the given template.
+     * The template must exist in Weme.
+     */
+    void deleteTemplate(Template template);
+
+    /**
+     * Adds the given template.
+     * {@code template} must not already exist in Weme.
+     */
+    void addTemplate(Template template);
+
+    /**
+     * Replaces the given template {@code target} with {@code editedTemplate}.
+     * {@code target} must exist in Weme.
+     * The template identity of {@code editedTemplate} must not be the same as another existing template in Weme.
+     */
+    void setTemplate(Template target, Template editedTemplate);
+
     /** Returns an unmodifiable view of the filtered meme list */
     ObservableList<Meme> getFilteredMemeList();
 
@@ -213,10 +243,13 @@ public interface Model {
     Stats getStats();
 
     /**
+     * Returns the number of likes of a meme.
+     */
+    int getLikesByMeme(Meme meme);
+
+    /**
      * Returns the like data.
      */
-    LikeData getLikeData();
-
     ObservableMap<String, Integer> getObservableLikeData();
 
     /**
@@ -266,7 +299,23 @@ public interface Model {
     void addMemeToRecord(Meme meme);
 
     /**
+     * Returns the count of a tag in the current meme list.
+     * Returns -1 if the tag is not present in the current meme list.
+     */
+    public int getCountOfTag(Tag tag);
+
+    /**
+     * Returns a list of tags with counts.
+     */
+    List<TagWithCount> getTagsWithCountList();
+
+    /**
      * Clears the image data folder of any memes that are not referenced in weme.
      */
     void cleanMemeStorage();
+
+    /**
+     * Clears the image data folder of any templates that are not referenced in Weme.
+     */
+    void cleanTemplateStorage();
 }

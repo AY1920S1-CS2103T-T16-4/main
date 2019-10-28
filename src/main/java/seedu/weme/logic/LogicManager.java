@@ -12,13 +12,13 @@ import seedu.weme.commons.core.LogsCenter;
 import seedu.weme.logic.commands.Command;
 import seedu.weme.logic.commands.CommandResult;
 import seedu.weme.logic.commands.exceptions.CommandException;
-import seedu.weme.logic.parser.ParserUtil;
-import seedu.weme.logic.parser.WemeParser;
+import seedu.weme.logic.parser.contextparser.WemeParser;
 import seedu.weme.logic.parser.exceptions.ParseException;
-import seedu.weme.logic.prompter.CommandPrompt;
-import seedu.weme.logic.prompter.PrompterUtil;
-import seedu.weme.logic.prompter.WemePrompter;
+import seedu.weme.logic.parser.util.ParserUtil;
+import seedu.weme.logic.prompter.contextprompter.WemePrompter;
 import seedu.weme.logic.prompter.exceptions.PromptException;
+import seedu.weme.logic.prompter.prompt.CommandPrompt;
+import seedu.weme.logic.prompter.util.PrompterUtil;
 import seedu.weme.model.Model;
 import seedu.weme.model.ModelContext;
 import seedu.weme.model.ReadOnlyWeme;
@@ -100,6 +100,7 @@ public class LogicManager implements Logic {
     public ObservableList<Meme> getFilteredImportList() {
         return model.getFilteredImportList();
     }
+
     public ObservableList<Template> getFilteredTemplateList() {
         return model.getFilteredTemplateList();
     }
@@ -112,6 +113,11 @@ public class LogicManager implements Logic {
     @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
+    }
+
+    @Override
+    public ObservableMap<String, String> getObservableUserPreferences() {
+        return model.getObservableUserPreferences();
     }
 
     @Override
@@ -129,7 +135,9 @@ public class LogicManager implements Logic {
         return model.getObservableLikeData();
     }
 
+    @Override
     public void cleanUp() {
-        model.cleanMemeStorage();
+        new Thread(() -> model.cleanMemeStorage()).start();
+        new Thread(() -> model.cleanTemplateStorage()).start();
     }
 }

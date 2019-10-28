@@ -1,6 +1,6 @@
 package seedu.weme.ui;
 
-import static seedu.weme.logic.parser.ParserUtil.MESSAGE_INVALID_CONTEXT;
+import static seedu.weme.logic.parser.util.ParserUtil.MESSAGE_INVALID_CONTEXT;
 
 import java.util.logging.Logger;
 
@@ -29,6 +29,8 @@ public class TabBar extends UiPart<Region> {
     private VBox exportTab;
     @FXML
     private VBox importTab;
+    @FXML
+    private VBox preferencesTab;
 
     private ObservableValue<ModelContext> context;
 
@@ -62,6 +64,8 @@ public class TabBar extends UiPart<Region> {
             return exportTab;
         case CONTEXT_IMPORT:
             return importTab;
+        case CONTEXT_PREFERENCES:
+            return preferencesTab;
         default:
             throw new IllegalArgumentException(MESSAGE_INVALID_CONTEXT);
         }

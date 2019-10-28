@@ -23,8 +23,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.weme.commons.core.GuiSettings;
 import seedu.weme.commons.core.LogsCenter;
 import seedu.weme.model.meme.Meme;
+import seedu.weme.model.tag.Tag;
 import seedu.weme.model.template.Template;
-import seedu.weme.statistics.LikeData;
 import seedu.weme.statistics.Stats;
 
 /**
@@ -104,6 +104,11 @@ public class ModelManager implements Model {
     @Override
     public GuiSettings getGuiSettings() {
         return userPrefs.getGuiSettings();
+    }
+
+    @Override
+    public ObservableMap<String, String> getObservableUserPreferences() {
+        return userPrefs.getObservableUserPreferences();
     }
 
     @Override
@@ -196,6 +201,28 @@ public class ModelManager implements Model {
         versionedWeme.unstageMeme(meme);
     }
 
+    @Override
+    public boolean hasTemplate(Template template) {
+        requireNonNull(template);
+        return versionedWeme.hasTemplate(template);
+    }
+
+    @Override
+    public void deleteTemplate(Template template) {
+        versionedWeme.removeTemplate(template);
+    }
+
+    @Override
+    public void addTemplate(Template template) {
+        versionedWeme.addTemplate(template);
+        updateFilteredTemplateList(PREDICATE_SHOW_ALL_TEMPLATES);
+    }
+
+    @Override
+    public void setTemplate(Template target, Template editedTemplate) {
+        requireAllNonNull(target, editedTemplate);
+        versionedWeme.setTemplate(target, editedTemplate);
+    }
 
     //=========== Filtered Meme/Template List Accessors =============================================================
 
@@ -278,8 +305,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public LikeData getLikeData() {
-        return versionedWeme.getLikeData();
+    public int getLikesByMeme(Meme meme) {
+        return versionedWeme.getLikesByMeme(meme);
     }
 
     @Override
@@ -291,6 +318,16 @@ public class ModelManager implements Model {
     public void incrementMemeLikeCount(Meme meme) {
         versionedWeme.incrementMemeLikeCount(meme);
     }
+
+    @Override
+    public int getCountOfTag(Tag tag) {
+        return versionedWeme.getCountOfTag(tag);
+    }
+
+    @Override
+    public List<TagWithCount> getTagsWithCountList() {
+        return versionedWeme.getTagsWithCountList();
+    };
 
     @Override
     public void clearMemeStats(Meme meme) {
@@ -341,6 +378,24 @@ public class ModelManager implements Model {
             }
 
             Files.list(getMemeImagePath())
+                    .map(Path::toFile)
+                    .filter(file -> !filesToKeep.contains(file))
+                    .forEach(File::delete);
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
+    @Override
+    public void cleanTemplateStorage() {
+        try {
+            Set<File> filesToKeep = new HashSet<>();
+            for (Template template : versionedWeme.getTemplateList()) {
+                File file = template.getImagePath().getFilePath().toFile();
+                filesToKeep.add(file);
+            }
+
+            Files.list(getTemplateImagePath())
                     .map(Path::toFile)
                     .filter(file -> !filesToKeep.contains(file))
                     .forEach(File::delete);

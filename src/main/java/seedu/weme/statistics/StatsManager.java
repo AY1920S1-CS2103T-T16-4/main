@@ -3,11 +3,13 @@ package seedu.weme.statistics;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Map;
 
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 
 import seedu.weme.model.meme.Meme;
+import seedu.weme.model.tag.Tag;
 
 /**
  * Manager class for statistics data for Weme.
@@ -34,18 +36,20 @@ public class StatsManager implements Stats {
     }
 
     //============= Like Data ====================================
-
-    @Override
-    public LikeData getLikeData() {
-        return likeManager.getLikeData();
-    }
-
     /**
      * Replaces the contents of the like data with {@code likeData}.
      */
     @Override
-    public void setLikeData(LikeData likeData) {
-        this.likeManager.setLikeData(likeData);
+    public void setLikeData(Map<String, Integer> likeData) {
+        likeManager.setLikeData(likeData);
+    }
+
+    /**
+     * Returns the number of likes of a meme.
+     */
+    @Override
+    public int getLikesByMeme(Meme meme) {
+        return likeManager.getLikesByMeme(meme);
     }
 
     /**
@@ -75,6 +79,11 @@ public class StatsManager implements Stats {
     //============= Tag Data ====================================
 
     @Override
+    public int getCountOfTag(List<Meme> memeList, Tag tag) {
+        return tagManager.getCountOfTag(memeList, tag);
+    }
+
+    @Override
     public List<TagWithCount> getTagsWithCountList(ObservableList<Meme> memeList) {
         return tagManager.getTagsWithCountList(memeList);
     };
@@ -91,7 +100,16 @@ public class StatsManager implements Stats {
     public void resetData(Stats newData) {
         requireNonNull(newData);
 
-        setLikeData(newData.getLikeData());
+        setLikeData(newData.getObservableLikeData());
+    }
+
+    /**
+     * Returns a copy of the current Stats.
+     */
+    @Override
+    public Stats getStats() {
+        Stats newStats = new StatsManager(this);
+        return newStats;
     }
 
 }
