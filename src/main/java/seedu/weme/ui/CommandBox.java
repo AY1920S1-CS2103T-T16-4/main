@@ -91,7 +91,9 @@ public class CommandBox extends UiPart<Region> {
             final String commandWord = matcher.group(WemeParser.COMMAND_WORD);
             final String argument = matcher.group(WemeParser.ARGUMENTS);
             int change = keyPress.equals(KEYPRESS_LEFT) ? -1 : 1;
-            commandTextField.setText(commandWord + " " + (Integer.parseInt(argument.trim()) + change));
+            int currentLikeCount = Integer.parseInt(argument.trim());
+            int newLikeCount = currentLikeCount + change;
+            commandTextField.setText(commandWord + " " + (newLikeCount < 1 ? 1 : newLikeCount));
         }
     }
 
