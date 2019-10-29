@@ -23,9 +23,9 @@ import javafx.collections.transformation.FilteredList;
 import seedu.weme.commons.core.GuiSettings;
 import seedu.weme.commons.core.LogsCenter;
 import seedu.weme.model.meme.Meme;
-import seedu.weme.model.statistics.Stats;
 import seedu.weme.model.statistics.TagWithCount;
 import seedu.weme.model.tag.Tag;
+import seedu.weme.model.template.MemeCreation;
 import seedu.weme.model.template.Template;
 
 /**
@@ -274,6 +274,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void startMemeCreation(Template template) throws IOException {
+        versionedWeme.startMemeCreation(template);
+    }
+
+    @Override
+    public MemeCreation getMemeCreation() {
+        return versionedWeme.getMemeCreation();
+    }
+
+    @Override
+    public void abortMemeCreation() {
+        versionedWeme.abortMemeCreation();
+    }
+
+    @Override
     public boolean canUndoWeme() {
         return versionedWeme.canUndo();
     }
@@ -299,11 +314,6 @@ public class ModelManager implements Model {
     }
 
     //=========== Statistics Methods =============================================================
-
-    @Override
-    public Stats getStats() {
-        return versionedWeme.getStats();
-    }
 
     @Override
     public int getLikesByMeme(Meme meme) {
@@ -333,7 +343,7 @@ public class ModelManager implements Model {
     @Override
     public List<TagWithCount> getTagsWithCountList() {
         return versionedWeme.getTagsWithCountList();
-    };
+    }
 
     @Override
     public void clearMemeStats(Meme meme) {
@@ -341,11 +351,6 @@ public class ModelManager implements Model {
     }
 
     //=========== Records method ================================================================================
-
-    @Override
-    public Records getRecords() {
-        return versionedWeme.getRecords();
-    }
 
     @Override
     public Set<String> getPathRecords() {

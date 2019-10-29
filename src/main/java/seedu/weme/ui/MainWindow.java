@@ -1,6 +1,6 @@
 package seedu.weme.ui;
 
-import static seedu.weme.logic.parser.util.ParserUtil.MESSAGE_INVALID_CONTEXT;
+import static seedu.weme.logic.parser.util.ParserUtil.MESSAGE_INVALID_TAB;
 
 import java.util.logging.Logger;
 
@@ -21,6 +21,7 @@ import seedu.weme.logic.parser.exceptions.ParseException;
 import seedu.weme.logic.prompter.exceptions.PromptException;
 import seedu.weme.logic.prompter.prompt.CommandPrompt;
 import seedu.weme.model.ModelContext;
+import seedu.weme.model.template.MemeCreation;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -42,6 +43,8 @@ public class MainWindow extends UiPart<Stage> {
     // App content for different tabs
     private StackPane memesPanel;
     private StackPane templatesPanel;
+    private StackPane createPanel;
+    private CreateImageDisplay createImageDisplay;
     private StackPane statisticsPanel;
     private StackPane exportPanel;
     private StackPane importPanel;
@@ -138,7 +141,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
         try {
-            resultDisplay.setFeedbackToUser(logic.prompt("").toString());
+            resultDisplay.setFeedbackToUser(logic.prompt("").getCommandPrompt());
         } catch (PromptException e) {
             // Acts as a placeholder.
         }
@@ -155,6 +158,7 @@ public class MainWindow extends UiPart<Stage> {
     private void fillAppContent() {
         memesPanel = new StackPane();
         templatesPanel = new StackPane();
+        createPanel = new StackPane();
         statisticsPanel = new StackPane();
         exportPanel = new StackPane();
         importPanel = new StackPane();
@@ -166,9 +170,11 @@ public class MainWindow extends UiPart<Stage> {
         TemplateGridPanel templateGridPanel = new TemplateGridPanel(logic.getFilteredTemplateList());
         templatesPanel.getChildren().add(templateGridPanel.getRoot());
 
+        createImageDisplay = new CreateImageDisplay(logic.getMemeCreation());
+        createPanel.getChildren().add(createImageDisplay.getRoot());
+
         StatsPanel statsPanel = new StatsPanel(logic.getWeme());
         statisticsPanel.getChildren().add(statsPanel.getRoot());
-        // TODO: Fill in other panels here
 
         MemeGridPanel exportGridPanel = new MemeGridPanel(
                 logic.getFilteredStagedMemeList(), logic.getObservableLikeData());
@@ -208,6 +214,9 @@ public class MainWindow extends UiPart<Stage> {
         case CONTEXT_PREFERENCES:
             appContentPlaceholder.getChildren().add(preferencesPanel);
             break;
+        case CONTEXT_CREATE:
+            appContentPlaceholder.getChildren().add(createPanel);
+            break;
         case CONTEXT_STATISTICS:
             appContentPlaceholder.getChildren().add(statisticsPanel);
             break;
@@ -218,7 +227,7 @@ public class MainWindow extends UiPart<Stage> {
             appContentPlaceholder.getChildren().add(importPanel);
             break;
         default:
-            throw new IllegalArgumentException(MESSAGE_INVALID_CONTEXT);
+            throw new IllegalArgumentException(MESSAGE_INVALID_TAB);
         }
     }
 
@@ -274,6 +283,11 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            if (logic.getContext().getValue() == ModelContext.CONTEXT_CREATE) {
+                MemeCreation memeCreation = logic.getMemeCreation();
+                createImageDisplay.updateImage(memeCreation);
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -293,11 +307,13 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Parse the user input and display the suggestions in ResultDisplay.
      * @param commandText text input from CommandBox
+     * @return String complete command for auto-completion
      */
-    private void promptCommand(String commandText) throws PromptException {
+    private String promptCommand(String commandText) throws PromptException {
         try {
             CommandPrompt commandPrompt = logic.prompt(commandText);
-            resultDisplay.setFeedbackToUser(commandPrompt.toString());
+            resultDisplay.setFeedbackToUser(commandPrompt.getCommandPrompt());
+            return commandPrompt.getCompleteCommand();
         } catch (PromptException e) {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

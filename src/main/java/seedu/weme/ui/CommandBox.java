@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 
 import seedu.weme.logic.commands.CommandResult;
@@ -51,6 +53,7 @@ public class CommandBox extends UiPart<Region> {
                 isShowingCommandSuccess = false;
             }
         });
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleTabPress);
     }
 
     /**
@@ -130,6 +133,22 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Handles the tab key press event.
+     */
+    private void handleTabPress(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.TAB)) {
+            try {
+                commandTextField.setText(commandPrompter.execute(commandTextField.getText()));
+            } catch (PromptException e) {
+                setStyleToIndicateCommandFailure();
+            } finally {
+                commandTextField.positionCaret(commandTextField.getText().length());
+                event.consume();
+            }
+        }
+    }
+
+    /**
      * Sets the command box style to use the default style.
      */
     private void setStyleToDefault() {
@@ -181,8 +200,9 @@ public class CommandBox extends UiPart<Region> {
         /**
          * Parse the user input and display the suggestions in ResultDisplay.
          * @param userInput text input from CommandBox
+         * @return String complete command for auto-completion
          */
-        void execute(String userInput) throws PromptException;
+        String execute(String userInput) throws PromptException;
     }
 
 }

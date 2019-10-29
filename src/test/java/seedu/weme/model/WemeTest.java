@@ -24,7 +24,9 @@ import seedu.weme.model.meme.exceptions.DuplicateMemeException;
 import seedu.weme.model.statistics.Stats;
 import seedu.weme.model.statistics.StatsManager;
 import seedu.weme.model.statistics.TagWithCount;
+import seedu.weme.model.statistics.TagWithLike;
 import seedu.weme.model.tag.Tag;
+import seedu.weme.model.template.MemeCreation;
 import seedu.weme.model.template.Template;
 import seedu.weme.testutil.MemeBuilder;
 
@@ -101,6 +103,7 @@ public class WemeTest {
         private final ObservableList<Template> templates = FXCollections.observableArrayList();
         private final Stats stats = new StatsManager();
         private final Records records = new RecordsManager();
+        private final MemeCreation memeCreeation = new MemeCreation();
 
         WemeStub() {
         }
@@ -144,8 +147,18 @@ public class WemeTest {
         }
 
         @Override
+        public List<TagWithLike> getTagsWithLikeCountList() {
+            return stats.getTagsWithLikeCountList(memes);
+        }
+
+        @Override
         public Records getRecords() {
             return records;
+        }
+
+        @Override
+        public MemeCreation getMemeCreation() {
+            return memeCreeation;
         }
     }
 

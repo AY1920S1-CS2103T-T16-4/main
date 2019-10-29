@@ -95,6 +95,11 @@ public class StatsManager implements Stats {
         return tagManager.getTagsWithCountList(memeList);
     };
 
+    @Override
+    public List<TagWithLike> getTagsWithLikeCountList(List<Meme> memeList) {
+        return tagManager.getTagsWithLike(memeList, likeManager);
+    }
+
     /**
      * Resets the existing data of this {@code StatsManager} with {@code newData}.
      */
@@ -113,4 +118,5 @@ public class StatsManager implements Stats {
         Stats newStats = new StatsManager(this);
         return newStats;
     }
+
 }

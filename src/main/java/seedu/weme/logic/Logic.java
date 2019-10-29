@@ -14,7 +14,7 @@ import seedu.weme.logic.prompter.prompt.CommandPrompt;
 import seedu.weme.model.ModelContext;
 import seedu.weme.model.ReadOnlyWeme;
 import seedu.weme.model.meme.Meme;
-import seedu.weme.model.statistics.Stats;
+import seedu.weme.model.template.MemeCreation;
 import seedu.weme.model.template.Template;
 
 /**
@@ -73,6 +73,13 @@ public interface Logic {
     void setContext(ModelContext context);
 
     /**
+     * Returns the current meme creation session.
+     *
+     * @return the current meme creation session.
+     */
+    MemeCreation getMemeCreation();
+
+    /**
      * Returns the user prefs' Weme file path.
      */
     Path getWemeFilePath();
@@ -86,11 +93,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
-
-    /**
-     * Returns the stats data.
-     */
-    Stats getStats();
 
     /**
      * Returns an unmodifiable view of like data.
