@@ -1,17 +1,12 @@
 package seedu.weme.ui;
 
-import static seedu.weme.logic.parser.contextparser.WemeParser.BASIC_COMMAND_FORMAT;
-
 import java.util.regex.Matcher;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
-
 import seedu.weme.logic.commands.CommandResult;
 import seedu.weme.logic.commands.exceptions.CommandException;
 import seedu.weme.logic.commands.memecommand.MemeDislikeCommand;
@@ -19,6 +14,8 @@ import seedu.weme.logic.commands.memecommand.MemeLikeCommand;
 import seedu.weme.logic.parser.contextparser.WemeParser;
 import seedu.weme.logic.parser.exceptions.ParseException;
 import seedu.weme.logic.prompter.exceptions.PromptException;
+
+import static seedu.weme.logic.parser.contextparser.WemeParser.BASIC_COMMAND_FORMAT;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
