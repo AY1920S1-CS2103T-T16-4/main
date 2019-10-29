@@ -25,12 +25,11 @@ import seedu.weme.model.Model;
 import seedu.weme.model.ModelContext;
 import seedu.weme.model.ReadOnlyUserPrefs;
 import seedu.weme.model.ReadOnlyWeme;
-import seedu.weme.model.Records;
 import seedu.weme.model.Weme;
 import seedu.weme.model.meme.Meme;
-import seedu.weme.model.statistics.Stats;
 import seedu.weme.model.statistics.TagWithCount;
 import seedu.weme.model.tag.Tag;
+import seedu.weme.model.template.MemeCreation;
 import seedu.weme.model.template.Template;
 import seedu.weme.testutil.MemeBuilder;
 import seedu.weme.testutil.TestUtil;
@@ -268,6 +267,21 @@ public class MemeAddCommandTest {
         }
 
         @Override
+        public void startMemeCreation(Template template) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public MemeCreation getMemeCreation() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void abortMemeCreation() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean canUndoWeme() {
             throw new AssertionError("This method should not be called.");
         }
@@ -303,11 +317,6 @@ public class MemeAddCommandTest {
         }
 
         @Override
-        public Stats getStats() {
-            throw new AssertionError("This method should not be called");
-        }
-
-        @Override
         public int getLikesByMeme(Meme meme) {
             throw new AssertionError("This method should not be called");
         }
@@ -334,11 +343,6 @@ public class MemeAddCommandTest {
 
         @Override
         public void clearMemeStats(Meme meme) {
-            throw new AssertionError("This method should not be called");
-        }
-
-        @Override
-        public Records getRecords() {
             throw new AssertionError("This method should not be called");
         }
 

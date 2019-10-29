@@ -9,6 +9,7 @@ import seedu.weme.model.statistics.Stats;
 import seedu.weme.model.statistics.TagWithCount;
 import seedu.weme.model.statistics.TagWithLike;
 import seedu.weme.model.tag.Tag;
+import seedu.weme.model.template.MemeCreation;
 import seedu.weme.model.template.Template;
 
 /**
@@ -61,9 +62,16 @@ public interface ReadOnlyWeme {
      */
     List<TagWithLike> getTagsWithLikeCountList();
 
-    /** Return records of Weme.
-     * @return
+    /**
+     * Returns records of Weme.
      */
     Records getRecords();
+
+    /**
+     * Returns the current meme creation session.
+     *
+     * @return the current meme creation session
+     */
+    MemeCreation getMemeCreation();
 
 }
