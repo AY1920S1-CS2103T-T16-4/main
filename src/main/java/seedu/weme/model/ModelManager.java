@@ -76,7 +76,6 @@ public class ModelManager implements Model {
     @Override
     public void importMemes() throws IOException {
         versionedWeme.importMeme(getMemeImagePath());
-        versionedWeme.clearImportList();
     }
 
     @Override
@@ -87,6 +86,11 @@ public class ModelManager implements Model {
     @Override
     public void clearExportList() {
         versionedWeme.clearExportList();
+    }
+
+    @Override
+    public void clearImportList() {
+        versionedWeme.clearImportList();
     }
 
 
@@ -186,6 +190,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteImportedMeme(Meme target) {
+        versionedWeme.removeImportedMeme(target);
+    }
+
+    @Override
     public void addMeme(Meme meme) {
         versionedWeme.addMeme(meme);
         updateFilteredMemeList(PREDICATE_SHOW_ALL_UNARCHIVED_MEMES);
@@ -196,6 +205,13 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedMeme);
 
         versionedWeme.setMeme(target, editedMeme);
+    }
+
+    @Override
+    public void setImportedMeme(Meme target, Meme editedMeme) {
+        requireAllNonNull(target, editedMeme);
+
+        versionedWeme.setImportedMeme(target, editedMeme);
     }
 
     @Override
