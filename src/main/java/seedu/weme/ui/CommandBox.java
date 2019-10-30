@@ -26,6 +26,10 @@ public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
+    private static final String KEYPRESS_UP = "up";
+    private static final String KEYPRESS_DOWN = "down";
+    private static final String KEYPRESS_LEFT = "left";
+    private static final String KEYPRESS_RIGHT = "right";
 
     private final CommandExecutor commandExecutor;
     private final CommandPrompter commandPrompter;
@@ -110,6 +114,68 @@ public class CommandBox extends UiPart<Region> {
             } finally {
                 commandTextField.positionCaret(commandTextField.getText().length());
                 event.consume();
+            }
+        }
+    }
+
+    /**
+     * Handles the key press event, {@code keyEvent}.
+     */
+    @FXML
+    private void handleKeyPress(KeyEvent keyEvent) {
+        switch (keyEvent.getCode()) {
+        case UP:
+            // As up and down buttons will alter the position of the caret,
+            // consuming it causes the caret's position to remain unchanged
+            keyEvent.consume();
+            handleLikeByKeyPress(KEYPRESS_UP);
+            break;
+        case DOWN:
+            keyEvent.consume();
+            handleLikeByKeyPress(KEYPRESS_DOWN);
+            break;
+        case LEFT:
+            keyEvent.consume();
+            handleIndexToggleByKeyPress(KEYPRESS_LEFT);
+            break;
+        case RIGHT:
+            keyEvent.consume();
+            handleIndexToggleByKeyPress(KEYPRESS_RIGHT);
+            break;
+        default:
+            // let JavaFx handle the keypress
+        }
+    }
+
+    /**
+     * Changes index in the command box with key press to enable fast liking.
+     */
+    private void handleIndexToggleByKeyPress(String keyPress) {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandTextField.getText().trim());
+        if (matcher.matches()) {
+            final String commandWord = matcher.group(WemeParser.COMMAND_WORD);
+            final String argument = matcher.group(WemeParser.ARGUMENTS);
+            int change = keyPress.equals(KEYPRESS_LEFT) ? -1 : 1;
+            int currentLikeCount = Integer.parseInt(argument.trim());
+            int newLikeCount = currentLikeCount + change;
+            commandTextField.setText(commandWord + " " + (newLikeCount < 1 ? 1 : newLikeCount));
+        }
+    }
+
+    /**
+     * Handles like command in the form of key press.
+     */
+    private void handleLikeByKeyPress(String keyPress) {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandTextField.getText().trim());
+        if (matcher.matches()) {
+            try {
+                final String commandWord = matcher.group(WemeParser.COMMAND_WORD);
+                if (commandWord.equals(MemeLikeCommand.COMMAND_WORD) && keyPress.equals(KEYPRESS_UP)
+                        || commandWord.equals(MemeDislikeCommand.COMMAND_WORD) && keyPress.equals(KEYPRESS_DOWN)) {
+                    commandExecutor.execute(commandTextField.getText());
+                }
+            } catch (CommandException | ParseException e) {
+                setStyleToIndicateCommandFailure();
             }
         }
     }
