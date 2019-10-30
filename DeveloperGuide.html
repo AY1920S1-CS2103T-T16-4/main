@@ -1042,7 +1042,9 @@ navigating between import and export mode to be less subtle.</p>
 Auto-suggestion of command arguments while the user keys in inputs can be very helpful to provide user hints.
 Possible command words will be suggested to user based on incomplete input.
 Depending on what the user has typed in for the argument, the most similar argument values retrieved from the historical
-records will be displayed to the user for reference.</p>
+records will be displayed to the user for reference.
+The user can also use the "TAB" key to auto complete the command word/argument, where the first prompt will
+replace the current command word/argument in user input.</p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current Implementation</a></h4>
@@ -1053,8 +1055,10 @@ Step 1. The user types commands into the <code>CommandBox</code>.
 Step 2. The <code>MainWindow</code> listens to changes in the content in <code>CommandBox</code> and direct the input to <code>WemePrompter</code>.
 Step 3. Depending on the context, the prompter that implements <code>WemePrompter</code> (e.g. <code>MemePrompter</code>) will then pass the arguments
 to different <code>Prompter</code> (e.g. <code>MemeAddCommandPrompter</code>) based on the command word.
-Step 4: The <code>Prompter</code> will process the input and return a <code>CommandPrompt</code> containing the command suggestion for the given input.
-Step 5: The prompt will be passed to and displayed by <code>ResultBox</code>.</p>
+Step 4: The <code>Prompter</code> will process the input and return a <code>CommandPrompt</code> containing the command suggestion, and the
+complete text for auto-completion for the given input.
+Step 5: The prompt will be passed to and displayed by <code>ResultBox</code>.
+Step 6: The <code>CommandBox</code> listens to the "TAB" key press, and replace the current argument with the first command prompt.</p>
 </div>
 </div>
 <div class="sect3">
@@ -2037,4 +2041,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 10:52:09 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 15:03:06 UTC</div></div></div></body></html>
