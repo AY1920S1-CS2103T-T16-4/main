@@ -697,17 +697,17 @@ A user can add, edit, delete, or find a template.</p>
 <div class="title">Figure 9. Partial class diagram showing only classes in <code>Model</code> that concern <code>Template</code></div>
 </div>
 <div class="paragraph">
-<p>Templates are stored alongside <code>Memes</code> in <code>Weme</code> in a <code>UniqueTemplateList</code>.
-The <code>ModelManager</code> will store a <code>FilteredList&lt;Template&gt;</code> that only holds the <code>Templates</code> that satisfy the current filter predicate.
-The <code>Model</code> exposes this filtered list of <code>Templates</code> as an unmodifiable <code>ObservableList&lt;Template&gt;</code> that the UI can subscribe to.
-In order to display the effect of adding text to a template while in meme creation mode,
-<code>CommandResult</code> will be extended to store the user&#8217;s actions and the UI will use this information to update itself accordingly.</p>
+<p>Templates are stored together with <code>Memes</code> in <code>Weme</code>. Refer to the model class diagram above for details.</p>
 </div>
 <div class="paragraph">
-<p>When the user requests to generate a meme using a template, Weme will enter meme creation mode.
-The user can then add any text to one or more places on the template image.
-When the user is done, Weme will create a new <code>Meme</code> with all the added text included.
-The user can then browse this <code>Meme</code> in the collection and export or share it as desired.</p>
+<p>When the user requests to generate a meme using a template, Weme will enter the "<strong>Create</strong>" tab.
+The user can then use commands to add text to the template image.
+Meme creation is supported internally by the <code>MemeCreation</code> class.
+A <code>MemeCreation</code> object represents a meme creation session (which can be empty when the user is not creating a meme).
+Once a session is activated, it will store a <code>BufferedImage</code> of the template used as the base and a list of <code>MemeText</code> objects, which represent text that will be added to the template.
+Every time the user adds text, the list of <code>MemeText</code> will be updated.
+When the UI requests for this image, <code>MemeCreation</code> will render it with all the <code>MemeText</code> applied.
+When the user is done, <code>MemeCreation</code> will create a new <code>Meme</code> with all the added text included and save it in the meme collection.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario of meme creation using a template.</p>
@@ -720,25 +720,26 @@ The user can then browse this <code>Meme</code> in the collection and export or 
 The <code>FilteredList&lt;Template&gt;</code> in <code>ModelManager</code> will be updated with a predicate that matches only templates whose names match <em>doge</em>.</p>
 </div>
 <div class="paragraph">
-<p>Step 3. Assuming the template that the user wants to use is displayed as the first template, the user executes <code>use 1</code> to enter meme creation mode.
-Weme will update the <code>ModelContext</code> to receive commands that are meant for template manipulation, and the UI will zoom into the template chosen.</p>
+<p>Step 3. Assuming the template that the user wants to use is displayed as the first template, the user executes <code>use 1</code> to start createing a meme using the templated identified by index 1.
+Weme will enter the "<strong>Create</strong>" tab and display the image of the template.</p>
 </div>
 <div class="paragraph">
 <p>Step 4. The user executes <code>add cs students be like x/0.3 y/0.5</code> command to add the text "cs students be like".
-The text will be placed 30% horizontally from the left border and 50% vertically from the top border.
-This is made possible because the execution of this command returns a <code>CommandResult</code> that stores the text and position information.
-UI will then use this information to render the text at the correct position.
-The newly added text will be labelled number <strong>1</strong> for future references.</p>
+A new <code>MemeText</code> will be added to the current <code>MemeCreation</code> session.
+The UI requests <code>MemeCreation</code> to render the resultant image, and <code>MemeCreation</code> returns an image with the text "cs students be like"
+placed 30% horizontally from the left border and 50% vertically from the top border.</p>
 </div>
 <div class="paragraph">
 <p>Step 5. The user decides that there is a typo in the text because "cs" is not capitalized.
-The user executes the command <code>delete 1</code> to delete the text labelled <strong>1</strong>, which is the text that was just added.</p>
+The user executes the command <code>delete 1</code> to delete the text labelled <strong>1</strong>, which is the text that was just added.
+<code>MemeCreation</code> deletes this <code>MemeText</code> and renders a new image where the text is removed and the UI will display it.</p>
 </div>
 <div class="paragraph">
-<p>Step 6. The user then executes <code>add CS student be like x/0.3 y/0.5</code> to add the correct text.</p>
+<p>Step 6. The user then executes <code>add CS student be like x/0.3 y/0.5</code> to add the correct text.
+<code>MemeCreation</code> adds this newly created <code>MemeText</code> to its internal list.</p>
 </div>
 <div class="paragraph">
-<p>Step 7. The user executes <code>generate d/A meme about CS students t/funny t/CS</code> to complete the editing session.
+<p>Step 7. The user executes <code>create d/A meme about CS students t/funny t/CS</code> to complete the editing session.
 Weme will create a new image with the text added and create a new <code>Meme</code> with that image.
 The <code>Meme</code> created will also have description "A meme about CS students" and tags "funny" and "CS".
 The description and tag arguments are similar to those for <code>Meme</code> add command.</p>
@@ -764,42 +765,42 @@ The user can also abort any meme creation session by typing <code>abort</code>. 
 </div>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how <code>CommandResult</code> relays information about the text added to the UI.</p>
+<p>The following sequence diagram shows how the user adds a piece of text.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/TemplateCommandResultSequenceDiagram.png" alt="TemplateCommandResultSequenceDiagram">
+<img src="images/TextAddCommandSequenceDiagram.png" alt="TextAddCommandSequenceDiagram">
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-to-update-the-ui-while-adding-text-to-templates"><a class="link" href="#aspect-how-to-update-the-ui-while-adding-text-to-templates">Aspect: How to update the UI while adding text to templates</a></h5>
+<h5 id="aspect-how-to-store-the-image"><a class="link" href="#aspect-how-to-store-the-image">Aspect: How to store the image</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Wrap the text and position information in <code>CommandResult</code>, let the UI decide what to do.</p>
+<p><strong>Alternative 1 (current choice):</strong> Only store the initial image and a list of text to re-generated the image every time it is requsted by the UI</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: No additional coupling, clearer separation of concerns.</p>
+<p>Pros: Can edit/delete text after they are added</p>
 </li>
 <li>
-<p>Cons: Additional layer of abstraction in <code>CommandResult</code>.</p>
+<p>Cons: Slower</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Execution of the command updates the UI directly.</p>
+<p><strong>Alternative 2:</strong> Always store the updated image. Update the image whenever a piece of text is added.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: More direct, less abstraction</p>
+<p>Pros: Less performance overhead, only render what is needed.</p>
 </li>
 <li>
-<p>Cons: <code>Command</code> will have dependency on <code>UI</code></p>
+<p>Cons: Cannot edit/delete text.</p>
 </li>
 </ul>
 </div>
@@ -820,6 +821,9 @@ The user can also abort any meme creation session by typing <code>abort</code>. 
 </li>
 <li>
 <p>Cons: User might not be able to position the text accurately.</p>
+</li>
+<li>
+<p>Mitigation measure: Provide rules as visual aid for the user.</p>
 </li>
 </ul>
 </div>
@@ -1257,9 +1261,6 @@ For example, both <strong>Templates</strong> context for viewing templates and <
 <ul>
 <li>
 <p>Templates (showing all templates)</p>
-</li>
-<li>
-<p>MemeCreation (creating a meme from a template)</p>
 </li>
 </ul>
 </div>
@@ -2113,4 +2114,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 15:52:08 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 15:58:33 UTC</div></div></div></body></html>
