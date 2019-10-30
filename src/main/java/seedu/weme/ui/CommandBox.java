@@ -69,6 +69,7 @@ public class CommandBox extends UiPart<Region> {
             break;
         case TAB:
             handleTabPress(keyEvent);
+            break;
         default:
             // let JavaFx handle the keypress
         }
