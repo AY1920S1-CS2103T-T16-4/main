@@ -72,7 +72,6 @@ public class ImportEditCommand extends Command {
         }
 
         model.setImportedMeme(memeToEdit, editedMeme);
-        model.addMemeToRecord(editedMeme);
         CommandResult result = new CommandResult(String.format(MESSAGE_EDIT_MEME_SUCCESS, editedMeme));
 
         return result;
