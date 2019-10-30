@@ -1,6 +1,7 @@
 package seedu.weme.ui;
 
 import static seedu.weme.logic.parser.contextparser.WemeParser.BASIC_COMMAND_FORMAT;
+import static seedu.weme.logic.parser.contextparser.WemeParser.COMMAND_WORD;
 
 import java.util.regex.Matcher;
 
@@ -26,6 +27,7 @@ public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
+    private static final int BASE_INDEX = 1;
 
     private final CommandExecutor commandExecutor;
     private final CommandPrompter commandPrompter;
@@ -80,13 +82,21 @@ public class CommandBox extends UiPart<Region> {
      */
     private void handleIndexToggleByKeyPress(KeyEvent event) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandTextField.getText().trim());
-        if (matcher.matches()) {
+        // Check if the input is a valid command
+        if (!matcher.matches()) {
+            return;
+        }
+
+        if (!matcher.group(COMMAND_WORD).equals(MemeLikeCommand.COMMAND_WORD)) {
+            // Do not handle if the command word is not a like command.
+            return;
+        } else {
             final String commandWord = matcher.group(WemeParser.COMMAND_WORD);
             final String argument = matcher.group(WemeParser.ARGUMENTS);
             int change = event.getCode().equals(KeyCode.LEFT) ? -1 : 1;
             int currentLikeCount = Integer.parseInt(argument.trim());
             int newLikeCount = currentLikeCount + change;
-            commandTextField.setText(commandWord + " " + (newLikeCount < 1 ? 1 : newLikeCount));
+            commandTextField.setText(commandWord + " " + (Math.max(newLikeCount, BASE_INDEX)));
         }
         commandTextField.positionCaret(commandTextField.getText().length());
         event.consume();
