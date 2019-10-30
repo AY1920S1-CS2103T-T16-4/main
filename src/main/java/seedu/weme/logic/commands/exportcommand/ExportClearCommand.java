@@ -12,7 +12,7 @@ import seedu.weme.model.Model;
 public class ExportClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Staging area has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Export staging area has been cleared!";
 
 
     @Override

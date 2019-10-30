@@ -12,7 +12,7 @@ import seedu.weme.model.Model;
 public class ImportClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Weme has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Import staging area has been cleared!";
 
 
     @Override
