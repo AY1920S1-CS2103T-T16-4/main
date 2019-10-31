@@ -694,20 +694,26 @@ A user can add, edit, delete, or find a template.</p>
 <div class="content">
 <img src="images/TemplateClassDiagram.png" alt="TemplateClassDiagram">
 </div>
-<div class="title">Figure 9. Partial class diagram showing only classes in <code>Model</code> that concern <code>Template</code></div>
+<div class="title">Figure 9. Partial class diagram showing only classes in <code>Model</code> related to <code>Template</code></div>
 </div>
 <div class="paragraph">
 <p>Templates are stored together with <code>Memes</code> in <code>Weme</code>. Refer to the model class diagram above for details.</p>
 </div>
 <div class="paragraph">
-<p>When the user requests to generate a meme using a template, Weme will enter the "<strong>Create</strong>" tab.
+<p>When the user requests to generate a meme using a template, Weme enters the "<strong>Create</strong>" tab.
 The user can then use commands to add text to the template image.
 Meme creation is supported internally by the <code>MemeCreation</code> class.
 A <code>MemeCreation</code> object represents a meme creation session (which can be empty when the user is not creating a meme).
-Once a session is activated, it will store a <code>BufferedImage</code> of the template used as the base and a list of <code>MemeText</code> objects, which represent text that will be added to the template.
-Every time the user adds text, the list of <code>MemeText</code> will be updated.
-When the UI requests for this image, <code>MemeCreation</code> will render it with all the <code>MemeText</code> applied.
-When the user is done, <code>MemeCreation</code> will create a new <code>Meme</code> with all the added text included and save it in the meme collection.</p>
+Once a session is activated, the <code>MemeCreation</code> object stores a <code>BufferedImage</code> of the template and a list of <code>MemeText</code> objects, which represent text that the user wants to add to the template.
+Every time the user adds text, the list of <code>MemeText</code> gets updated.
+When the UI requests for the updated image, <code>MemeCreation</code> generates it on the fly with all the <code>MemeText</code> applied.
+When the user is done, <code>MemeCreation</code> creates a new <code>Meme</code> with all the added text included and saves it in the meme collection.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MemeCreationClassDiagram.png" alt="MemeCreationClassDiagram">
+</div>
+<div class="title">Figure 10. Partial class diagram showing only classes in <code>Model</code> related to <code>MemeCreation</code></div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario of meme creation using a template.</p>
@@ -717,31 +723,32 @@ When the user is done, <code>MemeCreation</code> will create a new <code>Meme</c
 </div>
 <div class="paragraph">
 <p>Step 2. The user executes <code>find doge</code> command to find the <em>doge</em> template.
-The <code>FilteredList&lt;Template&gt;</code> in <code>ModelManager</code> will be updated with a predicate that matches only templates whose names match <em>doge</em>.</p>
+The <code>FilteredList&lt;Template&gt;</code> in <code>ModelManager</code> is updated with a predicate that matches only templates whose names match <em>doge</em>.</p>
 </div>
 <div class="paragraph">
-<p>Step 3. Assuming the template that the user wants to use is displayed as the first template, the user executes <code>use 1</code> to start createing a meme using the templated identified by index 1.
-Weme will enter the "<strong>Create</strong>" tab and display the image of the template.</p>
+<p>Step 3. Assuming the template that the user wants to use is displayed as the first template, the user executes <code>use 1</code> to start creating a meme using that template.
+Weme starts a new <code>MemeCreation</code> session and enters the "<strong>Create</strong>" tab.</p>
 </div>
 <div class="paragraph">
 <p>Step 4. The user executes <code>add cs students be like x/0.3 y/0.5</code> command to add the text "cs students be like".
-A new <code>MemeText</code> will be added to the current <code>MemeCreation</code> session.
+A new <code>MemeText</code> is created and added to the list in the current <code>MemeCreation</code> session.
 The UI requests <code>MemeCreation</code> to render the resultant image, and <code>MemeCreation</code> returns an image with the text "cs students be like"
 placed 30% horizontally from the left border and 50% vertically from the top border.</p>
 </div>
 <div class="paragraph">
 <p>Step 5. The user decides that there is a typo in the text because "cs" is not capitalized.
 The user executes the command <code>delete 1</code> to delete the text labelled <strong>1</strong>, which is the text that was just added.
-<code>MemeCreation</code> deletes this <code>MemeText</code> and renders a new image where the text is removed and the UI will display it.</p>
+<code>MemeCreation</code> deletes this <code>MemeText</code> from the list.
+Upon request by the UI, <code>MemeCreation</code> generates the updated image for the UI for display.</p>
 </div>
 <div class="paragraph">
 <p>Step 6. The user then executes <code>add CS student be like x/0.3 y/0.5</code> to add the correct text.
 <code>MemeCreation</code> adds this newly created <code>MemeText</code> to its internal list.</p>
 </div>
 <div class="paragraph">
-<p>Step 7. The user executes <code>create d/A meme about CS students t/funny t/CS</code> to complete the editing session.
-Weme will create a new image with the text added and create a new <code>Meme</code> with that image.
-The <code>Meme</code> created will also have description "A meme about CS students" and tags "funny" and "CS".
+<p>Step 7. The user executes <code>create d/A meme about CS students t/funny t/CS</code> to complete the creation session.
+Weme will create a new image with the text added and save it to the data directory.
+Weme will also create a new <code>Meme</code> entry with that image, with description "A meme about CS students" and tags "funny" and "CS".
 The description and tag arguments are similar to those for <code>Meme</code> add command.</p>
 </div>
 <div class="admonitionblock note">
@@ -751,7 +758,8 @@ The description and tag arguments are similar to those for <code>Meme</code> add
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The user can also abort any meme creation session by typing <code>abort</code>. This will put Weme back to displaying the content of the <strong>Templates</strong> tab.
+The user can abort any meme creation session by typing <code>abort</code>.
+This will put Weme back to displaying the content of the <strong>Templates</strong> tab.
 </td>
 </tr>
 </table>
@@ -776,18 +784,18 @@ The user can also abort any meme creation session by typing <code>abort</code>. 
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-to-store-the-image"><a class="link" href="#aspect-how-to-store-the-image">Aspect: How to store the image</a></h5>
+<h5 id="aspect-how-to-store-and-update-the-image"><a class="link" href="#aspect-how-to-store-and-update-the-image">Aspect: How to store and update the image</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Only store the initial image and a list of text to re-generated the image every time it is requsted by the UI</p>
+<p><strong>Alternative 1 (current choice):</strong> Only store the initial image and a list of text. Re-generate an image when it is requested by the UI.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Can edit/delete text after they are added</p>
+<p>Pros: Can edit/delete text after they are added.</p>
 </li>
 <li>
-<p>Cons: Slower</p>
+<p>Cons: Waste resources by repeatedly rendering largely similar images.</p>
 </li>
 </ul>
 </div>
@@ -952,7 +960,7 @@ The graphics are embedded in the statistics panel in Weme.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/modelClassDiagram.png" alt="modelClassDiagram">
+<img src="images/ModelClassDiagram.png" alt="ModelClassDiagram">
 </div>
 </div>
 <div class="paragraph">
@@ -1274,6 +1282,16 @@ For example, both <strong>Templates</strong> context for viewing templates and <
 <div class="ulist">
 <ul>
 <li>
+<p><strong>Create</strong> tab</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Current meme creation session. Displays placeholder text if no session is going on.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p><strong>Statistics</strong> tab</p>
 <div class="ulist">
 <ul>
@@ -1284,12 +1302,19 @@ For example, both <strong>Templates</strong> context for viewing templates and <
 </div>
 </li>
 <li>
-<p><strong>Storage</strong> tab</p>
+<p><strong>Import</strong> tab</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Import (for importing <code>Meme`s and `Templates</code>)</p>
 </li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Export</strong> tab</p>
+<div class="ulist">
+<ul>
 <li>
 <p>Export (for exporting <code>Meme`s and `Templates</code>)</p>
 </li>
@@ -1372,7 +1397,7 @@ For example, both <strong>Templates</strong> context for viewing templates and <
 <p>Pros: More intuitive for new users.</p>
 </li>
 <li>
-<p>Cons: Users who prefer a keyboard-driven workflow might not want to use their mouse.</p>
+<p>Cons: Users who prefer a keyboard-driven workflow might not want to use the mouse.</p>
 </li>
 </ul>
 </div>
@@ -1392,7 +1417,7 @@ For example, both <strong>Templates</strong> context for viewing templates and <
 <p>Pros: More intuitive to the user, less screen space wasted for extra tabs.</p>
 </li>
 <li>
-<p>Cons: More difficult to implement.</p>
+<p>Cons: More difficult to implement. Need to be careful about which commands can change the context.</p>
 </li>
 </ul>
 </div>
@@ -2114,4 +2139,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 11:45:27 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 11:45:56 UTC</div></div></div></body></html>
