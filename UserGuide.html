@@ -13,12 +13,12 @@
 <li><a href="#quick-start">2. Quick Start</a></li>
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
-<li><a href="#general">3.1. General</a></li>
-<li><a href="#meme">3.2. Meme</a></li>
-<li><a href="#templates">3.3. Templates</a></li>
-<li><a href="#import-export">3.4. Import/Export</a></li>
-<li><a href="#tags">3.5. Tags</a></li>
-<li><a href="#statistics">3.6. Statistics</a></li>
+<li><a href="#general-commands">3.1. General Commands</a></li>
+<li><a href="#meme-tab">3.2. Meme Tab</a></li>
+<li><a href="#templates-tab">3.3. Templates Tab</a></li>
+<li><a href="#export-tab">3.4. Export Tab</a></li>
+<li><a href="#import-tab">3.5. Import Tab</a></li>
+<li><a href="#statistics-tab">3.6. Statistics Tab</a></li>
 <li><a href="#auto-suggestions">3.7. Auto-suggestions</a></li>
 </ul>
 </li>
@@ -61,16 +61,26 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>meme list</code></strong> : lists all memes</p>
+<p><strong><code>tab memes</code></strong> : switches to the meme tab</p>
 </li>
 <li>
-<p><strong><code>meme add</code></strong><code>p/~/Downloads/meme.jpg d/Top meme</code> : adds a meme located at "~/Downloads/meme.jpg" with the description "Top meme"</p>
+<p>In the meme tab:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>list</code></strong> : lists all memes</p>
 </li>
 <li>
-<p><strong><code>meme delete</code></strong><code>3</code> : deletes the 3rd meme shown in the window</p>
+<p><strong><code>add</code></strong><code>p/~/Downloads/meme.jpg d/Top meme</code> : adds a meme located at "~/Downloads/meme.jpg" with the description "Top meme"</p>
+</li>
+<li>
+<p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd meme shown in the meme tab</p>
 </li>
 <li>
 <p><strong><code>exit</code></strong> : exits the app</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -112,7 +122,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect2">
-<h3 id="general"><a class="link" href="#general">3.1. General</a></h3>
+<h3 id="general-commands"><a class="link" href="#general-commands">3.1. General Commands</a></h3>
 <div class="sect3">
 <h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.1.1. Viewing help : <code>help</code></a></h4>
 <div class="paragraph">
@@ -134,27 +144,53 @@ Example: <code>undo</code></p>
 Format: <code>redo</code><br>
 Example: <code>redo</code></p>
 </div>
-<hr>
+<div class="sidebarblock">
+<div class="content">
 <div class="paragraph">
 <p><code>undo</code> and <code>redo</code> only supports commands that modify data in Weme. This means that commands that alter the UI (such as <code>find</code> and <code>list</code>), as well as commands that modify the staging / import list (such as <code>load</code>, <code>stage</code>) are not undoable.<br>
 * Meme Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>clear</code>, <code>archive</code>, <code>unarchive</code>, <code>like</code>
 * Template Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>archive</code>, <code>unarchive</code>, <code>use</code>
 * Create Tab: <code>add</code>, <code>abort</code>, <code>create</code>
-* Import Tab: <code>import</code>
-<strong>*</strong></p>
+* Import Tab: <code>import</code></p>
 </div>
-<hr>
-<div class="paragraph">
-<p>Undo and Redo only supports commands that modify data in Weme. This means that commands that alter the UI (such as <code>find</code> and <code>list</code>), as well as commands that modify the staging / import list (such as <code>load</code>, <code>stage</code>) are not undoable.
-* Meme Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>clear</code>, <code>like</code>
-* Template Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>use</code>
-* Create Tab: <code>add</code>, <code>abort</code>
-* Import Tab: <code>import</code>
-<strong>*</strong></p>
+</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exit-code-exit-code"><a class="link" href="#exit-code-exit-code">3.1.4. Exit : <code>exit</code></a></h4>
+<h4 id="tab-code-tab-code"><a class="link" href="#tab-code-tab-code">3.1.4. Tab : <code>tab</code></a></h4>
+<div class="paragraph">
+<p>Switches between tabs in the application.<br>
+Format: <code>tab TAB_NAME</code><br>
+<code>TAB_NAME</code> options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>memes</strong></p>
+</li>
+<li>
+<p><strong>templates</strong></p>
+</li>
+<li>
+<p><strong>create</strong></p>
+</li>
+<li>
+<p><strong>statistics</strong></p>
+</li>
+<li>
+<p><strong>export</strong></p>
+</li>
+<li>
+<p><strong>import</strong></p>
+</li>
+<li>
+<p><strong>preferences</strong></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exit-code-exit-code"><a class="link" href="#exit-code-exit-code">3.1.5. Exit : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits Weme.<br>
 Format: <code>exit</code></p>
@@ -162,41 +198,34 @@ Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="meme"><a class="link" href="#meme">3.2. Meme</a></h3>
+<h3 id="meme-tab"><a class="link" href="#meme-tab">3.2. Meme Tab</a></h3>
 <div class="sect3">
-<h4 id="add-meme-code-add-code"><a class="link" href="#add-meme-code-add-code">3.2.1. Add - meme : <code>add</code></a></h4>
+<h4 id="add-a-meme-code-add-code"><a class="link" href="#add-a-meme-code-add-code">3.2.1. Add a meme: <code>add</code></a></h4>
 <div class="paragraph">
-<p>Add a new meme to Weme. Weme will copy the given image into the it’s data storage folder.<br>
-Format: <code>meme add p/PATH [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]&#8230;&#8203;</code><br>
+<p>Add a new meme to the meme tab. Weme will copy the given image into the it’s data storage folder.<br>
+Format: <code>add p/PATH [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]&#8230;&#8203;</code><br>
 Examples:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Add a meme that uses the “Disaster Girl” template from ~/Downloads/dgirl_oof.jpg <code>meme add p/~/Downloads/dgirl_oof.jpg n/Disaster Girl t/Funny</code></p>
+<p>Add a meme that uses the “Disaster Girl” template from ~/Downloads/dgirl_oof.jpg <code>add p/~/Downloads/dgirl_oof.jpg n/Disaster Girl t/Funny</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="list-meme-code-list-code"><a class="link" href="#list-meme-code-list-code">3.2.2. List - meme : <code>list</code></a></h4>
+<h4 id="clear-code-clear-code"><a class="link" href="#clear-code-clear-code">3.2.2. Clear: <code>clear</code></a></h4>
 <div class="paragraph">
-<p>List all memes in Weme.<br>
-Format: <code>meme list</code></p>
+<p>Clears all memes in the meme tab.<br>
+Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="edit-meme-code-edit-code"><a class="link" href="#edit-meme-code-edit-code">3.2.3. Edit - meme : <code>edit</code></a></h4>
+<h4 id="delete-a-meme-code-delete-code"><a class="link" href="#delete-a-meme-code-delete-code">3.2.3. Delete a meme: <code>delete</code></a></h4>
 <div class="paragraph">
-<p>Edit the details of a meme at the specified index. Only optional fields are editable.<br>
-Format: <code>meme edit INDEX [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]&#8230;&#8203;</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="delete-meme-code-delete-code"><a class="link" href="#delete-meme-code-delete-code">3.2.4. Delete - meme : <code>delete</code></a></h4>
-<div class="paragraph">
-<p>Delete the specified meme from Weme.
-Format: <code>meme delete INDEX</code></p>
+<p>Delete the specified meme from the meme tab.<br>
+Format: <code>delete INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -234,10 +263,55 @@ Deletes the 1st meme in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="find-meme-code-find-code"><a class="link" href="#find-meme-code-find-code">3.2.5. Find - meme : <code>find</code></a></h4>
+<h4 id="edit-a-meme-code-edit-code"><a class="link" href="#edit-a-meme-code-edit-code">3.2.4. Edit a meme: <code>edit</code></a></h4>
 <div class="paragraph">
-<p>Finds memes that fulfill the given search criteria. At least one field must be given.<br>
-Format: <code>meme find [d/DESCRIPTION]&#8230;&#8203; [n/TEMPLATE_NAME]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code></p>
+<p>Edit the details of a meme at the specified index. Only optional fields are editable.<br>
+Format: <code>edit INDEX [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="stage-a-meme-code-stage-code"><a class="link" href="#stage-a-meme-code-stage-code">3.2.5. Stage a meme: <code>stage</code></a></h4>
+<div class="paragraph">
+<p>Stages the meme into the export staging area at the specified index.<br>
+Format: <code>stage INDEX</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="like-a-meme-code-like-code"><a class="link" href="#like-a-meme-code-like-code">3.2.6. Like a meme: <code>like</code></a></h4>
+<div class="paragraph">
+<p>Like a meme by the index. Format: <code>like 1</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>You could use arrow key UP to quick like a meme at the given index.<br>
+To do this, you have to key in the full command <code>like [INDEX]</code> then press arrow key.<br>
+You can also use arrow key LEFT and RIGHT to toggle the index from 1 to a higher index.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="dislike-a-meme-code-dislike-code"><a class="link" href="#dislike-a-meme-code-dislike-code">3.2.7. Dislike a meme: <code>dislike</code></a></h4>
+<div class="paragraph">
+<p>Dislike a meme by the index. Format: <code>dislike 1</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Same as like, dislike also allows arrow key operations.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="find-a-meme-code-find-code"><a class="link" href="#find-a-meme-code-find-code">3.2.8. Find a meme: <code>find</code></a></h4>
+<div class="paragraph">
+<p>Finds all memes with tags containing any of the specified keywords
+(case-insensitive) and displays them as a list with index numbers.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -265,80 +339,66 @@ Format: <code>meme find [d/DESCRIPTION]&#8230;&#8203; [n/TEMPLATE_NAME]&#8230;&#
 <div class="ulist">
 <ul>
 <li>
-<p><code>meme find pikachu</code><br>
+<p><code>find pikachu</code><br>
 Returns memes related to <code>pikachu</code> and <code>pikachu faceless</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="like-meme-code-like-code"><a class="link" href="#like-meme-code-like-code">3.2.6. Like - meme : <code>like</code></a></h4>
+<h4 id="list-code-list-code"><a class="link" href="#list-code-list-code">3.2.9. List: <code>list</code></a></h4>
 <div class="paragraph">
-<p>Like a meme by the index. Format: <code>like 1</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p>You could use arrow key UP to quick like a meme at the given index.<br>
-To do this, you have to key in the full command <code>like [INDEX]</code> then press arrow key.<br>
-You can also use arrow key LEFT and RIGHT to toggle the index from 1 to a higher index.</p>
-</div>
-</div>
+<p>Lists all memes in the meme tab.<br>
+Format: <code>list</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="dislike-meme-code-dislike-code"><a class="link" href="#dislike-meme-code-dislike-code">3.2.7. Dislike - meme : <code>dislike</code></a></h4>
+<h4 id="archives-code-archives-code"><a class="link" href="#archives-code-archives-code">3.2.10. Archives: <code>archives</code></a></h4>
 <div class="paragraph">
-<p>Dislike a meme by the index. Format: <code>dislike 1</code></p>
+<p>Lists all memes that are archived in the meme tab.<br>
+Format: <code>archives</code></p>
 </div>
-<div class="sidebarblock">
-<div class="content">
+</div>
+<div class="sect3">
+<h4 id="archive-a-meme-code-archive-code"><a class="link" href="#archive-a-meme-code-archive-code">3.2.11. Archive a meme:  <code>archive</code></a></h4>
 <div class="paragraph">
-<p>Same as like, dislike also allows arrow key operations.</p>
+<p>Archives a meme by index.<br>
+Format: <code>archive 1</code></p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="unarchive-a-meme-code-unarchive-code"><a class="link" href="#unarchive-a-meme-code-unarchive-code">3.2.12. Unarchive a meme: <code>unarchive</code></a></h4>
+<div class="paragraph">
+<p>Unarchives a meme by index.<br>
+Format: <code>unarchive 1</code></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="templates"><a class="link" href="#templates">3.3. Templates</a></h3>
+<h3 id="templates-tab"><a class="link" href="#templates-tab">3.3. Templates Tab</a></h3>
 <div class="paragraph">
 <p>Templates are meme prototypes. You can use any image as template base and add labels to it. Labels serve as placeholders that will be replaced with text supplied by the user when creating a meme from the template.</p>
 </div>
 <div class="sect3">
-<h4 id="adding-a-template-template-add"><a class="link" href="#adding-a-template-template-add">3.3.1. Adding a template - template add</a></h4>
+<h4 id="adding-a-template-code-add-code"><a class="link" href="#adding-a-template-code-add-code">3.3.1. Adding a template: <code>add</code></a></h4>
 <div class="paragraph">
-<p>Add a new template to weme. The newly created template will not have any labels.<br>
-Format: <code>template add n/NAME p/PATH</code><br>
+<p>Adds a new template to weme. The newly created template will not have any labels.<br>
+Format: <code>add n/NAME p/PATH</code><br>
 Examples:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>Add a template named “Drake” from ~/Downloads/Drake_hotline_bling.jpg<br>
-<code>template add n/Drake p/~/Downloads/Drake_hotline_bling.jpg</code></p>
+<code>add n/Drake p/~/Downloads/Drake_hotline_bling.jpg</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-all-templates-template-list"><a class="link" href="#listing-all-templates-template-list">3.3.2. Listing all  templates - template list</a></h4>
+<h4 id="editing-a-template-code-edit-code"><a class="link" href="#editing-a-template-code-edit-code">3.3.2. Editing a template: <code>edit</code></a></h4>
 <div class="paragraph">
-<p>List all templates.<br>
-Format: <code>template list</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="viewing-a-template-template-view"><a class="link" href="#viewing-a-template-template-view">3.3.3. Viewing a template - template view</a></h4>
-<div class="paragraph">
-<p>View a template. The list panel will be filled by the template. The labels will be displayed at their respective positions.<br>
-Format: <code>template view INDEX</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="editing-a-template-template-edit"><a class="link" href="#editing-a-template-template-edit">3.3.4. Editing a template - template edit</a></h4>
-<div class="paragraph">
-<p>Edit a template at the specified index. The list panel will become the editing area and display the selected template. You can add, remove, or move labels. A set of keyboard actions are available:<br></p>
+<p>Edits a template at the specified index. The list panel will become the editing area and display the selected template. You can add, remove, or move labels. A set of keyboard actions are available:<br></p>
 </div>
 <div class="ulist">
 <ul>
@@ -369,7 +429,7 @@ Format: <code>template view INDEX</code></p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Format: <code>template edit INDEX</code></p>
+<p>Format: <code>edit INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -384,17 +444,17 @@ Format: <code>template view INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-a-meme-template-delete"><a class="link" href="#deleting-a-meme-template-delete">3.3.5. Deleting a meme - template delete</a></h4>
+<h4 id="deleting-a-template-code-delete-code"><a class="link" href="#deleting-a-template-code-delete-code">3.3.3. Deleting a template: <code>delete</code></a></h4>
 <div class="paragraph">
-<p>Delete the specified template from weme.<br>
-Format: <code>template delete INDEX</code></p>
+<p>Deletes the specified template from the template tab.<br>
+Format: <code>delete INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="locating-templates-by-name-template-find"><a class="link" href="#locating-templates-by-name-template-find">3.3.6. Locating templates by name - template find</a></h4>
+<h4 id="locating-templates-by-name-code-find-code"><a class="link" href="#locating-templates-by-name-code-find-code">3.3.4. Locating templates by name: <code>find</code></a></h4>
 <div class="paragraph">
 <p>Finds templates whose names contain any of the given keywords.<br>
-Format: <code>template find KEYWORD [MORE_KEYWORDS]</code></p>
+Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -434,18 +494,66 @@ Returns any templates having names stonks, doge, or pikachu</p>
 </li>
 </ul>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>Pikachu</code> will match <code>pikachu</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>run naruto</code> will match <code>naruto run</code></p>
+</li>
+<li>
+<p>Only the name is searched.</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>naru</code> will not match <code>naruto</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div class="sect3">
-<h4 id="creating-memes-from-templates-template-use"><a class="link" href="#creating-memes-from-templates-template-use">3.3.7. Creating memes from templates - template use</a></h4>
+<h4 id="archive-a-template-code-archive-code"><a class="link" href="#archive-a-template-code-archive-code">3.3.5. Archive a template: <code>archive</code></a></h4>
 <div class="paragraph">
-<p>Create a meme from one of the templates stored in weme. Multiple pieces of text can be supplied, each of which will be used to fill in the labels 1, 2, 3, …, etc, in the order they are supplied. The resultant meme will be saved in weme with the tags you specified.<br>
-Format: <code>template use INDEX l/TEXT [l/TEXT]&#8230;&#8203; t/TAG [t/TAG]..</code><br>
+<p>Archives a template by index.<br>
+Format: <code>archive 1</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="unarchive-a-template-code-unarchive-code"><a class="link" href="#unarchive-a-template-code-unarchive-code">3.3.6. Unarchive a template: <code>unarchive</code></a></h4>
+<div class="paragraph">
+<p>Unarchives a template by index.<br>
+Format: <code>unarchive 1</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="listing-all-templates-code-list-code"><a class="link" href="#listing-all-templates-code-list-code">3.3.7. Listing all templates: <code>list</code></a></h4>
+<div class="paragraph">
+<p>Lists all templates.<br>
+Format: <code>list</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="viewing-a-template-code-view-code"><a class="link" href="#viewing-a-template-code-view-code">3.3.8. Viewing a template: <code>view</code></a></h4>
+<div class="paragraph">
+<p>Views a template. The list panel will be filled by the template. The labels will be displayed at their respective positions.<br>
+Format: <code>view INDEX</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="creating-memes-from-templates-use"><a class="link" href="#creating-memes-from-templates-use">3.3.9. Creating memes from templates: use</a></h4>
+<div class="paragraph">
+<p>Creates a meme from one of the templates stored in weme. Multiple pieces of text can be supplied, each of which will be used to fill in the labels 1, 2, 3, …, etc, in the order they are supplied. The resultant meme will be saved in weme with the tags you specified.<br>
+Format: <code>use INDEX l/TEXT [l/TEXT]&#8230;&#8203; t/TAG [t/TAG]..</code><br>
 Example:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>template use 1 t/wow t/so amaze t/random</code><br>
+<p><code>use 1 t/wow t/so amaze t/random</code><br>
 Using the template at index 1, create a new meme tagged <code>random</code> by replacing label 1 with <code>wow</code> and label 2 with <code>so amaze</code>.</p>
 </li>
 </ul>
@@ -453,155 +561,108 @@ Using the template at index 1, create a new meme tagged <code>random</code> by r
 </div>
 </div>
 <div class="sect2">
-<h3 id="import-export"><a class="link" href="#import-export">3.4. Import/Export</a></h3>
+<h3 id="export-tab"><a class="link" href="#export-tab">3.4. Export Tab</a></h3>
 <div class="sect3">
-<h4 id="export-export"><a class="link" href="#export-export">3.4.1. Export - export</a></h4>
+<h4 id="unstage-a-meme-code-unstage-code"><a class="link" href="#unstage-a-meme-code-unstage-code">3.4.1. Unstage a meme: <code>unstage</code></a></h4>
 <div class="paragraph">
-<p>Exports existing memes into a zip file.</p>
-</div>
-<div class="sect4">
-<h5 id="toggles-the-export-window-export-toggle"><a class="link" href="#toggles-the-export-window-export-toggle">Toggles the export window - export toggle</a></h5>
-<div class="paragraph">
-<p>Toggles the export window for exporting memes into a zip package.<br>
-Format: <code>export toggle</code></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="add-export-export-add"><a class="link" href="#add-export-export-add">Add export - export add</a></h5>
-<div class="paragraph">
-<p>Adds memes by tag or by position into the staging area for export.<br>
-Format: <code>export add t/TAG</code><br>
-Format: <code>export add i/POSITION</code></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="remove-export-export-remove"><a class="link" href="#remove-export-export-remove">Remove export - export remove</a></h5>
-<div class="paragraph">
-<p>Removes memes from the export staging area by position.<br>
-Format: <code>export remove i/POSITION</code></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="sets-path-for-export-export-path"><a class="link" href="#sets-path-for-export-export-path">Sets path for export - export path</a></h5>
-<div class="paragraph">
-<p>Sets the export path of the meme.<br>
-Format: <code>export path p/PATHNAME</code></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="execute-the-export-export-execute"><a class="link" href="#execute-the-export-export-execute">Execute the export - export execute</a></h5>
-<div class="paragraph">
-<p>Format: <code>export execute</code></p>
-</div>
+<p>Unstages the meme from the export staging area at the specified index.<br>
+Format: <code>stage INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="import-import"><a class="link" href="#import-import">3.4.2. Import - import</a></h4>
+<h4 id="export-meme-code-export-code"><a class="link" href="#export-meme-code-export-code">3.4.2. Export meme: <code>export</code></a></h4>
 <div class="paragraph">
-<p>Imports a set of memes from a directory as templates.</p>
+<p>Exports the memes in the export tab into a directory. The directory path can
+be either specified or not.</p>
 </div>
-<div class="sect4">
-<h5 id="toggles-the-import-window-import-toggle"><a class="link" href="#toggles-the-import-window-import-toggle">Toggles the import window - import toggle</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>If the path is not specified, then the memes will
+be exported to an export folder located at where the jar file is.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>export</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If path is specified, the memes will be exported to that directory.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>export p/~/Users/bill/favourites/</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The user can use a special [d] keyword to export to a default path
+configured by preferences.json.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>export p/[d]</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="clear-staging-area-code-clear-code"><a class="link" href="#clear-staging-area-code-clear-code">3.4.3. Clear staging area: <code>clear</code></a></h4>
 <div class="paragraph">
-<p>Toggles the import window to import memes from a directory.<br>
-Format: <code>import toggle</code></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="add-import-import-add"><a class="link" href="#add-import-import-add">Add import - import add</a></h5>
-<div class="paragraph">
-<p>Adds memes to the import staging area based on its path.<br>
-Format: <code>import add p/PATHNAME</code></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="remove-import-import-remove"><a class="link" href="#remove-import-import-remove">Remove import - import remove</a></h5>
-<div class="paragraph">
-<p>Removes memes from the import staging area by position<br>
-Format: <code>import remove i/POSITION</code></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="execute-the-import-import-execute"><a class="link" href="#execute-the-import-import-execute">Execute the import - import execute</a></h5>
-<div class="paragraph">
-<p>Successfully converts all meme files in the staging area into meme templates.<br>
-Format: <code>import execute</code></p>
-</div>
+<p>Clears all memes in the export tab.<br>
+Format: <code>clear</code></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="tags"><a class="link" href="#tags">3.5. Tags</a></h3>
+<h3 id="import-tab"><a class="link" href="#import-tab">3.5. Import Tab</a></h3>
 <div class="sect3">
-<h4 id="add-tag-add"><a class="link" href="#add-tag-add">3.5.1. Add - tag add</a></h4>
+<h4 id="load-memes-code-load-code"><a class="link" href="#load-memes-code-load-code">3.5.1. Load memes: <code>load</code></a></h4>
 <div class="paragraph">
-<p>Creates a tag with a name, and optionally attach it to a meme at the specified index.<br>
-Format: `tag add n/NAME [INDEX]  <br>
-Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Add a tag called “CS2103” without a meme<br>
-<code>tag add n/CS2103</code></p>
-</li>
-<li>
-<p>Add a tag called “SoC” and tag meme #3 in the search list with it<br>
-<code>tag add n/SoC 3</code></p>
-</li>
-</ul>
+<p>Loads memes from a specified directory into the import tab.<br>
+Format: <code>load p/PATH</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="edit-tag-edit"><a class="link" href="#edit-tag-edit">3.5.2. Edit - tag edit</a></h4>
+<h4 id="edit-a-meme-code-edit-code-2"><a class="link" href="#edit-a-meme-code-edit-code-2">3.5.2. Edit a meme: <code>edit</code></a></h4>
 <div class="paragraph">
-<p>Edits the name of a tag, replacing the old name with the new name.<br>
-Format: <code>tag edit o/OLDNAME n/NEWNAME</code><br>
-Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Change the name of tag “CS2010” to “CS2040”<br>
-<code>tag edit o/CS2010 n/CS2040</code></p>
-</li>
-</ul>
+<p>Edits a meme from the import tab. This allows the user
+to make changes before actually importing the weme.<br>
+Format: <code>edit INDEX [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="list-tag-list"><a class="link" href="#list-tag-list">3.5.3. List - tag list</a></h4>
+<h4 id="delete-a-meme-code-delete-code-2"><a class="link" href="#delete-a-meme-code-delete-code-2">3.5.3. Delete a meme: <code>delete</code></a></h4>
 <div class="paragraph">
-<p>Lists all the tags created so far.<br>
-Format: <code>tag list</code></p>
+<p>Deletes an unwanted meme from the import tab.<br>
+Format: <code>delete INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="delete-tag-delete"><a class="link" href="#delete-tag-delete">3.5.4. Delete - tag delete</a></h4>
+<h4 id="import-memes-code-import-code"><a class="link" href="#import-memes-code-import-code">3.5.4. Import memes: <code>import</code></a></h4>
 <div class="paragraph">
-<p>Delete a tag specified by either its name or its index in the search result.<br>
-Format: <code>tag delete [n/NAME] [INDEX]</code><br>
-Examples:</p>
+<p>Imports memes from the import tab into Weme.<br>
+Format: <code>import</code></p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Delete tag “CS1101S”<br>
-<code>tag delete n/CS1101S</code></p>
-</li>
-<li>
-<p>Delete tag at index 4 in the search result<br>
-<code>tag delete 4</code></p>
-</li>
-</ul>
+</div>
+<div class="sect3">
+<h4 id="clear-loaded-memes-code-clear-code"><a class="link" href="#clear-loaded-memes-code-clear-code">3.5.5. Clear loaded memes: <code>clear</code></a></h4>
+<div class="paragraph">
+<p>Clears all the memes in the import tab.<br>
+Format: <code>clear</code></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="statistics"><a class="link" href="#statistics">3.6. Statistics</a></h3>
+<h3 id="statistics-tab"><a class="link" href="#statistics-tab">3.6. Statistics Tab</a></h3>
 <div class="paragraph">
-<p>View stats - <code>tab stats</code><br>
-View various statistics about the memes such as tags and likes count by tags, and most used templates.<br>
-Format: <code>tab stats</code></p>
+<p>View various statistics about the memes such as tags and likes count by tags, and most used templates.</p>
 </div>
 </div>
 <div class="sect2">
@@ -631,6 +692,10 @@ e.g. <code>p/home/pictures/p1.jpeg d/My favorite meme n/sad sponge bob t/spongeb
 <div class="ulist">
 <ul>
 <li>
+<p><strong>General Command</strong> :</p>
+<div class="ulist">
+<ul>
+<li>
 <p><strong>Help</strong> : <code>help</code></p>
 </li>
 <li>
@@ -640,91 +705,156 @@ e.g. <code>p/home/pictures/p1.jpeg d/My favorite meme n/sad sponge bob t/spongeb
 <p><strong>Redo</strong> : <code>redo</code></p>
 </li>
 <li>
+<p><strong>Tab</strong> :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Memes Tab</strong> : <code>tab memes</code></p>
+</li>
+<li>
+<p><strong>Templates Tab</strong> : <code>tab templates</code></p>
+</li>
+<li>
+<p><strong>Create Tab</strong> : <code>tab create</code></p>
+</li>
+<li>
+<p><strong>Statistics Tab</strong> : <code>tab statistics</code></p>
+</li>
+<li>
+<p><strong>Export Tab</strong> : <code>tab export</code></p>
+</li>
+<li>
+<p><strong>Import Tab</strong> : <code>tab import</code></p>
+</li>
+<li>
+<p><strong>Preferences Tab</strong> : <code>tab preferences</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p><strong>Exit</strong> : <code>exit</code></p>
 </li>
-<li>
-<p><strong>Add Meme</strong> : <code>meme add p/PATH [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>meme add p/~/Downloads/dgirl_oof.jpg n/Disaster Girl t/Funny</code></p>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>List Meme</strong> : <code>meme list</code></p>
+<p><strong>Memes Command</strong> :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Add Meme</strong> : <code>add p/PATH [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]&#8230;&#8203;</code><br>
+e.g. <code>add p/~/Downloads/dgirl_oof.jpg n/Disaster Girl t/Funny</code></p>
 </li>
 <li>
-<p><strong>Edit Meme</strong> : <code>meme edit INDEX [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]&#8230;&#8203;</code></p>
+<p><strong>Clear Meme</strong> : <code>clear</code></p>
 </li>
 <li>
-<p><strong>Delete Meme</strong> : <code>meme delete INDEX</code></p>
+<p><strong>Delete Meme</strong> : <code>delete INDEX</code></p>
 </li>
 <li>
-<p><strong>Find Meme</strong> : <code>meme find [d/DESCRIPTION]&#8230;&#8203; [n/TEMPLATE_NAME]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code></p>
+<p><strong>Edit Meme</strong> : <code>edit INDEX [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]&#8230;&#8203;</code></p>
 </li>
 <li>
-<p><strong>Add Template</strong> : <code>template add n/NAME p/PATH</code></p>
+<p><strong>Stage Meme</strong> : <code>stage INDEX</code></p>
 </li>
 <li>
-<p><strong>List Template</strong> : <code>template list</code></p>
+<p><strong>Like Meme</strong> : <code>like INDEX</code></p>
 </li>
 <li>
-<p><strong>View template</strong> : <code>template view INDEX</code></p>
+<p><strong>Dislike Meme</strong> : <code>dislike INDEX</code></p>
 </li>
 <li>
-<p><strong>Edit Template</strong> : <code>template edit INDEX</code></p>
+<p><strong>Find Meme</strong> : <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 </li>
 <li>
-<p><strong>Delete Template</strong> : <code>template delete INDEX</code></p>
+<p><strong>List Meme</strong> : <code>list</code></p>
 </li>
 <li>
-<p><strong>Find Template</strong> : <code>template find KEYWORD [MORE_KEYWORDS]</code></p>
+<p><strong>List Archived Memes</strong> : <code>archives</code></p>
 </li>
 <li>
-<p><strong>Use Template</strong> : <code>template use INDEX l/TEXT [l/TEXT]&#8230;&#8203; t/TAG [t/TAG]..</code></p>
+<p><strong>Archive Meme</strong> : <code>archive INDEX</code></p>
 </li>
 <li>
-<p><strong>Export Toggle</strong> : <code>export toggle</code></p>
+<p><strong>Unarchive Meme</strong> : <code>unarchive INDEX</code></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>Add Export</strong> : <code>export add [t/tag] [i/position]</code></p>
+<p><strong>Templates Tab</strong> :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Add Template</strong> : <code>add n/NAME p/PATH</code></p>
 </li>
 <li>
-<p><strong>Remove Export</strong> : <code>export remove i/position</code></p>
+<p><strong>Edit Template</strong> : <code>edit INDEX</code></p>
 </li>
 <li>
-<p><strong>Set Export Path</strong> : <code>export path p/path_name</code></p>
+<p><strong>Delete Template</strong> : <code>delete INDEX</code></p>
 </li>
 <li>
-<p><strong>Execute Export</strong> : <code>export execute</code></p>
+<p><strong>Find Template</strong> : <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 </li>
 <li>
-<p><strong>Import Toggle</strong> : <code>import toggle</code></p>
+<p><strong>Archive Template</strong> : <code>archive INDEX</code></p>
 </li>
 <li>
-<p><strong>Add Import</strong> : <code>import add p/PATHNAME</code></p>
+<p><strong>Unarchive Template</strong> : <code>unarchive INDEX</code></p>
 </li>
 <li>
-<p><strong>Remove Import</strong> : <code>import remove i/POSITION</code></p>
+<p><strong>List Archived Templates</strong> : <code>archives</code></p>
 </li>
 <li>
-<p><strong>Set Import Path</strong> : <code>import path p/PATHNAME</code></p>
+<p><strong>View Template</strong> : <code>view INDEX</code></p>
 </li>
 <li>
-<p><strong>Execute Import</strong> : <code>import execute</code></p>
+<p><strong>Use Template</strong> : <code>use INDEX</code></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>Add Tag</strong> : <code>tag add n/NAME [INDEX]</code></p>
+<p><strong>Export Tab</strong> :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Unstage Meme</strong> : <code>unstage INDEX</code></p>
 </li>
 <li>
-<p><strong>Edit Tag</strong> : <code>tag edit o/OLDNAME n/NEWNAME</code></p>
+<p><strong>Export Meme</strong> : <code>export [p/PATH]</code></p>
 </li>
 <li>
-<p><strong>List Tag</strong> : <code>tag list</code></p>
+<p><strong>Clear staged Meme</strong> : <code>clear</code></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>Delete Tag</strong> : <code>tag delete [n/NAME] [INDEX]</code></p>
+<p><strong>Import Tab</strong> :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Load Memes</strong> : <code>load p/PATH</code></p>
 </li>
 <li>
-<p><strong>Statistics</strong> : <code>stats</code></p>
+<p><strong>Edit Meme</strong> : <code>edit INDEX [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]&#8230;&#8203;</code></p>
+</li>
+<li>
+<p><strong>Delete Meme</strong> : <code>delete INDEX</code></p>
+</li>
+<li>
+<p><strong>Import Memes</strong> : <code>import</code></p>
+</li>
+<li>
+<p><strong>Clear loaded Memes</strong> : <code>clear</code></p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 08:11:18 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 11:45:27 UTC</div></div></div></body></html>
