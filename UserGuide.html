@@ -19,7 +19,7 @@
 <li><a href="#export-tab">3.4. Export Tab</a></li>
 <li><a href="#import-tab">3.5. Import Tab</a></li>
 <li><a href="#statistics-tab">3.6. Statistics Tab</a></li>
-<li><a href="#auto-suggestions">3.7. Auto-suggestions</a></li>
+<li><a href="#command-suggestions">3.7. Command Suggestions</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -676,13 +676,49 @@ Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="auto-suggestions"><a class="link" href="#auto-suggestions">3.7. Auto-suggestions</a></h3>
+<h3 id="command-suggestions"><a class="link" href="#command-suggestions">3.7. Command Suggestions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Suggestions for command word/argument based on current user input will be displayed in the result box.</p>
+</li>
+<li>
+<p>The auto-suggestion is dynamic and automatically updates while the user type in command.</p>
+</li>
+<li>
+<p>The suggestions are retrieved from historical records and sorted according to the similarity to user input, with the first suggestion
+being the most recommended one.</p>
+</li>
+<li>
+<p>For the command word suggestion, only commands available for current context will be displayed.
+Description for each command will be displayed after each command word.</p>
+</li>
+<li>
+<p>User can press "TAB" key to auto-complete the command suggestion, i.e. replacing current command word/arguments with
+the first suggestion displayed (if there is any).</p>
+</li>
+<li>
+<p>If the user input is of invalid format, the text will turn red and error messages will be displayed in the result box
+immediately without pressing "ENTER" key. This does not account for invalid values, e.g. input meme index is 5 but there is
+no meme of index 5.</p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
-<p>The command format will be suggested in the console after user type in the command word, followed by one example. Possible command arguments (ordered by relevance) will appear in the console after user type in each prefix. The auto-suggestion is dynamic and updates while the user type in command.<br>
-Format:<br>
-when user type in meme add, the command format will appear below:<br>
-<code>p/PATH [d/DESCRIPTION] [n/TEMPLATE_NAME] [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>p/home/pictures/p1.jpeg d/My favorite meme n/sad sponge bob t/spongebob t/favorites</code></p>
+<p>Example 1:<br>
+When user type in "a" in the meme context, the following suggestions will appear:<br>
+<code>add: adds a meme to Weme.<br>
+archive: archive a meme by index.<br>
+archives: list all archived memes.</code><br>
+If tab is pressed, "a" in the command box will be replaced by "add".</p>
+</div>
+<div class="paragraph">
+<p>Example 2:<br>
+when user type in "add p/pathToMeme t/c", the following suggestions will appear:<br>
+<code>CS<br>
+cute<br>
+CS2103</code><br>
+If tab is pressed, "c" in the command box will be replaced by "CS".</p>
 </div>
 </div>
 </div>
@@ -867,4 +903,4 @@ e.g. <code>add p/~/Downloads/dgirl_oof.jpg n/Disaster Girl t/Funny</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 18:02:42 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 18:03:15 UTC</div></div></div></body></html>
