@@ -65,7 +65,7 @@ public class CommandBox extends UiPart<Region> {
     private void handleKeyPress(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
         case UP:
-            // As up and down buttons will alter the positi9n of the caret,
+            // As up and down buttons will alter the position of the caret,
             // consuming it causes the caret's position to remain unchanged
         case DOWN:
             handleLikeByKeyPress(keyEvent);
@@ -99,11 +99,11 @@ public class CommandBox extends UiPart<Region> {
             final String commandWord = matcher.group(WemeParser.COMMAND_WORD);
             final String argument = matcher.group(WemeParser.ARGUMENTS);
             int change = event.getCode().equals(KeyCode.LEFT) ? -1 : 1;
-            int currentLikeCount = Integer.parseInt(argument.trim());
-            int newLikeCount = currentLikeCount + change;
+            int currentIndex = Integer.parseInt(argument.trim());
+            int newIndex = currentIndex + change;
 
             commandTextField.setText(commandWord + " "
-                    + (Math.min(Math.max(newLikeCount, BASE_INDEX), memeFilteredList.size())));
+                    + (Math.min(Math.max(newIndex, BASE_INDEX), memeFilteredList.size())));
         }
         commandTextField.positionCaret(commandTextField.getText().length());
         event.consume();
