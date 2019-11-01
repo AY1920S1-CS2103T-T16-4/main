@@ -32,6 +32,8 @@ Weme is a meme manager app for those who *prefer to use a desktop app for managi
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
+. The user can use the `Test.Images.zip` folder that is provided in
+the jar file for the application. Unzip the folder first.
 
 * *`tab memes`* : switches to the memes tab
 * In the memes tab:
@@ -427,6 +429,12 @@ Format: `delete INDEX`
 
 Imports memes from the import tab into Weme. +
 Format: `import`
+
+****
+* Weme only imports image files with valid extensions (e.g. `.png`, `.jpg`, `.gif`).
+* Any invalid or corrupted files are ignored (e.g. `.txt`, invalid files
+with `.jpg` extension).
+****
 
 ==== Clearing loaded memes: `clear`
 
