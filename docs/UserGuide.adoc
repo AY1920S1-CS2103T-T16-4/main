@@ -32,8 +32,6 @@ Weme is a meme manager app for those who *prefer to use a desktop app for managi
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
-. The user can use the `Test.Images.zip` folder that is provided in
-the jar file for the application. Unzip the folder first.
 
 * *`tab memes`* : switches to the memes tab
 * In the memes tab:
