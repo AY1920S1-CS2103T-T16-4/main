@@ -339,8 +339,24 @@ public class Weme implements ReadOnlyWeme {
         stats.decrementMemeLikeCount(meme);
     }
 
+    public int getDislikesByMeme(Meme meme) {
+        return stats.getDislikesByMeme(meme);
+    }
+
+    public ObservableMap<String, SimpleIntegerProperty> getObservableDislikeData() {
+        return stats.getObservableDislikeData();
+    }
+
+    public void incrementMemeDislikeCount(Meme meme) {
+        stats.incrementMemeDislikeCount(meme);
+    }
+
+    public void decrementMemeDislikeCount(Meme meme) {
+        stats.decrementMemeDislikeCount(meme);
+    }
     public void clearMemeStats(Meme meme) {
         stats.deleteLikesByMeme(meme);
+        stats.deleteDislikesByMeme(meme);
     }
 
     // ============== Tag Data Methods ===============================

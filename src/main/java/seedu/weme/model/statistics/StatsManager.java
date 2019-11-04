@@ -71,6 +71,41 @@ public class StatsManager implements Stats {
         likeManager.deleteLikesByMeme(meme);
     }
 
+    //============= Dislike Data ====================================
+
+    public int getDislikesByMeme(Meme meme) {
+        return likeManager.getDislikesByMeme(meme);
+    }
+
+    public ObservableMap<String, SimpleIntegerProperty> getObservableDislikeData() {
+        return likeManager.getObservableDislikeData();
+    }
+
+    public void setDislikeData(Map<String, SimpleIntegerProperty> replacement) {
+        likeManager.setDislikeData(replacement);
+    }
+
+    public void addDefaultDislikeData(Meme meme) {
+        likeManager.addDefaultDislikeData(meme);
+    }
+
+    public void incrementMemeDislikeCount(Meme meme) {
+        likeManager.incrementMemeDislikeCount(meme);
+    }
+
+    /**
+     * Decrements a meme's like count by 1.
+     */
+    public void decrementMemeDislikeCount(Meme meme) {
+        likeManager.decrementDislikesByMeme(meme);
+    }
+
+    /**
+     * Deletes like data of a meme when it gets deleted.
+     */
+    public void deleteDislikesByMeme(Meme meme) {
+        likeManager.deleteDislikesByMeme(meme);
+    }
     //============= Tag Data ====================================
 
     @Override
