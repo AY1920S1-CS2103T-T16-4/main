@@ -349,11 +349,6 @@ public class MemeAddCommandTest {
         }
 
         @Override
-        public void addDefaultLikeData(Meme meme) {
-            throw new AssertionError("This method should not be called");
-        }
-
-        @Override
         public void incrementMemeLikeCount(Meme meme) {
             throw new AssertionError("This method should not be called");
         }
@@ -459,11 +454,6 @@ public class MemeAddCommandTest {
         public void addMeme(Meme meme) {
             requireNonNull(meme);
             memesAdded.add(meme);
-        }
-
-        @Override
-        public void addDefaultLikeData(Meme meme) {
-
         }
 
         @Override
