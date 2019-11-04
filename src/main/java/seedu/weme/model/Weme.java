@@ -159,6 +159,7 @@ public class Weme implements ReadOnlyWeme {
         for (Meme meme : importList) {
             Meme copiedMeme = ImageUtil.copyMeme(meme, internalImagePath);
             addMeme(copiedMeme);
+            stats.addDefaultLikeData(copiedMeme);
         }
     }
 
