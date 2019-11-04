@@ -38,7 +38,7 @@ public class StatsManager implements Stats {
     //============= Like Data ====================================
 
     public void addDefaultLikeData(Meme meme) {
-        likeManager.initMemeLikeCount(meme);
+        likeManager.addDefaultLikeData(meme);
     }
 
     @Override
@@ -54,11 +54,6 @@ public class StatsManager implements Stats {
     @Override
     public ObservableMap<String, SimpleIntegerProperty> getObservableLikeData() {
         return likeManager.getObservableLikeData();
-    }
-
-    @Override
-    public void initMemeLikeCount(Meme meme) {
-        likeManager.initMemeLikeCount(meme);
     }
 
     @Override

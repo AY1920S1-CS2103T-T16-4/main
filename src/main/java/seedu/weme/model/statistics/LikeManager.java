@@ -59,7 +59,7 @@ public class LikeManager {
     /**
      * Initializes the like count of a meme.
      */
-    public void initMemeLikeCount(Meme meme) {
+    public void addDefaultLikeData(Meme meme) {
         String memeRef = meme.getImagePath().toString();
         data.setLikesByMemeRef(memeRef, 0);
     }

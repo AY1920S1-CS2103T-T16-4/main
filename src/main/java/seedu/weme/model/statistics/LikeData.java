@@ -48,6 +48,17 @@ public class LikeData {
         if (!likeMap.containsKey(memeRef)) {
             likeMap.put(memeRef, currLikes);
         }
+        // forces the map to update as changes to the individual SimpleIntegerProperty value is not reflected as
+        // change to the map.
+        forceUpdate();
+    }
+
+    /**
+     * Forces the map to update.
+     */
+    private void forceUpdate() {
+        likeMap.put("update", new SimpleIntegerProperty(0));
+        likeMap.remove("update");
     }
 
     /**

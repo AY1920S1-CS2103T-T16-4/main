@@ -179,7 +179,7 @@ public class SampleDataUtil {
         Weme sampleWeme = new Weme();
         for (Meme sampleMeme : getSampleMemes(userPrefs)) {
             sampleWeme.addMeme(sampleMeme);
-            sampleWeme.initMemeLikeCount(sampleMeme);
+            sampleWeme.addDefaultLikeData(sampleMeme);
         }
         for (Template sampleTemplate : getSampleTemplates(userPrefs)) {
             sampleWeme.addTemplate(sampleTemplate);

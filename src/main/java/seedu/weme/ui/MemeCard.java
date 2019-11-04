@@ -51,7 +51,6 @@ public class MemeCard extends UiPart<Region> {
         meme.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        System.out.println("Meme " + meme + " changed");
         likes.setText("Likes: " + Integer.toString(numOfLikes.get()));
         numOfLikes.addListener((observable, oldValue, newValue) ->
                 likes.setText("Likes: " + Integer.toString((int) newValue)));

@@ -76,7 +76,7 @@ public class StatsPanel extends UiPart<Region> {
             data.add(new PieChart.Data(tag.getTag().tagName, tag.getData()));
         }
         ObservableList<PieChart.Data> pieChartData = data.stream()
-                .map(chartData -> bindValueToLabel(chartData))
+                .map(this::bindValueToLabel)
                 .collect(Collectors.toCollection(FXCollections::observableArrayList));
         chart.setData(pieChartData);
         chart.setTitle(title);

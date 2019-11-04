@@ -41,11 +41,6 @@ public interface Stats {
     void addDefaultLikeData(Meme meme);
 
     /**
-     * Initializes a meme's like count.
-     */
-    void initMemeLikeCount(Meme meme);
-
-    /**
      * Increments like count of a meme.
      */
     void incrementMemeLikeCount(Meme meme);
