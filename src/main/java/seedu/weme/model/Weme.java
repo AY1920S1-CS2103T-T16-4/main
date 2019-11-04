@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.weme.model.imagePath.ImagePath;
@@ -87,8 +88,20 @@ public class Weme implements ReadOnlyWeme {
         setMemes(newData.getMemeList());
         setTemplates(newData.getTemplateList());
         setStats(newData.getStats());
+        updateStats(newData.getMemeList());
         setRecords(newData.getRecords());
         setMemeCreation(newData.getMemeCreation());
+    }
+
+    /**
+     * Updates {@code Stats} with the latest {@code MemeList}.
+     */
+    private void updateStats(ObservableList<Meme> memeList) {
+        for (Meme meme : memeList) {
+            if (stats.getLikesByMeme(meme) == Integer.MAX_VALUE) {
+                addDefaultLikeData(meme);
+            }
+        }
     }
 
     /**
@@ -313,8 +326,16 @@ public class Weme implements ReadOnlyWeme {
         return stats.getLikesByMeme(meme);
     }
 
-    public ObservableMap<String, Integer> getObservableLikeData() {
+    public ObservableMap<String, SimpleIntegerProperty> getObservableLikeData() {
         return stats.getObservableLikeData();
+    }
+
+    public void initMemeLikeCount(Meme meme) {
+        stats.initMemeLikeCount(meme);
+    }
+
+    public void addDefaultLikeData(Meme meme) {
+        stats.addDefaultLikeData(meme);
     }
 
     public void incrementMemeLikeCount(Meme meme) {
