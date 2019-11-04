@@ -65,7 +65,6 @@ public class MemeAddCommand extends Command {
         }
 
         model.addMeme(copiedMeme);
-        model.addDefaultLikeData(copiedMeme);
         CommandResult result = new CommandResult(String.format(MESSAGE_SUCCESS, copiedMeme));
         model.commitWeme(result.getFeedbackToUser());
 

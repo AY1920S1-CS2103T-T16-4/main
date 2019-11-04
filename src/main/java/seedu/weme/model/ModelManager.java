@@ -350,11 +350,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addDefaultLikeData(Meme meme) {
-        versionedWeme.addDefaultLikeData(meme);
-    }
-
-    @Override
     public void incrementMemeLikeCount(Meme meme) {
         versionedWeme.incrementMemeLikeCount(meme);
     }

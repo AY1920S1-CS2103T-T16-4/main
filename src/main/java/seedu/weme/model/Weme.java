@@ -99,7 +99,7 @@ public class Weme implements ReadOnlyWeme {
     private void updateStats(List<Meme> memeList) {
         for (Meme meme : memeList) {
             if (stats.getLikesByMeme(meme) == Integer.MAX_VALUE) {
-                addDefaultLikeData(meme);
+                stats.addDefaultLikeData(meme);
             }
         }
     }
@@ -329,10 +329,6 @@ public class Weme implements ReadOnlyWeme {
 
     public ObservableMap<String, SimpleIntegerProperty> getObservableLikeData() {
         return stats.getObservableLikeData();
-    }
-
-    public void addDefaultLikeData(Meme meme) {
-        stats.addDefaultLikeData(meme);
     }
 
     public void incrementMemeLikeCount(Meme meme) {

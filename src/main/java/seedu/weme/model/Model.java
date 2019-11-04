@@ -293,11 +293,6 @@ public interface Model {
     ObservableMap<String, SimpleIntegerProperty> getObservableLikeData();
 
     /**
-     * Adds default like when the like data of a meme is not captured.
-     */
-    void addDefaultLikeData(Meme meme);
-
-    /**
      * Increments likes of a meme by the Meme object.
      */
     void incrementMemeLikeCount(Meme meme);
