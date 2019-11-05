@@ -92,7 +92,8 @@ public class CommandBox extends UiPart<Region> {
             return;
         }
 
-        if (!matcher.group(COMMAND_WORD).equals(MemeLikeCommand.COMMAND_WORD)) {
+        if (!(matcher.group(COMMAND_WORD).equals(MemeLikeCommand.COMMAND_WORD)
+                || matcher.group(COMMAND_WORD).equals(MemeDislikeCommand.COMMAND_WORD))) {
             // Do not handle if the command word is not a like command.
             return;
         } else {
