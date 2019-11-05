@@ -150,6 +150,10 @@ public class LikeManager {
     }
 
     public Map<String, SimpleIntegerProperty> getCopyLikeData() {
+        return likeData.getCopy();
+    }
+
+    public Map<String, SimpleIntegerProperty> getCopyDislikeData() {
         return dislikeData.getCopy();
     }
 

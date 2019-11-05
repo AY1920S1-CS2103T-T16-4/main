@@ -144,8 +144,9 @@ public class StatsManager implements Stats {
     @Override
     public Stats getStats() {
         Stats newStats = new StatsManager(this);
-        // needs a full copy of likedata using it's own SIP
+        // needs a full copy of likedata and dislikedata using it's own SIP
         newStats.setLikeData(likeManager.getCopyLikeData());
+        newStats.setDislikeData(likeManager.getCopyDislikeData());
         return newStats;
     }
 

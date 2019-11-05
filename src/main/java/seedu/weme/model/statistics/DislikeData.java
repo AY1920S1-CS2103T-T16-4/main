@@ -2,6 +2,7 @@ package seedu.weme.model.statistics;
 
 import static seedu.weme.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javafx.beans.property.SimpleIntegerProperty;
@@ -77,10 +78,19 @@ public class DislikeData {
 
     /**
      * Deletes dislike count of a meme by its URL.
-     * @param memeRef
      */
     public void deleteDislikesByMemeRef(String memeRef) {
         dislikeMap.remove(memeRef);
     }
 
+    /**
+     * Returns a deep copy of the current dislike map.
+     */
+    public Map<String, SimpleIntegerProperty> getCopy() {
+        Map<String, SimpleIntegerProperty> copy = new HashMap<>();
+        for (Map.Entry<String, SimpleIntegerProperty> entry : dislikeMap.entrySet()) {
+            copy.put(entry.getKey(), new SimpleIntegerProperty(entry.getValue().get()));
+        }
+        return copy;
+    }
 }
