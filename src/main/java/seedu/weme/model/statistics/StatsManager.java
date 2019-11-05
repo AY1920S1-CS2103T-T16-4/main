@@ -123,6 +123,11 @@ public class StatsManager implements Stats {
         return tagManager.getTagsWithLike(memeList, likeManager);
     }
 
+    @Override
+    public List<TagWithDislike> getTagsWithDislikeCountList(List<Meme> memeList) {
+        return tagManager.getTagsWithDislike(memeList, likeManager);
+    }
+
     /**
      * Resets the existing data of this {@code StatsManager} with {@code newData}.
      */

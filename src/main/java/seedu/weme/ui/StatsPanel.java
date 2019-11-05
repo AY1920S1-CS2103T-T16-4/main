@@ -26,19 +26,28 @@ public class StatsPanel extends UiPart<Region> {
     private static final String FXML = "StatsPanel.fxml";
     private static final String COUNT_CHART_TITLE = "Tag usage";
     private static final String LIKE_CHART_TITLE = "Likes per Tag";
+    private static final String DISLIKE_CHART_TITLE = "Dislikes per Tag";
     private static final int LABEL_LINE_LENGTH = 10;
 
     @FXML
     private PieChart tagCountChart;
     @FXML
     private PieChart tagLikeChart;
+    @FXML
+    private PieChart tagDislikeChart;
 
     public StatsPanel(ReadOnlyWeme weme) {
         super(FXML);
         renderCharts(weme);
-        weme.getMemeList().addListener((ListChangeListener<Meme>) change -> renderCharts(weme));
-        weme.getStats().getObservableLikeData().addListener((MapChangeListener<String, SimpleIntegerProperty>) change ->
-                renderCharts(weme));
+        weme.getMemeList().addListener((ListChangeListener<Meme>) change -> generateTagCountChart(weme));
+        weme.getStats()
+                .getObservableLikeData()
+                .addListener((MapChangeListener<String, SimpleIntegerProperty>) change ->
+                        generateTagLikeChart(weme));
+        weme.getStats()
+                .getObservableDislikeData()
+                .addListener((MapChangeListener<String, SimpleIntegerProperty>) change ->
+                        generateTagDislikeChart(weme));
     }
 
     /**
@@ -47,6 +56,7 @@ public class StatsPanel extends UiPart<Region> {
     private void renderCharts(ReadOnlyWeme weme) {
         generateTagCountChart(weme);
         generateTagLikeChart(weme);
+        generateTagDislikeChart(weme);
     }
 
     /**
@@ -65,6 +75,16 @@ public class StatsPanel extends UiPart<Region> {
      */
     private void generateTagLikeChart(ReadOnlyWeme weme) {
         generatePieChart(weme.getTagsWithLikeCountList(), tagLikeChart, LIKE_CHART_TITLE);
+    }
+
+    /**
+     * Generates a {@code PieChart} with a given {@code Weme}.
+     *
+     * <p>Styling is mainly done in the CSS file.</p>
+     */
+    private void generateTagDislikeChart(ReadOnlyWeme weme) {
+        System.out.println(weme.getTagsWithDislikeCountList());
+        generatePieChart(weme.getTagsWithDislikeCountList(), tagDislikeChart, DISLIKE_CHART_TITLE);
     }
 
     /**

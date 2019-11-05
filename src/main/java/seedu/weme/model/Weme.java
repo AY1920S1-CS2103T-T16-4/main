@@ -19,6 +19,7 @@ import seedu.weme.model.meme.UniqueMemeList;
 import seedu.weme.model.statistics.Stats;
 import seedu.weme.model.statistics.StatsManager;
 import seedu.weme.model.statistics.TagWithCount;
+import seedu.weme.model.statistics.TagWithDislike;
 import seedu.weme.model.statistics.TagWithLike;
 import seedu.weme.model.tag.Tag;
 import seedu.weme.model.template.MemeCreation;
@@ -100,6 +101,9 @@ public class Weme implements ReadOnlyWeme {
         for (Meme meme : memeList) {
             if (stats.getLikesByMeme(meme) == Integer.MAX_VALUE) {
                 stats.addDefaultLikeData(meme);
+            }
+            if (stats.getDislikesByMeme(meme) == Integer.MAX_VALUE) {
+                stats.addDefaultDislikeData(meme);
             }
         }
     }
@@ -354,6 +358,10 @@ public class Weme implements ReadOnlyWeme {
     public void decrementMemeDislikeCount(Meme meme) {
         stats.decrementMemeDislikeCount(meme);
     }
+
+    /**
+     * Remove stats data of a meme.
+     */
     public void clearMemeStats(Meme meme) {
         stats.deleteLikesByMeme(meme);
         stats.deleteDislikesByMeme(meme);
@@ -368,6 +376,10 @@ public class Weme implements ReadOnlyWeme {
     public List<TagWithCount> getTagsWithCountList() {
         return stats.getTagsWithCountList(getMemeList());
     }
+
+    public List<TagWithDislike> getTagsWithDislikeCountList() {
+        return stats.getTagsWithDislikeCountList(getMemeList());
+    };
 
     // ============== Records Methods ===============================
 

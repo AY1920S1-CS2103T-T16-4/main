@@ -1,11 +1,12 @@
 package seedu.weme.model.statistics;
 
+import static seedu.weme.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Map;
+
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
-
-import static seedu.weme.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * The dislike data storage in Stats.

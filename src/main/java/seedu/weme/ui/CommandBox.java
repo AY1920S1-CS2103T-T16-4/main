@@ -117,10 +117,9 @@ public class CommandBox extends UiPart<Region> {
         if (matcher.matches()) {
             try {
                 final String commandWord = matcher.group(WemeParser.COMMAND_WORD);
-                if (commandWord.equals(MemeLikeCommand.COMMAND_WORD)
-                        && event.getCode().equals(KeyCode.UP)
-                        || commandWord.equals(MemeDislikeCommand.COMMAND_WORD)
-                        && event.getCode().equals(KeyCode.DOWN)) {
+                if ((commandWord.equals(MemeLikeCommand.COMMAND_WORD)
+                        || commandWord.equals(MemeDislikeCommand.COMMAND_WORD))
+                        && event.getCode().equals(KeyCode.UP)) {
                     commandExecutor.execute(commandTextField.getText());
                 }
             } catch (CommandException | ParseException e) {

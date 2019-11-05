@@ -106,4 +106,8 @@ public interface Stats {
      */
     List<TagWithLike> getTagsWithLikeCountList(List<Meme> memeList);
 
+    /**
+     * Returns a list of tags with their like counts in descending order.
+     */
+    List<TagWithDislike> getTagsWithDislikeCountList(List<Meme> memeList);
 }

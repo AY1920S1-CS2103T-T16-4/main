@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.statistics.Stats;
 import seedu.weme.model.statistics.TagWithCount;
+import seedu.weme.model.statistics.TagWithDislike;
 import seedu.weme.model.statistics.TagWithLike;
 import seedu.weme.model.tag.Tag;
 import seedu.weme.model.template.MemeCreation;
@@ -61,6 +62,11 @@ public interface ReadOnlyWeme {
      * Returns a list of tags with their like counts.
      */
     List<TagWithLike> getTagsWithLikeCountList();
+
+    /**
+     * Returns a list of tags with their like counts.
+     */
+    List<TagWithDislike> getTagsWithDislikeCountList();
 
     /**
      * Returns records of Weme.
