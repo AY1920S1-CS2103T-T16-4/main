@@ -730,23 +730,19 @@ The <code>FilteredList&lt;Template&gt;</code> in <code>ModelManager</code> is up
 Weme starts a new <code>MemeCreation</code> session and enters the "<strong>Create</strong>" tab.</p>
 </div>
 <div class="paragraph">
-<p>Step 4. The user executes <code>add cs students be like x/0.3 y/0.5</code> command to add the text "cs students be like".
+<p>Step 4. The user executes <code>add cs students be like x/0.5 y/0.3</code> command to add the text "cs students be like".
 A new <code>MemeText</code> is created and added to the list in the current <code>MemeCreation</code> session.
 The UI requests <code>MemeCreation</code> to render the resultant image, and <code>MemeCreation</code> returns an image with the text "cs students be like"
-placed 30% horizontally from the left border and 50% vertically from the top border.</p>
+whose center is placed 50% horizontally from the left border and 30% vertically from the top border.</p>
 </div>
 <div class="paragraph">
 <p>Step 5. The user decides that there is a typo in the text because "cs" is not capitalized.
-The user executes the command <code>delete 1</code> to delete the text labelled <strong>1</strong>, which is the text that was just added.
-<code>MemeCreation</code> deletes this <code>MemeText</code> from the list.
+The user executes the command <code>edit 1 t/CS students be like</code> to edit the text labelled <strong>1</strong>, which is the text that was just added.
+<code>MemeCreation</code> changes the text of this <code>MemeText</code> from "cs students be like" to "CS students be like".
 Upon request by the UI, <code>MemeCreation</code> generates the updated image for the UI for display.</p>
 </div>
 <div class="paragraph">
-<p>Step 6. The user then executes <code>add CS student be like x/0.3 y/0.5</code> to add the correct text.
-<code>MemeCreation</code> adds this newly created <code>MemeText</code> to its internal list.</p>
-</div>
-<div class="paragraph">
-<p>Step 7. The user executes <code>create d/A meme about CS students t/funny t/CS</code> to complete the creation session.
+<p>Step 6. The user executes <code>create d/A meme about CS students t/funny t/CS</code> to complete the creation session.
 Weme will create a new image with the text added and save it to the data directory.
 Weme will also create a new <code>Meme</code> entry with that image, with description "A meme about CS students" and tags "funny" and "CS".
 The description and tag arguments are similar to those for <code>Meme</code> add command.</p>
@@ -2185,4 +2181,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-05 16:24:13 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-05 23:21:59 UTC</div></div></div></body></html>
