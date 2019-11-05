@@ -2,8 +2,10 @@ package seedu.weme.model;
 
 import java.util.List;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 
+import javafx.collections.ObservableMap;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.statistics.Stats;
 import seedu.weme.model.statistics.TagWithCount;
@@ -46,6 +48,16 @@ public interface ReadOnlyWeme {
      * Returns the statistics data of Weme.
      */
     Stats getStats();
+
+    /**
+     * Returns an observable view of the like data.
+     */
+    ObservableMap<String, SimpleIntegerProperty> getObservableLikeData();
+
+    /**
+     * Returns an observable view of the dislike data.
+     */
+    ObservableMap<String, SimpleIntegerProperty> getObservableDislikeData();
 
     /**
      * Returns the count of a tag in the memeList.

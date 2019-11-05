@@ -17,8 +17,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
+
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.meme.exceptions.DuplicateMemeException;
 import seedu.weme.model.statistics.Stats;
@@ -135,6 +138,16 @@ public class WemeTest {
 
         public ObservableList<Template> getTemplateList() {
             return templates;
+        }
+
+        @Override
+        public ObservableMap<String, SimpleIntegerProperty> getObservableLikeData() {
+            return stats.getObservableLikeData();
+        }
+
+        @Override
+        public ObservableMap<String, SimpleIntegerProperty> getObservableDislikeData() {
+            return stats.getObservableDislikeData();
         }
 
         @Override

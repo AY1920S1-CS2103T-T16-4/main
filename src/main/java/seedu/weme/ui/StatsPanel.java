@@ -40,12 +40,10 @@ public class StatsPanel extends UiPart<Region> {
         super(FXML);
         renderCharts(weme);
         weme.getMemeList().addListener((ListChangeListener<Meme>) change -> generateTagCountChart(weme));
-        weme.getStats()
-                .getObservableLikeData()
+        weme.getObservableLikeData()
                 .addListener((MapChangeListener<String, SimpleIntegerProperty>) change ->
                         generateTagLikeChart(weme));
-        weme.getStats()
-                .getObservableDislikeData()
+        weme.getObservableDislikeData()
                 .addListener((MapChangeListener<String, SimpleIntegerProperty>) change ->
                         generateTagDislikeChart(weme));
     }
@@ -83,7 +81,6 @@ public class StatsPanel extends UiPart<Region> {
      * <p>Styling is mainly done in the CSS file.</p>
      */
     private void generateTagDislikeChart(ReadOnlyWeme weme) {
-        System.out.println(weme.getTagsWithDislikeCountList());
         generatePieChart(weme.getTagsWithDislikeCountList(), tagDislikeChart, DISLIKE_CHART_TITLE);
     }
 
@@ -101,7 +98,7 @@ public class StatsPanel extends UiPart<Region> {
         chart.setData(pieChartData);
         chart.setTitle(title);
         chart.setLabelLineLength(LABEL_LINE_LENGTH);
-        chart.setLegendSide(Side.LEFT);
+        chart.setLegendSide(Side.BOTTOM);
     }
 
     private PieChart.Data bindValueToLabel(PieChart.Data data) {

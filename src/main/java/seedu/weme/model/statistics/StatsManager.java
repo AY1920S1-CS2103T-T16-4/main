@@ -136,6 +136,7 @@ public class StatsManager implements Stats {
         requireNonNull(newData);
 
         setLikeData(newData.getObservableLikeData());
+        setDislikeData(newData.getObservableDislikeData());
     }
 
     /**
