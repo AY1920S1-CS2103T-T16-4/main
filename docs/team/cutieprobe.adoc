@@ -14,7 +14,7 @@
 == Summary of contributions
 
 * *Major enhancement*: added *the ability to suggest and auto-complete commands*
-** What it does: allows the user to type command faster and easier by showing possible command arguments and allow the user to use TAB key to auto-complete the command.
+** What it does: allows the user to type command faster and more easily by showing possible command arguments and allow the user to use TAB key to auto-complete the command.
 ** Justification: This feature improves the product significantly because a user can be tired of typing the full command over and over again, or unsure of what arguments to supply.
 ** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it requires live update of input and different methods to process different commands in order to generate suggestions.
 ** Credits: `LevenshteinDistance` in `org.apache.commons.text` is used in calculating the similarity between strings.
