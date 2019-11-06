@@ -514,7 +514,7 @@ If the <code>stateIndex</code> is at index <code>versionedWemeStates.size() - 1<
 </div>
 </div>
 <div class="paragraph">
-<p>The addition of undo redo complicates certain commands. An example of this complication is when undoing add or delete commands. Originally, deleting a Meme will delete the corresponding image file on the disk. However, this means it is not possible to retrieve the file afterwards. Hence, the current implementation is to delete the Meme Entry in the json, but keep the original image file until Weme is closed. When Weme is closed, a thread will clean up all unreferenced image files in the image folder. This is part of the reason why certain commands such as <code>load</code> are not supported.</p>
+<p>The addition of undo redo complicates certain commands. An example of this complication is when undoing add or delete commands. Originally, deleting a Meme will delete the corresponding image file on the disk. However, this means it is not possible to retrieve the file afterwards when attempting to undo. Hence, the current implementation is to delete the Meme entry in the json, but keep the original image file until Weme is closed. When Weme is closed, a thread will clean up all unreferenced image files in the image folder. This is part of the reason why certain commands such as <code>load</code> are not supported.</p>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the clean up works:</p>
@@ -525,7 +525,7 @@ If the <code>stateIndex</code> is at index <code>versionedWemeStates.size() - 1<
 </div>
 </div>
 <div class="paragraph">
-<p>When the handleExit command is called, MainWindow will create a Thread to call <code>logic.cleanUp()</code> to prevent the GUI from slowing down. The thread then further spawns other threads to clean up the files in the data folder, deleting those images that are not found in the memes and templates list stored on Weme.</p>
+<p>When the handleExit command is called, MainWindow will create a Thread to call <code>logic.cleanUp()</code> to prevent the GUI from slowing down. The thread then further spawns other threads to clean up the files in the data folder, deleting those images that are not found in the memes and templates list stored on Weme. The <code>cleanTemplateStorage()</code> part of the UML diagram has been truncated as it is similar to <code>cleanMemeStorage()</code>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -693,7 +693,7 @@ If the <code>stateIndex</code> is at index <code>versionedWemeStates.size() - 1<
 </div>
 </li>
 <li>
-<p><strong>Alternative 3:</strong> Make file commands undoable.</p>
+<p><strong>Alternative 3:</strong> Make file-related commands undoable.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -2260,4 +2260,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 11:43:11 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 11:47:54 UTC</div></div></div></body></html>
