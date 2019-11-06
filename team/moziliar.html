@@ -20,29 +20,32 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added <strong>the ability to undo/redo previous commands</strong></p>
+<p><strong>Major enhancement</strong>: added <strong>statistics for Weme</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.</p>
+<p>What it does: In Memes panel, it allows user to like and dislike a meme.
+This data is used in statistics panel where data like per tag and dislike per tag are displayed in pie chart form.</p>
 </li>
 <li>
-<p>Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.</p>
+<p>Justification: This feature is commonly seen on online meme sites and social media platform that supports image posting.</p>
 </li>
 <li>
-<p>Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.</p>
+<p>Highlights: This enhancement requires understanding of the program from frontend to backend as
+the statistics data is stored in a similar fashion as the memes. As such, an understanding of json files
+and JavaFX is required.</p>
 </li>
 <li>
-<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
+<p>Credits: AddressBook 3 implementation gave rise to the infrastructure of the statistics feature.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added a history command that allows the user to navigate to previous commands using up/down keys.</p>
+<p><strong>Minor enhancement</strong>: created wrapper class ImagePath during morphing stage for internal use.</p>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=moziliar&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false">RepoSense code</a>]</p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -53,20 +56,17 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.3</code> - <code>v1.5rc</code> (3 releases) on GitHub</p>
+<p>Managed releases <code>v1.3</code> on GitHub</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Enhancements to existing features:</p>
+<p>Morphing from AddressBook 3:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
-</li>
-<li>
-<p>Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+<p>Replace identity field of the new content (person &#8594; meme) from <code>Name</code> to <code>ImagePath</code>. <a href="https://github.com/AY1920S1-CS2103-T16-3/main/pull/38">#38</a></p>
 </li>
 </ul>
 </div>
@@ -76,7 +76,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com">#14</a></p>
+<p>Rewrite UserGuide from AddressBook to Weme: <a href="https://github.com/AY1920S1-CS2103-T16-3/main/pull/30">#30</a></p>
 </li>
 </ul>
 </div>
@@ -86,29 +86,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#12</a>, <a href="https://github.com">#32</a>, <a href="https://github.com">#19</a>, <a href="https://github.com">#42</a></p>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/AY1920S1-CS2103-T16-3/main/pull/77">#77</a></p>
 </li>
 <li>
-<p>Contributed to forum discussions (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>, <a href="https://github.com">4</a>)</p>
-</li>
-<li>
-<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
-</li>
-<li>
-<p>Some parts of the history feature I added was adopted by several other class mates (<a href="https://github.com">1</a>, <a href="https://github.com">2</a>)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Tools:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Integrated a third party library (Natty) to the project (<a href="https://github.com">#42</a>)</p>
-</li>
-<li>
-<p>Integrated a new Github plugin (CircleCI) to the team repo</p>
+<p>Reported bugs and suggestions for other teams in the class <a href="https://github.com/moziliar/ped/issues">PED</a></p>
 </li>
 </ul>
 </div>
@@ -117,9 +98,6 @@
 </div>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p><em>{you can add/remove categories in the list above}</em></p>
 </div>
 </div>
 </div>
@@ -137,27 +115,43 @@
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="deleting-a-meme-code-delete-code"><a class="link" href="#deleting-a-meme-code-delete-code">Deleting a meme: <code>delete</code></a></h4>
+<h4 id="liking-a-meme-code-like-code"><a class="link" href="#liking-a-meme-code-like-code">Liking a meme: <code>like</code></a></h4>
 <div class="paragraph">
-<p>Deletes the meme at the specified index.<br>
-Format: <code>delete INDEX</code></p>
+<p>Likes a meme at the specified index.<br>
+Format: <code>like INDEX</code></p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You could use arrow key <kbd>Up</kbd> to quickly like a meme at the given index.<br>
+To do this, key in the full command <code>like INDEX</code> then press arrow key <kbd>Up</kbd>.<br>
+You can also use arrow key <kbd>Left</kbd> and <kbd>Right</kbd> to increase / decrease the meme index.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="disliking-a-meme-code-dislike-code"><a class="link" href="#disliking-a-meme-code-dislike-code">Disliking a meme: <code>dislike</code></a></h4>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Dislike a meme at the specified index.<br>
+Format: <code>dislike INDEX</code></p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>list</code><br>
-<code>delete 2</code><br>
-Deletes the 2nd meme in the results of the <code>list</code> command.</p>
-</li>
-<li>
-<p><code>meme find pikachu</code><br>
-<code>delete 1</code><br>
-Deletes the 1st meme in the results of the <code>find</code> command.</p>
-</li>
-</ul>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Same as like, dislike also allows arrow key operations.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -176,267 +170,99 @@ Deletes the 1st meme in the results of the <code>find</code> command.</p>
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">Undo/Redo feature</a></h3>
+<h3 id="statistics-feature-1-like-dislike-meme"><a class="link" href="#statistics-feature-1-like-dislike-meme">Statistics feature 1: Like/Dislike Meme</a></h3>
 <div class="paragraph">
-<p>The Undo and Redo commands are necessary to give users the flexibility of undoing or redoing a wrongly executed command. Especially in Weme where we deal with image files, it is possible to key in the wrong file when adding a meme. Hence, simply entering the command <code>undo</code> allows the user to revert this mistake and add the correct file accordingly.</p>
+<p>It is important to include a like and meme feature such that
+the user gets to indicate their preference of certain memes.
+This is part of the statistics feature and isolated from the main Weme.
+The like and dislike data can be used for other statistical analysis.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">Current implementation</a></h4>
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by <code>VersionedWeme</code>.
-<code>VersionedWeme</code> extends <code>Weme</code> with an undo/redo history, stored internally as a <code>versionedWemeStates</code>, <code>stateIndex</code> and a <code>feedbackList</code>.
-Additionally, it implements the following operations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>VersionedWeme#commit()</code>&#8201;&#8212;&#8201;Saves the current Weme state in its history.</p>
-</li>
-<li>
-<p><code>VersionedWeme#undo()</code>&#8201;&#8212;&#8201;Restores the previous Weme state from its history and returns the feedback message of the undone command.</p>
-</li>
-<li>
-<p><code>VersionedWeme#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone Weme state from its history and returns the feedback message of the redone command.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitWeme()</code>, <code>Model#undoWeme()</code> and <code>Model#redoWeme()</code> respectively.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Only state changes on the internal structure of Weme are undoable.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Commands such as <code>list</code>, <code>find</code> that only change the user interface, commands such as <code>export</code> and <code>load</code> that are related to external files, as well as commands such as <code>edit</code> and <code>delete</code> that modify the import list are not supported.</p>
-</div>
-<div class="paragraph">
-<p>These are the list of commands that support undo / redo operations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Meme Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>clear</code>, <code>archive</code>, <code>unarchive</code>, <code>like</code>, <code>dislike</code>, <code>stage</code></p>
-</li>
-<li>
-<p>Template Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>archive</code>, <code>unarchive</code>, <code>use</code></p>
-</li>
-<li>
-<p>Create Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>abort</code>, <code>create</code></p>
-</li>
-<li>
-<p>Export Tab: <code>unstage</code>, <code>clear</code></p>
-</li>
-<li>
-<p>Import Tab: <code>import</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><code>undo</code> and <code>redo</code> works between tabs. This means that if you make a change in the Memes tab, by editing a meme, and then you switch to the Templates tab, when you execute <code>undo</code>, it reverts the change in the Memes tab as well.</p>
-</div>
-<div class="paragraph">
-<p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>VersionedWeme</code> will be initialized with the initial Weme state, and the <code>stateIndex</code> pointing to that single Weme state.</p>
+<p>Like and dislike data of the memes are stored inside <code>LikeData</code> and <code>DislikeData</code> classes.
+It is built upon the infrastructure of statistics.
+Statistics infrastructure is under <code>Weme</code> structure.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/UndoRedoState0.png" alt="UndoRedoState0">
+<img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram">
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th meme in the meme list. The <code>delete</code> command calls <code>Model#commitWeme()</code> with the success feedback message as a parameter, causing the modified state of the Weme after the <code>delete 5</code> command executes to be saved in the <code>versionedWemeStates</code>, the <code>stateIndex</code> is shifted to the newly inserted Weme state, and finally the delete command&#8217;s feedback message is inserted into the <code>feedbackList</code>.</p>
+<p>An interface for statistics <code>Stats</code> is set up for access to statistics components.
+<code>StatsManager</code> implements it and manages and carries <code>LikeManager</code>, which manages <code>LikeData</code> and <code>DislikeData</code> access.
+<code>Stats</code> exposes the <code>LikeData</code> and <code>DislikeData</code> as an unmodifiable <code>ObservableMap&lt;String, SimpleIntegerProperty&gt;</code>,
+where both the change in the Mapping (e.g. addition of memes and like/dislike data) and in existing like data can be
+observed by the UI.
+Updates to the like and dislike count of any memes inside the currently displayed memes will be reflected on the UI.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/UndoRedoState1.png" alt="UndoRedoState1">
+<img src="../images/StorageClassDiagram.png" alt="StorageClassDiagram">
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user executes <code>edit 2 d/surprised pikachu</code> to edit a meme&#8217;s description. The <code>edit</code> command also calls <code>Model#commitWeme()</code>, causing another modified Weme state to be saved into the <code>versionedWemeStates</code>.</p>
+<p>In the storage component, LikeData is stored under JsonSerializableStats as a map.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes the meme liking process:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/UndoRedoState2.png" alt="UndoRedoState2">
+<img src="../images/MemeLikeActivityDiagram.png" alt="MemeLikeActivityDiagram">
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If a command fails its execution, it will not call <code>Model#commitWeme()</code>, so the Weme state will not be saved into the <code>versionedWemeStates</code>.
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
-<p>Step 4. The user now decides that editing the meme was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoWeme()</code>, which will shift the <code>stateIndex</code> once to the left, pointing it to the previous Weme state, and restores the Weme to that state. The feedback message is then returned to pass into and construct the CommandResult.</p>
+<p>The following sequence diagram shows how <code>MemeLikeCommand</code> communicates with <code>Stats</code> and update the like count.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/UndoRedoState3.png" alt="UndoRedoState3">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>stateIndex</code> is at index 0, pointing to the initial Weme state, then there are no previous Weme states to restore. The <code>undo</code> command uses <code>Model#canUndoWeme()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the undo operation works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The lifeline for <code>UndoCommand</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoWeme()</code>, which shifts the <code>stateIndex</code> once to the right, pointing to the previously undone state, and restores the Weme to that state.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>stateIndex</code> is at index <code>versionedWemeStates.size() - 1</code>, pointing to the latest Weme state, then there are no undone Weme states to restore. The <code>redo</code> command uses <code>Model#canRedoWeme()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the Weme, such as <code>list</code>, will usually not call <code>Model#commitWeme()</code>, <code>Model#undoWeme()</code> or <code>Model#redoWeme()</code>. Thus, the <code>versionedWemeStates</code> remains unchanged.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoState4.png" alt="UndoRedoState4">
+<img src="../images/LikeMemeSequenceDiagram.png" alt="LikeMemeSequenceDiagram">
 </div>
 </div>
 <div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitWeme()</code>. Since the <code>stateIndex</code> is not pointing at the end of the <code>versionedWemeStates</code>, all Weme states after the <code>stateIndex</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>edit 2 d/surprised pikachu</code> command. This is the behavior that most modern desktop applications follow.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoState5.png" alt="UndoRedoState5">
-</div>
-</div>
-<div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a new command:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/CommitActivityDiagram.png" alt="CommitActivityDiagram">
-</div>
-</div>
-<div class="paragraph">
-<p>The addition of undo redo complicates certain commands. An example of this complication is when undoing add or delete commands. Originally, deleting a Meme will delete the corresponding image file on the disk. However, this means it is not possible to retrieve the file afterwards when attempting to undo. Hence, the current implementation is to delete the Meme entry in the json, but keep the original image file until Weme is closed. When Weme is closed, a thread will clean up all unreferenced image files in the image folder. This is part of the reason why certain commands such as <code>load</code> are not supported.</p>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the clean up works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/CleanUpSequenceDiagram.png" alt="CleanUpSequenceDiagram">
-</div>
-</div>
-<div class="paragraph">
-<p>When the handleExit command is called, MainWindow will create a Thread to call <code>logic.cleanUp()</code> to prevent the GUI from slowing down. The thread then further spawns other threads to clean up the files in the data folder, deleting those images that are not found in the memes and templates list stored on Weme. The <code>cleanTemplateStorage()</code> part of the UML diagram has been truncated as it is similar to <code>cleanMemeStorage()</code>.</p>
+<p>In the <code>CommandBox</code>, <code>UP</code> and <code>DOWN</code> keys are used for easy execution of <code>LikeCommand</code> and <code>DislikeCommand</code>.
+This allows the user to like a meme conveniently as he/she can press the key until he/she feels like stopping.
+<code>LEFT</code> and <code>RIGHT</code> keys are used for toggling the index in the complete command.
+For example, when command <code>Like 2</code> is inside the command text box, where 2 is a valid index of a meme displayed,
+the user can use <code>LEFT</code> arrow key to toggle it to 1, and <code>RIGHT</code> arrow key to toggle up to the maximum index.
+In the case of large number of existing memes, it might be more efficient to key in the index. But for a small range,
+using arrow keys to toggle between the indices will enhance the User Experience.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
+<h5 id="aspect-implementation-of-likedata"><a class="link" href="#aspect-implementation-of-likedata">Aspect: Implementation of LikeData.</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Saves the entire state.</p>
+<p><strong>Alternative 1:</strong> Put like data as a field inside Meme object.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easy to implement.</p>
+<p>Pros: Simple to implement.</p>
 </li>
 <li>
-<p>Cons: May have performance issues in terms of memory usage.</p>
+<p>Cons: It breaks the current closed structure of Meme.
+It would not make sense to add new field everytime we have some new statistics data for a meme (Like views in 2.0)</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself.</p>
+<p><strong>Alternative 2 (Current choice):</strong> Separate <code>LikeData</code> as a <code>HashMap</code> and keep it in Stats.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the meme being deleted).</p>
+<p>Pros: It isolates an additional feature (which is not essential) from Meme
+and allows <code>Stats</code> features in the future to use the data easily without looking through the entire Weme.
+(After a long while, when the number of memes pile up, like statistics has a O(n) growth in running time)</p>
 </li>
 <li>
-<p>Cons: We must ensure that the implementation of each individual command are correct. This gets complicated when dealing with files.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-types-of-commands-to-undo"><a class="link" href="#aspect-types-of-commands-to-undo">Aspect: Types of commands to undo</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Includes only commands that modify the underlying data. (Add, Edit, Clear, Delete)</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Only changes that permanently affect the application are reverted.</p>
-</li>
-<li>
-<p>Cons: Might be less intuitive as a user calling <code>tab templates</code> then <code>undo</code> might expect to revert the Tab command instead.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Includes all commands</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Intuitive</p>
-</li>
-<li>
-<p>Cons: Might be very troublesome for a user if they want to revert the state instead of the view. More unexpected behaviours as certain commands such as <code>load</code> depends on files outside Weme&#8217;s data folder. If there is an error on redoing a command, there is no easy way to find out.</p>
+<p>Cons: Harder to implement as it involves constructing a new infrastructure.
+Also, it looks somewhat out of place in <code>Model</code> as alternative 1 seems to be able to solve the problem (for now).</p>
 </li>
 </ul>
 </div>
@@ -445,110 +271,32 @@ If the <code>stateIndex</code> is at index <code>versionedWemeStates.size() - 1<
 </div>
 </div>
 <div class="sect4">
-<h5 id="aspect-context-for-commands-to-be-undoable"><a class="link" href="#aspect-context-for-commands-to-be-undoable">Aspect: Context for commands to be undoable</a></h5>
+<h5 id="aspect-implementation-of-dislikedata"><a class="link" href="#aspect-implementation-of-dislikedata">Aspect: Implementation of DislikeData.</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Allow undoing throughout the application regardless of context.</p>
+<p><strong>Alternative 1:</strong> Merge dislike with like and store the data as a map from String (meme url) to Observable duple.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: User in a different context is able to easily undo the state.</p>
+<p>Pros: As dislike is just another form of like, doing this will make good use of the existing like data structure
+and reduce code. It fulfils Don&#8217;t Repeat Yourself principle.</p>
 </li>
 <li>
-<p>Cons: User might expect to undo only when they are in the same context. i.e. Undo Meme commands in Meme context.</p>
+<p>Cons: Hard to implement in v1.4 as limited time is given. Will be a refactoring point for future version (v2.0).</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Restrict undoing to its own context</p>
+<p><strong>Alternative 2:</strong> Mirror dislike from like and store it in a similar fashion.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: More user intuitive. Commands will only affect their own context.</p>
+<p>Pros: Simple to implement. Duplicating the existing LikeData structure and change names will guarantee to be working.</p>
 </li>
 <li>
-<p>Cons: Heavily complicates the model. Model will then need to keep track of a versioning of every single context. Does not allow for commands such as <code>create</code> which affects the Creation tab and Meme tab without many modifications to the existing structure.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-undo-redo-commands"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands">Aspect: Data structure to support the undo/redo commands</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of past states.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to understand and adjust according to needs. Undo and redo simply moves along the list to change the state.</p>
-</li>
-<li>
-<p>Cons: Clutters up the <code>Weme</code> class.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Use a wrapper class</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Everything will be handled within a single UndoRedoManager class.</p>
-</li>
-<li>
-<p>Cons: Might introduce complications as managing states now needs to go through another class instead of just the model.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-handling-file-changes"><a class="link" href="#aspect-handling-file-changes">Aspect: Handling file changes</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Remove files only on exit.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: No need to deal with files when managing commands. Easy to execute add and delete commands without an issue without worrying whether a file is present.</p>
-</li>
-<li>
-<p>Cons: Might take a while to delete if we had a lot of images. (Resolved with threads)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Implement a recycle bin to move files to/from on command.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Commands do what they are fully expected to do (Delete deletes the image as well).</p>
-</li>
-<li>
-<p>Cons: Heavily complicates the logic with a need to copy and paste when undoing and redoing. Very difficult to understand and error-prone. Still needs to eventually clear the recycle bin on exit. Repeated work.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 3:</strong> Make file-related commands undoable.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: No need to deal with file manipulation.</p>
-</li>
-<li>
-<p>Cons: Makes undo redo feature a lot more useless as it loses support for certain key commands.</p>
+<p>Cons: A lot of duplicate code. Fail to fulfil DRY principle.</p>
 </li>
 </ul>
 </div>
@@ -559,19 +307,61 @@ If the <code>stateIndex</code> is at index <code>versionedWemeStates.size() - 1<
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">[Proposed] Data Encryption</a></h3>
+<h3 id="statistics-feature-2-graphic-display"><a class="link" href="#statistics-feature-2-graphic-display">Statistics feature 2: Graphic display</a></h3>
 <div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
+<p>This feature displays the statistics of the App. In the current version, it displays two types of data:
+tags organized by the number of memes under them and by the like counts of the memes under them.
+The graphics are embedded in the statistics panel in Weme.</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
-<div class="sectionbody">
-<hr>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
 <div class="paragraph">
-<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
+<p>The statistics data is collated by a TagManager in the Statistics package.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram">
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 14:44:23 UTC</div></div></div></body></html>
+<div class="paragraph">
+<p>It parses the current MemeList to collate all the tags and generate either a list of <code>TagWithCount</code> or <code>TagWithLike</code>.
+The <code>UI</code> passes the current <code>MemeList</code> and <code>Stats</code> interface into the panel, where the tag collation information can be
+extracted in runtime.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration"><a class="link" href="#design-consideration">Design Consideration</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1:</strong> Use a TagManager class (Current implementation)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Able to store <code>Tag</code> information for future use. Hard to morph it as the class grows bigger.</p>
+</li>
+<li>
+<p>Cons: The Manager class behaves like a Util class.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Use a TagUtil class</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: At the moment the class behaves like a Util class, not storing any information that is being used later.</p>
+</li>
+<li>
+<p>Cons: Lack extensibility for future statistics use.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 15:04:00 UTC</div></div></div></body></html>
