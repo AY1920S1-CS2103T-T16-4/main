@@ -1,6 +1,5 @@
 package seedu.weme.ui;
 
-import java.io.File;
 import java.util.Comparator;
 
 import javafx.beans.property.SimpleIntegerProperty;
