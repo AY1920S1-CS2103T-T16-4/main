@@ -35,8 +35,7 @@ and JavaFX is required.
 ** Documentation:
 *** Rewrite UserGuide from AddressBook to Weme: https://github.com/AY1920S1-CS2103-T16-3/main/pull/30[#30]
 ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S1-CS2103-T16-3/main/pull/77[#77], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
+*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S1-CS2103-T16-3/main/pull/77[#77]
 *** Reported bugs and suggestions for other teams in the class https://github.com/moziliar/ped/issues[PED]
 
 == Contributions to the User Guide
