@@ -1160,6 +1160,51 @@ navigating between import and export mode to be less subtle.</p>
 </ul>
 </div>
 </div>
+<div class="sect4">
+<h5 id="aspect-ensure-consistency-in-staging-area"><a class="link" href="#aspect-ensure-consistency-in-staging-area">Aspect: Ensure consistency in staging area</a></h5>
+<div class="paragraph">
+<p>The memes that are being staged should be the same meme as that in the meme list at all times.
+The issue comes when the user tries to clear the meme list, delete or edit a meme while the meme
+is being staged.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> User should receive a validation error message when an attempt
+to edit or delete the meme is being made while it is being staged,
+followed by a prompter to unstage the meme first.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: It makes the user aware of the fact that the meme that is going to be exported/imported
+is going to be deleted/edited, or that the meme list is going to be cleared. This also
+acts as a safety measure in case the user forgets to export before doing any modifications to the meme.</p>
+</li>
+<li>
+<p>Cons: More steps required for the user. The user has to unstage the meme first before making any amendments.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Changes in the memes tab automatically updates the export tab.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: User types in less command since everything is done automatically (i.e. updating the meme
+will also update it in the staging area).</p>
+</li>
+<li>
+<p>Cons: The user may not be aware that a staged meme is being edited and deleted. The user could
+possibly be confused that a staged meme is missing because it is deleted in the meme list, or that it
+has been edited.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -2181,4 +2226,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-05 23:21:59 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 04:08:00 UTC</div></div></div></body></html>
