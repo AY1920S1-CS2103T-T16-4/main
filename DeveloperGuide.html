@@ -362,17 +362,38 @@ Additionally, it implements the following operations:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Only state changes on the internal structure of Weme are undoable. Commands such as <code>list</code>, <code>find</code> that only change the user interface as well as commands such as <code>stage</code>, <code>load</code> that modify the staging / import list are not undoable.
+Only state changes on the internal structure of Weme are undoable.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>These are the list of commands that support undo / redo operations:
-* Meme Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>clear</code>, <code>archive</code>, <code>unarchive</code>, <code>like</code>
-* Template Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>archive</code>, <code>unarchive</code>, <code>use</code>
-* Create Tab: <code>add</code>, <code>abort</code>, <code>create</code>
-* Import Tab: <code>import</code></p>
+<p>Commands such as <code>list</code>, <code>find</code> that only change the user interface, commands such as <code>export</code> and <code>load</code> that are related to external files, as well as commands such as <code>edit</code> and <code>delete</code> that modify the import list are not supported.</p>
+</div>
+<div class="paragraph">
+<p>These are the list of commands that support undo / redo operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Meme Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>clear</code>, <code>archive</code>, <code>unarchive</code>, <code>like</code>, <code>dislike</code>, <code>stage</code></p>
+</li>
+<li>
+<p>Template Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>archive</code>, <code>unarchive</code>, <code>use</code></p>
+</li>
+<li>
+<p>Create Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>abort</code>, <code>create</code></p>
+</li>
+<li>
+<p>Export Tab: <code>unstage</code>, <code>clear</code></p>
+</li>
+<li>
+<p>Import Tab: <code>import</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>undo</code> and <code>redo</code> works between tabs. This means that if you make a change in the Memes tab, by editing a meme, and then you switch to the Templates tab, when you execute <code>undo</code>, it reverts the change in the Memes tab as well.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
@@ -534,7 +555,7 @@ If the <code>stateIndex</code> is at index <code>versionedWemeStates.size() - 1<
 <p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the meme being deleted).</p>
 </li>
 <li>
-<p>Cons: We must ensure that the implementation of each individual command are correct.</p>
+<p>Cons: We must ensure that the implementation of each individual command are correct. This gets complicated when dealing with files.</p>
 </li>
 </ul>
 </div>
@@ -600,7 +621,7 @@ If the <code>stateIndex</code> is at index <code>versionedWemeStates.size() - 1<
 <p>Pros: More user intuitive. Commands will only affect their own context.</p>
 </li>
 <li>
-<p>Cons: Heavily complicates the model. Model will then need to keep track of a versioning of every single context.</p>
+<p>Cons: Heavily complicates the model. Model will then need to keep track of a versioning of every single context. Does not allow for commands such as <code>create</code> which affects the Creation tab and Meme tab without many modifications to the existing structure.</p>
 </li>
 </ul>
 </div>
@@ -620,7 +641,7 @@ If the <code>stateIndex</code> is at index <code>versionedWemeStates.size() - 1<
 <p>Pros: Easy to understand and adjust according to needs. Undo and redo simply moves along the list to change the state.</p>
 </li>
 <li>
-<p>Cons: Each individual type (in this case, StatsEngine and Weme) will need to keep track of it&#8217;s own versions.</p>
+<p>Cons: Clutters up the <code>Weme</code> class.</p>
 </li>
 </ul>
 </div>
@@ -650,10 +671,10 @@ If the <code>stateIndex</code> is at index <code>versionedWemeStates.size() - 1<
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: No need to deal with files when managing commands. Easy to execute add and delete commands without an issue.</p>
+<p>Pros: No need to deal with files when managing commands. Easy to execute add and delete commands without an issue without worrying whether a file is present.</p>
 </li>
 <li>
-<p>Cons: Might take a while to delete if we had a lot of images.</p>
+<p>Cons: Might take a while to delete if we had a lot of images. (Resolved with threads)</p>
 </li>
 </ul>
 </div>
@@ -666,7 +687,20 @@ If the <code>stateIndex</code> is at index <code>versionedWemeStates.size() - 1<
 <p>Pros: Commands do what they are fully expected to do (Delete deletes the image as well).</p>
 </li>
 <li>
-<p>Cons: Heavily complicates the logic with a need to copy and paste when undoing and redoing. Very difficult to understand and error-prone.</p>
+<p>Cons: Heavily complicates the logic with a need to copy and paste when undoing and redoing. Very difficult to understand and error-prone. Still needs to eventually clear the recycle bin on exit. Repeated work.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3:</strong> Make file commands undoable.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: No need to deal with file manipulation.</p>
+</li>
+<li>
+<p>Cons: Makes undo redo feature a lot more useless as it loses support for certain key commands.</p>
 </li>
 </ul>
 </div>
@@ -2226,4 +2260,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 04:08:00 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 05:56:25 UTC</div></div></div></body></html>
