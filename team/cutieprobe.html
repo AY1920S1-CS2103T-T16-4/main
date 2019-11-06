@@ -24,102 +24,47 @@
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.</p>
+<p>What it does: allows the user to type command faster and more easily by showing possible command arguments and allow the user to use TAB key to auto-complete the command.</p>
 </li>
 <li>
-<p>Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.</p>
+<p>Justification: This feature improves the product significantly because a user can be tired of typing the full command over and over again, or unsure of what arguments to supply.</p>
 </li>
 <li>
-<p>Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.</p>
+<p>Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it requires live update of input and different methods to process different commands in order to generate suggestions.</p>
 </li>
 <li>
-<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
+<p>Credits: <code>LevenshteinDistance</code> in <code>org.apache.commons.text</code> is used in calculating the similarity between strings.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added a history command that allows the user to navigate to previous commands using up/down keys.</p>
+<p><strong>Minor enhancement</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Refactored <code>commands</code> and <code>parser</code> packages by grouping files into sub-packages according to the type of commands. [<a href="https://github.com/AY1920S1-CS2103-T16-3/main/pull/114">#114</a>]</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=cutieprobe&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=cutieprobe&amp;tabRepo=AY1920S1-CS2103-T16-3%2Fmain%5Bmaster%5D">RepoSense Data</a>]</p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Project management:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Managed releases <code>v1.3</code> - <code>v1.5rc</code> (3 releases) on GitHub</p>
-</li>
-</ul>
-</div>
+<p>Update AboutUs, ContactUs and README [<a href="https://github.com/AY1920S1-CS2103-T16-3/main/pull/32">#32</a>]</p>
 </li>
 <li>
-<p>Enhancements to existing features:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
-</li>
-<li>
-<p>Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Documentation:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com">#14</a></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Community:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#12</a>, <a href="https://github.com">#32</a>, <a href="https://github.com">#19</a>, <a href="https://github.com">#42</a></p>
-</li>
-<li>
-<p>Contributed to forum discussions (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>, <a href="https://github.com">4</a>)</p>
-</li>
-<li>
-<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
-</li>
-<li>
-<p>Some parts of the history feature I added was adopted by several other class mates (<a href="https://github.com">1</a>, <a href="https://github.com">2</a>)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Tools:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Integrated a third party library (Natty) to the project (<a href="https://github.com">#42</a>)</p>
-</li>
-<li>
-<p>Integrated a new Github plugin (CircleCI) to the team repo</p>
+<p>Reported bugs and suggestions for other teams [<a href="https://github.com/cutieprobe/ped/issues">PED</a>]</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><em>{you can add/remove categories in the list above}</em></p>
 </div>
 </div>
 </div>
@@ -136,28 +81,50 @@
 </tr>
 </tbody>
 </table>
-<div class="sect3">
-<h4 id="deleting-a-meme-code-delete-code"><a class="link" href="#deleting-a-meme-code-delete-code">Deleting a meme: <code>delete</code></a></h4>
-<div class="paragraph">
-<p>Deletes the meme at the specified index.<br>
-Format: <code>delete INDEX</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
+<div class="sect2">
+<h3 id="command-suggestions"><a class="link" href="#command-suggestions">Command Suggestions</a></h3>
 <div class="ulist">
 <ul>
 <li>
-<p><code>list</code><br>
-<code>delete 2</code><br>
-Deletes the 2nd meme in the results of the <code>list</code> command.</p>
+<p>Suggestions for command word/argument based on current user input will be displayed in the result box.</p>
 </li>
 <li>
-<p><code>meme find pikachu</code><br>
-<code>delete 1</code><br>
-Deletes the 1st meme in the results of the <code>find</code> command.</p>
+<p>The auto-suggestion is dynamic and automatically updates while the user type in command.</p>
+</li>
+<li>
+<p>The suggestions are retrieved from historical records and sorted according to the similarity to user input, with the first suggestion
+being the most recommended one.</p>
+</li>
+<li>
+<p>For the command word suggestion, only commands available for current context will be displayed.
+Description for each command will be displayed after each command word.</p>
+</li>
+<li>
+<p>User can press <kbd>Tab</kbd> key to auto-complete the command suggestion, i.e. replacing current command word/arguments with
+the first suggestion displayed (if there is any).</p>
+</li>
+<li>
+<p>If the user input is of invalid format, the text will turn red and error messages will be displayed in the result box
+immediately without pressing <kbd>Enter</kbd> key. This does not account for invalid values, e.g. input meme index is 5 but there is
+no meme of index 5.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Example 1:<br>
+When user types in "a" in the meme context, the following suggestions will appear:<br>
+<code>add: adds a meme to Weme.<br>
+archive: archive a meme by index.<br>
+archives: list all archived memes.</code><br>
+If <kbd>Tab</kbd> is pressed, "a" in the command box will be replaced by "add".</p>
+</div>
+<div class="paragraph">
+<p>Example 2:<br>
+When user types in "add p/pathToMeme t/c", the following suggestions will appear:<br>
+<code>CS<br>
+cute<br>
+CS2103</code><br>
+If <kbd>Tab</kbd> is pressed, "c" in the command box will be replaced by "CS".</p>
 </div>
 </div>
 </div>
@@ -176,267 +143,101 @@ Deletes the 1st meme in the results of the <code>find</code> command.</p>
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">Undo/Redo feature</a></h3>
+<h3 id="command-suggestion-feature"><a class="link" href="#command-suggestion-feature">Command Suggestion Feature</a></h3>
 <div class="paragraph">
-<p>The Undo and Redo commands are necessary to give users the flexibility of undoing or redoing a wrongly executed command. Especially in Weme where we deal with image files, it is possible to key in the wrong file when adding a meme. Hence, simply entering the command <code>undo</code> allows the user to revert this mistake and add the correct file accordingly.</p>
+<p>Users can be forgetful about the command format and sometimes unsure of what arguments to supply.
+Auto-suggestion of command arguments while the user keys in inputs can be very helpful to provide user hints.
+Possible command words will be suggested to user based on incomplete input.
+Depending on what the user has typed in for the argument, the most similar argument values retrieved from the historical
+records will be displayed to the user for reference.
+The user can also use the "TAB" key to auto complete the command word/argument, where the first prompt will
+replace the current command word/argument in user input.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">Current implementation</a></h4>
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by <code>VersionedWeme</code>.
-<code>VersionedWeme</code> extends <code>Weme</code> with an undo/redo history, stored internally as a <code>versionedWemeStates</code>, <code>stateIndex</code> and a <code>feedbackList</code>.
-Additionally, it implements the following operations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>VersionedWeme#commit()</code>&#8201;&#8212;&#8201;Saves the current Weme state in its history.</p>
-</li>
-<li>
-<p><code>VersionedWeme#undo()</code>&#8201;&#8212;&#8201;Restores the previous Weme state from its history and returns the feedback message of the undone command.</p>
-</li>
-<li>
-<p><code>VersionedWeme#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone Weme state from its history and returns the feedback message of the redone command.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitWeme()</code>, <code>Model#undoWeme()</code> and <code>Model#redoWeme()</code> respectively.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Only state changes on the internal structure of Weme are undoable.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Commands such as <code>list</code>, <code>find</code> that only change the user interface, commands such as <code>export</code> and <code>load</code> that are related to external files, as well as commands such as <code>edit</code> and <code>delete</code> that modify the import list are not supported.</p>
-</div>
-<div class="paragraph">
-<p>These are the list of commands that support undo / redo operations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Meme Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>clear</code>, <code>archive</code>, <code>unarchive</code>, <code>like</code>, <code>dislike</code>, <code>stage</code></p>
-</li>
-<li>
-<p>Template Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>archive</code>, <code>unarchive</code>, <code>use</code></p>
-</li>
-<li>
-<p>Create Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>abort</code>, <code>create</code></p>
-</li>
-<li>
-<p>Export Tab: <code>unstage</code>, <code>clear</code></p>
-</li>
-<li>
-<p>Import Tab: <code>import</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><code>undo</code> and <code>redo</code> works between tabs. This means that if you make a change in the Memes tab, by editing a meme, and then you switch to the Templates tab, when you execute <code>undo</code>, it reverts the change in the Memes tab as well.</p>
-</div>
-<div class="paragraph">
-<p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>VersionedWeme</code> will be initialized with the initial Weme state, and the <code>stateIndex</code> pointing to that single Weme state.</p>
+<p>The command suggestion is achieved using a package of prompter files.
+For each parser, there will a corresponding prompter to process the current user input and return the <code>CommandPrompt</code> for display in <code>ResultBox</code>.
+The following class diagram summarizes the Prompter package in the Logic.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/UndoRedoState0.png" alt="UndoRedoState0">
+<img src="../images/CommandPromptClassDiagram.png" alt="CommandPromptClassDiagram">
 </div>
+<div class="title">Figure 1. Partial Class Diagram of the Logic Component related Prompter package</div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th meme in the meme list. The <code>delete</code> command calls <code>Model#commitWeme()</code> with the success feedback message as a parameter, causing the modified state of the Weme after the <code>delete 5</code> command executes to be saved in the <code>versionedWemeStates</code>, the <code>stateIndex</code> is shifted to the newly inserted Weme state, and finally the delete command&#8217;s feedback message is inserted into the <code>feedbackList</code>.</p>
+<p>The following Sequence Diagram summarizes the how a <code>CommandPrompt</code> is generated:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/UndoRedoState1.png" alt="UndoRedoState1">
+<img src="../images/CommandPromptSequenceDiagram.png" alt="CommandPromptSequenceDiagram">
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user executes <code>edit 2 d/surprised pikachu</code> to edit a meme&#8217;s description. The <code>edit</code> command also calls <code>Model#commitWeme()</code>, causing another modified Weme state to be saved into the <code>versionedWemeStates</code>.</p>
+<p>Here is how a user interact with the command suggestion features:</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user types commands into the <code>CommandBox</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The <code>MainWindow</code> listens to changes in the content in <code>CommandBox</code> and direct the input to <code>WemePrompter</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. Depending on the context, the prompter that implements <code>WemePrompter</code> (e.g. <code>MemePrompter</code>) will then pass the arguments</p>
+</div>
+<div class="paragraph">
+<p>to different <code>Prompter</code> (e.g. <code>MemeAddCommandPrompter</code>) based on the command word.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. The <code>Prompter</code> will process the input and return a <code>CommandPrompt</code> containing the command suggestion, and the</p>
+</div>
+<div class="paragraph">
+<p>complete text for auto-completion for the given input.</p>
+</div>
+<div class="paragraph">
+<p>Step 5. The prompt will be passed to and displayed by <code>ResultBox</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 6. The <code>CommandBox</code> listens to the "TAB" key press, and replace the current argument with the first command prompt.</p>
+</div>
+<div class="paragraph">
+<p>The following Activity Diagram summarizes the command suggestion process:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/UndoRedoState2.png" alt="UndoRedoState2">
+<img src="../images/CommandPromptActivityDiagram.png" alt="CommandPromptActivityDiagram">
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If a command fails its execution, it will not call <code>Model#commitWeme()</code>, so the Weme state will not be saved into the <code>versionedWemeStates</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 4. The user now decides that editing the meme was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoWeme()</code>, which will shift the <code>stateIndex</code> once to the left, pointing it to the previous Weme state, and restores the Weme to that state. The feedback message is then returned to pass into and construct the CommandResult.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoState3.png" alt="UndoRedoState3">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>stateIndex</code> is at index 0, pointing to the initial Weme state, then there are no previous Weme states to restore. The <code>undo</code> command uses <code>Model#canUndoWeme()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the undo operation works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The lifeline for <code>UndoCommand</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoWeme()</code>, which shifts the <code>stateIndex</code> once to the right, pointing to the previously undone state, and restores the Weme to that state.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>stateIndex</code> is at index <code>versionedWemeStates.size() - 1</code>, pointing to the latest Weme state, then there are no undone Weme states to restore. The <code>redo</code> command uses <code>Model#canRedoWeme()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the Weme, such as <code>list</code>, will usually not call <code>Model#commitWeme()</code>, <code>Model#undoWeme()</code> or <code>Model#redoWeme()</code>. Thus, the <code>versionedWemeStates</code> remains unchanged.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoState4.png" alt="UndoRedoState4">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitWeme()</code>. Since the <code>stateIndex</code> is not pointing at the end of the <code>versionedWemeStates</code>, all Weme states after the <code>stateIndex</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>edit 2 d/surprised pikachu</code> command. This is the behavior that most modern desktop applications follow.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoState5.png" alt="UndoRedoState5">
-</div>
-</div>
-<div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a new command:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/CommitActivityDiagram.png" alt="CommitActivityDiagram">
-</div>
-</div>
-<div class="paragraph">
-<p>The addition of undo redo complicates certain commands. An example of this complication is when undoing add or delete commands. Originally, deleting a Meme will delete the corresponding image file on the disk. However, this means it is not possible to retrieve the file afterwards when attempting to undo. Hence, the current implementation is to delete the Meme entry in the json, but keep the original image file until Weme is closed. When Weme is closed, a thread will clean up all unreferenced image files in the image folder. This is part of the reason why certain commands such as <code>load</code> are not supported.</p>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the clean up works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/CleanUpSequenceDiagram.png" alt="CleanUpSequenceDiagram">
-</div>
-</div>
-<div class="paragraph">
-<p>When the handleExit command is called, MainWindow will create a Thread to call <code>logic.cleanUp()</code> to prevent the GUI from slowing down. The thread then further spawns other threads to clean up the files in the data folder, deleting those images that are not found in the memes and templates list stored on Weme. The <code>cleanTemplateStorage()</code> part of the UML diagram has been truncated as it is similar to <code>cleanMemeStorage()</code>.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
+<h5 id="aspect-how-to-process-the-input-and-produce-the-command-prompt"><a class="link" href="#aspect-how-to-process-the-input-and-produce-the-command-prompt">Aspect: How to process the input and produce the command prompt</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Saves the entire state.</p>
+<p><strong>Alternative 1 (current choice):</strong> Use a prompter package to abstract out the prompter for each command.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easy to implement.</p>
+<p>Pros: Single Responsibility Principle and Separation of Concerns are achieved and coupling is reduced.</p>
 </li>
 <li>
-<p>Cons: May have performance issues in terms of memory usage.</p>
+<p>Cons: Additional layer of abstraction and longer code.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself.</p>
+<p><strong>Alternative 2:</strong> Add one more method in each parser.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the meme being deleted).</p>
+<p>Pros: Easier to implement.</p>
 </li>
 <li>
-<p>Cons: We must ensure that the implementation of each individual command are correct. This gets complicated when dealing with files.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-types-of-commands-to-undo"><a class="link" href="#aspect-types-of-commands-to-undo">Aspect: Types of commands to undo</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Includes only commands that modify the underlying data. (Add, Edit, Clear, Delete)</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Only changes that permanently affect the application are reverted.</p>
-</li>
-<li>
-<p>Cons: Might be less intuitive as a user calling <code>tab templates</code> then <code>undo</code> might expect to revert the Tab command instead.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Includes all commands</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Intuitive</p>
-</li>
-<li>
-<p>Cons: Might be very troublesome for a user if they want to revert the state instead of the view. More unexpected behaviours as certain commands such as <code>load</code> depends on files outside Weme&#8217;s data folder. If there is an error on redoing a command, there is no easy way to find out.</p>
+<p>Cons: The class that processses input will depend on <code>Parser</code>.</p>
 </li>
 </ul>
 </div>
@@ -445,110 +246,31 @@ If the <code>stateIndex</code> is at index <code>versionedWemeStates.size() - 1<
 </div>
 </div>
 <div class="sect4">
-<h5 id="aspect-context-for-commands-to-be-undoable"><a class="link" href="#aspect-context-for-commands-to-be-undoable">Aspect: Context for commands to be undoable</a></h5>
+<h5 id="aspect-how-to-store-and-access-historical-records"><a class="link" href="#aspect-how-to-store-and-access-historical-records">Aspect: How to store and access historical records.</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Allow undoing throughout the application regardless of context.</p>
+<p><strong>Alternative 1 (current choice):</strong> Use a separate <code>Records</code> storage file to store all the historical arguments.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: User in a different context is able to easily undo the state.</p>
+<p>Pros: Better abstraction and the records has the option to persist even if the file is deleted.</p>
 </li>
 <li>
-<p>Cons: User might expect to undo only when they are in the same context. i.e. Undo Meme commands in Meme context.</p>
+<p>Cons: More files to store and longer code.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Restrict undoing to its own context</p>
+<p><strong>Alternative 2:</strong> Store arguments of a resource (e.g. <code>Meme</code>) as a field of the resource.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: More user intuitive. Commands will only affect their own context.</p>
+<p>Pros: Easier to implement and cleaner.</p>
 </li>
 <li>
-<p>Cons: Heavily complicates the model. Model will then need to keep track of a versioning of every single context. Does not allow for commands such as <code>create</code> which affects the Creation tab and Meme tab without many modifications to the existing structure.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-undo-redo-commands"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands">Aspect: Data structure to support the undo/redo commands</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of past states.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to understand and adjust according to needs. Undo and redo simply moves along the list to change the state.</p>
-</li>
-<li>
-<p>Cons: Clutters up the <code>Weme</code> class.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Use a wrapper class</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Everything will be handled within a single UndoRedoManager class.</p>
-</li>
-<li>
-<p>Cons: Might introduce complications as managing states now needs to go through another class instead of just the model.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-handling-file-changes"><a class="link" href="#aspect-handling-file-changes">Aspect: Handling file changes</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Remove files only on exit.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: No need to deal with files when managing commands. Easy to execute add and delete commands without an issue without worrying whether a file is present.</p>
-</li>
-<li>
-<p>Cons: Might take a while to delete if we had a lot of images. (Resolved with threads)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Implement a recycle bin to move files to/from on command.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Commands do what they are fully expected to do (Delete deletes the image as well).</p>
-</li>
-<li>
-<p>Cons: Heavily complicates the logic with a need to copy and paste when undoing and redoing. Very difficult to understand and error-prone. Still needs to eventually clear the recycle bin on exit. Repeated work.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 3:</strong> Make file-related commands undoable.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: No need to deal with file manipulation.</p>
-</li>
-<li>
-<p>Cons: Makes undo redo feature a lot more useless as it loses support for certain key commands.</p>
+<p>Cons: Irrelevant information needs to be stored as a field (e.g. original file path of a resource).</p>
 </li>
 </ul>
 </div>
@@ -558,20 +280,5 @@ If the <code>stateIndex</code> is at index <code>versionedWemeStates.size() - 1<
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">[Proposed] Data Encryption</a></h3>
-<div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
-<div class="sectionbody">
-<hr>
-<div class="paragraph">
-<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
-</div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 16:43:19 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 17:07:46 UTC</div></div></div></body></html>
