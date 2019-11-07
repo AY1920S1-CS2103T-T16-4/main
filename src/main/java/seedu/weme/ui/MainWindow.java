@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Orientation;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -63,10 +64,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane tabBarPlaceholder;
 
     @FXML
-    private StackPane appContentPlaceholder;
+    private ScrollPane scroll;
 
     @FXML
-    private ScrollBar appContentScrollBar;
+    private StackPane appContentPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -172,7 +173,10 @@ public class MainWindow extends UiPart<Stage> {
         importGridPanel = new ImportGridPanel(logic.getImportMemeList());
         preferencesPanel = new PreferencesPanel(logic.getObservableUserPreferences());
 
+        scroll.setVvalue(500);
+
         setAppContent(logic.getContext().getValue());
+        scroll.setVvalue(500);
     }
 
     /**
