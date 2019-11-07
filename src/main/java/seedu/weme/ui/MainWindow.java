@@ -11,6 +11,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.weme.commons.core.GuiSettings;
@@ -171,6 +172,10 @@ public class MainWindow extends UiPart<Stage> {
                 logic.getStagedMemeList(), logic.getObservableLikeData(), logic.getObservableDislikeData());
         importGridPanel = new ImportGridPanel(logic.getImportMemeList());
         preferencesPanel = new PreferencesPanel(logic.getObservableUserPreferences());
+
+        scroll.setFitToWidth(true);
+        AnchorPane.setLeftAnchor(appContentPlaceholder, 0.);
+        AnchorPane.setRightAnchor(appContentPlaceholder, 0.);
 
         setAppContent(logic.getContext().getValue());
     }

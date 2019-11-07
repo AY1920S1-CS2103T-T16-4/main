@@ -54,11 +54,11 @@
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
           </StackPane>
-          <ScrollPane fx:id="scroll" minWidth="250" hbarPolicy="NEVER" prefWidth="500" HBox.hgrow="ALWAYS">
+          <ScrollPane fx:id="scroll" minWidth="250" minHeight="320" prefHeight="320" prefWidth="500" HBox.hgrow="ALWAYS">
             <content>
-              <AnchorPane fx:id="anchor" prefHeight="${scroll.height}" prefWidth="${scroll.width}" >
+              <AnchorPane fx:id="anchor" minHeight="${scroll.height}" prefWidth="${scroll.width}" maxWidth="${scroll.width}">
                 <children>
-                  <StackPane fx:id="appContentPlaceholder" prefWidth="${anchor.width}" styleClass="pane-with-border">
+                  <StackPane fx:id="appContentPlaceholder" minHeight="${scroll.height}" prefWidth="${anchor.width}" maxWidth="${anchor.width}" styleClass="pane-with-border">
                     <padding>
                       <Insets bottom="10" left="10" right="10" top="10" />
                     </padding>
