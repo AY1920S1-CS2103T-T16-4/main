@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -29,6 +30,10 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
     private static final int BASE_INDEX = 1;
+    // scroll values
+    private static final String SCROLL_KEYWORD = "scroll";
+    private static final double SCROLL_SPEED_SLOW = 0.1;
+    private static final double SCROLL_SPEED_FAST = 1;
 
     private final CommandExecutor commandExecutor;
     private final CommandPrompter commandPrompter;
@@ -39,13 +44,17 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private TextField commandTextField;
 
+    private ScrollPane scrollPane;
+
     public CommandBox(CommandExecutor commandExecutor,
                       CommandPrompter commandPrompter,
-                      ObservableList<Meme> memeFilteredList) {
+                      ObservableList<Meme> memeFilteredList,
+                      ScrollPane scrollPane) {
         super(FXML);
         this.commandExecutor = commandExecutor;
         this.commandPrompter = commandPrompter;
         this.memeFilteredList = memeFilteredList;
+        this.scrollPane = scrollPane;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> {
             setStyleToDefault();
@@ -115,7 +124,12 @@ public class CommandBox extends UiPart<Region> {
      */
     private void handleLikeByKeyPress(KeyEvent event) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandTextField.getText().trim());
-        if (matcher.matches()) {
+        if (commandTextField.getText().trim().equals(SCROLL_KEYWORD)) {
+            double scrollSpeed = event.isShiftDown() ? SCROLL_SPEED_FAST : SCROLL_SPEED_SLOW;
+            double scrollInterval = event.getCode().equals(KeyCode.UP) ? -scrollSpeed : scrollSpeed;
+            scrollPane.setVvalue(scrollPane.getVvalue() + scrollInterval);
+            event.consume();
+        } else if (matcher.matches()) {
             try {
                 final String commandWord = matcher.group(WemeParser.COMMAND_WORD);
                 if ((commandWord.equals(MemeLikeCommand.COMMAND_WORD)

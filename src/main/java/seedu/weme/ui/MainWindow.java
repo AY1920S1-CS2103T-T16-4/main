@@ -6,9 +6,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Orientation;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -141,7 +139,8 @@ public class MainWindow extends UiPart<Stage> {
     private void fillPeripherals() {
         CommandBox commandBox = new CommandBox(this::executeCommand,
                 this::promptCommand,
-                logic.getFilteredMemeList());
+                logic.getFilteredMemeList(),
+                scroll);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -173,10 +172,7 @@ public class MainWindow extends UiPart<Stage> {
         importGridPanel = new ImportGridPanel(logic.getImportMemeList());
         preferencesPanel = new PreferencesPanel(logic.getObservableUserPreferences());
 
-        scroll.setVvalue(500);
-
         setAppContent(logic.getContext().getValue());
-        scroll.setVvalue(500);
     }
 
     /**
