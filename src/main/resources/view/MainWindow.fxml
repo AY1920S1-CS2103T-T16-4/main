@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.control.ScrollBar?>
 <fx:root minHeight="810" minWidth="990" onCloseRequest="#handleExit" title="Weme" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/weme.png" />
@@ -56,9 +57,9 @@
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
+              <ScrollBar fx:id="appContentScrollBar" orientation="HORIZONTAL"/>
           </StackPane>
         </HBox>
-
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
