@@ -1,5 +1,6 @@
 package seedu.weme.ui;
 
+import static seedu.weme.logic.parser.contextparser.WemeParser.ARGUMENTS;
 import static seedu.weme.logic.parser.contextparser.WemeParser.BASIC_COMMAND_FORMAT;
 import static seedu.weme.logic.parser.contextparser.WemeParser.COMMAND_WORD;
 
@@ -93,8 +94,9 @@ public class CommandBox extends UiPart<Region> {
         }
 
         if (!(matcher.group(COMMAND_WORD).equals(MemeLikeCommand.COMMAND_WORD)
-                || matcher.group(COMMAND_WORD).equals(MemeDislikeCommand.COMMAND_WORD))) {
-            // Do not handle if the command word is not a like command.
+                || matcher.group(COMMAND_WORD).equals(MemeDislikeCommand.COMMAND_WORD))
+                && !matcher.group(ARGUMENTS).isEmpty()) {
+            // Do not handle if the command word is not a complete like/dislike command. E.g. like 1
             return;
         } else {
             final String commandWord = matcher.group(WemeParser.COMMAND_WORD);
