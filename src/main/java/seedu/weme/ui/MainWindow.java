@@ -141,6 +141,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand,
                 this::promptCommand,
                 logic.getFilteredMemeList(),
+                logic.getContext(),
                 scroll);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
