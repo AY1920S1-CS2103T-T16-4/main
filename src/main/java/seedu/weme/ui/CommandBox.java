@@ -177,23 +177,15 @@ public class CommandBox extends UiPart<Region> {
             try {
                 commandExecutor.execute(commandTextField.getText());
                 return true;
-        if (commandTextField.getText().trim().equals(SCROLL_KEYWORD)) {
-            double scrollSpeed = event.isShiftDown() ? SCROLL_SPEED_FAST : SCROLL_SPEED_SLOW;
-            double scrollInterval = event.getCode().equals(KeyCode.UP) ? -scrollSpeed : scrollSpeed;
-            scrollPane.setVvalue(scrollPane.getVvalue() + scrollInterval);
-            event.consume();
-        } else if (matcher.matches()) {
-            try {
-                final String commandWord = matcher.group(WemeParser.COMMAND_WORD);
-                if ((commandWord.equals(MemeLikeCommand.COMMAND_WORD)
-                        || commandWord.equals(MemeDislikeCommand.COMMAND_WORD))
-                        && event.getCode().equals(KeyCode.UP)) {
-                    commandExecutor.execute(commandTextField.getText());
-                }
             } catch (CommandException | ParseException e) {
                 setStyleToIndicateCommandFailure();
                 return false;
             }
+        } else if (commandTextField.getText().trim().equals(SCROLL_KEYWORD)) {
+            double scrollSpeed = event.isShiftDown() ? SCROLL_SPEED_FAST : SCROLL_SPEED_SLOW;
+            double scrollInterval = event.getCode().equals(KeyCode.UP) ? -scrollSpeed : scrollSpeed;
+            scrollPane.setVvalue(scrollPane.getVvalue() + scrollInterval);
+            event.consume();
         }
         return false;
     }
