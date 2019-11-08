@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.weme.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.weme.logic.commands.memecommand.MemeDislikeCommand.MESSAGE_DISLIKE_MEME_SUCCESS;
-import static seedu.weme.testutil.TypicalIndexes.INDEX_FIRST_MEME;
-import static seedu.weme.testutil.TypicalIndexes.INDEX_SECOND_MEME;
+import static seedu.weme.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.weme.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.weme.testutil.TypicalWeme.getTypicalWeme;
 
 import java.util.List;
@@ -27,8 +27,8 @@ class MemeDislikeCommandTest {
 
     @Test
     void execute_dislikeSuccessful() {
-        Meme memeToDislike = model.getFilteredMemeList().get(INDEX_FIRST_MEME.getZeroBased());
-        MemeDislikeCommand command = new MemeDislikeCommand(INDEX_FIRST_MEME);
+        Meme memeToDislike = model.getFilteredMemeList().get(INDEX_FIRST.getZeroBased());
+        MemeDislikeCommand command = new MemeDislikeCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(MESSAGE_DISLIKE_MEME_SUCCESS, memeToDislike);
 
@@ -50,14 +50,14 @@ class MemeDislikeCommandTest {
 
     @Test
     void equals() {
-        MemeDislikeCommand dislikeFirstCommand = new MemeDislikeCommand(INDEX_FIRST_MEME);
-        MemeDislikeCommand dislikeSecondCommand = new MemeDislikeCommand(INDEX_SECOND_MEME);
+        MemeDislikeCommand dislikeFirstCommand = new MemeDislikeCommand(INDEX_FIRST);
+        MemeDislikeCommand dislikeSecondCommand = new MemeDislikeCommand(INDEX_SECOND);
 
         // same object -> return true
         assertEquals(dislikeFirstCommand, dislikeFirstCommand);
 
         // same value -> return true
-        MemeDislikeCommand dislikeFirstCommandCopy = new MemeDislikeCommand(INDEX_FIRST_MEME);
+        MemeDislikeCommand dislikeFirstCommandCopy = new MemeDislikeCommand(INDEX_FIRST);
         assertEquals(dislikeFirstCommand, dislikeFirstCommandCopy);
 
         // different types -> return false

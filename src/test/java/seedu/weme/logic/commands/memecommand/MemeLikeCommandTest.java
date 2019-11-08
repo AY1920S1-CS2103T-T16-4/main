@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.weme.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.weme.logic.commands.memecommand.MemeLikeCommand.MESSAGE_LIKE_MEME_SUCCESS;
-import static seedu.weme.testutil.TypicalIndexes.INDEX_FIRST_MEME;
-import static seedu.weme.testutil.TypicalIndexes.INDEX_SECOND_MEME;
+import static seedu.weme.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.weme.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.weme.testutil.TypicalWeme.getTypicalWeme;
 
 import java.util.List;
@@ -27,8 +27,8 @@ class MemeLikeCommandTest {
 
     @Test
     void execute_likeSuccessful() {
-        Meme memeToLike = model.getFilteredMemeList().get(INDEX_FIRST_MEME.getZeroBased());
-        MemeLikeCommand command = new MemeLikeCommand(INDEX_FIRST_MEME);
+        Meme memeToLike = model.getFilteredMemeList().get(INDEX_FIRST.getZeroBased());
+        MemeLikeCommand command = new MemeLikeCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(MESSAGE_LIKE_MEME_SUCCESS, memeToLike);
 
@@ -50,14 +50,14 @@ class MemeLikeCommandTest {
 
     @Test
     void equals() {
-        MemeLikeCommand likeFirstCommand = new MemeLikeCommand(INDEX_FIRST_MEME);
-        MemeLikeCommand likeSecondCommand = new MemeLikeCommand(INDEX_SECOND_MEME);
+        MemeLikeCommand likeFirstCommand = new MemeLikeCommand(INDEX_FIRST);
+        MemeLikeCommand likeSecondCommand = new MemeLikeCommand(INDEX_SECOND);
 
         // same object -> return true
         assertEquals(likeFirstCommand, likeFirstCommand);
 
         // same value -> return true
-        MemeLikeCommand likeFirstCommandCopy = new MemeLikeCommand(INDEX_FIRST_MEME);
+        MemeLikeCommand likeFirstCommandCopy = new MemeLikeCommand(INDEX_FIRST);
         assertEquals(likeFirstCommand, likeFirstCommandCopy);
 
         // different types -> return false
