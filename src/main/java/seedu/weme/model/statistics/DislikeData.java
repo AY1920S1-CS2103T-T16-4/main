@@ -110,7 +110,6 @@ public class DislikeData {
             return false;
         } else {
             for (Map.Entry<String, SimpleIntegerProperty> entry : otherDislikeData.dislikeMap.entrySet()) {
-                System.out.println(entry + Integer.toString(dislikeMap.get(entry.getKey()).get()));
                 if (dislikeMap.get(entry.getKey()).get() != entry.getValue().get()) {
                     return false;
                 }

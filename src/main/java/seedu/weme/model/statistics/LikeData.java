@@ -116,7 +116,6 @@ public class LikeData {
             return false;
         } else {
             for (Map.Entry<String, SimpleIntegerProperty> entry : otherLikeData.likeMap.entrySet()) {
-                System.out.println(entry + Integer.toString(likeMap.get(entry.getKey()).get()));
                 if (likeMap.get(entry.getKey()).get() != entry.getValue().get()) {
                     return false;
                 }
