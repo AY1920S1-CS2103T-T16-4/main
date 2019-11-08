@@ -24,6 +24,7 @@ import seedu.weme.model.template.MemeText;
 import seedu.weme.model.template.MemeTextColor;
 import seedu.weme.model.template.MemeTextSize;
 import seedu.weme.model.template.MemeTextStyle;
+import seedu.weme.model.template.exceptions.InvalidCoordinatesException;
 
 /**
  * Edits the details of an existing meme in Weme.
@@ -32,10 +33,12 @@ public class TextEditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the meme text identified "
+    public static final String MESSAGE_DESCRIPTION = COMMAND_WORD + ": Edits the details of the meme text identified "
             + "by the index number. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Existing values will be overwritten by the input values.";
+
+    public static final String MESSAGE_USAGE = MESSAGE_DESCRIPTION
+            + "\nParameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TEXT + "TEXT] "
             + "[" + PREFIX_X_COORDINATE + "X_COORDINATE] "
             + "[" + PREFIX_Y_COORDINATE + "Y_COORDINATE] "
@@ -67,13 +70,19 @@ public class TextEditCommand extends Command {
      * Creates and returns a {@code Memetext} with the details of {@code textToEdit}
      * edited with {@code editTextDescriptor}.
      */
-    private static MemeText createEditedMemeText(MemeText textToEdit, EditMemeTextDescriptor editTextDescriptor) {
+    private static MemeText createEditedMemeText(MemeText textToEdit,
+                                                 EditMemeTextDescriptor editTextDescriptor) throws CommandException {
         requireAllNonNull(textToEdit, editTextDescriptor);
 
         String text = editTextDescriptor.getText().orElse(textToEdit.getText());
         float x = editTextDescriptor.getX().orElse(textToEdit.getX());
         float y = editTextDescriptor.getY().orElse(textToEdit.getY());
-        Coordinates coordinates = new Coordinates(x, y);
+        Coordinates coordinates;
+        try {
+            coordinates = new Coordinates(x, y);
+        } catch (InvalidCoordinatesException e) {
+            throw new CommandException(Coordinates.MESSAGE_INVALID_COORDINATES, e);
+        }
         MemeTextColor color = editTextDescriptor.getColor().orElse(textToEdit.getMemeTextColor());
         MemeTextStyle style = editTextDescriptor.getStyle().orElse(textToEdit.getMemeTextStyle());
         MemeTextSize size = editTextDescriptor.getSize().orElse(textToEdit.getMemeTextSize());
@@ -94,6 +103,7 @@ public class TextEditCommand extends Command {
         MemeText editedText = createEditedMemeText(textToEdit, editMemeTextDescriptor);
 
         model.setMemeText(textToEdit, editedText);
+        model.addMemeTextToRecords(editedText);
 
         CommandResult result = new CommandResult(
                 String.format(MESSAGE_EDIT_MEME_TEXT_SUCCESS, editedText.toString()));

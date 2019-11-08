@@ -2,7 +2,6 @@ package seedu.weme.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -18,6 +17,8 @@ import seedu.weme.model.imagePath.ImagePath;
 import seedu.weme.model.meme.Description;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.meme.UniqueMemeList;
+import seedu.weme.model.records.Records;
+import seedu.weme.model.records.RecordsManager;
 import seedu.weme.model.statistics.Stats;
 import seedu.weme.model.statistics.StatsManager;
 import seedu.weme.model.statistics.TagWithCount;
@@ -231,8 +232,9 @@ public class Weme implements ReadOnlyWeme {
      * The meme must not already exist in Weme.
      */
     public void addMeme(Meme m) {
-        memes.add(m);
         stats.addDefaultLikeData(m);
+        stats.addDefaultDislikeData(m);
+        memes.add(m);
     }
 
     /**
@@ -462,8 +464,8 @@ public class Weme implements ReadOnlyWeme {
         return records.getNames();
     }
 
-    public Set<String> getColors() {
-        return records.getColors();
+    public Set<String> getTexts() {
+        return records.getTexts();
     }
 
     public void addPath(ImagePath path) {
@@ -482,8 +484,8 @@ public class Weme implements ReadOnlyWeme {
         records.addName(name);
     }
 
-    public void addColor(Color color) {
-        records.addColor(color);
+    public void addText(String text) {
+        records.addText(text);
     }
 
     @Override

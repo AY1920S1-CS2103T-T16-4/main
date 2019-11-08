@@ -1,6 +1,5 @@
 package seedu.weme.ui;
 
-import java.io.File;
 import java.util.Comparator;
 
 import javafx.beans.property.SimpleIntegerProperty;
@@ -19,8 +18,6 @@ import seedu.weme.model.meme.Meme;
 public class MemeCard extends UiPart<Region> {
 
     private static final String FXML = "MemeGridCard.fxml";
-    private static final String LIKE_ICON = "src/main/resources/images/like_icon.png";
-    private static final String DISLIKE_ICON = "src/main/resources/images/dislike_icon.png";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -43,11 +40,7 @@ public class MemeCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private ImageView likeIcon;
-    @FXML
     private Label likes;
-    @FXML
-    private ImageView dislikeIcon;
     @FXML
     private Label dislikes;
 
@@ -58,14 +51,33 @@ public class MemeCard extends UiPart<Region> {
         super(FXML);
         this.meme = meme;
         id.setText(displayedIndex + "");
-        display.setImage(new Image(meme.getImagePath().toUrl().toString()));
+        display.setImage(new Image(meme.getImagePath().toUrl().toString(), 200, 200, true, true, true));
         description.setText(meme.getDescription().value);
         meme.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        likeIcon.setImage(new Image((new File(LIKE_ICON)).toURI().toString()));
         likes.setText(" " + numOfLikes.get() + " ");
-        dislikeIcon.setImage(new Image((new File(DISLIKE_ICON)).toURI().toString()));
+        dislikes.setText(" " + numOfDislikes.get() + " ");
+        numOfLikes.addListener((observable, oldValue, newValue) ->
+                likes.setText(Integer.toString((int) newValue)));
+        numOfDislikes.addListener((observable, oldValue, newValue) ->
+                dislikes.setText(Integer.toString((int) newValue)));
+    }
+
+    /**
+     * Updates the card content except for the meme image.
+     *
+     * @param meme     the meme this card is for
+     * @param newIndex the new index of the this card
+     */
+    public void update(Meme meme, int newIndex, SimpleIntegerProperty numOfLikes, SimpleIntegerProperty numOfDislikes) {
+        id.setText(newIndex + "");
+        description.setText(meme.getDescription().value);
+        tags.getChildren().clear();
+        meme.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        likes.setText(" " + numOfLikes.get() + " ");
         dislikes.setText(" " + numOfDislikes.get() + " ");
         numOfLikes.addListener((observable, oldValue, newValue) ->
                 likes.setText(Integer.toString((int) newValue)));
@@ -88,6 +100,8 @@ public class MemeCard extends UiPart<Region> {
         // state check
         MemeCard card = (MemeCard) other;
         return id.getText().equals(card.id.getText())
-                && meme.equals(card.meme);
+                && meme.equals(card.meme)
+                && likes.equals(card.likes)
+                && dislikes.equals(card.dislikes);
     }
 }

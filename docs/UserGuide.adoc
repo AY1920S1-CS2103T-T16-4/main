@@ -152,9 +152,10 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 ****
 * The search is case-insensitive. e.g `Pikachu` will match `pikachu`
-* The order of the keywords does not matter. e.g. `run naruto` will match `naruto run`
-* Only the tag names are searched.
+* The order of the keywords does not matter. e.g. `run naruto` will match a meme tagged with `naruto run`
+* Only the tag names are searched
 * Only full words will be matched e.g. `naru` will not match `naruto`
+* Memes matching at least one tag will be returned (i.e. OR search). e.g. `spongebob funny` will match both memes tagged with `spongebob` and those tagged with `funny`
 ****
 
 Examples:
@@ -190,6 +191,8 @@ Format: `clear`
 Stages the meme at the specified index into the export staging area. +
 Format: `stage INDEX`
 
+// tag::like[]
+
 ==== Liking a meme: `like`
 
 Likes a meme at the specified index. +
@@ -208,6 +211,8 @@ Format: `dislike INDEX`
 [TIP]
 Same as like, dislike also allows arrow key operations.
 
+// end::like[]
+
 ==== Listing archived memes: `archives`
 
 Lists all archived memes. +
@@ -223,6 +228,7 @@ Format: `archive INDEX`
 Unarchives a meme at the specified index. +
 Format: `unarchive INDEX`
 
+// tag::templates[]
 === Templates Tab
 Templates are meme prototypes.
 You can add templates to Weme and use them to create new memes.
@@ -238,7 +244,7 @@ Examples:
 * `add n/Drake p//Users/Me/Downloads/Drake.jpg` +
 Adds a template with image `/Users/Me/Downloads/Drake.jpg` and name it `Drake`
 
-==== Listing all templates: `list` (_coming in v1.4_)
+==== Listing all templates: `list`
 
 Lists all templates. +
 Format: `list`
@@ -253,7 +259,7 @@ Examples:
 * `edit 1 n/Surprised Pikachu` +
 Edits the name of the 1st template to be `Surprised Pikachu`.
 
-==== Locating templates by name: `find` (_coming in v1.4_)
+==== Locating templates by name: `find`
 
 Finds templates whose names contain any of the given keywords. +
 Format: `find KEYWORD [MORE_KEYWORDS]`
@@ -272,12 +278,17 @@ Examples:
 Returns all templates containing `Thanos` in their names
 
 * `find Stonks Doge Pikachu` +
-Returns any templates having names `stonks`, `doge`, or `pikachu`
+Returns any templates whose names contain `stonks`, `doge`, or `pikachu`
 
 ==== Deleting a template: `delete`
 
 Deletes the template at the specified index. +
 Format: `delete INDEX`
+
+==== Clearing all templates: `clear`
+
+Clears all templates. +
+Format: `clear`
 
 ==== Archiving a template: `archive`
 
@@ -301,6 +312,10 @@ Weme will enter the create tab and allow you to add text to the template. +
 For details, please refer to the next section <<Create Tab>>. +
 Format: `use INDEX`
 
+// end::templates[]
+
+// tag::meme-create[]
+
 === Create Tab
 The create tab allows you to create a new meme from a template.
 To start a meme creation session, select a template from the templates tab and execute the `use` command.
@@ -314,11 +329,15 @@ Format: `add TEXT x/X_COORDINATE y/Y_COORDINATE [c/COLOR] [s/SIZE] [S/STYLE]...`
 * `X_COORDINATE` and `Y_COORDINATE` denote the position at which the supplied text will be placed and are represented as ratios of the image dimensions.
 `x/0.5 y/0.3` means the *center* of the supplied text will be 50% right of the left border and 30% down from the top border.
 * `COLOR` can be a name, e.g. `cyan`, or a hex RGB value, e.g. `#FF34E2`.
-* Weme supports 6 levels of font size. `SIZE` must be an integer from 1 to 6, where 1 denotes the smallest font size and 6 denotes the largest font size. Some text of each font size can be found at the right hand side of the image as a reference.
+* Weme supports 6 levels of font size. `SIZE` must be an integer from 1 to 6, where 1 denotes the smallest font size and 6 denotes the largest font size. Some text of each font size can be found at the right hand side of the image as a reference. Note that the sample sizes only apply to templates whose width/height ratio do not deviate too much from 1.
 * `STYLE` must be `plain`, `bold`, or `italic`. In the case you specify multiple font styles, Weme will combine them. For example, `S/bold S/italic` will give you bold and italic text.
 * If you do not specify `COLOR`, `SIZE`, or `STYLE`, the default values will be used. The default values are black, 5, and plain, respectively.
 * Weme will not add text that would exceed the image boundary. If it detects such a scenario, it will print an error message.
 ****
+
+[TIP]
+The x and y coordinates given in the command specify the position for the *center* of the text.
+This means if you want to add text to the center of the image, the command will always be `add TEXT x/0.5 y/0.5` no matter how long your text is.
 
 Examples:
 
@@ -348,6 +367,29 @@ Changes the x-coordinate of the text at index 2 to 0.5.
 * `edit 3 c/#FC1423 s/5 S/bold` +
 Edits the text at index 3, changing its color to #FC1423, size to 5 and style to bold.
 
+==== Moving text: `move`
+
+Moves the specified text. +
+Format: `move INDEX [x/X_CHANGE] [y/Y_CHANGE]`
+
+****
+* The move is relative to the current position of the specified text.
+* At least one of `X_CHANGE` and `Y_CHANGE` must be specified.
+****
+
+Examples:
+
+* `move 1 x/-0.1` +
+Moves the text at index 1 to the left by 10% of the image width.
+* `move 2 y/0.3` +
+Moves the text at index 2 down by 30% of the image height.
+* `move 3 x/0.2 y/-0.3` +
+Moves the text at index 3 to the right by 20% of the image width and up by 30% of the image height.
+
+[TIP]
+You can type `move INDEX` and use arrow keys to move the specified text. +
+Hold kbd:[Shift] while pressing arrow keys to make the text move faster.
+
 ==== Deleting text: `delete`
 
 Deletes the text at the specified index. +
@@ -372,6 +414,7 @@ Examples:
 * `create d/sleep or code t/soc t/cs2103` +
 Creates a new meme from the current meme creation session, giving it a description `sleep or code` and tags `soc` and `cs2103`.
 
+// end::meme-create[]
 
 // tag::export/import[]
 
@@ -447,6 +490,7 @@ Format: `clear`
 
 View various statistics about the memes such as tags and likes count by tags, and most used templates.
 
+// tag::command-suggestion[]
 === Command Suggestions
 
 * Suggestions for command word/argument based on current user input will be displayed in the result box.
@@ -475,6 +519,7 @@ cute +
 CS2103` +
 If kbd:[Tab] is pressed, "c" in the command box will be replaced by "CS".
 
+// end::command-suggestion[]
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
@@ -515,10 +560,11 @@ e.g. `add p//Users/Me/Downloads/dgirl_oof.jpg d/Disaster Girl t/Funny`
 ** *Add Template* : `add n/NAME p/PATH`
 ** *Edit Template* : `edit INDEX n/NAME`
 ** *Delete Template* : `delete INDEX`
-** *Find Template* : `find KEYWORD [MORE_KEYWORDS]` (_coming in v1.4_)
+** *Clear Templates* : `clear`
+** *Find Template* : `find KEYWORD [MORE_KEYWORDS]`
 ** *Archive Template* : `archive INDEX`
 ** *Unarchive Template* : `unarchive INDEX`
-** *List Templates* : `list` (_coming in v1.4_)
+** *List Templates* : `list`
 ** *List Archived Templates* : `archives`
 ** *Use Template* : `use INDEX`
 
@@ -526,6 +572,7 @@ e.g. `add p//Users/Me/Downloads/dgirl_oof.jpg d/Disaster Girl t/Funny`
 ** *Add text* : `add TEXT x/X_COORDINATE y/Y_COORDINATE [c/COLOR] [s/SIZE] [S/STYLE]...`
 ** *Edit text* : `edit INDEX [t/TEXT] [x/X_COORDINATE] [y/Y_COORDINATE] [c/COLOR] [s/SIZE] [S/STYLE]...`
 ** *Delete text* : `delete INDEX`
+** *Move text* : `move INDEX [x/X_CHANGE] [y/Y_CHANGE]`
 ** *Abort creation* : `abort`
 ** *Finish creation* : `create [d/DESCRIPTION] [t/TAG]...`
 

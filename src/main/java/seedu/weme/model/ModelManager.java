@@ -250,6 +250,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearTemplates() {
+        versionedWeme.setTemplates(new ArrayList<>());
+    }
+
+    @Override
     public void addTemplate(Template template) {
         versionedWeme.addTemplate(template);
         updateFilteredTemplateList(PREDICATE_SHOW_ALL_UNARCHIVED_TEMPLATES);
@@ -444,8 +449,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Set<String> getColorRecords() {
-        return versionedWeme.getColors();
+    public Set<String> getTextRecords() {
+        return versionedWeme.getTexts();
     }
 
     @Override
@@ -463,7 +468,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addMemeTextToRecords(MemeText memeText) {
-        versionedWeme.addColor(memeText.getColor());
+        versionedWeme.addText(memeText.getText());
     }
 
     @Override
@@ -519,6 +524,8 @@ public class ModelManager implements Model {
         return versionedWeme.equals(other.versionedWeme)
                 && userPrefs.equals(other.userPrefs)
                 && filteredMemes.equals(other.filteredMemes)
+                && stagedMemeList.equals(other.stagedMemeList)
+                && importMemeList.equals(other.importMemeList)
                 && context.getValue().equals(other.context.getValue());
     }
 
