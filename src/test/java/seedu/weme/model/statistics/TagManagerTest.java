@@ -1,16 +1,17 @@
 package seedu.weme.model.statistics;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.weme.logic.commands.CommandTestUtil.VALID_DESCRIPTION_JOKER;
+import static seedu.weme.logic.commands.CommandTestUtil.VALID_FILEPATH_JOKER;
+import static seedu.weme.logic.commands.CommandTestUtil.VALID_TAG_JOKER;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.weme.model.Weme;
 import seedu.weme.model.meme.Meme;
 import seedu.weme.model.tag.Tag;
 import seedu.weme.testutil.MemeBuilder;
 import seedu.weme.testutil.WemeBuilder;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_DESCRIPTION_JOKER;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_FILEPATH_JOKER;
-import static seedu.weme.logic.commands.CommandTestUtil.VALID_TAG_JOKER;
 
 class TagManagerTest {
     private TagManager tagManager = new TagManager();

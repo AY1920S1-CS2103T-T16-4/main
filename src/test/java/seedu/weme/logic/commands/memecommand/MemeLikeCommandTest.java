@@ -1,7 +1,18 @@
 package seedu.weme.logic.commands.memecommand;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.weme.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.weme.logic.commands.memecommand.MemeLikeCommand.MESSAGE_LIKE_MEME_SUCCESS;
+import static seedu.weme.testutil.TypicalIndexes.INDEX_FIRST_MEME;
+import static seedu.weme.testutil.TypicalIndexes.INDEX_SECOND_MEME;
+import static seedu.weme.testutil.TypicalWeme.getTypicalWeme;
+
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.weme.commons.core.Messages;
 import seedu.weme.commons.core.index.Index;
 import seedu.weme.logic.commands.exceptions.CommandException;
@@ -9,13 +20,6 @@ import seedu.weme.model.Model;
 import seedu.weme.model.ModelManager;
 import seedu.weme.model.UserPrefs;
 import seedu.weme.model.meme.Meme;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.weme.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.weme.logic.commands.memecommand.MemeLikeCommand.MESSAGE_LIKE_MEME_SUCCESS;
-import static seedu.weme.testutil.TypicalIndexes.INDEX_FIRST_MEME;
-import static seedu.weme.testutil.TypicalIndexes.INDEX_SECOND_MEME;
-import static seedu.weme.testutil.TypicalWeme.getTypicalWeme;
 
 class MemeLikeCommandTest {
     private Model model = new ModelManager(getTypicalWeme(), new UserPrefs());

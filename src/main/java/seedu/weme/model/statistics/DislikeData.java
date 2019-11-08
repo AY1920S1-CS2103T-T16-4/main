@@ -93,4 +93,29 @@ public class DislikeData {
         }
         return copy;
     }
+
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof DislikeData)) {
+            return false;
+        }
+
+        DislikeData otherDislikeData = (DislikeData) other;
+        if (!dislikeMap.keySet().equals(otherDislikeData.getCopy().keySet())) {
+            return false;
+        } else {
+            for (Map.Entry<String, SimpleIntegerProperty> entry : otherDislikeData.dislikeMap.entrySet()) {
+                System.out.println(entry + Integer.toString(dislikeMap.get(entry.getKey()).get()));
+                if (dislikeMap.get(entry.getKey()).get() != entry.getValue().get()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
