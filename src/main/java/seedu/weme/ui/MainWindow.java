@@ -21,6 +21,7 @@ import seedu.weme.logic.parser.exceptions.ParseException;
 import seedu.weme.logic.prompter.exceptions.PromptException;
 import seedu.weme.logic.prompter.prompt.CommandPrompt;
 import seedu.weme.model.ModelContext;
+import seedu.weme.model.meme.Meme;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -43,6 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private MemeGridPanel exportGridPanel;
     private ImportGridPanel importGridPanel;
     private PreferencesPanel preferencesPanel;
+    private MemeViewPanel memeViewPanel;
 
     // Independent Ui parts residing in this Ui container
     private ResultDisplay resultDisplay;
@@ -136,7 +138,8 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand,
                 this::promptCommand,
                 logic.getFilteredMemeList(),
-                logic.getContext());
+                logic.getContext(),
+                this);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -167,6 +170,7 @@ public class MainWindow extends UiPart<Stage> {
                 logic.getStagedMemeList(), logic.getObservableLikeData(), logic.getObservableDislikeData());
         importGridPanel = new ImportGridPanel(logic.getImportMemeList());
         preferencesPanel = new PreferencesPanel(logic.getObservableUserPreferences());
+        memeViewPanel = new MemeViewPanel();
 
         setAppContent(logic.getContext().getValue());
     }
@@ -176,6 +180,18 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void listenToContextChange() {
         logic.getContext().addListener((observable, oldValue, newValue) -> setAppContent(newValue));
+    }
+
+    public void setMemeView(Meme meme) {
+        appContentPlaceholder.getChildren().clear();
+        int likeCount = logic.getObservableLikeData().get(meme.getImagePath().toString()).get();
+        int dislikeCount = logic.getObservableDislikeData().get(meme.getImagePath().toString()).get();
+        memeViewPanel.update(meme, likeCount, dislikeCount);
+        appContentPlaceholder.getChildren().add(memeViewPanel.getRoot());
+    }
+
+    public void resetAppContent() {
+        setAppContent(logic.getContext().getValue());
     }
 
     /**

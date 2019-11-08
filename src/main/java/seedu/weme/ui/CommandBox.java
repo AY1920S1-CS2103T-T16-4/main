@@ -2,6 +2,7 @@ package seedu.weme.ui;
 
 import static seedu.weme.logic.parser.contextparser.WemeParser.BASIC_COMMAND_FORMAT;
 import static seedu.weme.logic.parser.contextparser.WemeParser.COMMAND_WORD;
+import static seedu.weme.model.ModelContext.CONTEXT_MEMES;
 
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -33,11 +34,13 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
     private static final int BASE_INDEX = 1;
     private static final Set<KeyCode> ARROW_KEYS = Set.of(KeyCode.UP, KeyCode.DOWN, KeyCode.LEFT, KeyCode.RIGHT);
+    private static final String VIEW_KEYWORD = "view";
 
     private final CommandExecutor commandExecutor;
     private final CommandPrompter commandPrompter;
     private final ObservableList<Meme> memeFilteredList;
     private final ObservableValue<ModelContext> context;
+    private final MainWindow mainWindow;
     private boolean isShowingCommandSuccess = false;
 
     @FXML
@@ -46,15 +49,20 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor,
                       CommandPrompter commandPrompter,
                       ObservableList<Meme> memeFilteredList,
-                      ObservableValue<ModelContext> context) {
+                      ObservableValue<ModelContext> context,
+                      MainWindow mainWindow) {
         super(FXML);
         this.commandExecutor = commandExecutor;
         this.commandPrompter = commandPrompter;
         this.memeFilteredList = memeFilteredList;
         this.context = context;
+        this.mainWindow = mainWindow;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> {
+        commandTextField.textProperty().addListener((text, unused2, unused3) -> {
             setStyleToDefault();
+            if (context.getValue().equals(CONTEXT_MEMES)) {
+                viewMemeUponKeyword(text.getValue());
+            }
             if (!isShowingCommandSuccess) {
                 displayCommandPrompt();
             } else {
@@ -79,7 +87,42 @@ public class CommandBox extends UiPart<Region> {
         case TAB:
             handleTabPress(keyEvent);
             break;
+        case ENTER:
+            disallowEnterUponView(keyEvent);
+            break;
         default:
+        }
+    }
+
+    /**
+     * Allows user to view meme in a bigger view upon keyword {@code view}.
+     */
+    private void viewMemeUponKeyword(String text) {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(text);
+        if (!matcher.matches()) {
+            return;
+        }
+        final String commandWord = matcher.group(WemeParser.COMMAND_WORD);
+        final String argument = matcher.group(WemeParser.ARGUMENTS).trim();
+        if ((commandWord.equals(VIEW_KEYWORD) && argument.matches("\\d+"))) {
+            mainWindow.setMemeView(memeFilteredList.get(Integer.parseInt(argument) - 1));
+        } else {
+            mainWindow.resetAppContent();
+        }
+    }
+
+    /**
+     * Disables ENTER when view is in place.
+     */
+    private void disallowEnterUponView(KeyEvent keyEvent) {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandTextField.getText());
+        if (!matcher.matches()) {
+            return;
+        }
+        final String commandWord = matcher.group(WemeParser.COMMAND_WORD);
+        final String argument = matcher.group(WemeParser.ARGUMENTS).trim();
+        if ((commandWord.equals(VIEW_KEYWORD) && argument.matches("\\d+"))) {
+            keyEvent.consume();
         }
     }
 
@@ -116,7 +159,7 @@ public class CommandBox extends UiPart<Region> {
             return false;
         }
 
-        if (!context.getValue().equals(ModelContext.CONTEXT_MEMES)) {
+        if (!context.getValue().equals(CONTEXT_MEMES)) {
             return false;
         }
 
@@ -126,12 +169,13 @@ public class CommandBox extends UiPart<Region> {
             return false;
         }
 
-        if (!(matcher.group(COMMAND_WORD).equals(MemeLikeCommand.COMMAND_WORD)
-                || matcher.group(COMMAND_WORD).equals(MemeDislikeCommand.COMMAND_WORD))) {
+        String commandWord = matcher.group(COMMAND_WORD);
+        if (!(commandWord.equals(MemeLikeCommand.COMMAND_WORD)
+                || commandWord.equals(MemeDislikeCommand.COMMAND_WORD)
+                || commandWord.equals(VIEW_KEYWORD))) {
             // Do not handle if the command word is not a like command.
             return false;
         } else {
-            final String commandWord = matcher.group(WemeParser.COMMAND_WORD);
             final String argument = matcher.group(WemeParser.ARGUMENTS).trim();
             if (argument.isBlank()) {
                 return false;
@@ -152,7 +196,7 @@ public class CommandBox extends UiPart<Region> {
      * @return whether this event is handled
      */
     private boolean handleLikeByKeyPress(KeyEvent event) {
-        if (!context.getValue().equals(ModelContext.CONTEXT_MEMES)) {
+        if (!context.getValue().equals(CONTEXT_MEMES)) {
             return false;
         }
 
