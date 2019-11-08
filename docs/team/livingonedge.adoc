@@ -43,7 +43,7 @@ For example, support commands such as edit, delete and clear commands have to be
 *** Updated User Stories for Developer Guide https://github.com/AY1920S1-CS2103-T16-3/main/commit/791f7149f336ac4e4c13ecabe6a334b4de00230a[#31]
 *** Major update to User Guide for v1.3 release: https://github.com/AY1920S1-CS2103-T16-3/main/commit/f0773ea9194ee7fa731bc3ce708e234c4642df78[#153]
 ** Tools:
-*** Added support for TestFX [https://github.com/AY1920S1-CS2103-T16-3/main/pull/230[#230]]
+*** Added support for TestFX [https://github.com/AY1920S1-CS2103-T16-3/main/pull/234[#234]]
 ** Community:
 *** PRs reviewed (trivial): https://github.com/AY1920S1-CS2103-T16-3/main/pull/68[#68],
 https://github.com/AY1920S1-CS2103-T16-3/main/pull/49[#49],
