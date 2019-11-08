@@ -706,21 +706,74 @@ Edits the text at index 3, changing its color to #FC1423, size to 5 and style to
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-text-code-delete-code"><a class="link" href="#deleting-text-code-delete-code">3.4.3. Deleting text: <code>delete</code></a></h4>
+<h4 id="moving-text-code-move-code"><a class="link" href="#moving-text-code-move-code">3.4.3. Moving text: <code>move</code></a></h4>
+<div class="paragraph">
+<p>Moves the specified text.<br>
+Format: <code>move INDEX [x/X_CHANGE] [y/Y_CHANGE]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The move is relative to the current position of the specified text.</p>
+</li>
+<li>
+<p>At least one of <code>X_CHANGE</code> and <code>Y_CHANGE</code> must be specified.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>move 1 x/-0.1</code><br>
+Moves the text at index 1 to the left by 10% of the image width.</p>
+</li>
+<li>
+<p><code>move 2 y/0.3</code><br>
+Moves the text at index 2 down by 30% of the image height.</p>
+</li>
+<li>
+<p><code>move 3 x/0.2 y/-0.3</code><br>
+Moves the text at index 3 to the right by 20% of the image width and up by 30% of the image height.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can type <code>move INDEX</code> and use arrow keys to move the specified text.<br>
+Hold <kbd>Shift</kbd> while pressing arrow keys to make the text move faster.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-text-code-delete-code"><a class="link" href="#deleting-text-code-delete-code">3.4.4. Deleting text: <code>delete</code></a></h4>
 <div class="paragraph">
 <p>Deletes the text at the specified index.<br>
 Format: <code>delete INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="aborting-meme-creation-code-abort-code"><a class="link" href="#aborting-meme-creation-code-abort-code">3.4.4. Aborting meme creation: <code>abort</code></a></h4>
+<h4 id="aborting-meme-creation-code-abort-code"><a class="link" href="#aborting-meme-creation-code-abort-code">3.4.5. Aborting meme creation: <code>abort</code></a></h4>
 <div class="paragraph">
 <p>Aborts this meme creation session and go back to the templates tab.<br>
 Format: <code>abort</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="completing-the-creation-session-code-create-code"><a class="link" href="#completing-the-creation-session-code-create-code">3.4.5. Completing the creation session: <code>create</code></a></h4>
+<h4 id="completing-the-creation-session-code-create-code"><a class="link" href="#completing-the-creation-session-code-create-code">3.4.6. Completing the creation session: <code>create</code></a></h4>
 <div class="paragraph">
 <p>Creates a new meme with all the added text applied. The new meme will be saved into Weme&#8217;s meme collection, with the specified description and tags.<br>
 Format: <code>create [d/DESCRIPTION] [t/TAG]&#8230;&#8203;</code></p>
@@ -1073,6 +1126,9 @@ e.g. <code>add p//Users/Me/Downloads/dgirl_oof.jpg d/Disaster Girl t/Funny</code
 <p><strong>Delete text</strong> : <code>delete INDEX</code></p>
 </li>
 <li>
+<p><strong>Move text</strong> : <code>move INDEX [x/X_CHANGE] [y/Y_CHANGE]</code></p>
+</li>
+<li>
 <p><strong>Abort creation</strong> : <code>abort</code></p>
 </li>
 <li>
@@ -1122,4 +1178,4 @@ e.g. <code>add p//Users/Me/Downloads/dgirl_oof.jpg d/Disaster Girl t/Funny</code
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-08 04:21:21 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-08 05:29:26 UTC</div></div></div></body></html>
