@@ -157,6 +157,12 @@ For example, support commands such as edit, delete and clear commands have to be
 </table>
 <div class="sect2">
 <h3 id="export-tab"><a class="link" href="#export-tab">Export Tab</a></h3>
+<div class="paragraph">
+<p>Weme supports exporting memes into the local filesystem.
+To export memes, stage them from the memes tab.
+Staged memes will appear in the export staging area in the export tab.
+You can then unstage or export them as you wish in the export tab.</p>
+</div>
 <div class="sect3">
 <h4 id="unstaging-a-meme-code-unstage-code"><a class="link" href="#unstaging-a-meme-code-unstage-code">Unstaging a meme: <code>unstage</code></a></h4>
 <div class="paragraph">
@@ -167,7 +173,7 @@ Format: <code>unstage INDEX</code></p>
 <div class="sect3">
 <h4 id="exporting-memes-code-export-code"><a class="link" href="#exporting-memes-code-export-code">Exporting memes: <code>export</code></a></h4>
 <div class="paragraph">
-<p>Exports the memes in the export tab into a directory. The directory path can
+<p>Exports the memes in the export staging area into a directory. The directory path can
 be either specified or not.</p>
 </div>
 <div class="ulist">
@@ -217,40 +223,23 @@ Format: <code>clear</code></p>
 </div>
 <div class="sect2">
 <h3 id="import-tab"><a class="link" href="#import-tab">Import Tab</a></h3>
-<div class="sect3">
-<h4 id="loading-memes-code-load-code"><a class="link" href="#loading-memes-code-load-code">Loading memes: <code>load</code></a></h4>
 <div class="paragraph">
-<p>Loads memes from a specified directory into the import tab.<br>
+<p>Weme supports batch importing memes from a local directory.
+To import a directory of images, first load the directory into the the import staging area.
+You can then edit or delete memes in the staging area before actually importing them into Weme.</p>
+</div>
+<div class="sect3">
+<h4 id="loading-memes-into-the-import-staging-area-code-load-code"><a class="link" href="#loading-memes-into-the-import-staging-area-code-load-code">Loading memes into the import staging area: <code>load</code></a></h4>
+<div class="paragraph">
+<p>Loads memes from a specified directory into the import staging area.<br>
 Format: <code>load p/PATH</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="editing-a-meme-code-edit-code"><a class="link" href="#editing-a-meme-code-edit-code">Editing a meme: <code>edit</code></a></h4>
-<div class="paragraph">
-<p>Edits a meme from the import tab. This allows the user
-to make changes before actually importing the meme.<br>
-Format: <code>edit INDEX [d/DESCRIPTION] [t/TAG]&#8230;&#8203;</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="deleting-a-meme-code-delete-code"><a class="link" href="#deleting-a-meme-code-delete-code">Deleting a meme: <code>delete</code></a></h4>
-<div class="paragraph">
-<p>Deletes an unwanted meme from the import tab.<br>
-Format: <code>delete INDEX</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="importing-memes-code-import-code"><a class="link" href="#importing-memes-code-import-code">Importing memes: <code>import</code></a></h4>
-<div class="paragraph">
-<p>Imports memes from the import tab into Weme.<br>
-Format: <code>import</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Weme only imports image files with valid extensions (e.g. <code>.png</code>, <code>.jpg</code>, <code>.gif</code>).</p>
+<p>Weme only loads image files with valid extensions (e.g. <code>.png</code>, <code>.jpg</code>, <code>.gif</code>).</p>
 </li>
 <li>
 <p>Any invalid or corrupted files are ignored (e.g. <code>.txt</code>, invalid files
@@ -262,9 +251,31 @@ with <code>.jpg</code> extension).</p>
 </div>
 </div>
 <div class="sect3">
+<h4 id="editing-a-meme-in-the-import-staging-area-code-edit-code"><a class="link" href="#editing-a-meme-in-the-import-staging-area-code-edit-code">Editing a meme in the import staging area: <code>edit</code></a></h4>
+<div class="paragraph">
+<p>Edits a meme from the import staging area. This allows the user
+to make changes before actually importing the meme.<br>
+Format: <code>edit INDEX [d/DESCRIPTION] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-a-meme-code-delete-code"><a class="link" href="#deleting-a-meme-code-delete-code">Deleting a meme: <code>delete</code></a></h4>
+<div class="paragraph">
+<p>Deletes an unwanted meme from the import staging area.<br>
+Format: <code>delete INDEX</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="importing-memes-code-import-code"><a class="link" href="#importing-memes-code-import-code">Importing memes: <code>import</code></a></h4>
+<div class="paragraph">
+<p>Imports all the memes from the import staging area into Weme.<br>
+Format: <code>import</code></p>
+</div>
+</div>
+<div class="sect3">
 <h4 id="clearing-loaded-memes-code-clear-code"><a class="link" href="#clearing-loaded-memes-code-clear-code">Clearing loaded memes: <code>clear</code></a></h4>
 <div class="paragraph">
-<p>Clears all the memes in the import tab.<br>
+<p>Clears all the memes in the import staging area.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
@@ -454,4 +465,4 @@ has been edited.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 06:25:45 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 06:29:37 UTC</div></div></div></body></html>
