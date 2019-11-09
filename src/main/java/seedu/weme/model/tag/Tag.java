@@ -11,6 +11,7 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and at most 35 characters.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final int TAG_MAX_CHAR = 38;
 
     public final String tagName;
 
@@ -31,7 +32,7 @@ public class Tag {
      * <p>Limits the length of a tag name to 35 characters to avoid overflow.</p>
      */
     public static boolean isValidTagName(String test) {
-        return test.length() <= 35 && test.matches(VALIDATION_REGEX);
+        return test.length() <= TAG_MAX_CHAR && test.matches(VALIDATION_REGEX);
     }
 
     public String getTagName() {

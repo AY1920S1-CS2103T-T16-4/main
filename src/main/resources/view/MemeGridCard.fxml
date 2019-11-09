@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane alignment="CENTER" HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="250" prefWidth="250" />
@@ -22,12 +22,9 @@
         <Insets bottom="5" left="5" right="5" top="5" />
       </padding>
       <Label fx:id="id" styleClass="cell_big_label" />
-        <VBox alignment="CENTER" prefHeight="400.0" prefWidth="100.0">
+        <VBox alignment="CENTER" prefHeight="400.0" spacing="5" prefWidth="100.0">
             <ImageView fx:id="display" cache="true" cacheHint="SPEED" fitHeight="200" fitWidth="200" pickOnBounds="true"
                        preserveRatio="true"/>
-            <padding>
-              <Insets bottom="5" left="5" right="5" top="5"/>
-            </padding>
             <FlowPane fx:id="tags" alignment="CENTER" maxHeight="50" maxWidth="${cardPane.width}"/>
             <Label fx:id="description" alignment="CENTER" contentDisplay="CENTER" styleClass="cell_small_label"
                    text="\$description"/>
