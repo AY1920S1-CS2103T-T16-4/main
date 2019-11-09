@@ -1,5 +1,6 @@
 package seedu.weme.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.weme.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -9,6 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.weme.commons.exceptions.IllegalValueException;
 import seedu.weme.commons.util.JsonUtil;
+import seedu.weme.model.Weme;
+import seedu.weme.testutil.TypicalWeme;
 
 public class JsonSerializableWemeTest {
 
@@ -18,6 +21,15 @@ public class JsonSerializableWemeTest {
     private static final Path DUPLICATE_MEME_FILE = TEST_DATA_FOLDER.resolve("duplicateMemeWeme.json");
     private static final Path INVALID_TEMPLATE_FILE = TEST_DATA_FOLDER.resolve("invalidTemplateWeme.json");
     private static final Path DUPLICATE_TEMPLATE_FILE = TEST_DATA_FOLDER.resolve("duplicateTemplateWeme.json");
+
+    @Test
+    public void toModelType_typicalMemesFile_success() throws Exception {
+        JsonSerializableWeme dataFromFile = JsonUtil.readJsonFile(TYPICAL_WEME_FILE,
+                JsonSerializableWeme.class).get();
+        Weme wemeFromFile = dataFromFile.toModelType();
+        Weme typicalWeme = TypicalWeme.getTypicalWeme();
+        assertEquals(wemeFromFile, typicalWeme);
+    }
 
     @Test
     public void toModelType_invalidMemes_throwsIllegalValueException() throws Exception {
