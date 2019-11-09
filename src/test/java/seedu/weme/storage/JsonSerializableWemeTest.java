@@ -1,6 +1,5 @@
 package seedu.weme.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.weme.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -10,8 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.weme.commons.exceptions.IllegalValueException;
 import seedu.weme.commons.util.JsonUtil;
-import seedu.weme.model.Weme;
-import seedu.weme.testutil.TypicalWeme;
 
 public class JsonSerializableWemeTest {
 
