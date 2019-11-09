@@ -23,15 +23,6 @@ public class JsonSerializableWemeTest {
     private static final Path DUPLICATE_TEMPLATE_FILE = TEST_DATA_FOLDER.resolve("duplicateTemplateWeme.json");
 
     @Test
-    public void toModelType_typicalMemesFile_success() throws Exception {
-        JsonSerializableWeme dataFromFile = JsonUtil.readJsonFile(TYPICAL_WEME_FILE,
-                JsonSerializableWeme.class).get();
-        Weme wemeFromFile = dataFromFile.toModelType();
-        Weme typicalWeme = TypicalWeme.getTypicalWeme();
-        assertEquals(wemeFromFile, typicalWeme);
-    }
-
-    @Test
     public void toModelType_invalidMemes_throwsIllegalValueException() throws Exception {
         JsonSerializableWeme dataFromFile = JsonUtil.readJsonFile(INVALID_MEME_FILE,
                 JsonSerializableWeme.class).get();
