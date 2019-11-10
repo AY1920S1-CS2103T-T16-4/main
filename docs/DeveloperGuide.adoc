@@ -419,7 +419,7 @@ The following sequence diagram shows how `MemeLikeCommand` communicates with `St
 
 image::LikeMemeSequenceDiagram.png[]
 
-In the `CommandBox`, `UP` and `DOWN` keys are used for easy execution of `LikeCommand` and `DislikeCommand`.
+In the `CommandBox`, `UP` key is used for easy execution of `LikeCommand` and `DislikeCommand`.
 This allows the user to like a meme conveniently as he/she can press the key until he/she feels like stopping.
 `LEFT` and `RIGHT` keys are used for toggling the index in the complete command.
 For example, when command `Like 2` is inside the command text box, where 2 is a valid index of a meme displayed,

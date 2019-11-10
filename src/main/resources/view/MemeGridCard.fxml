@@ -33,7 +33,7 @@
             <children>
            <HBox alignment="CENTER_RIGHT" prefHeight="24.0" prefWidth="240.0">
              <ImageView fx:id="likeIcon" cache="true" cacheHint="SPEED" fitHeight="11.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
-               <Image requestedHeight="11.0" requestedWidth="13.0" smooth="true" url="@../images/like_icon.png" />
+               <Image requestedHeight="11.0" requestedWidth="13.0" smooth="true" url="@../../../../docs/images/like_icon.png" />
              </ImageView>
              <Label fx:id="likes" alignment="CENTER_RIGHT" contentDisplay="RIGHT" styleClass="cell_small_label" />
              <ImageView fx:id="dislikeIcon" cache="true" cacheHint="SPEED" fitHeight="11.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
