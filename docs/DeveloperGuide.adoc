@@ -720,6 +720,29 @@ _{Explain here how the data encryption feature will be implemented}_
 
 // end::dataencryption[]
 
+// tag::screentime[]
+=== [Proposed] Screen Time
+
+Meme can lightens up a person's mood; yet it could also make people addicted to it.
+The application cannot force the user not to use it beyond a certain duration, but instead could help
+by reminding the user how much time has elapsed and, by doing so, helping the user to better manage his/her time.
+
+The screen time of the Application can be recorded in statistics data and can be captured using Java LocalDateTime.
+When the user opens the application the next time, a new login time is captured in the model object
+in order to compute the screen time.
+Upon exiting the Application, a new logout time is recorded inside the data file, together with the screen time in the
+current use. It could be a simple `Current Screen Time` = `Logout Time` - `Login Time`, which can be added to the
+cumulative screen time in the data file for future reference.
+
+A reminder can be implemented through JavaFX GUI, which listens to the current time flow and issue reminder
+upon excessive use of the application. This is to prevent overuse of the application beyond leisure entertainment.
+
+The statistics infrastructure is built with extensibility in mind. Logout time can be store in the similar manner
+as like data in Jackson file, and can be stored `Stats`. `Stats Panel` is already set up to display any kinds of
+statistics visuals, including this one. Hence, implementing screen time would be similar to like data, but simpler.
+
+// end::screentime[]
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.

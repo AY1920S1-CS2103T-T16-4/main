@@ -60,3 +60,4 @@ include::../DeveloperGuide.adoc[tag=stats]
 
 include::../DeveloperGuide.adoc[tag=stats2]
 
+include::../DeveloperGuide.adoc[tag=screentime]

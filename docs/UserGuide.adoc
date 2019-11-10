@@ -546,6 +546,13 @@ CS2103` +
 If kbd:[Tab] is pressed, "c" in the command box will be replaced by "CS".
 
 // end::command-suggestion[]
+
+=== Screen Time `[Coming in v2.0]`
+
+In the coming v2.0 version, the user can view their screen time on the Application, just like some mobile platform
+such as iOS or Android. It allows user to keep track of the amount of time spent on the App so that he/she could
+manage time properly. It will be under statistics tab, accessed via command `tab statistics`, and is updated by weeks.
+
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
