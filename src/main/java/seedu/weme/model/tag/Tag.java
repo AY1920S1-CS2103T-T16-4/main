@@ -11,8 +11,8 @@ public class Tag {
 
     // This is measured so that with the longest tag and \"...\", the meme card will not overflow"
     public static final int TAG_MAX_CHAR = 30;
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and at most " +
-            TAG_MAX_CHAR + " characters.";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and at most "
+            + TAG_MAX_CHAR + " characters.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
