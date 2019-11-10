@@ -731,14 +731,15 @@ image::TabSwitchSequenceDiagram.png[]
 
 === [Miscellaneous] View feature
 
-This feature allows the user to view a meme in the memes tab as a 400x400 picture. This also allows
+This feature allows the user to view a meme in the memes tab as an enlarged picture. This also allows
 for long descriptions to be seen.
 
 image::ViewClassDiagram.png[]
 
 Using the above class diagram as a reference, VersionedWeme has a SimpleObjectProperty<Meme> attribute
-which sets the Meme for the ViewPanel to view. The Meme is retrieved as a ObservableObject<Meme> in the model
-by MainWindow, which is passed into the ViewPanel to set the meme to display.
+(initially contains a null meme) which sets the Meme for the ViewPanel to view. The Meme is retrieved
+as an ObservableValue<Meme> object in the model by MainWindow, which is
+passed into the ViewPanel to set the meme to display.
 
 The meme is viewed by using the ViewCommand in the memes context. The execution of the command firstly
 sets the meme to view based on the given index which is picked up by the listener which sets
