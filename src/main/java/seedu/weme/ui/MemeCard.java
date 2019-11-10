@@ -26,7 +26,9 @@ public class MemeCard extends UiPart<Region> {
     private static final int IMAGE_MAX_WIDTH = 200;
     private static final int TAGS_HEIGHT = 25;
     private static final int TAGS_GAP_BY_CHAR = 2;
-    private static final int MAX_CHAR_PER_LINE = 38;
+    private static final int MAX_CHAR_PER_LINE = 35;
+    // a line can accommodate about 38 characters. In the case of a long string of tags followed by \"...\" case,
+    // we use 35 characters per line for display to prevent overflow.
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -137,11 +139,10 @@ public class MemeCard extends UiPart<Region> {
             numOfCharInCurrLine += lengths.get(i) + TAGS_GAP_BY_CHAR;
             limit++;
             if (numOfCharInCurrLine > MAX_CHAR_PER_LINE) {
-                row++;
+                if (++row > rowsForTags) {
+                    break;
+                }
                 numOfCharInCurrLine = 0;
-            }
-            if (row > rowsForTags) {
-                break;
             }
         }
         return limit;
