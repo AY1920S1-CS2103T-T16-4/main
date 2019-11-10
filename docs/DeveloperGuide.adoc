@@ -731,7 +731,7 @@ image::TabSwitchSequenceDiagram.png[]
 
 === [Miscellaneous] View feature
 
-This feature allows the user to view a meme in the memes tab as an enlarged picture. This also allows
+This feature allows the user to view a meme as an enlarged picture. This also allows
 for long descriptions to be seen.
 
 image::ViewClassDiagram.png[]
