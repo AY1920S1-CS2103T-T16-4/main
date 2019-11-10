@@ -9,9 +9,11 @@ import static seedu.weme.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and at most 35 characters.";
+    // This is measured so that with the longest tag and \"...\", the meme card will not overflow"
+    public static final int TAG_MAX_CHAR = 30;
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and at most " +
+            TAG_MAX_CHAR + " characters.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-    public static final int TAG_MAX_CHAR = 38;
 
     public final String tagName;
 

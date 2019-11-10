@@ -21,7 +21,7 @@ import seedu.weme.model.meme.Meme;
 public class MemeCard extends UiPart<Region> {
 
     private static final String FXML = "MemeGridCard.fxml";
-    private static final String TAG_TRUNCATE_TEXT = "..";
+    private static final String TAG_TRUNCATE_TEXT = "...";
     private static final int IMAGE_MAX_HEIGHT = 200;
     private static final int IMAGE_MAX_WIDTH = 200;
     private static final int TAGS_HEIGHT = 25;
@@ -98,7 +98,9 @@ public class MemeCard extends UiPart<Region> {
                 .limit(limit)
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         if (limit < meme.getTags().size()) {
-            tags.getChildren().add(new Label(TAG_TRUNCATE_TEXT));
+            Label truncatedText = new Label(TAG_TRUNCATE_TEXT);
+            truncatedText.setStyle("-fx-background-color: transparent");
+            tags.getChildren().add(truncatedText);
         }
         likes.setText(" " + numOfLikes.get() + " ");
         dislikes.setText(" " + numOfDislikes.get() + " ");
@@ -108,6 +110,9 @@ public class MemeCard extends UiPart<Region> {
                 dislikes.setText(Integer.toString((int) newValue)));
     }
 
+    /**
+     * Returns the limit on the number of tags a meme card can contain such that there is no overflow of content.
+     */
     private int getTagLimit(Meme meme) {
         Image imageCopy = new Image(meme.getImagePath().toUrl().toString());
         int limit = 0;
@@ -118,7 +123,6 @@ public class MemeCard extends UiPart<Region> {
         double aspectRatio = height / width;
         double imageHeight = height > width ? IMAGE_MAX_HEIGHT : aspectRatio * IMAGE_MAX_HEIGHT;
         int rowsForTags = 1 + (int) Math.round(Math.floor((IMAGE_MAX_HEIGHT - imageHeight) / TAGS_HEIGHT));
-        int row = 1;
 
         // get the lengths of the tags for a meme.
         List<Integer> lengths = meme.getTags().stream()
@@ -128,6 +132,7 @@ public class MemeCard extends UiPart<Region> {
 
         // calculate the number of tags that can fit into the FlowPane.
         int numOfCharInCurrLine = 0;
+        int row = 1;
         for (int i = 0; i < meme.getTags().size(); i++) {
             numOfCharInCurrLine += lengths.get(i) + TAGS_GAP_BY_CHAR;
             limit++;
