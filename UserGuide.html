@@ -158,7 +158,7 @@ Example: <code>redo</code></p>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p>Commands such as <code>list</code>, <code>find</code> that only change the user interface, commands such as <code>export</code> and <code>load</code> that are related to external files, as well as commands such as <code>edit</code> and <code>delete</code> that modify the import list are not supported.</p>
+<p>Commands such as <code>list</code>, <code>find</code> that only change the user interface, commands such as <code>export</code> and <code>load</code> that are related to external files, as well as commands such as <code>edit</code> and <code>delete</code> in the import tab that modifies the import list are not supported.</p>
 </div>
 <div class="paragraph">
 <p>These are the list of commands that support undo / redo operations:</p>
@@ -166,13 +166,13 @@ Example: <code>redo</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Meme Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>clear</code>, <code>archive</code>, <code>unarchive</code>, <code>like</code>, <code>dislike</code>, <code>stage</code></p>
+<p>Memes Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>clear</code>, <code>archive</code>, <code>unarchive</code>, <code>like</code>, <code>dislike</code>, <code>stage</code></p>
 </li>
 <li>
-<p>Template Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>archive</code>, <code>unarchive</code>, <code>use</code></p>
+<p>Templates Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>clear</code>, <code>archive</code>, <code>unarchive</code>, <code>use</code></p>
 </li>
 <li>
-<p>Create Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>abort</code>, <code>create</code></p>
+<p>Create Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>move</code>, <code>abort</code>, <code>create</code></p>
 </li>
 <li>
 <p>Export Tab: <code>unstage</code>, <code>clear</code></p>
@@ -183,7 +183,7 @@ Example: <code>redo</code></p>
 </ul>
 </div>
 <div class="paragraph">
-<p><code>undo</code> and <code>redo</code> works between tabs. This means that if you make a change in the Memes tab, by editing a meme, and then you switch to the Templates tab, when you execute <code>undo</code>, it reverts the change in the Memes tab as well.</p>
+<p><code>undo</code> and <code>redo</code> works between tabs. This means that if you make a change in the Memes tab, by editing a meme, and then you switch to the Templates tab, when you execute <code>undo</code>, it reverts the change in the Memes tab as well. However, <code>undo</code>/<code>redo</code> is not usable while viewing a meme.</p>
 </div>
 </div>
 </div>
@@ -482,22 +482,55 @@ Same as like, dislike also allows arrow key operations.
 <div class="sect3">
 <h4 id="listing-archived-memes-code-archives-code"><a class="link" href="#listing-archived-memes-code-archives-code">3.2.10. Listing archived memes: <code>archives</code></a></h4>
 <div class="paragraph">
-<p>Lists all archived memes.<br>
+<p>Lists all memes that are archived in the memes tab.<br>
 Format: <code>archives</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>To view unarchived memes again, just execute the <code>list</code> command!</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="archiving-a-meme-code-archive-code"><a class="link" href="#archiving-a-meme-code-archive-code">3.2.11. Archiving a meme:  <code>archive</code></a></h4>
 <div class="paragraph">
-<p>Archives a meme at the specified index.<br>
+<p>Archives the meme at the specified index. Hides the meme from the default view.<br>
 Format: <code>archive INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>You can only archive unarchived memes. Execute <code>list</code> to see the unarchived memes.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="unarchiving-a-meme-code-unarchive-code"><a class="link" href="#unarchiving-a-meme-code-unarchive-code">3.2.12. Unarchiving a meme: <code>unarchive</code></a></h4>
 <div class="paragraph">
-<p>Unarchives a meme at the specified index.<br>
+<p>Unarchives the meme at the specified index. Shows the meme in the default view.<br>
 Format: <code>unarchive INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>You can only unarchive archived memes. Execute <code>archives</code> to see the archived memes.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -511,7 +544,7 @@ Format: <code>view INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>To exit the view, simply switch to another tab using the tab command.
+<p>To exit the view, simply switch to another tab using the tab command. Only <code>tab</code>, <code>help</code> and <code>exit</code> are usable while viewing a meme.
 For example, <code>tab memes</code> will bring the user back to the memes tab.</p>
 </li>
 </ul>
@@ -630,33 +663,66 @@ Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="archiving-a-template-code-archive-code"><a class="link" href="#archiving-a-template-code-archive-code">3.3.7. Archiving a template: <code>archive</code></a></h4>
-<div class="paragraph">
-<p>Archives the template at the specified index.<br>
-Format: <code>archive INDEX</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="unarchiving-a-template-code-unarchive-code"><a class="link" href="#unarchiving-a-template-code-unarchive-code">3.3.8. Unarchiving a template: <code>unarchive</code></a></h4>
-<div class="paragraph">
-<p>Unarchives the template at the specified index.<br>
-Format: <code>unarchive INDEX</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="listing-all-archived-templates-code-archives-code"><a class="link" href="#listing-all-archived-templates-code-archives-code">3.3.9. Listing all archived templates: <code>archives</code></a></h4>
-<div class="paragraph">
-<p>Lists all templates that are archived in the templates tab.<br>
-Format: <code>archives</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="creating-memes-from-templates-code-use-code"><a class="link" href="#creating-memes-from-templates-code-use-code">3.3.10. Creating memes from templates: <code>use</code></a></h4>
+<h4 id="creating-memes-from-templates-code-use-code"><a class="link" href="#creating-memes-from-templates-code-use-code">3.3.7. Creating memes from templates: <code>use</code></a></h4>
 <div class="paragraph">
 <p>Uses the template at the specified index to start a meme creation session.<br>
 Weme will enter the create tab and allow you to add text to the template.<br>
 For details, please refer to the next section <a href="#create-tab">Section 3.4, &#8220;Create Tab&#8221;</a>.<br>
 Format: <code>use INDEX</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="listing-all-archived-templates-code-archives-code"><a class="link" href="#listing-all-archived-templates-code-archives-code">3.3.8. Listing all archived templates: <code>archives</code></a></h4>
+<div class="paragraph">
+<p>Lists all templates that are archived in the templates tab.<br>
+Format: <code>archives</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>To view unarchived templates again, just execute the <code>list</code> command!</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="archiving-a-template-code-archive-code"><a class="link" href="#archiving-a-template-code-archive-code">3.3.9. Archiving a template: <code>archive</code></a></h4>
+<div class="paragraph">
+<p>Archives the template at the specified index. Hides the template from the default view.+
+Format: <code>archive INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>You can only archive unarchived templates. Execute <code>list</code> to see the unarchived templates.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="unarchiving-a-template-code-unarchive-code"><a class="link" href="#unarchiving-a-template-code-unarchive-code">3.3.10. Unarchiving a template: <code>unarchive</code></a></h4>
+<div class="paragraph">
+<p>Unarchives the template at the specified index. Shows the template in the default view.+
+Format: <code>unarchive INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>You can only unarchive archived templates. Execute <code>archives</code> to see the archived templates.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1271,4 +1337,4 @@ e.g. <code>add p//Users/Me/Downloads/dgirl_oof.jpg d/Disaster Girl t/Funny</code
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 19:31:51 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 05:44:48 UTC</div></div></div></body></html>

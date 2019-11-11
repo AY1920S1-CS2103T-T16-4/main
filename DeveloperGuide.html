@@ -29,10 +29,11 @@
 <li><a href="#export-import-feature">3.5. Export/Import feature</a></li>
 <li><a href="#command-suggestion-feature">3.6. Command Suggestion Feature</a></li>
 <li><a href="#tabs-feature">3.7. Tabs feature</a></li>
-<li><a href="#miscellaneous-view-feature">3.8. [Miscellaneous] View feature</a></li>
-<li><a href="#proposed-data-encryption">3.9. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.10. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.11. Configuration</a></li>
+<li><a href="#archives-feature">3.8. Archives Feature</a></li>
+<li><a href="#miscellaneous-view-feature">3.9. [Miscellaneous] View feature</a></li>
+<li><a href="#proposed-data-encryption">3.10. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.11. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.12. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -163,7 +164,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <h4 id="how-the-architecture-components-interact-with-each-other" class="discrete">How the architecture components interact with each other</h4>
 <div class="paragraph">
-<p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user issues the command <code>delete 1</code> in the Meme tab.</p>
+<p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user issues the command <code>delete 1</code> in the Memes tab.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -187,7 +188,7 @@ The following class plays an important role at the architecture level:</p>
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103-T16-3/main/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>MemeGridPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103-T16-3/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/AY1920S1-CS2103-T16-3/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
@@ -201,7 +202,7 @@ The following class plays an important role at the architecture level:</p>
 <p>Executes user commands using the <code>Logic</code> component.</p>
 </li>
 <li>
-<p>Listens for changes to <code>Model</code> data and also Statistical Data in <code>StatsEngine</code> so that the UI can be updated with the modified data.</p>
+<p>Listens for changes to <code>Model</code> data so that the UI can be updated with the modified data.</p>
 </li>
 </ul>
 </div>
@@ -221,7 +222,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>Logic</code> uses a subclass of <code>WemeParser</code> to parse the user command.</p>
+<p><code>Logic</code> uses a <code>WemeParser</code> to parse the user command.</p>
 </li>
 <li>
 <p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
@@ -376,7 +377,7 @@ Only state changes on the internal structure of Weme are undoable.
 </table>
 </div>
 <div class="paragraph">
-<p>Commands such as <code>list</code>, <code>find</code> that only change the user interface, commands such as <code>export</code> and <code>load</code> that are related to external files, as well as commands such as <code>edit</code> and <code>delete</code> that modify the import list are not supported.</p>
+<p>Commands such as <code>list</code>, <code>find</code> that only change the user interface, commands such as <code>export</code> and <code>load</code> that are related to external files, as well as commands such as <code>edit</code> and <code>delete</code> in the import tab that modifies the import list are not supported.</p>
 </div>
 <div class="paragraph">
 <p>These are the list of commands that support undo / redo operations:</p>
@@ -384,13 +385,13 @@ Only state changes on the internal structure of Weme are undoable.
 <div class="ulist">
 <ul>
 <li>
-<p>Meme Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>clear</code>, <code>archive</code>, <code>unarchive</code>, <code>like</code>, <code>dislike</code>, <code>stage</code></p>
+<p>Memes Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>clear</code>, <code>archive</code>, <code>unarchive</code>, <code>like</code>, <code>dislike</code>, <code>stage</code></p>
 </li>
 <li>
-<p>Template Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>archive</code>, <code>unarchive</code>, <code>use</code></p>
+<p>Templates Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>clear</code>, <code>archive</code>, <code>unarchive</code>, <code>use</code></p>
 </li>
 <li>
-<p>Create Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>abort</code>, <code>create</code></p>
+<p>Create Tab: <code>add</code>, <code>edit</code>, <code>delete</code>, <code>move</code>, <code>abort</code>, <code>create</code></p>
 </li>
 <li>
 <p>Export Tab: <code>unstage</code>, <code>clear</code></p>
@@ -401,7 +402,7 @@ Only state changes on the internal structure of Weme are undoable.
 </ul>
 </div>
 <div class="paragraph">
-<p><code>undo</code> and <code>redo</code> works between tabs. This means that if you make a change in the Memes tab, by editing a meme, and then you switch to the Templates tab, when you execute <code>undo</code>, it reverts the change in the Memes tab as well.</p>
+<p><code>undo</code> and <code>redo</code> works between tabs. This means that if you make a change in the Memes tab, by editing a meme, and then you switch to the Templates tab, when you execute <code>undo</code>, it reverts the change in the Memes tab as well. However, <code>undo</code>/<code>redo</code> is not usable while viewing a meme.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
@@ -629,7 +630,7 @@ If the <code>stateIndex</code> is at index <code>versionedWemeStates.size() - 1<
 <p>Pros: More user intuitive. Commands will only affect their own context.</p>
 </li>
 <li>
-<p>Cons: Heavily complicates the model. Model will then need to keep track of a versioning of every single context. Does not allow for commands such as <code>create</code> which affects the Creation tab and Meme tab without many modifications to the existing structure.</p>
+<p>Cons: Heavily complicates the model. Model will then need to keep track of a versioning of every single context. Does not allow for commands such as <code>create</code> which affects the Creation tab and Memes tab without many modifications to the existing structure.</p>
 </li>
 </ul>
 </div>
@@ -1582,7 +1583,58 @@ For example, when the <code>ModelContext</code> changes from <code>Memes</code> 
 </div>
 </div>
 <div class="sect2">
-<h3 id="miscellaneous-view-feature"><a class="link" href="#miscellaneous-view-feature">3.8. [Miscellaneous] View feature</a></h3>
+<h3 id="archives-feature"><a class="link" href="#archives-feature">3.8. Archives Feature</a></h3>
+<div class="paragraph">
+<p>Archives are an important part of resource management. While users typically enjoy seeing all their memes in one place, some might want to hide some memes, but still keep them in their collection. The archives are the solution to this problem. Users may archive memes they have grown tired of, or even templates they have found a newer version of. It is a way of hiding memes and templates from their default view to reduce clutter.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">3.8.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>Both <code>Meme</code> and <code>Template</code> implement the <code>Archivable</code> interface. The <code>Archivable</code> interface has one method, <code>isArchived</code>. This forces the implementing class to have an <code>isArchived</code> boolean field to indicate its current archival status. When archiving an existing <code>Meme</code> or <code>Template</code>, just like edit, the <code>archive</code> command creates a new object but with <code>isArchived</code> set to true. While it is possible to archive archived memes, there is no change and it is more likely to be a mistake, hence a <code>CommandException</code> is thrown instead. The same applies for <code>unarchive</code>.</p>
+</div>
+<div class="paragraph">
+<p>Since the default view should show all memes/templates that are unarchived, the predicates for the individual filtered lists have to be changed accordingly. The default predicate filters the UniqueLists for the memes/templates where <code>isArchived</code> is false, and the opposite is done for the archives predicate.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.8.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-making-resources-archivable"><a class="link" href="#aspect-making-resources-archivable">Aspect: Making resources archivable</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Implement from an <code>Archivable</code> interface</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Allows for more flexibility when extending the functionality of implementing classes.</p>
+</li>
+<li>
+<p>Cons: Some code repetition (Cannot declare instance fields or define the implementing methods).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Extend a <code>ArchivableResource</code> abstract class</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Less code repetition.</p>
+</li>
+<li>
+<p>Cons: Less flexibility in the future. If new types of resouces are considered in the future where Meme and Template have to extend, this implementation becomes technical debt.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="miscellaneous-view-feature"><a class="link" href="#miscellaneous-view-feature">3.9. [Miscellaneous] View feature</a></h3>
 <div class="paragraph">
 <p>This feature allows the user to view a meme as an enlarged picture. This also allows
 for long descriptions to be seen.</p>
@@ -1606,20 +1658,20 @@ which switches the MemeGridPanel to ViewPanel, hence displaying the meme.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.9. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.10. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.10. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.11. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.11, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.12, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1650,7 +1702,7 @@ which switches the MemeGridPanel to ViewPanel, hence displaying the meme.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.11. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.12. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2304,4 +2356,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 19:31:51 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 05:44:48 UTC</div></div></div></body></html>
