@@ -1273,7 +1273,7 @@ Similar to like. Command is `dislike`.
 
 === Staging a Meme
 
-. Stages a meme while all memes are listed.
+. Staging a meme while all memes are listed.
 .. Prerequisites: Weme is in the memes tab.
 .. Test case: `stage 1` +
    Expected: Stages the meme by the given index to the export staging area. User can view this staged meme
