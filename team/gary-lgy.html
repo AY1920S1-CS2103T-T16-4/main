@@ -554,7 +554,41 @@ For example, <code>a</code> to add a piece of text, arrow keys to adjust the pos
 </ul>
 </div>
 </div>
+<div class="sect4">
+<h5 id="aspect-how-to-specify-the-position-of-text-coordinates"><a class="link" href="#aspect-how-to-specify-the-position-of-text-coordinates">Aspect: How to specify the position of text coordinates</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1:</strong> The user specifies where the top-left corner of the text should be.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Might be more useful if the user wants to place the text right after another piece of text.</p>
+</li>
+<li>
+<p>Cons: User will be unsure where the text will end. Might need to use the <code>move</code> command afterwards to adjust the text position after seeing its length.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2(current choice):</strong> The user specifies where the center of the text should be.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to specify where the text will eventually be.
+For example, when the text should be at the center, the user simply specifies <code>x/0.5 y/0.5</code>, instead of doing a visual estimate of how the long text would be and specifying its top-left corner&#8217;s coordinates.</p>
+</li>
+<li>
+<p>Cons: New users might be more used to specifying the top-left corner&#8217;s coordinates and think there is a bug in the product.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 07:22:17 UTC</div></div></div></body></html>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 07:28:16 UTC</div></div></div></body></html>

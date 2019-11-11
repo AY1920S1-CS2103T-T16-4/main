@@ -44,16 +44,20 @@
 <li><a href="#use-cases">Appendix C: Use Cases</a></li>
 <li><a href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></li>
 <li><a href="#glossary">Appendix E: Glossary</a></li>
-<li><a href="#product-survey">Appendix F: Product Survey</a></li>
-<li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
+<li><a href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
-<li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#undoing-a-command">G.2. Undoing a command</a></li>
-<li><a href="#redoing-a-command">G.3. Redoing a command</a></li>
-<li><a href="#adding-a-meme">G.4. Adding a meme</a></li>
-<li><a href="#archiving-a-meme">G.5. Archiving a meme</a></li>
-<li><a href="#unarchiving-a-meme">G.6. Unarchiving a meme</a></li>
-<li><a href="#saving-data">G.7. Saving data</a></li>
+<li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
+<li><a href="#undoing-a-command">F.2. Undoing a command</a></li>
+<li><a href="#redoing-a-command">F.3. Redoing a command</a></li>
+<li><a href="#adding-a-meme">F.4. Adding a meme</a></li>
+<li><a href="#archiving-a-meme">F.5. Archiving a meme</a></li>
+<li><a href="#unarchiving-a-meme">F.6. Unarchiving a meme</a></li>
+<li><a href="#adding-a-template">F.7. Adding a template</a></li>
+<li><a href="#editing-a-template">F.8. Editing a template</a></li>
+<li><a href="#adding-text-to-a-template-during-meme-creation">F.9. Adding text to a template during meme creation</a></li>
+<li><a href="#moving-text-during-meme-creation">F.10. Moving text during meme creation</a></li>
+<li><a href="#completing-meme-creation">F.11. Completing meme creation</a></li>
+<li><a href="#saving-data">F.12. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -890,6 +894,40 @@ For example, <code>a</code> to add a piece of text, arrow keys to adjust the pos
 </li>
 <li>
 <p>Cons: Very hard to implement. Requires major work on the UI.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-how-to-specify-the-position-of-text-coordinates"><a class="link" href="#aspect-how-to-specify-the-position-of-text-coordinates">Aspect: How to specify the position of text coordinates</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1:</strong> The user specifies where the top-left corner of the text should be.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Might be more useful if the user wants to place the text right after another piece of text.</p>
+</li>
+<li>
+<p>Cons: User will be unsure where the text will end. Might need to use the <code>move</code> command afterwards to adjust the text position after seeing its length.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2(current choice):</strong> The user specifies where the center of the text should be.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to specify where the text will eventually be.
+For example, when the text should be at the center, the user simply specifies <code>x/0.5 y/0.5</code>, instead of doing a visual estimate of how the long text would be and specifying its top-left corner&#8217;s coordinates.</p>
+</li>
+<li>
+<p>Cons: New users might be more used to specifying the top-left corner&#8217;s coordinates and think there is a bug in the product.</p>
 </li>
 </ul>
 </div>
@@ -1757,13 +1795,10 @@ which switches the MemeGridPanel to ViewPanel, hence displaying the meme.</p>
 <li>
 <p>prefers typing over mouse input</p>
 </li>
-<li>
-<p>wants to participate in the meme culture by sharing memes</p>
-</li>
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Value proposition</strong>: manage memes faster than a typical mouse/GUI driven app</p>
+<p><strong>Value proposition</strong>: manage and create memes faster than a typical mouse/GUI driven app</p>
 </div>
 </div>
 </div>
@@ -1833,12 +1868,6 @@ which switches the MemeGridPanel to ViewPanel, hence displaying the meme.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">meme lover</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">easily share my memes to other platforms</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I can send them in my chats</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">import memes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I can import memes my friends shared with me into my personal collection</p></td>
@@ -1854,6 +1883,12 @@ which switches the MemeGridPanel to ViewPanel, hence displaying the meme.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">view statistics of my meme usage</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I know which memes are more liked/used</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">meme lover</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">easily share my memes to other platforms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can send them in my chats</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -1875,9 +1910,6 @@ which switches the MemeGridPanel to ViewPanel, hence displaying the meme.</p>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -1886,41 +1918,23 @@ which switches the MemeGridPanel to ViewPanel, hence displaying the meme.</p>
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>Weme</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-1-add-template" class="discrete">Use case 1: Add template</h3>
+<h3 id="use-case-1-add-a-template" class="discrete">Use case 1: Add a template</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to open the template tab</p>
+<p>User requests to open the templates tab</p>
 </li>
 <li>
-<p>Weme opens the template tab</p>
+<p>Weme opens the templates tab</p>
 </li>
 <li>
-<p>User requests to create a template, using a base picture from the disk</p>
+<p>User requests to add a template and passes the path to an image on the disk</p>
 </li>
 <li>
-<p>Weme creates the template</p>
-</li>
-<li>
-<p>User requests to edit the template</p>
-</li>
-<li>
-<p>Weme loads the template into the editing area</p>
-</li>
-<li>
-<p>User requests to add/move text boxes in the template</p>
-</li>
-<li>
-<p>Weme adds/moves text boxes in the template</p>
-</li>
-<li>
-<p>User requests to complete the edit session</p>
-</li>
-<li>
-<p>Weme successfully completes the edit session</p>
+<p>Weme copies the image to its data directory and creates the template</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
@@ -1945,54 +1959,49 @@ which switches the MemeGridPanel to ViewPanel, hence displaying the meme.</p>
 </ul>
 </div>
 </li>
-<li>
-<p>5a. The given index is invalid</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>5a1. Weme shows an error message</p>
-<div class="paragraph">
-<p>Use case resumes at step 2</p>
-</div>
-</li>
 </ul>
 </div>
-</li>
-<li>
-<p>9a. User enters another command before completing the edit session</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>9a1. Weme aborts the current edit session</p>
-</li>
-<li>
-<p>9a2. Weme executes the command just entered by the user</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-2-create-meme-from-template" class="discrete">Use case 2: Create meme from template</h3>
+<h3 id="use-case-2-creating-a-meme-from-a-template" class="discrete">Use case 2: Creating a meme from a template</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to list meme templates</p>
+<p>User requests to list templates</p>
 </li>
 <li>
-<p>Weme shows a list of meme templates</p>
+<p>Weme displays a list of templates</p>
 </li>
 <li>
-<p>User selects a template to create a meme</p>
+<p>User requests to use a template to create a meme</p>
 </li>
 <li>
-<p>Weme creates the meme from the selected template based on user input</p>
-<div class="paragraph">
-<p>Use case ends</p>
-</div>
+<p>Weme displays the template image for the user to add text</p>
+</li>
+<li>
+<p>User requests to add text to the template</p>
+</li>
+<li>
+<p>Weme adds text boxes in the template</p>
+</li>
+<li>
+<p>User requests to edit text in the template</p>
+</li>
+<li>
+<p>Weme edits the specified text</p>
+</li>
+<li>
+<p>User requests to delete text</p>
+</li>
+<li>
+<p>Weme deletes the specified text</p>
+</li>
+<li>
+<p>User requests to complete the creation session</p>
+</li>
+<li>
+<p>Weme successfully completes the creation session and saves the resultant meme</p>
 </li>
 </ol>
 </div>
@@ -2002,32 +2011,32 @@ which switches the MemeGridPanel to ViewPanel, hence displaying the meme.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. The template list is empty</p>
+<p>2a. The list is empty.</p>
 <div class="paragraph">
-<p>Use case ends</p>
+<p>Use case ends.</p>
 </div>
 </li>
 <li>
-<p>3a. The given index is invalid</p>
+<p>3a. The given index is invalid.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a1. Weme shows an error message</p>
+<p>Weme displays an error message.</p>
 <div class="paragraph">
-<p>Use case resumes at step 2</p>
+<p>Use case resumes at step 2.</p>
 </div>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>4a. The given input is invalid</p>
+<p>7a, 9a. The given index is invalid.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>4a1. Weme shows an error message</p>
+<p>Weme displays an error message.</p>
 <div class="paragraph">
-<p>Use case resumes at step 2</p>
+<p>Use case resumes at step 4.</p>
 </div>
 </li>
 </ul>
@@ -2208,7 +2217,7 @@ which switches the MemeGridPanel to ViewPanel, hence displaying the meme.</p>
 <p>Should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java <code>11</code> or above installed.</p>
 </li>
 <li>
-<p>Should be able to hold up to 1000 memes without a noticeable sluggishness in performance for typical usage.</p>
+<p>Should be able to hold up to 500 memes without a noticeable sluggishness in performance for typical usage.</p>
 </li>
 <li>
 <p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
@@ -2217,9 +2226,6 @@ which switches the MemeGridPanel to ViewPanel, hence displaying the meme.</p>
 <p>Should have a ui design that is intuitive enough for the user to use.</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
 </div>
 </div>
 </div>
@@ -2234,25 +2240,14 @@ which switches the MemeGridPanel to ViewPanel, hence displaying the meme.</p>
 </dd>
 <dt class="hdlist1"><a id="meme-template"></a> Meme template</dt>
 <dd>
-<p>A picture with placeholders for text. A meme can be created by replacing the placeholders with text.</p>
+<p>A meme-like picture with some of the text removed. The user can create a meme using a template by filling in the missing words.</p>
 </dd>
 </dl>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="product-survey"><a class="link" href="#product-survey">Appendix F: Product Survey</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>Weme</strong></p>
-</div>
-<div class="paragraph">
-<p><em>{TODO}</em></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a></h2>
+<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Given below are instructions to test the app manually.</p>
@@ -2270,7 +2265,7 @@ These instructions only provide a starting point for testers to work on; testers
 </table>
 </div>
 <div class="sect2">
-<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">G.1. Launch and Shutdown</a></h3>
+<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">F.1. Launch and Shutdown</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2281,8 +2276,8 @@ These instructions only provide a starting point for testers to work on; testers
 <p>Download the jar file and copy into an empty folder</p>
 </li>
 <li>
-<p>Double-click the jar file<br>
-Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.</p>
+<p>Run the jar file with <code>java -jar</code> command<br>
+Expected: Shows the GUI in the memes tab with a set of sample memes. The window size may not be optimum.</p>
 </li>
 </ol>
 </div>
@@ -2295,7 +2290,7 @@ Expected: Shows the GUI with a set of sample contacts. The window size may not b
 <p>Resize the window to an optimum size. Move the window to a different location. Close the window.</p>
 </li>
 <li>
-<p>Re-launch the app by double-clicking the jar file.<br>
+<p>Re-launch the app by running <code>java -jar</code> again.<br>
 Expected: The most recent window size and location is retained.</p>
 </li>
 </ol>
@@ -2325,7 +2320,7 @@ Expected: Deletes the image files associated to deleted memes.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-a-command"><a class="link" href="#undoing-a-command">G.2. Undoing a command</a></h3>
+<h3 id="undoing-a-command"><a class="link" href="#undoing-a-command">F.2. Undoing a command</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2364,7 +2359,7 @@ Expected: Undo fails. Error details shown in the status message state that there
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-a-command"><a class="link" href="#redoing-a-command">G.3. Redoing a command</a></h3>
+<h3 id="redoing-a-command"><a class="link" href="#redoing-a-command">F.3. Redoing a command</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2403,7 +2398,7 @@ Expected: Redo fails. Error details shown in the status message state that there
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-meme"><a class="link" href="#adding-a-meme">G.4. Adding a meme</a></h3>
+<h3 id="adding-a-meme"><a class="link" href="#adding-a-meme">F.4. Adding a meme</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2453,7 +2448,7 @@ Expected: Similar to previous</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="archiving-a-meme"><a class="link" href="#archiving-a-meme">G.5. Archiving a meme</a></h3>
+<h3 id="archiving-a-meme"><a class="link" href="#archiving-a-meme">F.5. Archiving a meme</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2478,7 +2473,7 @@ Expected: No meme is archived. Error details shown in the status message state t
 </div>
 </div>
 <div class="sect2">
-<h3 id="unarchiving-a-meme"><a class="link" href="#unarchiving-a-meme">G.6. Unarchiving a meme</a></h3>
+<h3 id="unarchiving-a-meme"><a class="link" href="#unarchiving-a-meme">F.6. Unarchiving a meme</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2503,7 +2498,165 @@ Expected: No meme is unarchived. Error details shown in the status message state
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.7. Saving data</a></h3>
+<h3 id="adding-a-template"><a class="link" href="#adding-a-template">F.7. Adding a template</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding a template in the templates tab</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Weme is in the templates tab. An image file is on the hard disk.</p>
+</li>
+<li>
+<p>Test case: <code>add p/PATH_TO_IMAGE_ON_DISK n/A great template</code><br>
+Expected: The template is added to the templates list. The view is updated to include this new template. The status message states the add was successful.</p>
+</li>
+<li>
+<p>Test case: <code>add p/INVALID_PATH_TO_FILE_ON_DISK n/A great template</code><br>
+Expected: No template is added. Error details shown in the status message state the file must be an existing image file.</p>
+</li>
+<li>
+<p>Test case: <code>add p/PATH_TO_IMAGE_ON_DISK</code><br>
+Expected: No template is added. Error details shown in the status message state the command syntax is invalid.</p>
+</li>
+<li>
+<p>Other incorrect add commands to try: <code>add</code>, <code>add n/blah</code> (no path is given)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-template"><a class="link" href="#editing-a-template">F.8. Editing a template</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Editing a template in the templates tab.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Weme is in the templates tab. At least one template in the list.</p>
+</li>
+<li>
+<p>Test case: <code>edit 1 n/Another name</code><br>
+Expected: The first template in the list is edited to have the new name. The view is updated to reflect the change. The status message states the edit was successful.</p>
+</li>
+<li>
+<p>Test case: <code>edit 0</code><br>
+Expected: No template is edited. Error details shown in the status message state the command syntax is invalid.</p>
+</li>
+<li>
+<p>Other incorrect edit commands to try: <code>edit</code>, edit q/`<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-text-to-a-template-during-meme-creation"><a class="link" href="#adding-text-to-a-template-during-meme-creation">F.9. Adding text to a template during meme creation</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding text to a template during meme creation.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Weme is in the create tab. A template has been chosen using the <code>use</code> command from the templates tab.
+The template is displayed in the create tab.</p>
+</li>
+<li>
+<p>Test case: <code>add sleep x/0.75 y/0.25</code><br>
+Expected: Text "sleep" is added to the image. Its center is placed 75% of the image width from the left border and 25% of the image height from the top border.
+          The list of text is updated to include this new entry.</p>
+</li>
+<li>
+<p>Test case: <code>add code x/0.75 y/0.75 c/brown S/bold</code><br>
+Expected: Bold and brown text "code" is added to the image. Its center is placed 75% of the image width from the left border and 75% of the image height from the top border.
+          The list of text is updated to include this new entry.</p>
+</li>
+<li>
+<p>Test case: <code>add x/0.5 y/0.5</code><br>
+Expected: No text is added. Error details shown in the status message state the command syntax is invalid.</p>
+</li>
+<li>
+<p>Other incorrect add commands to try: <code>add</code>, <code>add text</code><br>
+Expected: Similar to previous</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="moving-text-during-meme-creation"><a class="link" href="#moving-text-during-meme-creation">F.10. Moving text during meme creation</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Moving text to a template during meme creation.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Weme is in the create tab. A template has been chosen using the <code>use</code> command from the templates tab.
+The template is displayed in the create tab. At least one piece of text has been added to the template.</p>
+</li>
+<li>
+<p>Test case: <code>move 1 x/0.1 y/-0.1</code><br>
+Expected: Text at index 1 is moved 10% of the image width to the right and 10% of the image height upwards.
+The list of text is updated to reflect its new position.
+The command fails if the text would be moved out of image boundaries.</p>
+</li>
+<li>
+<p>Test case: <code>move 1</code> and then use arrow keys to move the text<br>
+Expected: Text at index 1 is moved based on the directions of the arrow keys pressed.
+The list of text is updated to reflect its new position.
+The move fails if the text would be moved out of image boundaries.</p>
+</li>
+<li>
+<p>Test case: <code>move x/0.2</code><br>
+Expected: No text is moved. Error details shown in the status message state the command syntax is invalid.</p>
+</li>
+<li>
+<p>Other incorrect move commands to try: <code>move</code>, <code>move blah</code><br>
+Expected: Similar to previous</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="completing-meme-creation"><a class="link" href="#completing-meme-creation">F.11. Completing meme creation</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Completing a meme creation session.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Weme is in the create tab. A template has been chosen using the <code>use</code> command from the templates tab.
+The template is displayed in the create tab.</p>
+</li>
+<li>
+<p>Test case: <code>create d/My great meme</code><br>
+Expected: A new meme is created and added to the memes list, with description "My great meme". The UI goes into view mode, as if triggered by a <code>view</code> command, displaying the newly created meme.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-data"><a class="link" href="#saving-data">F.12. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2518,9 +2671,6 @@ Expected: No meme is unarchived. Error details shown in the status message state
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 07:22:17 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 07:28:16 UTC</div></div></div></body></html>
