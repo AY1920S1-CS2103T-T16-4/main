@@ -1128,7 +1128,7 @@ These instructions only provide a starting point for testers to work on; testers
    Expected: The meme in the given index is edited. The view is updated to reflect this change. The status message states the edit was successful.
 .. Test case: `edit 1` +
    Expected: No meme is edited. Weme prompts the user to specify at least one field to be edited.
-.. Other incorrect add commands to try: `edit`, +
+.. Other incorrect edit commands to try: `edit`, +
    Expected: Similar to previous.
 
 . Editing a meme while in `find`
