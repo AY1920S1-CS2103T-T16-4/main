@@ -1155,7 +1155,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 === Clearing memes
 
-. Clears all memes in the memes tab
+. Clearing all memes in the memes tab
 
 .. Prerequisites: Weme is in the memes tab.
 .. Test case: `clear` +
