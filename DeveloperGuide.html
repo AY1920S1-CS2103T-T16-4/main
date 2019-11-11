@@ -51,26 +51,29 @@
 <li><a href="#undoing-a-command">F.2. Undoing a command</a></li>
 <li><a href="#redoing-a-command">F.3. Redoing a command</a></li>
 <li><a href="#adding-a-meme">F.4. Adding a meme</a></li>
-<li><a href="#archiving-a-meme">F.5. Archiving a meme</a></li>
-<li><a href="#unarchiving-a-meme">F.6. Unarchiving a meme</a></li>
-<li><a href="#adding-a-template">F.7. Adding a template</a></li>
-<li><a href="#editing-a-template">F.8. Editing a template</a></li>
-<li><a href="#adding-text-to-a-template-during-meme-creation">F.9. Adding text to a template during meme creation</a></li>
-<li><a href="#moving-text-during-meme-creation">F.10. Moving text during meme creation</a></li>
-<li><a href="#completing-meme-creation">F.11. Completing meme creation</a></li>
-<li><a href="#like-and-dislike-a-meme">F.12. Like and dislike a Meme</a></li>
-<li><a href="#staging-a-meme">F.13. Staging a Meme</a></li>
-<li><a href="#unstaging-a-meme">F.14. Unstaging a meme</a></li>
-<li><a href="#clearing-staged-memes">F.15. Clearing staged memes</a></li>
-<li><a href="#exporting-memes">F.16. Exporting memes</a></li>
-<li><a href="#loading-a-meme">F.17. Loading a meme</a></li>
-<li><a href="#importing-memes">F.18. Importing memes</a></li>
-<li><a href="#editing-loaded-memes">F.19. Editing loaded memes</a></li>
-<li><a href="#deleting-loaded-memes">F.20. Deleting loaded memes</a></li>
-<li><a href="#clearing-loaded-memes">F.21. Clearing loaded memes</a></li>
-<li><a href="#viewing-a-meme">F.22. Viewing a meme</a></li>
-<li><a href="#suggest-auto-complete-commands">F.23. Suggest / Auto-complete commands</a></li>
-<li><a href="#saving-data">F.24. Saving data</a></li>
+<li><a href="#editing-a-meme">F.5. Editing a meme</a></li>
+<li><a href="#deleting-a-meme">F.6. Deleting a meme</a></li>
+<li><a href="#clearing-memes">F.7. Clearing memes</a></li>
+<li><a href="#archiving-a-meme">F.8. Archiving a meme</a></li>
+<li><a href="#unarchiving-a-meme">F.9. Unarchiving a meme</a></li>
+<li><a href="#adding-a-template">F.10. Adding a template</a></li>
+<li><a href="#editing-a-template">F.11. Editing a template</a></li>
+<li><a href="#adding-text-to-a-template-during-meme-creation">F.12. Adding text to a template during meme creation</a></li>
+<li><a href="#moving-text-during-meme-creation">F.13. Moving text during meme creation</a></li>
+<li><a href="#completing-meme-creation">F.14. Completing meme creation</a></li>
+<li><a href="#like-and-dislike-a-meme">F.15. Like and dislike a Meme</a></li>
+<li><a href="#staging-a-meme">F.16. Staging a Meme</a></li>
+<li><a href="#unstaging-a-meme">F.17. Unstaging a meme</a></li>
+<li><a href="#clearing-staged-memes">F.18. Clearing staged memes</a></li>
+<li><a href="#exporting-memes">F.19. Exporting memes</a></li>
+<li><a href="#loading-a-meme">F.20. Loading a meme</a></li>
+<li><a href="#importing-memes">F.21. Importing memes</a></li>
+<li><a href="#editing-loaded-memes">F.22. Editing loaded memes</a></li>
+<li><a href="#deleting-loaded-memes">F.23. Deleting loaded memes</a></li>
+<li><a href="#clearing-loaded-memes">F.24. Clearing loaded memes</a></li>
+<li><a href="#viewing-a-meme">F.25. Viewing a meme</a></li>
+<li><a href="#suggest-auto-complete-commands">F.26. Suggest / Auto-complete commands</a></li>
+<li><a href="#saving-data">F.27. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -2117,22 +2120,22 @@ statistics visuals, including this one. Hence, implementing screen time would be
 <p>Weme opens the import tab</p>
 </li>
 <li>
-<p>User requests to import a meme collection from a directory</p>
+<p>User requests to load a meme collection from a directory</p>
 </li>
 <li>
-<p>Weme adds the memes from the collection into the staging area</p>
+<p>Weme adds the memes from the collection into the import tab</p>
 </li>
 <li>
-<p>User requests to delete unwanted memes in the staging area</p>
+<p>User requests to delete unwanted memes in the import tab</p>
 </li>
 <li>
-<p>Weme deletes those memes from the staging area</p>
+<p>Weme deletes those memes from the import tab</p>
 </li>
 <li>
-<p>User confirms the import</p>
+<p>User executes the import command</p>
 </li>
 <li>
-<p>Weme successfully imports the selected memes from the collection</p>
+<p>Weme successfully imports memes from the import tab into weme</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
@@ -2158,26 +2161,13 @@ statistics visuals, including this one. Hence, implementing screen time would be
 </div>
 </li>
 <li>
-<p>3b. The given collection is corrupted</p>
+<p>3b. Some files in the folder are corrupted</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3b1. Weme shows an error message</p>
+<p>3b1. Weme adds only valid images into the import tab</p>
 <div class="paragraph">
-<p>Use case resumes at step 2</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>7a. There are no memes left in the staging area</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>7a1. Weme shows an error message</p>
-<div class="paragraph">
-<p>Use case resumes at step 2</p>
+<p>Use case resumes at step 4</p>
 </div>
 </li>
 </ul>
@@ -2508,7 +2498,123 @@ Expected: Similar to previous</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="archiving-a-meme"><a class="link" href="#archiving-a-meme">F.5. Archiving a meme</a></h3>
+<h3 id="editing-a-meme"><a class="link" href="#editing-a-meme">F.5. Editing a meme</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Editing a meme while all memes are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Weme is in the memes tab.</p>
+</li>
+<li>
+<p>Test case: <code>edit 1 d/new description t/tag</code><br>
+Expected: The meme in the given index is edited. The view is updated to reflect this change. The status message states the edit was successful.</p>
+</li>
+<li>
+<p>Test case: <code>edit 1</code><br>
+Expected: no meme is edited. Error details shown in the status message states that at least one field to edit must be provided.</p>
+</li>
+<li>
+<p>Other incorrect edit commands to try: <code>edit</code>,<br>
+Expected: No meme is edited. Error details shown in the status message states that the command is of invalid format.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Editing a meme while in <code>find</code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Weme is in the memes tab and just executed a <code>find</code> command.</p>
+</li>
+<li>
+<p>Similar to above. Weme will edit the meme specified by the index in the displayed index.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-meme"><a class="link" href="#deleting-a-meme">F.6. Deleting a meme</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting a meme while all memes are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Weme is in the memes tab.</p>
+</li>
+<li>
+<p>Test case: <code>delete 1</code><br>
+Expected: The meme in the given index is deleted. Meme is removed from the view. The status message states the delete was successful.</p>
+</li>
+<li>
+<p>Test case: <code>delete 0</code><br>
+Expected: No meme is deleted. Error details shown in the status message states that the command is of invalid format.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Deleting a meme while in <code>find</code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Weme is in the memes tab and just executed a <code>find</code> command.</p>
+</li>
+<li>
+<p>Similar to above. Weme will delete the meme specified by the index in the displayed list.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="clearing-memes"><a class="link" href="#clearing-memes">F.7. Clearing memes</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Clearing all memes in the memes tab</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Weme is in the memes tab.</p>
+</li>
+<li>
+<p>Test case: <code>clear</code><br>
+Expected: All memes in the memes tab has been cleared. The status message states the clearing was successful.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Note: This command is able to be undone by executing the undo command.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="archiving-a-meme"><a class="link" href="#archiving-a-meme">F.8. Archiving a meme</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2533,7 +2639,7 @@ Expected: No meme is archived. Error details shown in the status message state t
 </div>
 </div>
 <div class="sect2">
-<h3 id="unarchiving-a-meme"><a class="link" href="#unarchiving-a-meme">F.6. Unarchiving a meme</a></h3>
+<h3 id="unarchiving-a-meme"><a class="link" href="#unarchiving-a-meme">F.9. Unarchiving a meme</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2558,7 +2664,7 @@ Expected: No meme is unarchived. Error details shown in the status message state
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-template"><a class="link" href="#adding-a-template">F.7. Adding a template</a></h3>
+<h3 id="adding-a-template"><a class="link" href="#adding-a-template">F.10. Adding a template</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2591,7 +2697,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-template"><a class="link" href="#editing-a-template">F.8. Editing a template</a></h3>
+<h3 id="editing-a-template"><a class="link" href="#editing-a-template">F.11. Editing a template</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2620,7 +2726,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-text-to-a-template-during-meme-creation"><a class="link" href="#adding-text-to-a-template-during-meme-creation">F.9. Adding text to a template during meme creation</a></h3>
+<h3 id="adding-text-to-a-template-during-meme-creation"><a class="link" href="#adding-text-to-a-template-during-meme-creation">F.12. Adding text to a template during meme creation</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2656,7 +2762,7 @@ Expected: Similar to previous</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="moving-text-during-meme-creation"><a class="link" href="#moving-text-during-meme-creation">F.10. Moving text during meme creation</a></h3>
+<h3 id="moving-text-during-meme-creation"><a class="link" href="#moving-text-during-meme-creation">F.13. Moving text during meme creation</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2694,7 +2800,7 @@ Expected: Similar to previous</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="completing-meme-creation"><a class="link" href="#completing-meme-creation">F.11. Completing meme creation</a></h3>
+<h3 id="completing-meme-creation"><a class="link" href="#completing-meme-creation">F.14. Completing meme creation</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2716,7 +2822,7 @@ Expected: A new meme is created and added to the memes list, with description "M
 </div>
 </div>
 <div class="sect2">
-<h3 id="like-and-dislike-a-meme"><a class="link" href="#like-and-dislike-a-meme">F.12. Like and dislike a Meme</a></h3>
+<h3 id="like-and-dislike-a-meme"><a class="link" href="#like-and-dislike-a-meme">F.15. Like and dislike a Meme</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2750,15 +2856,15 @@ Similar to like. Command is <code>dislike</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="staging-a-meme"><a class="link" href="#staging-a-meme">F.13. Staging a Meme</a></h3>
+<h3 id="staging-a-meme"><a class="link" href="#staging-a-meme">F.16. Staging a Meme</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Stages a meme while all memes are listed.</p>
+<p>Staging a meme while all memes are listed.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: User is in the memes tab.</p>
+<p>Prerequisites: Weme is in the memes tab.</p>
 </li>
 <li>
 <p>Test case: <code>stage 1</code><br>
@@ -2780,15 +2886,15 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="unstaging-a-meme"><a class="link" href="#unstaging-a-meme">F.14. Unstaging a meme</a></h3>
+<h3 id="unstaging-a-meme"><a class="link" href="#unstaging-a-meme">F.17. Unstaging a meme</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Unstages a meme from the export tab.</p>
+<p>Unstages a meme from the export tab</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: User is in the export tab.</p>
+<p>Prerequisites: Weme is in the export tab.</p>
 </li>
 <li>
 <p>Test case: <code>unstage 1</code><br>
@@ -2811,7 +2917,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-staged-memes"><a class="link" href="#clearing-staged-memes">F.15. Clearing staged memes</a></h3>
+<h3 id="clearing-staged-memes"><a class="link" href="#clearing-staged-memes">F.18. Clearing staged memes</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2819,7 +2925,7 @@ Expected: Similar to previous.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: User is in the export tab.</p>
+<p>Prerequisites: Weme is in the export tab.</p>
 </li>
 </ol>
 </div>
@@ -2828,16 +2934,16 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-memes"><a class="link" href="#exporting-memes">F.16. Exporting memes</a></h3>
+<h3 id="exporting-memes"><a class="link" href="#exporting-memes">F.19. Exporting memes</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>Exports all the memes in the export tab to a folder which can be specified by the user by
-giving the directory path.</p>
+giving the directory path</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: User is in the export tab. User has the path to the folder for the memes
+<p>Prerequisites: Weme is in the export tab. User has the path to the folder for the memes
 to be exported to.</p>
 </li>
 <li>
@@ -2860,16 +2966,16 @@ Expected: Error message will be shown.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="loading-a-meme"><a class="link" href="#loading-a-meme">F.17. Loading a meme</a></h3>
+<h3 id="loading-a-meme"><a class="link" href="#loading-a-meme">F.20. Loading a meme</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>Loads all the memes into the import tab from a folder which is specified by the user by
-giving the directory path containing the memes.</p>
+giving the directory path containing the memes</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: User is in the import tab. User has the path to the folder for the memes
+<p>Prerequisites: Weme is in the import tab. User has the path to the folder for the memes
 to be loaded from.</p>
 </li>
 <li>
@@ -2894,15 +3000,15 @@ Expected: Error message will be shown.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-memes"><a class="link" href="#importing-memes">F.18. Importing memes</a></h3>
+<h3 id="importing-memes"><a class="link" href="#importing-memes">F.21. Importing memes</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Imports all the memes from the import tab into Weme.</p>
+<p>Imports all the memes from the import tab into Weme</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: User is in the import tab.</p>
+<p>Prerequisites: Weme is in the import tab.</p>
 </li>
 <li>
 <p>Test case: <code>import</code><br>
@@ -2917,7 +3023,7 @@ the user can continue loading more memes.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-loaded-memes"><a class="link" href="#editing-loaded-memes">F.19. Editing loaded memes</a></h3>
+<h3 id="editing-loaded-memes"><a class="link" href="#editing-loaded-memes">F.22. Editing loaded memes</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2925,7 +3031,7 @@ the user can continue loading more memes.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: User is in the import tab.</p>
+<p>Prerequisites: Weme is in the import tab.</p>
 </li>
 </ol>
 </div>
@@ -2934,7 +3040,7 @@ the user can continue loading more memes.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-loaded-memes"><a class="link" href="#deleting-loaded-memes">F.20. Deleting loaded memes</a></h3>
+<h3 id="deleting-loaded-memes"><a class="link" href="#deleting-loaded-memes">F.23. Deleting loaded memes</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2943,7 +3049,7 @@ the remaining memes over to the memes tab.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: User is in the import tab.</p>
+<p>Prerequisites: Weme is in the import tab.</p>
 </li>
 </ol>
 </div>
@@ -2952,7 +3058,7 @@ the remaining memes over to the memes tab.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-loaded-memes"><a class="link" href="#clearing-loaded-memes">F.21. Clearing loaded memes</a></h3>
+<h3 id="clearing-loaded-memes"><a class="link" href="#clearing-loaded-memes">F.24. Clearing loaded memes</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2960,7 +3066,7 @@ the remaining memes over to the memes tab.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: User is in the import tab.</p>
+<p>Prerequisites: Weme is in the import tab.</p>
 </li>
 </ol>
 </div>
@@ -2969,15 +3075,15 @@ the remaining memes over to the memes tab.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-a-meme"><a class="link" href="#viewing-a-meme">F.22. Viewing a meme</a></h3>
+<h3 id="viewing-a-meme"><a class="link" href="#viewing-a-meme">F.25. Viewing a meme</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Views a meme while all memes are listed.</p>
+<p>Views a meme while all memes are listed</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: User is in the memes tab.</p>
+<p>Prerequisites: Weme is in the memes tab.</p>
 </li>
 <li>
 <p>Test case: <code>View 1</code><br>
@@ -2999,7 +3105,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="suggest-auto-complete-commands"><a class="link" href="#suggest-auto-complete-commands">F.23. Suggest / Auto-complete commands</a></h3>
+<h3 id="suggest-auto-complete-commands"><a class="link" href="#suggest-auto-complete-commands">F.26. Suggest / Auto-complete commands</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3145,7 +3251,7 @@ Example: edit 1 d/A funny meme t/funny</code><br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">F.24. Saving data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">F.27. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3162,4 +3268,4 @@ Example: edit 1 d/A funny meme t/funny</code><br>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:28:37 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:30:35 UTC</div></div></div></body></html>
