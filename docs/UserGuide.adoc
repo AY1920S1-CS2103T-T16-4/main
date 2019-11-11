@@ -42,6 +42,10 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 .  Refer to <<Features>> for details of each command.
 
+****
+We recommend a minimum resolution of 1920x1080 with at maximum 150% scaling for best usage. Weme requires a resolution that provides at least 750 pixels in height and 1000 pixels in width for smooth usage.
+****
+
 [[Features]]
 == Features
 
@@ -238,6 +242,17 @@ Format: `archive INDEX`
 
 Unarchives a meme at the specified index. +
 Format: `unarchive INDEX`
+
+
+==== Viewing a meme: `view`
+Views the meme at the specified index. +
+Format: `view INDEX`
+
+****
+* To exit the view, simply switch to another tab using the tab command.
+For example, `tab memes` will bring the user back to the memes tab.
+****
+
 
 // tag::templates[]
 === Templates Tab
@@ -532,18 +547,18 @@ immediately without pressing kbd:[Enter] key. This does not account for invalid 
 no meme of index 5.
 
 Example 1: +
-When user types in "a" in the meme context, the following suggestions will appear: +
+When user types in `a` in the meme context, the following suggestions will appear: +
 `add: adds a meme to Weme. +
 archive: archive a meme by index. +
 archives: list all archived memes.` +
-If kbd:[Tab] is pressed, "a" in the command box will be replaced by "add".
+If kbd:[Tab] is pressed, `a` in the command box will be replaced by `add`.
 
 Example 2: +
-When user types in "add p/pathToMeme t/c", the following suggestions will appear: +
+When user types in `add p/pathToMeme t/c`, the following suggestions will appear: +
 `CS +
 cute +
 CS2103` +
-If kbd:[Tab] is pressed, "c" in the command box will be replaced by "CS".
+If kbd:[Tab] is pressed, `c` in the command box will be replaced by `CS`.
 
 // end::command-suggestion[]
 
@@ -588,6 +603,7 @@ e.g. `add p//Users/Me/Downloads/dgirl_oof.jpg d/Disaster Girl t/Funny`
 ** *List Archived Memes* : `archives`
 ** *Archive Meme* : `archive INDEX`
 ** *Unarchive Meme* : `unarchive INDEX`
+** *View Meme* : `view INDEX`
 
 * *Commands for the Templates Tab* :
 ** *Add Template* : `add n/NAME p/PATH`

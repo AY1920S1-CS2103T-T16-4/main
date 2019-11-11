@@ -20,6 +20,10 @@ By: `CS2103-T16-3`      Since: `September 2019`      Licence: `MIT`
 
 Refer to the guide <<SettingUp#, here>>.
 
+****
+We recommend a minimum resolution of 1920x1080 with at maximum 150% scaling for best usage. Weme requires a resolution that provides at least 750 pixels in height and 1000 pixels in width for smooth usage.
+****
+
 == Design
 
 [[Design-Architecture]]
@@ -482,6 +486,7 @@ extracted in runtime.
 
 // end::stats2[]
 
+
 // tag::export/import[]
 
 === Export/Import feature
@@ -712,6 +717,28 @@ image::TabSwitchSequenceDiagram.png[]
 ** Cons: Users who prefer a keyboard-driven workflow might not want to use the mouse.
 
 // end::tabs[]
+
+
+// tag::view[]
+
+=== [Miscellaneous] View feature
+
+This feature allows the user to view a meme as an enlarged picture. This also allows
+for long descriptions to be seen.
+
+image::ViewClassDiagram.png[]
+
+Using the above class diagram as a reference, VersionedWeme has a SimpleObjectProperty<Meme> attribute
+(initially contains a null meme) which sets the Meme for the ViewPanel to view. The Meme is retrieved
+as an ObservableValue<Meme> object in the model by MainWindow, which is
+passed into the ViewPanel to set the meme to display.
+
+The meme is viewed by using the ViewCommand in the memes context. The execution of the command firstly
+sets the meme to view based on the given index which is picked up by the listener which sets
+the meme details in the ViewPanel. Subsequently, the model context is set to the view context
+which switches the MemeGridPanel to ViewPanel, hence displaying the meme.
+
+// end::view[]
 
 // tag::dataencryption[]
 === [Proposed] Data Encryption
