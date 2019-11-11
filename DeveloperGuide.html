@@ -48,8 +48,12 @@
 <li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
-<li><a href="#saving-data">G.3. Saving data</a></li>
+<li><a href="#undoing-a-command">G.2. Undoing a command</a></li>
+<li><a href="#redoing-a-command">G.3. Redoing a command</a></li>
+<li><a href="#adding-a-meme">G.4. Adding a meme</a></li>
+<li><a href="#archiving-a-meme">G.5. Archiving a meme</a></li>
+<li><a href="#unarchiving-a-meme">G.6. Unarchiving a meme</a></li>
+<li><a href="#saving-data">G.7. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -2297,46 +2301,209 @@ Expected: The most recent window size and location is retained.</p>
 </ol>
 </div>
 </li>
-</ol>
-</div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.2. Deleting a person</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
 <li>
-<p>Deleting a person while all persons are listed</p>
+<p>Unreferenced image files are removed</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<p>Open Weme</p>
 </li>
 <li>
-<p>Test case: <code>delete 1</code><br>
-Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
+<p>Delete memes</p>
 </li>
 <li>
-<p>Test case: <code>delete 0</code><br>
-Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.</p>
+<p>Open data/memes folder</p>
 </li>
 <li>
-<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
+<p>Exit Weme<br>
+Expected: Deletes the image files associated to deleted memes.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undoing-a-command"><a class="link" href="#undoing-a-command">G.2. Undoing a command</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Undoing a command when undoable commands have been executed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Executed at least one undoable command. Weme is not viewing a meme.</p>
+</li>
+<li>
+<p>Test case: <code>undo</code><br>
+Expected: Weme will be restored to the previous state. The status message states the undo was successful, and states the command that was undone.</p>
+</li>
+<li>
+<p>Test case: <code>undo anything can be here</code><br>
 Expected: Similar to previous.</p>
 </li>
 </ol>
 </div>
 </li>
+<li>
+<p>Undoing a command when no undoable commands have been executed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Have not executed any undoable commands. Weme is not viewing a meme.</p>
+</li>
+<li>
+<p>Test case: <code>undo</code><br>
+Expected: Undo fails. Error details shown in the status message state that there are no commands to undo.</p>
+</li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
+<h3 id="redoing-a-command"><a class="link" href="#redoing-a-command">G.3. Redoing a command</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Redoing a command when <code>undo</code> has just been executed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Just executed <code>undo</code> at least once. Weme is not viewing a meme.</p>
+</li>
+<li>
+<p>Test case: <code>redo</code><br>
+Expected: Weme will be restored to the state before undoing. The status message states the redo was successful, and states the command that was redone.</p>
+</li>
+<li>
+<p>Test case: <code>redo anything can be here</code><br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Redoing a command when <code>undo</code> has not been executed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Have not executed <code>undo</code>. Weme is not viewing a meme.</p>
+</li>
+<li>
+<p>Test case: <code>redo</code><br>
+Expected: Redo fails. Error details shown in the status message state that there are no commands to redo.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-meme"><a class="link" href="#adding-a-meme">G.4. Adding a meme</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding a meme while all memes are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Weme is in the memes tab. An image file is on the hard disk.</p>
+</li>
+<li>
+<p>Test case: <code>add p/PATH_TO_IMAGE_ON_DISK</code><br>
+Expected: The meme is added to the memes list. The view is updated to include this new meme. The status message states the add was successful. The added meme has no description or tags.</p>
+</li>
+<li>
+<p>Test case: <code>add p/PATH_TO_IMAGE_ON_DISK d/random description t/firstTag t/2ndTag</code><br>
+Expected: The meme is added to the memes list. The view is updated to include this new meme. The status message states the add was successful. The added meme has a description "random description" and two tags "firstTag" and "2ndTag"</p>
+</li>
+<li>
+<p>Test case: <code>add p/INVALID_PATH_TO_IMAGE_ON_DISK</code><br>
+Expected: No meme is added. Error details shown in the status message state the path should lead to an existing file or it should be in a supported image format.</p>
+</li>
+<li>
+<p>Test case: <code>add d/random description</code><br>
+Expected: No meme is added. Error details shown in the status message state the command syntax is invalid.</p>
+</li>
+<li>
+<p>Other incorrect add commands to try: <code>add</code>, <code>add p/PATH_TO_IMAGE_ON_DISK t/first tag</code><br>
+Expected: Similar to previous</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Adding a meme while in <code>find</code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Weme is in the memes tab and just executed a <code>find</code> command. An image file is on the hard disk.</p>
+</li>
+<li>
+<p>Similar to above, but after successful execution of <code>add</code>, the user is redirected to the <code>list</code> view.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="archiving-a-meme"><a class="link" href="#archiving-a-meme">G.5. Archiving a meme</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Archiving an unarchived meme</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Weme is in the memes tab. Currently in <code>list</code> view. At least one meme in the list.</p>
+</li>
+<li>
+<p>Test case: <code>archive 1</code><br>
+Expected: The meme is archived. The view is updated without the meme. The status message states the archiving was successful.</p>
+</li>
+<li>
+<p>Test case: <code>archive 0</code><br>
+Expected: No meme is archived. Error details shown in the status message state the command syntax is invalid.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unarchiving-a-meme"><a class="link" href="#unarchiving-a-meme">G.6. Unarchiving a meme</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Unarchiving an archived meme</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Weme is in the memes tab. Currently in <code>archives</code> view. At least one meme in the list.</p>
+</li>
+<li>
+<p>Test case: <code>unarchive 1</code><br>
+Expected: The meme is unarchived. The view is updated without the meme. The status message states the unarchiving was successful.</p>
+</li>
+<li>
+<p>Test case: <code>unarchive 0</code><br>
+Expected: No meme is unarchived. Error details shown in the status message state the command syntax is invalid.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-data"><a class="link" href="#saving-data">G.7. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2356,4 +2523,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 05:44:48 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 05:58:58 UTC</div></div></div></body></html>
