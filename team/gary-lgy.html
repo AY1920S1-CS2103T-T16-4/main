@@ -37,6 +37,9 @@ The user can:</p>
 <li>
 <p>customize the font size, color, and style of the text they add to the template</p>
 </li>
+<li>
+<p>move the text conveniently using arrow keys</p>
+</li>
 </ul>
 </div>
 </li>
@@ -44,7 +47,7 @@ The user can:</p>
 <p>Justification: This feature forms an integral part of the product because generating memes is something that meme lovers do on a regular basis.</p>
 </li>
 <li>
-<p>Highlights: This enhancement required extending all levels of the architecture: model and storage components were extended to support storing templates; UI was extended to display templates and the current meme creation session.
+<p>Highlights: This enhancement required extending all levels of the architecture: model and storage components were extended to support storing templates; UI was extended to display meme creation session and listen to arrow key presses.
 It required an in-depth analysis of how the user should interact with the product, given our target user group are those who prefer Command Line Interfaces.
 The implementation was challenging as it involved graphics processing.</p>
 </li>
@@ -56,7 +59,10 @@ The implementation was challenging as it involved graphics processing.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Implement front-end for tabs [<a href="https://github.com/AY1920S1-CS2103-T16-3/main/pull/50">#50</a>]</p>
+<p>Implemented the GUI for tabs [<a href="https://github.com/AY1920S1-CS2103-T16-3/main/pull/50">#50</a>]</p>
+</li>
+<li>
+<p>Optimized the GUI performance. Reduced lag and memory usage, expanding the capacity of the GUI from lagging with 10 memes to being able to hold 1000 memes without significant lag. [<a href="https://github.com/AY1920S1-CS2103-T16-3/main/pull/231">#231</a>]</p>
 </li>
 </ul>
 </div>
@@ -446,10 +452,19 @@ The user executes the command <code>edit 1 t/CS students be like</code> to edit 
 Upon request by the UI, <code>MemeCreation</code> generates the updated image for the UI for display.</p>
 </div>
 <div class="paragraph">
-<p>Step 6. The user executes <code>create d/A meme about CS students t/funny t/CS</code> to complete the creation session.
+<p>Step 6. The user wants to move the text.
+The user types <code>move 1</code> into the command box and uses arrow keys to adjust the text position.
+The user holds <kbd>Shift</kbd> to make large adjustments at first, then holds <kbd>Alt</kbd> to make small adjustments until the text is at the desired position.
+<code>CommandBox</code> listens to key presses and dispatches a <code>TextMoveCommand</code> on each key press.
+It also throttles the key press rate to prevent firing commands too frequently.
+<code>MemeCreation</code> generates a new image on each command received and the UI keeps the displayed image up-to date.</p>
+</div>
+<div class="paragraph">
+<p>Step 7. The user executes <code>create d/A meme about CS students t/funny t/CS</code> to complete the creation session.
 Weme will create a new image with the text added and save it to the data directory.
 Weme will also create a new <code>Meme</code> entry with that image, with description "A meme about CS students" and tags "funny" and "CS".
-The description and tag arguments are similar to those for <code>Meme</code> add command.</p>
+The description and tag arguments are similar to those for <code>Meme</code> add command.
+Weme displays the newly created meme, as if from a <code>view</code> command.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -521,23 +536,23 @@ This will put Weme back to displaying the content of the <strong>Templates</stro
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> The user enters commands to add/delete text.</p>
+<p><strong>Alternative 1 (current choice):</strong> The user enters commands to add/edit/move/delete text.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easier to implement.</p>
+<p>Pros: Easier to implement. Integrates well with the rest of the product.</p>
 </li>
 <li>
-<p>Cons: User might not be able to position the text accurately.</p>
+<p>Cons: It is troublesome to type in the coordinates and difficult to position the text accurately.</p>
 </li>
 <li>
-<p>Mitigation measure: Provide rules as visual aid for the user.</p>
+<p>Mitigation measure: Provide rulers beside the image as visual aid for the user, support using arrow keys to move text.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> The user controls the UI through individual key strokes.
+<p><strong>Alternative 2:</strong> The user manipulates the UI through individual key strokes (Vim-like modal key-bindings)
 For example, <code>a</code> to add a piece of text, arrow keys to adjust the position of the currently selected text,
 <code>1</code> to select text labelled <strong>1</strong> and <code>d</code> to delete the currently selected text.</p>
 <div class="ulist">
@@ -546,7 +561,20 @@ For example, <code>a</code> to add a piece of text, arrow keys to adjust the pos
 <p>Pros: The user can accurately adjust the position of the text.</p>
 </li>
 <li>
-<p>Cons: Very hard to implement. Requires major work on the UI.</p>
+<p>Cons: Very hard to implement. Requires major work on the UI. Must use extra care to make sure the state transitions are correct.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3:</strong> The user moves the text using the mouse</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Might be more intuitive for new users. New users do not need to learn the commands.</p>
+</li>
+<li>
+<p>Cons: Breaks the keyboard-driven workflow. Using the mouse might actually be less accurate when positioning text.</p>
 </li>
 </ul>
 </div>
@@ -591,4 +619,4 @@ For example, when the text should be at the center, the user simply specifies <c
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 07:37:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 07:40:35 UTC</div></div></div></body></html>
