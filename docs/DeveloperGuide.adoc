@@ -1138,7 +1138,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 === Deleting a meme
 
-. Deletes a meme while all memes are listed
+. Deleting a meme while all memes are listed
 
 .. Prerequisites: Weme is in the memes tab.
 .. Test case: `delete 1` +
