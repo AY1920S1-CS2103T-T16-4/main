@@ -964,20 +964,12 @@ Use case ends
 +
 Use case resumes at step 2
 
-* 3b. The given collection is corrupted
+* 3b. Some files in the folder are corrupted
 +
 [none]
-** 3b1. Weme shows an error message
+** 3b1. Weme adds only valid images into the import tab
 +
-Use case resumes at step 2
-
-* 7a. There are no memes left in the staging area
-+
-[none]
-** 7a1. Weme shows an error message
-+
-Use case resumes at step 2
-
+Use case resumes at step 4
 
 [discrete]
 === Use case 4: Undo/Redo
