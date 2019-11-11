@@ -947,12 +947,12 @@ Use case resumes at step 4.
 
 1. User requests to open the import tab
 2. Weme opens the import tab
-3. User requests to import a meme collection from a directory
-4. Weme adds the memes from the collection into the staging area
-5. User requests to delete unwanted memes in the staging area
-6. Weme deletes those memes from the staging area
-7. User confirms the import
-8. Weme successfully imports the selected memes from the collection
+3. User requests to load a meme collection from a directory
+4. Weme adds the memes from the collection into the import tab
+5. User requests to delete unwanted memes in the import tab
+6. Weme deletes those memes from the import tab
+7. User executes the import command
+8. Weme successfully imports memes from the import tab into weme
 +
 Use case ends
 
