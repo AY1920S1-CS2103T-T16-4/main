@@ -1127,9 +1127,9 @@ These instructions only provide a starting point for testers to work on; testers
 .. Test case: `edit 1 d/new description t/tag` +
    Expected: The meme in the given index is edited. The view is updated to reflect this change. The status message states the edit was successful.
 .. Test case: `edit 1` +
-   Expected: No meme is edited. Weme prompts the user to specify at least one field to be edited.
+   Expected: no meme is edited. Error details shown in the status message states that at least one field to edit must be provided.
 .. Other incorrect edit commands to try: `edit`, +
-   Expected: Similar to previous.
+   Expected: No meme is edited. Error details shown in the status message states that the command is of invalid format.
 
 . Editing a meme while in `find`
 
@@ -1144,7 +1144,7 @@ These instructions only provide a starting point for testers to work on; testers
 .. Test case: `delete 1` +
    Expected: The meme in the given index is deleted. Meme is removed from the view. The status message states the delete was successful.
 .. Test case: `delete 0` +
-   Expected: No meme is deleted. Weme prompts the user to give a valid index.
+   Expected: No meme is deleted. Error details shown in the status message states that the command is of invalid format.
 .. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) +
    Expected: Similar to previous.
 
@@ -1160,6 +1160,10 @@ These instructions only provide a starting point for testers to work on; testers
 .. Prerequisites: Weme is in the memes tab.
 .. Test case: `clear` +
    Expected: All memes in the memes tab has been cleared. The status message states the clearing was successful.
+
+****
+* Note: This command is able to be undone by executing the undo command.
+****
 
 === Archiving a meme
 
