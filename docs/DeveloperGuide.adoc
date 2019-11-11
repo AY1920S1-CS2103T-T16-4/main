@@ -1145,7 +1145,7 @@ These instructions only provide a starting point for testers to work on; testers
    Expected: The meme in the given index is deleted. Meme is removed from the view. The status message states the delete was successful.
 .. Test case: `delete 0` +
    Expected: No meme is deleted. Weme prompts the user to give a valid index.
-.. Other incorrect add commands to try: `delete`, `delete x` (where x is larger than the list size) +
+.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) +
    Expected: Similar to previous.
 
 . Deleting a meme while in `find`
