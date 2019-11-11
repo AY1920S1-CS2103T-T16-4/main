@@ -43,7 +43,10 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Refer to <<Features>> for details of each command.
 
 ****
-We recommend a minimum resolution of 1920x1080 with at maximum 150% scaling for best usage. Weme requires a resolution that provides at least 750 pixels in height and 1000 pixels in width for smooth usage.
+* Weme only supports certain image files with valid extensions (e.g. `.png`, `.jpg`, `.gif`).
+* Any invalid or corrupted files are ignored (e.g. `.txt`, invalid files
+with `.jpg` extension, unsupported image formats).
+* We recommend a minimum resolution of 1920x1080 with at maximum 150% scaling for best usage. Weme requires a resolution that provides at least 750 pixels in height and 1000 pixels in width for smooth usage.
 ****
 
 [[Features]]
@@ -113,7 +116,7 @@ Adds a new meme to Weme. Weme will copy the given image into its data storage fo
 Format: `add p/PATH [d/DESCRIPTION] [t/TAG]...` +
 
 [TIP]
-A meme can have any number of tags (including 0)
+A meme can have any number of tags (including 0). Tags can only contain letters and numbers and cannot exceed a length of 35 characters.
 
 Examples:
 
@@ -133,6 +136,7 @@ This is because the examples in this guide use MacOS absolute file paths, which 
 Therefore, the first `/` is part of the argument prefix, whereas the second `/` is part of the file path.
 If you are using MacOS or *nix systems, both `/` s must be present if your path is an absolute path.
 If you are using Windows, your command might look something like `add p/C:/Users/Me/Downloads/dgirl_off.jpg` instead.
+* The path must lead to one of our supported image formats. (`.jpg`, `.png`, `.gif`)
 ****
 
 ==== Listing all memes: `list`
@@ -227,29 +231,42 @@ Format: `dislike INDEX`
 Same as like, dislike also allows arrow key operations.
 
 // end::like[]
+// tag::archive[]
 
 ==== Listing archived memes: `archives`
 
-Lists all archived memes. +
+Lists all memes that are archived in the memes tab. +
 Format: `archives`
+
+****
+* To view unarchived memes again, just execute the `list` command!
+****
 
 ==== Archiving a meme:  `archive`
 
-Archives a meme at the specified index. +
+Archives the meme at the specified index. Hides the meme from the default view. +
 Format: `archive INDEX`
+
+****
+* You can only archive unarchived memes. Execute `list` to see the unarchived memes.
+****
 
 ==== Unarchiving a meme: `unarchive`
 
-Unarchives a meme at the specified index. +
+Unarchives the meme at the specified index. Shows the meme in the default view. +
 Format: `unarchive INDEX`
 
+****
+* You can only unarchive archived memes. Execute `archives` to see the archived memes.
+****
+// end::archive[]
 
 ==== Viewing a meme: `view`
 Views the meme at the specified index. +
 Format: `view INDEX`
 
 ****
-* To exit the view, simply switch to another tab using the tab command.
+* To exit the view, simply switch to another tab using the tab command. Only `tab`, `help` and `exit` are usable while viewing a meme.
 For example, `tab memes` will bring the user back to the memes tab.
 ****
 
@@ -316,21 +333,6 @@ Format: `delete INDEX`
 Clears all templates. +
 Format: `clear`
 
-==== Archiving a template: `archive`
-
-Archives the template at the specified index. +
-Format: `archive INDEX`
-
-==== Unarchiving a template: `unarchive`
-
-Unarchives the template at the specified index. +
-Format: `unarchive INDEX`
-
-==== Listing all archived templates: `archives`
-
-Lists all templates that are archived in the templates tab. +
-Format: `archives`
-
 ==== Creating memes from templates: `use`
 
 Uses the template at the specified index to start a meme creation session. +
@@ -339,6 +341,32 @@ For details, please refer to the next section <<Create Tab>>. +
 Format: `use INDEX`
 
 // end::templates[]
+==== Listing all archived templates: `archives`
+
+Lists all templates that are archived in the templates tab. +
+Format: `archives`
+
+****
+* To view unarchived templates again, just execute the `list` command!
+****
+
+==== Archiving a template: `archive`
+
+Archives the template at the specified index. Hides the template from the default view.+
+Format: `archive INDEX`
+
+****
+* You can only archive unarchived templates. Execute `list` to see the unarchived templates.
+****
+
+==== Unarchiving a template: `unarchive`
+
+Unarchives the template at the specified index. Shows the template in the default view.+
+Format: `unarchive INDEX`
+
+****
+* You can only unarchive archived templates. Execute `archives` to see the archived templates.
+****
 
 // tag::meme-create[]
 
