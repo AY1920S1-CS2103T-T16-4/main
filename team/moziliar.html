@@ -42,7 +42,20 @@ and JavaFX is required.</p>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: created wrapper class ImagePath during morphing stage for internal use. <a href="https://github.com/AY1920S1-CS2103-T16-3/main/pull/38">#38</a></p>
+<p><strong>Minor enhancement</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>created wrapper class ImagePath during morphing stage for internal use.</p>
+</li>
+<li>
+<p>Restyle view panel for better UX as user can view long memes.</p>
+</li>
+<li>
+<p>Improve UI logic to allow display of multiple tags without content overflow.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=moziliar&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false">RepoSense code</a>]</p>
@@ -127,9 +140,9 @@ Format: <code>like INDEX</code></p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-You could use arrow key <kbd>Up</kbd> to quickly like a meme at the given index.<br>
-To do this, key in the full command <code>like INDEX</code> then press arrow key <kbd>Up</kbd>.<br>
-You can also use arrow key <kbd>Left</kbd> and <kbd>Right</kbd> to increase / decrease the meme index.
+You could use arrow key <kbd>UP</kbd> to quickly like a meme at the given index.<br>
+To do this, key in the full command <code>like INDEX</code> then press arrow key <kbd>UP</kbd>.<br>
+You can also use arrow key <kbd>LEFT</kbd> and <kbd>RIGHT</kbd> to increase / decrease the meme index.
 </td>
 </tr>
 </table>
@@ -222,7 +235,7 @@ Updates to the like and dislike count of any memes inside the currently displaye
 </div>
 </div>
 <div class="paragraph">
-<p>In the <code>CommandBox</code>, <code>UP</code> and <code>DOWN</code> keys are used for easy execution of <code>LikeCommand</code> and <code>DislikeCommand</code>.
+<p>In the <code>CommandBox</code>, <code>UP</code> key is used for easy execution of <code>LikeCommand</code> and <code>DislikeCommand</code>.
 This allows the user to like a meme conveniently as he/she can press the key until he/she feels like stopping.
 <code>LEFT</code> and <code>RIGHT</code> keys are used for toggling the index in the complete command.
 For example, when command <code>Like 2</code> is inside the command text box, where 2 is a valid index of a meme displayed,
@@ -363,5 +376,30 @@ extracted in runtime.</p>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="proposed-screen-time"><a class="link" href="#proposed-screen-time">[Proposed] Screen Time</a></h3>
+<div class="paragraph">
+<p>Meme can lightens up a person&#8217;s mood; yet it could also make people addicted to it.
+The application cannot force the user not to use it beyond a certain duration, but instead could help
+by reminding the user how much time has elapsed and, by doing so, helping the user to better manage his/her time.</p>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 08:45:50 UTC</div></div></div></body></html>
+<div class="paragraph">
+<p>The screen time of the Application can be recorded in statistics data and can be captured using Java LocalDateTime.
+When the user opens the application the next time, a new login time is captured in the model object
+in order to compute the screen time.
+Upon exiting the Application, a new logout time is recorded inside the data file, together with the screen time in the
+current use. It could be a simple <code>Current Screen Time</code> = <code>Logout Time</code> - <code>Login Time</code>, which can be added to the
+cumulative screen time in the data file for future reference.</p>
+</div>
+<div class="paragraph">
+<p>A reminder can be implemented through JavaFX GUI, which listens to the current time flow and issue reminder
+upon excessive use of the application. This is to prevent overuse of the application beyond leisure entertainment.</p>
+</div>
+<div class="paragraph">
+<p>The statistics infrastructure is built with extensibility in mind. Logout time can be store in the similar manner
+as like data in Jackson file, and can be stored <code>Stats</code>. <code>Stats Panel</code> is already set up to display any kinds of
+statistics visuals, including this one. Hence, implementing screen time would be similar to like data, but simpler.</p>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 10:27:37 UTC</div></div></div></body></html>

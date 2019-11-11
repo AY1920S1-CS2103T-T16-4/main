@@ -32,8 +32,9 @@
 <li><a href="#archives-feature">3.8. Archives Feature</a></li>
 <li><a href="#miscellaneous-view-feature">3.9. [Miscellaneous] View feature</a></li>
 <li><a href="#proposed-data-encryption">3.10. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.11. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.12. Configuration</a></li>
+<li><a href="#proposed-screen-time">3.11. [Proposed] Screen Time</a></li>
+<li><a href="#logging">3.12. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.13. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -1023,7 +1024,7 @@ Updates to the like and dislike count of any memes inside the currently displaye
 </div>
 </div>
 <div class="paragraph">
-<p>In the <code>CommandBox</code>, <code>UP</code> and <code>DOWN</code> keys are used for easy execution of <code>LikeCommand</code> and <code>DislikeCommand</code>.
+<p>In the <code>CommandBox</code>, <code>UP</code> key is used for easy execution of <code>LikeCommand</code> and <code>DislikeCommand</code>.
 This allows the user to like a meme conveniently as he/she can press the key until he/she feels like stopping.
 <code>LEFT</code> and <code>RIGHT</code> keys are used for toggling the index in the complete command.
 For example, when command <code>Like 2</code> is inside the command text box, where 2 is a valid index of a meme displayed,
@@ -1739,14 +1740,39 @@ which switches the MemeGridPanel to ViewPanel, hence displaying the meme.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.11. Logging</a></h3>
+<h3 id="proposed-screen-time"><a class="link" href="#proposed-screen-time">3.11. [Proposed] Screen Time</a></h3>
+<div class="paragraph">
+<p>Meme can lightens up a person&#8217;s mood; yet it could also make people addicted to it.
+The application cannot force the user not to use it beyond a certain duration, but instead could help
+by reminding the user how much time has elapsed and, by doing so, helping the user to better manage his/her time.</p>
+</div>
+<div class="paragraph">
+<p>The screen time of the Application can be recorded in statistics data and can be captured using Java LocalDateTime.
+When the user opens the application the next time, a new login time is captured in the model object
+in order to compute the screen time.
+Upon exiting the Application, a new logout time is recorded inside the data file, together with the screen time in the
+current use. It could be a simple <code>Current Screen Time</code> = <code>Logout Time</code> - <code>Login Time</code>, which can be added to the
+cumulative screen time in the data file for future reference.</p>
+</div>
+<div class="paragraph">
+<p>A reminder can be implemented through JavaFX GUI, which listens to the current time flow and issue reminder
+upon excessive use of the application. This is to prevent overuse of the application beyond leisure entertainment.</p>
+</div>
+<div class="paragraph">
+<p>The statistics infrastructure is built with extensibility in mind. Logout time can be store in the similar manner
+as like data in Jackson file, and can be stored <code>Stats</code>. <code>Stats Panel</code> is already set up to display any kinds of
+statistics visuals, including this one. Hence, implementing screen time would be similar to like data, but simpler.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.12. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.12, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.13, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1777,7 +1803,7 @@ which switches the MemeGridPanel to ViewPanel, hence displaying the meme.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.12. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.13. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2989,4 +3015,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 08:45:50 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 10:27:37 UTC</div></div></div></body></html>
