@@ -1151,7 +1151,7 @@ These instructions only provide a starting point for testers to work on; testers
 . Deleting a meme while in `find`
 
 .. Prerequisites: Weme is in the memes tab and just executed a `find` command.
-.. Similar to above.
+.. Similar to above. Weme will delete the meme specified by the index in the displayed list.
 
 === Clearing memes
 
