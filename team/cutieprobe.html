@@ -27,10 +27,16 @@
 <p>What it does: allows the user to type command faster and more easily by showing possible command arguments and allow the user to use TAB key to auto-complete the command.</p>
 </li>
 <li>
-<p>Justification: This feature improves the product significantly because a user can be tired of typing the full command over and over again, or unsure of what arguments to supply.</p>
+<p>Justification: This feature improves the product significantly because a user can be tired of typing the full command over and over again,
+or unsure of what arguments to supply. This feature allows the user to see what are the available commands and in case the user forgets the exact spelling of the command,
+the user can then be reminded of the similar commands and use <kbd>tab</kbd> to automatically correct the typo. Furthermore,
+the user can be reminded of the possible commands arguments (e.g. popular tags) from past records when the user is short of ideas.
+The usage of <kbd>tab</kbd> for auto-completion also tremendously improves the speed of typing and hence the overall experience of the user.</p>
 </li>
 <li>
-<p>Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it requires live update of input and different methods to process different commands in order to generate suggestions.</p>
+<p>Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives.
+The implementation too was challenging as it requires live update of input and different methods to process different commands in order to generate suggestions.
+The prompters mirrors parsers but they function differently. A branch new set of logic is implemented in the prompters and util methods to facilitate smoother suggestions and auto-completion.</p>
 </li>
 <li>
 <p>Credits: <code>LevenshteinDistance</code> in <code>org.apache.commons.text</code> is used in calculating the similarity between strings.</p>
@@ -120,6 +126,11 @@
 </table>
 <div class="sect2">
 <h3 id="command-suggestions"><a class="link" href="#command-suggestions">Command Suggestions</a></h3>
+<div class="paragraph">
+<p>Weme supports command suggestions and auto-completion using <kbd>tab</kbd> for every command available.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -147,21 +158,79 @@ no meme of index 5.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Example 1:<br>
-When user types in <code>a</code> in the meme context, the following suggestions will appear:<br>
-<code>add: adds a meme to Weme.<br>
-archive: archive a meme by index.<br>
-archives: list all archived memes.</code><br>
-If <kbd>Tab</kbd> is pressed, <code>a</code> in the command box will be replaced by <code>add</code>.</p>
+</div>
 </div>
 <div class="paragraph">
-<p>Example 2:<br>
-When user types in <code>add p/pathToMeme t/c</code>, the following suggestions will appear:<br>
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When user types in <code>a</code> in the meme tab, the following suggestions will appear:<br>
+<code>add: adds a meme to Weme.<br>
+archive: archive a meme by index.<br>
+archives: list all archived memes.</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CommandPrompt1.png" alt="CommandPrompt1" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>After pressing <kbd>Tab</kbd>, <code>a</code> in the command box will be replaced by <code>add</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CommandPrompt2.png" alt="CommandPrompt2" width="790">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When user types in <code>add p/pathToMeme t/c</code> in the memes tab, the following suggestions will appear:<br>
 <code>CS<br>
 cute<br>
-CS2103</code><br>
-If <kbd>Tab</kbd> is pressed, <code>c</code> in the command box will be replaced by <code>CS</code>.</p>
+csgg</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CommandPrompt3.png" alt="CommandPrompt3" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>After pressing <kbd>Tab</kbd>, <code>c</code> in the command box will be replaced by <code>CS</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CommandPrompt4.png" alt="CommandPrompt4" width="790">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When user types in <code>find doge joker funny cuuuuutie</code> in the memes tab, the following suggestions will appear:<br>
+<code>cute<br>
+CUTECATS<br>
+favorite</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CommandPrompt5.png" alt="CommandPrompt5" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>After pressing <kbd>Tab</kbd>, <code>cuuuuutie</code> in the command box will be replaced by <code>cute</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CommandPrompt6.png" alt="CommandPrompt6" width="790">
+</div>
 </div>
 </div>
 </div>
@@ -464,4 +533,4 @@ Example: edit 1 d/A funny meme t/funny</code><br>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:26:55 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:28:37 UTC</div></div></div></body></html>

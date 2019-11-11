@@ -53,6 +53,11 @@
 </li>
 <li>
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/Ui.png" alt="Ui" width="790">
+</div>
+</div>
 </li>
 <li>
 <p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
@@ -232,6 +237,15 @@ Format: <code>tab TAB_NAME</code><br>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Illustration after switching to <code>templates</code> tab:<br>
+Command: <code>tab templates</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Tab.png" alt="Tab" width="790">
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.1.5. Exiting the program : <code>exit</code></a></h4>
@@ -260,17 +274,6 @@ A meme can have any number of tags (including 0). Tags can only contain letters 
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>add p//Users/Me/Downloads/dgirl_oof.jpg t/Funny</code><br>
-Adds a meme with the image from <code>/Users/Me/Downloads/dgirl_oof.jpg</code> and tag <code>Funny</code></p>
-</li>
-</ul>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -323,6 +326,37 @@ If you are using Windows, your command might look something like <code>add p/C:/
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add p//Users/Me/Downloads/dgirl_oof.jpg t/Funny</code><br>
+Adds a meme with the image from <code>/Users/Me/Downloads/dgirl_oof.jpg</code> and tag <code>Funny</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Illustration of adding a meme with description <code>Cat and child</code> and tags <code>baby</code> and <code>cuteCat</code>:<br>
+Command: <code>add p/pathToMeme d/Cat and child t/baby t/cuteCat</code></p>
+</div>
+<div class="paragraph">
+<p>Before command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MemeAddCommand2.png" alt="MemeAddCommand2" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>After command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MemeAddCommand.png" alt="MemeAddCommand" width="790">
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="listing-all-memes-code-list-code"><a class="link" href="#listing-all-memes-code-list-code">3.2.2. Listing all memes: <code>list</code></a></h4>
@@ -372,6 +406,26 @@ Edits the description of the 2nd meme to be <code>Random Meme</code> and clears 
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Illustration of editing the description of the meme at index 1 in the displayed list:<br>
+Command: <code>edit 1 d/doge doge doge</code></p>
+</div>
+<div class="paragraph">
+<p>Before command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MemeEditCommand1.png" alt="MemeEditCommand1" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>After command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MemeEditCommand2.png" alt="MemeEditCommand2" width="790">
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="finding-a-meme-code-find-code"><a class="link" href="#finding-a-meme-code-find-code">3.2.4. Finding a meme: <code>find</code></a></h4>
@@ -414,6 +468,26 @@ Edits the description of the 2nd meme to be <code>Random Meme</code> and clears 
 Returns memes whose tags contain <code>pikachu</code></p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Illustration of finding memes with tag <code>cute</code>:<br>
+Command: <code>find cute</code></p>
+</div>
+<div class="paragraph">
+<p>Before command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Ui.png" alt="Ui" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>After command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MemeFindCommand.png" alt="MemeFindCommand" width="790">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -1147,6 +1221,11 @@ edits the tags of a meme.
 </div>
 <div class="sect2">
 <h3 id="command-suggestions"><a class="link" href="#command-suggestions">3.8. Command Suggestions</a></h3>
+<div class="paragraph">
+<p>Weme supports command suggestions and auto-completion using <kbd>tab</kbd> for every command available.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -1174,21 +1253,79 @@ no meme of index 5.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Example 1:<br>
-When user types in <code>a</code> in the meme context, the following suggestions will appear:<br>
-<code>add: adds a meme to Weme.<br>
-archive: archive a meme by index.<br>
-archives: list all archived memes.</code><br>
-If <kbd>Tab</kbd> is pressed, <code>a</code> in the command box will be replaced by <code>add</code>.</p>
+</div>
 </div>
 <div class="paragraph">
-<p>Example 2:<br>
-When user types in <code>add p/pathToMeme t/c</code>, the following suggestions will appear:<br>
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When user types in <code>a</code> in the meme tab, the following suggestions will appear:<br>
+<code>add: adds a meme to Weme.<br>
+archive: archive a meme by index.<br>
+archives: list all archived memes.</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CommandPrompt1.png" alt="CommandPrompt1" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>After pressing <kbd>Tab</kbd>, <code>a</code> in the command box will be replaced by <code>add</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CommandPrompt2.png" alt="CommandPrompt2" width="790">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When user types in <code>add p/pathToMeme t/c</code> in the memes tab, the following suggestions will appear:<br>
 <code>CS<br>
 cute<br>
-CS2103</code><br>
-If <kbd>Tab</kbd> is pressed, <code>c</code> in the command box will be replaced by <code>CS</code>.</p>
+csgg</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CommandPrompt3.png" alt="CommandPrompt3" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>After pressing <kbd>Tab</kbd>, <code>c</code> in the command box will be replaced by <code>CS</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CommandPrompt4.png" alt="CommandPrompt4" width="790">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When user types in <code>find doge joker funny cuuuuutie</code> in the memes tab, the following suggestions will appear:<br>
+<code>cute<br>
+CUTECATS<br>
+favorite</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CommandPrompt5.png" alt="CommandPrompt5" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>After pressing <kbd>Tab</kbd>, <code>cuuuuutie</code> in the command box will be replaced by <code>cute</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CommandPrompt6.png" alt="CommandPrompt6" width="790">
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1412,4 +1549,4 @@ e.g. <code>add p//Users/Me/Downloads/dgirl_oof.jpg d/Disaster Girl t/Funny</code
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:26:55 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:28:37 UTC</div></div></div></body></html>
